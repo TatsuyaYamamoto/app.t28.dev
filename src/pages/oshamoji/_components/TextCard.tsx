@@ -1,63 +1,46 @@
-import { FC, useState, ChangeEvent, useRef, useEffect } from "react";
+import { FC } from "react";
 
 import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { Box } from "@chakra-ui/react";
 
-const cardStyle = css`
-  width: 320px;
-  min-height: 90px;
-  border-radius: 4px;
+const Root = styled.div`
+  height: 100%;
+
+  border-radius: 10px;
   font-size: 24px;
   font-weight: 400;
 
-  border: 1px solid #000000;
+  box-shadow: 1px 1px 5px #000000;
+  background: #ffffff;
+  padding: 20px;
+
+  box-sizing: border-box;
+`;
+
+const ConvertedText = styled.div`
+  white-space: pre-wrap;
 `;
 
 export interface TextCardProps {
   value: string;
-  onChange: (newValue: string) => void;
+  typeface: string;
+  variant: string;
 }
 
 const TextCard: FC<TextCardProps> = (props) => {
-  const { value, onChange } = props;
-
-  const isComposing = useRef(false);
-  const [internalValue, setInternalValue] = useState(value);
-  const elRef = useRef<HTMLTextAreaElement>(null);
-
-  const onInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const newValue = e.target.value;
-    console.log(isComposing.current, newValue);
-
-    setInternalValue(e.target.value);
-    if (!isComposing.current) {
-      onChange(newValue);
-    }
-  };
-
-  const onCompositionStart = () => {
-    isComposing.current = true;
-    console.log("onCompositionStart");
-  };
-
-  const onCompositionEnd = () => {
-    isComposing.current = false;
-    console.log("onCompositionEnd");
-    onChange(internalValue);
-  };
-
-  useEffect(() => {
-    setInternalValue(value);
-  }, [value]);
+  const { value, typeface, variant } = props;
 
   return (
-    <textarea
-      ref={elRef}
-      css={cardStyle}
-      value={internalValue}
-      onInput={onInput}
-      onCompositionStart={onCompositionStart}
-      onCompositionEnd={onCompositionEnd}
-    />
+    <Root>
+      <Box textAlign={"right"}>
+        <Box fontSize={"18px"}>{typeface}</Box>
+        <Box fontSize={"14px"} color={"#1f1f1f"}>
+          {variant}
+        </Box>
+      </Box>
+      <ConvertedText>{value}</ConvertedText>
+    </Root>
   );
 };
 

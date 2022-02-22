@@ -1,22 +1,25 @@
 import { FC, useEffect, useState } from "react";
 
+import { Grid, GridItem } from "@chakra-ui/react";
 import TextCard from "./TextCard";
 
 import OshalizableChar from "../_helper/OshalizableChar";
 import { Typeface, Variant } from "../_helper/UnicodeSymbols";
 
-const TextCardList: FC = () => {
-  const [input, setInput] = useState(
-    `Why don't you tweet your EMOTION with osha na moji?`
-  );
-  const [convertedList, setConvertedList] = useState<string[]>([]);
+interface Props {
+  text: string;
+}
 
-  const onChange = (_: number) => (newValue: string) => {
-    setInput(newValue);
-  };
+const TextCardList: FC<Props> = (props) => {
+  const text =
+    props.text || `Why don't you tweet your EMOTION with osha na moji?`;
+
+  const [convertedList, setConvertedList] = useState<
+    { typeface: string; variant: string; value: string }[]
+  >([]);
 
   useEffect(() => {
-    const inputChars = OshalizableChar.from(input);
+    const inputChars = OshalizableChar.from(text);
     const convertTargetTypes: {
       typeface: Typeface;
       variant: Variant;
@@ -79,22 +82,45 @@ const TextCardList: FC = () => {
       },
     ];
 
-    const convertResult = convertTargetTypes.map((type) =>
-      inputChars
+    const convertResult = convertTargetTypes.map((type) => ({
+      typeface: type.typeface,
+      variant: type.variant,
+      value: inputChars
         .map((char) =>
           char.convert({ block: "mathematicalAlphanumeric", ...type })
         )
-        .join("")
-    );
+        .join(""),
+    }));
     setConvertedList(convertResult);
-  }, [input]);
+  }, [text]);
 
   return (
-    <div>
+    <Grid
+      templateColumns="repeat(1, 1fr)"
+      templateRows={"auto"}
+      gap={6}
+      position={"relative"}
+      padding={"24px 16px 24px"}
+      sx={{
+        "@media  (min-width: 600px)": {
+          gridTemplateColumns: "repeat(2, 1fr)",
+        },
+        "@media  (min-width: 900px)": {
+          gridTemplateColumns: "repeat(3, 1fr)",
+          padding: "24px 100px 24px",
+        },
+      }}
+    >
       {convertedList.map((converted, i) => (
-        <TextCard key={i} value={converted} onChange={onChange(i)} />
+        <GridItem key={i}>
+          <TextCard
+            value={converted.value}
+            typeface={converted.typeface}
+            variant={converted.variant}
+          />
+        </GridItem>
       ))}
-    </div>
+    </Grid>
   );
 };
 
