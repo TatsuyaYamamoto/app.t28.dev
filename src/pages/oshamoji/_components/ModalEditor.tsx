@@ -11,6 +11,7 @@ import {
   ModalOverlay,
 } from "@chakra-ui/react";
 import TextareaAutosize from "react-textarea-autosize";
+import { PLACEHOLDER } from "../_helper/config";
 
 interface Props {
   value: string;
@@ -45,7 +46,7 @@ const ModalEditor: FC<Props> = (props) => {
         <ModalCloseButton />
         <ModalBody>
           <TextareaAutosize
-            placeholder={`Why don't you tweet your EMOTION with osha na moji?`}
+            placeholder={PLACEHOLDER}
             onInput={onInput}
             value={value}
             ref={textareaElRef}

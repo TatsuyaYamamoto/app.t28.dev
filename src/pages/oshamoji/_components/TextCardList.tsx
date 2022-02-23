@@ -5,6 +5,7 @@ import TextCard from "./TextCard";
 
 import OshalizableChar from "../_helper/oshamoji/OshalizableChar";
 import { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
+import { PLACEHOLDER } from "../_helper/config";
 
 interface Props {
   text: string;
@@ -12,7 +13,7 @@ interface Props {
 
 const TextCardList: FC<Props> = (props) => {
   const text =
-    props.text || `Why don't you tweet your EMOTION with osha na moji?`;
+    props.text || PLACEHOLDER;
 
   const [convertedList, setConvertedList] = useState<
     { typeface: string; variant: string; value: string }[]
