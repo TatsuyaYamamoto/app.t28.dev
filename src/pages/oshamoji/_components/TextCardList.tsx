@@ -3,8 +3,8 @@ import { FC, useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import TextCard from "./TextCard";
 
-import OshalizableChar from "../_helper/OshalizableChar";
-import { Typeface, Variant } from "../_helper/UnicodeSymbols";
+import OshalizableChar from "../_helper/oshamoji/OshalizableChar";
+import { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
 
 interface Props {
   text: string;
