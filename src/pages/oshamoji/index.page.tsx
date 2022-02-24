@@ -6,6 +6,7 @@ import { Box } from "@chakra-ui/react";
 
 import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";
+import Footer from "./_components/Footer";
 const Fabs = dynamic(() => import("./_components/Fabs"), {
   ssr: false,
 });
@@ -64,6 +65,7 @@ export default function Home() {
           onClickEdit={onClickEditFab}
           onClickTweet={onClickTweetFab}
         />
+        <Footer />
       </Box>
     </>
   );
