@@ -29,6 +29,7 @@ export interface TextCardProps {
   value: string;
   typeface: string;
   variant: string;
+  onClick: () => void;
 }
 
 const TextCard: FC<TextCardProps> = (props) => {
@@ -36,10 +37,11 @@ const TextCard: FC<TextCardProps> = (props) => {
   const [isOpenTooltip, setOpenTooltip] = useState(false);
   const tooltipTimeoutId = useRef<NodeJS.Timeout | null>(null);
 
-  const onClickCard = () => {
+  const onClick = () => {
     copyToClipboard(value)
       .then(() => {
         setOpenTooltip(true);
+        props.onClick();
 
         if (tooltipTimeoutId.current) {
           clearTimeout(tooltipTimeoutId.current);
@@ -56,7 +58,7 @@ const TextCard: FC<TextCardProps> = (props) => {
 
   return (
     <Tooltip isOpen={isOpenTooltip} hasArrow={true} label={"Copy!"}>
-      <Root onClick={onClickCard}>
+      <Root onClick={onClick}>
         <Box textAlign={"right"}>
           <Box fontSize={"18px"}>{typeface}</Box>
           <Box fontSize={"14px"} color={"#1f1f1f"}>

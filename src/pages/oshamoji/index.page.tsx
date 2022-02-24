@@ -1,21 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { Box } from "@chakra-ui/react";
 
 import TextCardList from "./_components/TextCardList";
-import Fab from "./_components/Fab";
+
+const Fabs = dynamic(() => import("./_components/Fabs"), {
+  ssr: false,
+});
 const ModalEditor = dynamic(() => import("./_components/ModalEditor"), {
   ssr: false,
 });
 
 export default function Home() {
   const [isOpenModalEditor, setOpenModalEditor] = useState(false);
-  const [text, setText] = useState("");
+  const [vanillaText, setVanillaText] = useState("");
+  const [tweetText, setTweetText] = useState("");
+  const showTwitterFab = !!tweetText;
 
-  const onClickFab = () => {
+  const onClickEditFab = () => {
     setOpenModalEditor(true);
+  };
+
+  const onClickTweetFab = () => {
+    window.location.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
   };
 
   const onCloseModal = () => {
@@ -23,9 +32,17 @@ export default function Home() {
   };
 
   const onChangeText = (value: string) => {
-    setText(value);
+    setVanillaText(value);
   };
 
+  const onClickCard = (value: string) => {
+    setTweetText(value);
+  };
+
+  useEffect(() => {
+    // テキストを更新したら、クリップボードの状態に関係なく、ツイート対象の文字はクリアする
+    setTweetText("");
+  }, [vanillaText]);
   return (
     <>
       <Head>
@@ -33,14 +50,18 @@ export default function Home() {
       </Head>
 
       <Box>
-        <TextCardList text={text} />
+        <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
         <ModalEditor
-          value={text}
+          value={vanillaText}
           isOpen={isOpenModalEditor}
           onClose={onCloseModal}
           onChangeText={onChangeText}
         />
-        <Fab onClick={onClickFab} />
+        <Fabs
+          showTweetFab={showTwitterFab}
+          onClickEdit={onClickEditFab}
+          onClickTweet={onClickTweetFab}
+        />
       </Box>
     </>
   );

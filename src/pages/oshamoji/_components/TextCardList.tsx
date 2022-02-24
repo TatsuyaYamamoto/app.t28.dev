@@ -8,19 +8,23 @@ import { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
 import { PLACEHOLDER } from "../_helper/config";
 
 interface Props {
-  text: string;
+  vanillaText: string;
+  onClickCard: (text: string) => void;
 }
 
 const TextCardList: FC<Props> = (props) => {
-  const text =
-    props.text || PLACEHOLDER;
+  const vanillaText = props.vanillaText || PLACEHOLDER;
 
   const [convertedList, setConvertedList] = useState<
     { typeface: string; variant: string; value: string }[]
   >([]);
 
+  const onClickCard = (text: string) => () => {
+    props.onClickCard(text);
+  };
+
   useEffect(() => {
-    const inputChars = OshalizableChar.from(text);
+    const inputChars = OshalizableChar.from(vanillaText);
     const convertTargetTypes: {
       typeface: Typeface;
       variant: Variant;
@@ -93,7 +97,7 @@ const TextCardList: FC<Props> = (props) => {
         .join(""),
     }));
     setConvertedList(convertResult);
-  }, [text]);
+  }, [vanillaText]);
 
   return (
     <Grid
@@ -118,6 +122,7 @@ const TextCardList: FC<Props> = (props) => {
             value={converted.value}
             typeface={converted.typeface}
             variant={converted.variant}
+            onClick={onClickCard(converted.value)}
           />
         </GridItem>
       ))}
