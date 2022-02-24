@@ -5,7 +5,7 @@ import Head from "next/head";
 import { Box } from "@chakra-ui/react";
 
 import TextCardList from "./_components/TextCardList";
-
+import AppBar from "./_components/AppBar";
 const Fabs = dynamic(() => import("./_components/Fabs"), {
   ssr: false,
 });
@@ -43,6 +43,7 @@ export default function Home() {
     // テキストを更新したら、クリップボードの状態に関係なく、ツイート対象の文字はクリアする
     setTweetText("");
   }, [vanillaText]);
+
   return (
     <>
       <Head>
@@ -50,6 +51,7 @@ export default function Home() {
       </Head>
 
       <Box>
+        <AppBar />
         <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
         <ModalEditor
           value={vanillaText}
