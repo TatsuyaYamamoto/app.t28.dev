@@ -104,6 +104,7 @@ const TextCardList: FC<Props> = (props) => {
       templateColumns="repeat(1, 1fr)"
       templateRows={"auto"}
       gap={6}
+      marginTop={"72px" /* appbar */}
       position={"relative"}
       padding={"24px 16px 24px"}
       sx={{

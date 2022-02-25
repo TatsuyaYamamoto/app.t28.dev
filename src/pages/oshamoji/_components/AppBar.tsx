@@ -18,11 +18,12 @@ const AppBar = () => {
   return (
     <Box
       as={"header"}
-      position={"sticky"}
+      position={"fixed"}
+      width={"100%"}
+      height={"72px"}
       display={"flex"}
       alignItems={"center"}
       top={0}
-      height={"72px"}
       zIndex={1}
       backdropFilter={"blur(13px)"}
       fontSize={"36px"}
