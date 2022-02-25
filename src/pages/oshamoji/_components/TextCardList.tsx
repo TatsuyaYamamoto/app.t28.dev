@@ -104,16 +104,15 @@ const TextCardList: FC<Props> = (props) => {
       templateColumns="repeat(1, 1fr)"
       templateRows={"auto"}
       gap={6}
-      marginTop={"72px" /* appbar */}
       position={"relative"}
-      padding={"24px 16px 24px"}
+      padding={"0 16px"}
       sx={{
         "@media  (min-width: 600px)": {
           gridTemplateColumns: "repeat(2, 1fr)",
         },
         "@media  (min-width: 900px)": {
           gridTemplateColumns: "repeat(3, 1fr)",
-          padding: "24px 100px 24px",
+          padding: "0 100px",
         },
       }}
     >

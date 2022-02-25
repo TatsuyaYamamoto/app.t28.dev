@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { Global, css } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
 
@@ -67,7 +68,23 @@ export default function Home() {
         <title>Oshamoji</title>
       </Head>
 
-      <Box>
+      <Global
+        styles={css`
+          html {
+            height: 100%;
+          }
+          body,
+          #__next {
+            min-height: 100%;
+          }
+        `}
+      />
+
+      <Box
+        minHeight={"100%"}
+        paddingTop={72 /* appbar */ + 24 + "px"}
+        paddingBottom={144 /* footer and fab */ + 24 + "px"}
+      >
         <AppBar />
         <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
         <ModalEditor

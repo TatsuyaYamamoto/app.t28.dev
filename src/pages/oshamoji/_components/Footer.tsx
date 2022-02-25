@@ -6,6 +6,9 @@ const Footer: FC = () => {
   return (
     <Box
       as={"footer"}
+      position={"absolute"}
+      bottom={0}
+      width={"100%"}
       backgroundColor={"#ffa000"}
       fontSize={"16px"}
       padding={"0 16px"}
