@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import { Box } from "@chakra-ui/react";
+import hotkeys from "hotkeys-js";
 
 import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";
@@ -24,9 +25,12 @@ export default function Home() {
     setOpenModalEditor(true);
   };
 
-  const onClickTweetFab = () => {
+  const onClickTweetFab = useCallback(() => {
+    if (!tweetText) {
+      return;
+    }
     window.location.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
-  };
+  }, [tweetText]);
 
   const onCloseModal = () => {
     setOpenModalEditor(false);
@@ -44,6 +48,18 @@ export default function Home() {
     // テキストを更新したら、クリップボードの状態に関係なく、ツイート対象の文字はクリアする
     setTweetText("");
   }, [vanillaText]);
+
+  useEffect(() => {
+    const editCommand = `ctrl+e, command+e`;
+    const tweetCommand = `ctrl+k, command+k`;
+
+    hotkeys(editCommand, onClickEditFab);
+    hotkeys(tweetCommand, onClickTweetFab);
+    return () => {
+      hotkeys.unbind(editCommand);
+      hotkeys.unbind(tweetCommand);
+    };
+  }, [onClickTweetFab]);
 
   return (
     <>
