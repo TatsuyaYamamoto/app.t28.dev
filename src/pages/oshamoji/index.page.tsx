@@ -5,6 +5,7 @@ import Head from "next/head";
 import { Global, css } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
+import { useInView } from "react-intersection-observer";
 
 import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";
@@ -21,6 +22,7 @@ export default function Home() {
   const [vanillaText, setVanillaText] = useState("");
   const [tweetText, setTweetText] = useState("");
   const showTwitterFab = !!tweetText;
+  const [ref, isFooterViewed] = useInView();
 
   const onClickEditFab = () => {
     setOpenModalEditor(true);
@@ -80,26 +82,30 @@ export default function Home() {
         `}
       />
 
-      <Box
-        minHeight={"100%"}
-        paddingTop={72 /* appbar */ + 24 + "px"}
-        paddingBottom={144 /* footer and fab */ + 24 + "px"}
-      >
+      <Box minHeight={"100%"} paddingTop={72 /* appbar */ + 24 + "px"}>
         <AppBar />
-        <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
-        <ModalEditor
-          value={vanillaText}
-          isOpen={isOpenModalEditor}
-          onClose={onCloseModal}
-          onChangeText={onChangeText}
-        />
-        <Fabs
-          showTweetFab={showTwitterFab}
-          onClickEdit={onClickEditFab}
-          onClickTweet={onClickTweetFab}
-        />
+        <Box position={"relative"} paddingBottom={16}>
+          <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
+          <Fabs
+            showTweetFab={showTwitterFab}
+            onClickEdit={onClickEditFab}
+            onClickTweet={onClickTweetFab}
+            css={css`
+              position: ${isFooterViewed ? "absolute" : "fixed"};
+              right: 20px;
+              bottom: 20px;
+            `}
+          />
+        </Box>
+        <Box height={"52px" /* footer */} ref={ref} />
         <Footer />
       </Box>
+      <ModalEditor
+        value={vanillaText}
+        isOpen={isOpenModalEditor}
+        onClose={onCloseModal}
+        onChangeText={onChangeText}
+      />
     </>
   );
 }

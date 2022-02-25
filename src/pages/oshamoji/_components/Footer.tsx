@@ -1,14 +1,21 @@
-import { FC } from "react";
+import { forwardRef } from "react";
 import { Box, Icon } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 
-const Footer: FC = () => {
+interface Props {}
+
+export default forwardRef<HTMLDivElement, Props>(function Footer(_props, ref) {
   return (
     <Box
+      ref={ref}
       as={"footer"}
       position={"absolute"}
       bottom={0}
+      height={"52px"}
       width={"100%"}
+      display={"flex"}
+      justifyContent={"center"}
+      alignItems={"center"}
       backgroundColor={"#ffa000"}
       fontSize={"16px"}
       padding={"0 16px"}
@@ -20,7 +27,7 @@ const Footer: FC = () => {
         },
       }}
     >
-      <Box textAlign={"center"} marginY={1}>
+      <Box textAlign={"center"}>
         {`Made for myself in 🇯🇵 by`}
         <a
           css={css`
@@ -34,6 +41,4 @@ const Footer: FC = () => {
       </Box>
     </Box>
   );
-};
-
-export default Footer;
+});

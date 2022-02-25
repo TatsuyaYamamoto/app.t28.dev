@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { VFC } from "react";
 
 import { Box, Button, Tooltip, Icon, ScaleFade } from "@chakra-ui/react";
 import { css } from "@emotion/react";
@@ -24,20 +24,14 @@ interface Props {
   showTweetFab: boolean;
   onClickEdit: () => void;
   onClickTweet: () => void;
+  className?: string;
 }
 
-const Fabs: FC<Props> = (props) => {
-  const { showTweetFab, onClickEdit, onClickTweet } = props;
+const Fabs: VFC<Props> = (props) => {
+  const { showTweetFab, onClickEdit, onClickTweet, ...otherProps } = props;
 
   return (
-    <Box
-      position={"fixed"}
-      right={"20px"}
-      bottom={"20px"}
-      zIndex={1}
-      display={"flex"}
-      flexDirection={"column"}
-    >
+    <Box zIndex={1} display={"flex"} flexDirection={"column"} {...otherProps}>
       <ScaleFade initialScale={0.2} in={showTweetFab}>
         <Tooltip label={`Twitter`} placement="left">
           <Button
