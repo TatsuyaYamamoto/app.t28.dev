@@ -1,6 +1,5 @@
 # Oshamoji
 
-
 ## Characters
 
 ### Mathematical Alphanumeric Symbols
@@ -45,10 +44,10 @@
 | Additional sans-serif bold italic Greek symbols | 𝟃         |                    |
 | Additional bold Greek symbols                   | ?? [^1]   |                    |
 | Bold digits                                     | 𝟎         | :white_check_mark: |
-| Double-struck digits                            | 𝟘         |                    |
+| Double-struck digits                            | 𝟘         | :white_check_mark: |
 | Sans-serif digits                               | 𝟢         | :white_check_mark: |
 | Sans-serif bold digits                          | 𝟬         | :white_check_mark: |
-| Monospace digits                                | 𝟶         |                    |
+| Monospace digits                                | 𝟶         | :white_check_mark: |
 
 ## refs
 

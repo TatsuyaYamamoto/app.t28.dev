@@ -405,6 +405,28 @@ export const SansSerifBoldDigits: UnicodeSymbols = {
   },
 };
 
+/* 𝟢 */
+export const DoubleStruckDigits: UnicodeSymbols = {
+  typeface: "doubleStruck",
+  variant: "normal",
+  characterType: "digit",
+  codePointRange: {
+    from: "U+1D7D8",
+    to: "U+1D7E1",
+  },
+};
+
+/* 𝟘 */
+export const MonoSpaceDigits: UnicodeSymbols = {
+  typeface: "monoSpace",
+  variant: "normal",
+  characterType: "digit",
+  codePointRange: {
+    from: "U+1D7F6",
+    to: "U+1D7FF",
+  },
+};
+
 export const MathematicalAlphanumericStyleMap = {
   latinLetter: {
     uppercase: {
@@ -472,6 +494,12 @@ export const MathematicalAlphanumericStyleMap = {
     sansSerif: {
       normal: SansSerifNormalDigits,
       bold: SansSerifBoldDigits,
+    },
+    monoSpace: {
+      normal: MonoSpaceDigits,
+    },
+    doubleStruck: {
+      normal: DoubleStruckDigits,
     },
   },
 } as const;

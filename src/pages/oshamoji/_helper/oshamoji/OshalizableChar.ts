@@ -105,13 +105,22 @@ class OshalizableChar {
       const { characterType, letterCase } = this.unicodeSymbols;
       const { variant, typeface } = type;
 
-      if (
-        characterType === "digit" &&
-        (typeface === "serif" || typeface === "sansSerif") &&
-        (variant === "normal" || variant === "bold")
-      ) {
-        targetSymbols =
-          MathematicalAlphanumericStyleMap["digit"][typeface][variant];
+      if (characterType === "digit") {
+        if (
+          (typeface === "serif" || typeface === "sansSerif") &&
+          (variant === "normal" || variant === "bold")
+        ) {
+          targetSymbols =
+            MathematicalAlphanumericStyleMap["digit"][typeface][variant];
+        }
+        if (typeface === "doubleStruck") {
+          targetSymbols =
+            MathematicalAlphanumericStyleMap["digit"][typeface]["normal"];
+        }
+        if (typeface === "monoSpace") {
+          targetSymbols =
+            MathematicalAlphanumericStyleMap["digit"][typeface]["normal"];
+        }
       }
 
       if (characterType === "latinLetter" && !!letterCase) {
