@@ -39,9 +39,10 @@ const ModalEditor: FC<Props> = (props) => {
       blockScrollOnMount={false}
       initialFocusRef={textareaElRef}
       finalFocusRef={finalRef}
+      isCentered={true}
     >
       <ModalOverlay />
-      <ModalContent borderRadius={"10px"}>
+      <ModalContent borderRadius={"10px"} marginX={2}>
         <ModalHeader />
         <ModalCloseButton />
         <ModalBody>
