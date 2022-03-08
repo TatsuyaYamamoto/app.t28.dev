@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { Box, Tooltip } from "@chakra-ui/react";
 import { copyToClipboard } from "../_helper/utils";
 
-const Root = styled.button`
+const Root = styled.a`
   display: block;
   height: 100%;
   width: 100%;
@@ -19,6 +19,8 @@ const Root = styled.button`
   padding: 20px;
 
   box-sizing: border-box;
+  
+  word-break: break-word;
 `;
 
 const ConvertedText = styled.div`
@@ -58,7 +60,7 @@ const TextCard: FC<TextCardProps> = (props) => {
 
   return (
     <Tooltip isOpen={isOpenTooltip} hasArrow={true} label={"Copy!"}>
-      <Root onClick={onClick}>
+      <Root href="#" onClick={onClick}>
         <Box textAlign={"right"}>
           <Box fontSize={"18px"}>{typeface}</Box>
           <Box fontSize={"14px"} color={"#1f1f1f"}>
