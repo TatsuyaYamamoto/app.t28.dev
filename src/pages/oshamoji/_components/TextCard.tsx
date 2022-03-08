@@ -19,7 +19,7 @@ const Root = styled.a`
   padding: 20px;
 
   box-sizing: border-box;
-  
+
   word-break: break-word;
 `;
 
@@ -29,13 +29,12 @@ const ConvertedText = styled.div`
 
 export interface TextCardProps {
   value: string;
-  typeface: string;
-  variant: string;
+  label: string;
   onClick: () => void;
 }
 
 const TextCard: FC<TextCardProps> = (props) => {
-  const { value, typeface, variant } = props;
+  const { value, label } = props;
   const [isOpenTooltip, setOpenTooltip] = useState(false);
   const tooltipTimeoutId = useRef<NodeJS.Timeout | null>(null);
 
@@ -61,11 +60,8 @@ const TextCard: FC<TextCardProps> = (props) => {
   return (
     <Tooltip isOpen={isOpenTooltip} hasArrow={true} label={"Copy!"}>
       <Root href="#" onClick={onClick}>
-        <Box textAlign={"right"}>
-          <Box fontSize={"18px"}>{typeface}</Box>
-          <Box fontSize={"14px"} color={"#1f1f1f"}>
-            {variant}
-          </Box>
+        <Box textAlign={"right"} fontSize={"18px"} color={"#1f1f1f"}>
+          {label}
         </Box>
         <ConvertedText>{value}</ConvertedText>
       </Root>

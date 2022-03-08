@@ -7,6 +7,28 @@ import OshalizableChar from "../_helper/oshamoji/OshalizableChar";
 import { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
 import { PLACEHOLDER } from "../_helper/config";
 
+const convertTargetTypes: {
+  label: string;
+  typeface: Typeface;
+  variant: Variant;
+}[] = [
+  { label: "Serif", typeface: "serif", variant: "normal" },
+  { label: "Bold", typeface: "serif", variant: "bold" },
+  { label: "Italic", typeface: "serif", variant: "italic" },
+  { label: "Bold italic", typeface: "serif", variant: "boldItalic" },
+  { label: "Sans-serif", typeface: "sansSerif", variant: "normal" },
+  { label: "Sans-serif bold", typeface: "sansSerif", variant: "bold" },
+  { label: "Sans-serif italic", typeface: "sansSerif", variant: "italic" },
+  // prettier-ignore
+  { label: "Sans-serif bold italic", typeface: "sansSerif", variant: "boldItalic", },
+  { label: "Script", typeface: "script", variant: "normal" },
+  { label: "Bold script", typeface: "script", variant: "bold" },
+  { label: "Fraktur", typeface: "fraktur", variant: "normal" },
+  { label: "Bold Fraktur", typeface: "fraktur", variant: "bold" },
+  { label: "Monospace", typeface: "monoSpace", variant: "normal" },
+  { label: "Double-struck", typeface: "doubleStruck", variant: "normal" },
+];
+
 interface Props {
   vanillaText: string;
   onClickCard: (text: string) => void;
@@ -16,7 +38,7 @@ const TextCardList: FC<Props> = (props) => {
   const vanillaText = props.vanillaText || PLACEHOLDER;
 
   const [convertedList, setConvertedList] = useState<
-    { typeface: string; variant: string; value: string }[]
+    { label: string; value: string }[]
   >([]);
 
   const onClickCard = (text: string) => () => {
@@ -25,71 +47,9 @@ const TextCardList: FC<Props> = (props) => {
 
   useEffect(() => {
     const inputChars = OshalizableChar.from(vanillaText);
-    const convertTargetTypes: {
-      typeface: Typeface;
-      variant: Variant;
-    }[] = [
-      {
-        typeface: "serif",
-        variant: "normal",
-      },
-      {
-        typeface: "serif",
-        variant: "bold",
-      },
-      {
-        typeface: "serif",
-        variant: "italic",
-      },
-      {
-        typeface: "serif",
-        variant: "boldItalic",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "normal",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "bold",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "italic",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "boldItalic",
-      },
-      {
-        typeface: "script",
-        variant: "normal",
-      },
-      {
-        typeface: "script",
-        variant: "bold",
-      },
-      {
-        typeface: "fraktur",
-        variant: "normal",
-      },
-      {
-        typeface: "fraktur",
-        variant: "bold",
-      },
-      {
-        typeface: "monoSpace",
-        variant: "normal",
-      },
-      {
-        typeface: "doubleStruck",
-        variant: "bold",
-      },
-    ];
 
     const convertResult = convertTargetTypes.map((type) => ({
-      typeface: type.typeface,
-      variant: type.variant,
+      label: type.label,
       value: inputChars
         .map((char) =>
           char.convert({ block: "mathematicalAlphanumeric", ...type })
@@ -120,8 +80,7 @@ const TextCardList: FC<Props> = (props) => {
         <GridItem key={i}>
           <TextCard
             value={converted.value}
-            typeface={converted.typeface}
-            variant={converted.variant}
+            label={converted.label}
             onClick={onClickCard(converted.value)}
           />
         </GridItem>
