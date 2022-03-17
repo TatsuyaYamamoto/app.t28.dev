@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react";
+import { FC, useRef, useState, MouseEvent } from "react";
 
 import styled from "@emotion/styled";
 import { Box, Tooltip } from "@chakra-ui/react";
@@ -38,7 +38,9 @@ const TextCard: FC<TextCardProps> = (props) => {
   const [isOpenTooltip, setOpenTooltip] = useState(false);
   const tooltipTimeoutId = useRef<NodeJS.Timeout | null>(null);
 
-  const onClick = () => {
+  const onClick = (e: MouseEvent) => {
+    e.preventDefault();
+
     copyToClipboard(value)
       .then(() => {
         setOpenTooltip(true);
