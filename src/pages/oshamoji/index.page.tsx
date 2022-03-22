@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { Global, css } from "@emotion/react";
+import { css, Global } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
 import { useInView } from "react-intersection-observer";
@@ -22,7 +22,20 @@ export default function Home() {
   const [vanillaText, setVanillaText] = useState("");
   const [tweetText, setTweetText] = useState("");
   const showTwitterFab = !!tweetText;
-  const [ref, isFooterViewed] = useInView();
+  const [footerAreaDummyElRef, isFooterViewed] = useInView();
+
+  // スクロールで最下部に行くと FabとFooterが重なるため、状態によって Fab の positionを切り替える
+  const fabPosition =
+    // prettier-ignore
+    // スクロールが必要な高さで
+    (typeof document !== "undefined" && document.documentElement.clientHeight < document.documentElement.scrollHeight) &&
+    // Footerが見えていたら
+    isFooterViewed
+      // TextCardList(の親要素)の範囲で bottom: 20 の位置 (footerに重ならない)
+      ? "absolute"
+      // Footer が見えない、またはスクロールが発生しない状態でFooterが表示されていたら
+      // ViewPort の範囲で bottom: 20 の位置 (このときはFabとFooterが重なるけれど、許容)
+      : "fixed";
 
   const onClickEditFab = () => {
     setOpenModalEditor(true);
@@ -69,20 +82,14 @@ export default function Home() {
       <Head>
         <title>Oshamoji</title>
       </Head>
-
       <Global
         styles={css`
           html {
             height: 100%;
           }
-          body,
-          #__next {
-            min-height: 100%;
-          }
         `}
       />
-
-      <Box minHeight={"100%"} paddingTop={72 /* appbar */ + 24 + "px"}>
+      <Box paddingTop={72 /* appbar */ + 24 + "px"}>
         <AppBar />
         <Box position={"relative"} paddingBottom={16}>
           <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
@@ -91,13 +98,13 @@ export default function Home() {
             onClickEdit={onClickEditFab}
             onClickTweet={onClickTweetFab}
             css={css`
-              position: ${isFooterViewed ? "absolute" : "fixed"};
+              position: ${fabPosition};
               right: 20px;
               bottom: 20px;
             `}
           />
         </Box>
-        <Box height={"52px" /* footer */} ref={ref} />
+        <Box height={"52px" /* footer */} ref={footerAreaDummyElRef} />
         <Footer />
       </Box>
       <ModalEditor

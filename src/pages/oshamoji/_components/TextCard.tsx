@@ -1,7 +1,8 @@
 import { FC, useRef, useState, MouseEvent } from "react";
+import { Tooltip } from "@chakra-ui/react";
 
 import styled from "@emotion/styled";
-import { Box, Tooltip } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { copyToClipboard } from "../_helper/utils";
 
 const Root = styled.a`
@@ -59,14 +60,27 @@ const TextCard: FC<TextCardProps> = (props) => {
       });
   };
 
+  const card = (
+    <Root href="#" onClick={onClick}>
+      <Box textAlign={"right"} fontSize={"18px"} color={"#1f1f1f"}>
+        {label}
+      </Box>
+      <ConvertedText>{value}</ConvertedText>
+    </Root>
+  );
+
+  /**
+   * Next.js の SSR 時に ↓ の error が発生する
+   * Warning: useLayoutEffect does nothing on the server, because its effect cannot be encoded into the server renderer's output format. This will lead to a mismatch between the initial, non-hydrated UI and the intended UI. To avoid this, useLayoutEffect should only be used in components that render exclusively on the client. See https://reactjs.org/link/uselayouteffect-ssr for common fixes.
+   * 対策として SSR(SSG)かどうかの分岐で Tooltip の描画を制御する
+   */
+  if (typeof window === "undefined") {
+    return card;
+  }
+
   return (
     <Tooltip isOpen={isOpenTooltip} hasArrow={true} label={"Copy!"}>
-      <Root href="#" onClick={onClick}>
-        <Box textAlign={"right"} fontSize={"18px"} color={"#1f1f1f"}>
-          {label}
-        </Box>
-        <ConvertedText>{value}</ConvertedText>
-      </Root>
+      {card}
     </Tooltip>
   );
 };

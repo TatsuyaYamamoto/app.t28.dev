@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 
 import { Grid, GridItem } from "@chakra-ui/react";
 import TextCard from "./TextCard";
@@ -37,18 +37,14 @@ interface Props {
 const TextCardList: FC<Props> = (props) => {
   const vanillaText = props.vanillaText || PLACEHOLDER;
 
-  const [convertedList, setConvertedList] = useState<
-    { label: string; value: string }[]
-  >([]);
-
   const onClickCard = (text: string) => () => {
     props.onClickCard(text);
   };
 
-  useEffect(() => {
+  const convertedList = useMemo(() => {
     const inputChars = OshalizableChar.from(vanillaText);
 
-    const convertResult = convertTargetTypes.map((type) => ({
+    return convertTargetTypes.map((type) => ({
       label: type.label,
       value: inputChars
         .map((char) =>
@@ -56,7 +52,6 @@ const TextCardList: FC<Props> = (props) => {
         )
         .join(""),
     }));
-    setConvertedList(convertResult);
   }, [vanillaText]);
 
   return (
