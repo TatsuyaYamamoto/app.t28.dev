@@ -1,25 +1,32 @@
-import { Typeface, UnicodeSymbols, Variant } from "./UnicodeSymbols";
+/**
+ * Copy a text to the clipboard.
+ *
+ * @param {string} text - copy target value
+ * @returns {Promise<void>} If the Clipboard API or copy command is not supported or not enabled, it's rejected.
+ *
+ * @licence MIT
+ * @see https://t28.dev/correct-implementation-of-clipboard-in-js
+ */
+export const copyToClipboard = (text: string): Promise<void> => {
+  if (navigator.clipboard) {
+    return navigator.clipboard.writeText(text);
+  }
 
-export const objectFlatten = (object: {
-  [key in Typeface]?: { [key in Variant]?: UnicodeSymbols };
-}): UnicodeSymbols[] => {
-  const newArray: UnicodeSymbols[] = [];
+  const dummyEl = document.createElement("input");
+  dummyEl.value = text;
+  dummyEl.readOnly = true;
+  dummyEl.style.position = "absolute";
+  dummyEl.style.opacity = "0";
+  document.body.appendChild(dummyEl);
 
-  const typefaceKeys = Object.keys(object) as Typeface[];
-  typefaceKeys.forEach((typefaceKey) => {
-    const variants = object[typefaceKey];
-    if (!variants) {
-      return;
-    }
-    const variantKeys = Object.keys(variants) as Variant[];
-    variantKeys.forEach((variantKey) => {
-      const unicodeSymbols = variants[variantKey];
-      if (!unicodeSymbols) {
-        return;
-      }
-      newArray.push(unicodeSymbols);
-    });
-  });
+  dummyEl.setSelectionRange(0, 5000_0000_0000);
 
-  return newArray;
+  const result = document.execCommand("copy");
+  dummyEl.parentNode?.removeChild(dummyEl);
+
+  return result
+    ? Promise.resolve()
+    : Promise.reject(
+        new Error("Copy is not supported or enable on this device.")
+      );
 };

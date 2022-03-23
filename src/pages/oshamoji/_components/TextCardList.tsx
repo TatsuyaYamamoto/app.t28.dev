@@ -1,100 +1,86 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 
+import { Grid, GridItem } from "@chakra-ui/react";
 import TextCard from "./TextCard";
 
-import OshalizableChar from "../_helper/OshalizableChar";
-import { Typeface, Variant } from "../_helper/UnicodeSymbols";
+import OshalizableChar from "../_helper/oshamoji/OshalizableChar";
+import { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
+import { PLACEHOLDER } from "../_helper/config";
 
-const TextCardList: FC = () => {
-  const [input, setInput] = useState(
-    `Why don't you tweet your EMOTION with osha na moji?`
-  );
-  const [convertedList, setConvertedList] = useState<string[]>([]);
+const convertTargetTypes: {
+  label: string;
+  typeface: Typeface;
+  variant: Variant;
+}[] = [
+  { label: "Serif", typeface: "serif", variant: "normal" },
+  { label: "Bold", typeface: "serif", variant: "bold" },
+  { label: "Italic", typeface: "serif", variant: "italic" },
+  { label: "Bold italic", typeface: "serif", variant: "boldItalic" },
+  { label: "Sans-serif", typeface: "sansSerif", variant: "normal" },
+  { label: "Sans-serif bold", typeface: "sansSerif", variant: "bold" },
+  { label: "Sans-serif italic", typeface: "sansSerif", variant: "italic" },
+  // prettier-ignore
+  { label: "Sans-serif bold italic", typeface: "sansSerif", variant: "boldItalic", },
+  { label: "Script", typeface: "script", variant: "normal" },
+  { label: "Bold script", typeface: "script", variant: "bold" },
+  { label: "Fraktur", typeface: "fraktur", variant: "normal" },
+  { label: "Bold Fraktur", typeface: "fraktur", variant: "bold" },
+  { label: "Monospace", typeface: "monoSpace", variant: "normal" },
+  { label: "Double-struck", typeface: "doubleStruck", variant: "normal" },
+];
 
-  const onChange = (_: number) => (newValue: string) => {
-    setInput(newValue);
+interface Props {
+  vanillaText: string;
+  onClickCard: (text: string) => void;
+}
+
+const TextCardList: FC<Props> = (props) => {
+  const vanillaText = props.vanillaText || PLACEHOLDER;
+
+  const onClickCard = (text: string) => () => {
+    props.onClickCard(text);
   };
 
-  useEffect(() => {
-    const inputChars = OshalizableChar.from(input);
-    const convertTargetTypes: {
-      typeface: Typeface;
-      variant: Variant;
-    }[] = [
-      {
-        typeface: "serif",
-        variant: "normal",
-      },
-      {
-        typeface: "serif",
-        variant: "bold",
-      },
-      {
-        typeface: "serif",
-        variant: "italic",
-      },
-      {
-        typeface: "serif",
-        variant: "boldItalic",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "normal",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "bold",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "italic",
-      },
-      {
-        typeface: "sansSerif",
-        variant: "boldItalic",
-      },
-      {
-        typeface: "script",
-        variant: "normal",
-      },
-      {
-        typeface: "script",
-        variant: "bold",
-      },
-      {
-        typeface: "fraktur",
-        variant: "normal",
-      },
-      {
-        typeface: "fraktur",
-        variant: "bold",
-      },
-      {
-        typeface: "monoSpace",
-        variant: "normal",
-      },
-      {
-        typeface: "doubleStruck",
-        variant: "bold",
-      },
-    ];
+  const convertedList = useMemo(() => {
+    const inputChars = OshalizableChar.from(vanillaText);
 
-    const convertResult = convertTargetTypes.map((type) =>
-      inputChars
+    return convertTargetTypes.map((type) => ({
+      label: type.label,
+      value: inputChars
         .map((char) =>
           char.convert({ block: "mathematicalAlphanumeric", ...type })
         )
-        .join("")
-    );
-    setConvertedList(convertResult);
-  }, [input]);
+        .join(""),
+    }));
+  }, [vanillaText]);
 
   return (
-    <div>
+    <Grid
+      templateColumns="repeat(1, 1fr)"
+      templateRows={"auto"}
+      gap={6}
+      position={"relative"}
+      padding={"0 16px"}
+      sx={{
+        "@media  (min-width: 600px)": {
+          gridTemplateColumns: "repeat(2, 1fr)",
+        },
+        "@media  (min-width: 900px)": {
+          gridTemplateColumns: "repeat(3, 1fr)",
+          padding: "0 100px",
+        },
+      }}
+    >
       {convertedList.map((converted, i) => (
-        <TextCard key={i} value={converted} onChange={onChange(i)} />
+        <GridItem key={i}>
+          <TextCard
+            value={converted.value}
+            label={converted.label}
+            onClick={onClickCard(converted.value)}
+          />
+        </GridItem>
       ))}
-    </div>
+    </Grid>
   );
 };
 

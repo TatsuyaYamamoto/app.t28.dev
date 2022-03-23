@@ -1,63 +1,87 @@
-import { FC, useState, ChangeEvent, useRef, useEffect } from "react";
+import { FC, useRef, useState, MouseEvent } from "react";
+import { Tooltip } from "@chakra-ui/react";
 
-import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { Box } from "@chakra-ui/react";
+import { copyToClipboard } from "../_helper/utils";
 
-const cardStyle = css`
-  width: 320px;
-  min-height: 90px;
-  border-radius: 4px;
+const Root = styled.a`
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+
+  border-radius: 10px;
   font-size: 24px;
   font-weight: 400;
 
-  border: 1px solid #000000;
+  box-shadow: 1px 1px 5px #000000;
+  background: #ffffff;
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  word-break: break-word;
+`;
+
+const ConvertedText = styled.div`
+  white-space: pre-wrap;
 `;
 
 export interface TextCardProps {
   value: string;
-  onChange: (newValue: string) => void;
+  label: string;
+  onClick: () => void;
 }
 
 const TextCard: FC<TextCardProps> = (props) => {
-  const { value, onChange } = props;
+  const { value, label } = props;
+  const [isOpenTooltip, setOpenTooltip] = useState(false);
+  const tooltipTimeoutId = useRef<NodeJS.Timeout | null>(null);
 
-  const isComposing = useRef(false);
-  const [internalValue, setInternalValue] = useState(value);
-  const elRef = useRef<HTMLTextAreaElement>(null);
+  const onClick = (e: MouseEvent) => {
+    e.preventDefault();
 
-  const onInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const newValue = e.target.value;
-    console.log(isComposing.current, newValue);
+    copyToClipboard(value)
+      .then(() => {
+        setOpenTooltip(true);
+        props.onClick();
 
-    setInternalValue(e.target.value);
-    if (!isComposing.current) {
-      onChange(newValue);
-    }
+        if (tooltipTimeoutId.current) {
+          clearTimeout(tooltipTimeoutId.current);
+        }
+        tooltipTimeoutId.current = setTimeout(
+          () => setOpenTooltip(false),
+          1500
+        );
+      })
+      .catch((e) => {
+        alert(e.message);
+      });
   };
 
-  const onCompositionStart = () => {
-    isComposing.current = true;
-    console.log("onCompositionStart");
-  };
+  const card = (
+    <Root href="#" onClick={onClick}>
+      <Box textAlign={"right"} fontSize={"18px"} color={"#1f1f1f"}>
+        {label}
+      </Box>
+      <ConvertedText>{value}</ConvertedText>
+    </Root>
+  );
 
-  const onCompositionEnd = () => {
-    isComposing.current = false;
-    console.log("onCompositionEnd");
-    onChange(internalValue);
-  };
-
-  useEffect(() => {
-    setInternalValue(value);
-  }, [value]);
+  /**
+   * Next.js の SSR 時に ↓ の error が発生する
+   * Warning: useLayoutEffect does nothing on the server, because its effect cannot be encoded into the server renderer's output format. This will lead to a mismatch between the initial, non-hydrated UI and the intended UI. To avoid this, useLayoutEffect should only be used in components that render exclusively on the client. See https://reactjs.org/link/uselayouteffect-ssr for common fixes.
+   * 対策として SSR(SSG)かどうかの分岐で Tooltip の描画を制御する
+   */
+  if (typeof window === "undefined") {
+    return card;
+  }
 
   return (
-    <textarea
-      ref={elRef}
-      css={cardStyle}
-      value={internalValue}
-      onInput={onInput}
-      onCompositionStart={onCompositionStart}
-      onCompositionEnd={onCompositionEnd}
-    />
+    <Tooltip isOpen={isOpenTooltip} hasArrow={true} label={"Copy!"}>
+      {card}
+    </Tooltip>
   );
 };
 

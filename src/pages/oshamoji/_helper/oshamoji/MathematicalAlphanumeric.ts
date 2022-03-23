@@ -159,7 +159,7 @@ const LatinUppercaseFrakturBoldLetters: UnicodeSymbols = {
 };
 
 /* 𝙰 */
-const LatinUppercaseMonoSpaceBoldLetters: UnicodeSymbols = {
+const LatinUppercaseMonoSpaceLetters: UnicodeSymbols = {
   typeface: "monoSpace",
   variant: "normal",
   characterType: "latinLetter",
@@ -171,9 +171,9 @@ const LatinUppercaseMonoSpaceBoldLetters: UnicodeSymbols = {
 };
 
 /* 𝔸 */
-const LatinUppercaseDoubleStruckBoldLetters: UnicodeSymbols = {
+const LatinUppercaseDoubleStruckLetters: UnicodeSymbols = {
   typeface: "doubleStruck",
-  variant: "bold",
+  variant: "normal",
   characterType: "latinLetter",
   letterCase: "uppercase",
   codePointRange: {
@@ -346,7 +346,7 @@ const LatinLowercaseFrakturBoldLetters: UnicodeSymbols = {
 };
 
 /* 𝚊 */
-const LatinLowercaseMonoSpaceBoldLetters: UnicodeSymbols = {
+const LatinLowercaseMonoSpaceLetters: UnicodeSymbols = {
   typeface: "monoSpace",
   variant: "normal",
   characterType: "latinLetter",
@@ -358,9 +358,9 @@ const LatinLowercaseMonoSpaceBoldLetters: UnicodeSymbols = {
 };
 
 /* 𝕒 */
-const LatinLowercaseDoubleStruckBoldLetters: UnicodeSymbols = {
+const LatinLowercaseDoubleStruckLetters: UnicodeSymbols = {
   typeface: "doubleStruck",
-  variant: "bold",
+  variant: "normal",
   characterType: "latinLetter",
   letterCase: "lowercase",
   codePointRange: {
@@ -405,6 +405,28 @@ export const SansSerifBoldDigits: UnicodeSymbols = {
   },
 };
 
+/* 𝟢 */
+export const DoubleStruckDigits: UnicodeSymbols = {
+  typeface: "doubleStruck",
+  variant: "normal",
+  characterType: "digit",
+  codePointRange: {
+    from: "U+1D7D8",
+    to: "U+1D7E1",
+  },
+};
+
+/* 𝟘 */
+export const MonoSpaceDigits: UnicodeSymbols = {
+  typeface: "monoSpace",
+  variant: "normal",
+  characterType: "digit",
+  codePointRange: {
+    from: "U+1D7F6",
+    to: "U+1D7FF",
+  },
+};
+
 export const MathematicalAlphanumericStyleMap = {
   latinLetter: {
     uppercase: {
@@ -429,10 +451,10 @@ export const MathematicalAlphanumericStyleMap = {
         bold: LatinUppercaseFrakturBoldLetters,
       },
       monoSpace: {
-        normal: LatinUppercaseMonoSpaceBoldLetters,
+        normal: LatinUppercaseMonoSpaceLetters,
       },
       doubleStruck: {
-        bold: LatinUppercaseDoubleStruckBoldLetters,
+        normal: LatinUppercaseDoubleStruckLetters,
       },
     },
     lowercase: {
@@ -457,10 +479,10 @@ export const MathematicalAlphanumericStyleMap = {
         bold: LatinLowercaseFrakturBoldLetters,
       },
       monoSpace: {
-        normal: LatinLowercaseMonoSpaceBoldLetters,
+        normal: LatinLowercaseMonoSpaceLetters,
       },
       doubleStruck: {
-        bold: LatinLowercaseDoubleStruckBoldLetters,
+        normal: LatinLowercaseDoubleStruckLetters,
       },
     },
   },
@@ -472,6 +494,12 @@ export const MathematicalAlphanumericStyleMap = {
     sansSerif: {
       normal: SansSerifNormalDigits,
       bold: SansSerifBoldDigits,
+    },
+    monoSpace: {
+      normal: MonoSpaceDigits,
+    },
+    doubleStruck: {
+      normal: DoubleStruckDigits,
     },
   },
 } as const;
