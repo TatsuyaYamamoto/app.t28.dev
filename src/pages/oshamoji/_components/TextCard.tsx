@@ -4,6 +4,7 @@ import { Tooltip } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import { Box } from "@chakra-ui/react";
 import { copyToClipboard } from "../_helper/utils";
+import { sendEvent } from "../_helper/ga";
 
 const Root = styled.a`
   display: block;
@@ -41,6 +42,8 @@ const TextCard: FC<TextCardProps> = (props) => {
 
   const onClick = (e: MouseEvent) => {
     e.preventDefault();
+
+    sendEvent("click", { click_target: "text_card", label });
 
     copyToClipboard(value)
       .then(() => {
