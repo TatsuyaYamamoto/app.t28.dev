@@ -6,6 +6,7 @@ import { css, Global } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
 import { useInView } from "react-intersection-observer";
+import { NextSeo } from "next-seo";
 
 import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";
@@ -17,7 +18,7 @@ const ModalEditor = dynamic(() => import("./_components/ModalEditor"), {
   ssr: false,
 });
 import { sendEvent } from "./_helper/ga";
-import { text } from "stream/consumers";
+import { DESCRIPTION, TITLE } from "./configs";
 
 export default function Home() {
   const [isOpenModalEditor, setOpenModalEditor] = useState(false);
@@ -84,9 +85,7 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Oshamoji</title>
-      </Head>
+      <NextSeo title={TITLE} description={DESCRIPTION} />
       <Global
         styles={css`
           html {
