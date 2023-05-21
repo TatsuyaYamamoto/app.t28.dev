@@ -1,3 +1,5 @@
+import { describe, expect, test } from "vitest";
+
 import OshalizableChar from "../OshalizableChar";
 import { Variant } from "../UnicodeSymbols";
 
