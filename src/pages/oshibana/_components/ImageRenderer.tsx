@@ -8,12 +8,14 @@ interface Props {
   windowWidth: number;
   windowHeight: number;
   baseImageUrl: string;
+  itemImageUrl: string;
 }
 
 const ImageRenderer: FC<Props> = ({
   windowWidth,
   windowHeight,
   baseImageUrl,
+  itemImageUrl,
 }) => {
   const loadedBaseImage = useCanvasImageSource(baseImageUrl);
   const baseImage = useMemo(() => {
@@ -34,10 +36,35 @@ const ImageRenderer: FC<Props> = ({
     };
   }, [loadedBaseImage, windowWidth, windowHeight]);
 
+  const loadedItemImage = useCanvasImageSource(itemImageUrl);
+  const itemImage = useMemo(() => {
+    const baseImageAspectRatio = baseImage.width / baseImage.height;
+
+    if (loadedItemImage.sourceAspectRatio > baseImageAspectRatio) {
+      return {
+        width: baseImage.height * loadedItemImage.sourceAspectRatio,
+        height: baseImage.height,
+        instance: loadedItemImage.sourceInstance,
+      };
+    }
+    return {
+      width: baseImage.width,
+      height: baseImage.width / loadedItemImage.sourceAspectRatio,
+      instance: loadedItemImage.sourceInstance,
+    };
+  }, [loadedItemImage, baseImage.width, baseImage.height]);
+
   return (
     <Stage width={baseImage.width} height={baseImage.height}>
       <Layer>
         <Image
+          alt={""}
+          image={itemImage.instance}
+          width={itemImage.width}
+          height={itemImage.height}
+        />
+        <Image
+          alt={""}
           image={baseImage.instance}
           width={baseImage.width}
           height={baseImage.height}

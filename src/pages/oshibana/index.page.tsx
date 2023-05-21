@@ -40,6 +40,9 @@ const OshibanaIndex: NextPage = () => {
           baseImageUrl={
             "https://pbs.twimg.com/media/FwqR7kzaEAU6NFL?format=png&name=900x900"
           }
+          itemImageUrl={
+            "https://pbs.twimg.com/media/FwqL_zuaUAUQHkB?format=jpg&name=medium"
+          }
         />
       </Box>
     </>
