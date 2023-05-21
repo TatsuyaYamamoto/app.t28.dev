@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
@@ -6,19 +7,19 @@ import { Box, Button } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 
 import { DESCRIPTION, TITLE } from "./configs";
-import { blobToDataUrl } from "../../helper/utils";
+import { blobToDataUrl, useNextRouterQuery } from "../../helper/utils";
 
 const ImageRenderer = dynamic(() => import("./_components/ImageRenderer"), {
   ssr: false,
 });
 
-// "https://pbs.twimg.com/media/FwqR7kzaEAU6NFL?format=png&name=900x900"
-
 const OshibanaIndex: NextPage = () => {
+  const { baseImageUrl: baseImageUrlQuery } = useNextRouterQuery();
+
   const [rendererSize, setRendererSize] = useState({ width: 0, height: 0 });
 
   const [baseImageUrl, setBaseImageUrl] = useState<string | undefined>(
-    undefined
+    baseImageUrlQuery
   );
   const [itemImageUrl, setItemImageUrl] = useState<string | undefined>(
     undefined
