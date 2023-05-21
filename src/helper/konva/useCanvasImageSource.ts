@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useCanvasImageSource = (imageUrl: string) => {
+export const useCanvasImageSource = (imageUrl?: string | undefined) => {
   const [sourceInstance, setSource] = useState<CanvasImageSource | undefined>(
     undefined
   );
@@ -15,7 +15,9 @@ export const useCanvasImageSource = (imageUrl: string) => {
     image.addEventListener("error", (e) => {
       console.error(e);
     });
-    image.src = imageUrl;
+    if (imageUrl) {
+      image.src = imageUrl;
+    }
   }, [imageUrl]);
 
   return { sourceInstance, sourceAspectRatio };

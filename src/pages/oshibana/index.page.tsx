@@ -1,19 +1,64 @@
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 
 import { DESCRIPTION, TITLE } from "./configs";
+import { blobToDataUrl } from "../../helper/utils";
 
 const ImageRenderer = dynamic(() => import("./_components/ImageRenderer"), {
   ssr: false,
 });
 
+// "https://pbs.twimg.com/media/FwqR7kzaEAU6NFL?format=png&name=900x900"
+
 const OshibanaIndex: NextPage = () => {
-  const appAreaRef = useRef<HTMLDivElement>(null);
   const [rendererSize, setRendererSize] = useState({ width: 0, height: 0 });
+
+  const [baseImageUrl, setBaseImageUrl] = useState<string | undefined>(
+    undefined
+  );
+  const [itemImageUrl, setItemImageUrl] = useState<string | undefined>(
+    undefined
+  );
+
+  const selectImage = async () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/jpeg,image/png";
+
+    return new Promise<string>((resolve) => {
+      input.addEventListener("change", (e) => {
+        if (!(e.target instanceof HTMLInputElement)) {
+          return;
+        }
+
+        const selectedImage = e.target.files?.item(0);
+        if (!selectedImage) {
+          return;
+        }
+
+        blobToDataUrl(selectedImage).then((dataUrl) => {
+          resolve(dataUrl);
+        });
+      });
+
+      input.click();
+    });
+  };
+
+  const onClickBaseImageButton = () => {
+    selectImage().then((baseUrl) => {
+      setBaseImageUrl(baseUrl);
+    });
+  };
+  const onClickItemImageButton = () => {
+    selectImage().then((baseUrl) => {
+      setItemImageUrl(baseUrl);
+    });
+  };
 
   useEffect(() => {
     const onResize = () => {
@@ -33,17 +78,19 @@ const OshibanaIndex: NextPage = () => {
   return (
     <>
       <NextSeo title={TITLE} description={DESCRIPTION} />
-      <Box ref={appAreaRef}>
+      <Box>
         <ImageRenderer
           windowWidth={rendererSize.width}
           windowHeight={rendererSize.height}
-          baseImageUrl={
-            "https://pbs.twimg.com/media/FwqR7kzaEAU6NFL?format=png&name=900x900"
-          }
-          itemImageUrl={
-            "https://pbs.twimg.com/media/FwqL_zuaUAUQHkB?format=jpg&name=medium"
-          }
+          baseImageUrl={baseImageUrl}
+          itemImageUrl={itemImageUrl}
         />
+        <Box position="fixed" bottom={5}>
+          <Button onClick={onClickBaseImageButton}>{`フレーム`}</Button>
+          <Button
+            onClick={onClickItemImageButton}
+          >{`スクリーンショット`}</Button>
+        </Box>
       </Box>
     </>
   );

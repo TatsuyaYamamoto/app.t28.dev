@@ -7,8 +7,8 @@ import { useMemo } from "react";
 interface Props {
   windowWidth: number;
   windowHeight: number;
-  baseImageUrl: string;
-  itemImageUrl: string;
+  baseImageUrl?: string | undefined;
+  itemImageUrl?: string | undefined;
 }
 
 const ImageRenderer: FC<Props> = ({
