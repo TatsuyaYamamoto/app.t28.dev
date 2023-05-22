@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import type Konva from "konva";
 
@@ -99,13 +99,17 @@ const OshibanaIndex: NextPage = () => {
           baseImageUrl={baseImageUrl}
           itemImageUrl={itemImageUrl}
         />
-        <Box position="fixed" bottom={5}>
+        <Flex
+          position="fixed"
+          width={"100%"}
+          bottom={5}
+          justifyContent="center"
+          gap={2}
+        >
           <Button onClick={onClickBaseImageButton}>{`フレーム`}</Button>
-          <Button onClick={onClickItemImageButton}>
-            {`スクリーンショット`}
-          </Button>
+          <Button onClick={onClickItemImageButton}>{`スクショ`}</Button>
           <Button onClick={onDownload}>{`ダウンロード`}</Button>
-        </Box>
+        </Flex>
       </Box>
     </>
   );
