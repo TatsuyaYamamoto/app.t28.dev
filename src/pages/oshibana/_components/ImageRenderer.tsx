@@ -40,18 +40,19 @@ const ImageRenderer: FC<Props> = ({
   const itemImage = useMemo(() => {
     const baseImageAspectRatio = baseImage.width / baseImage.height;
 
-    if (loadedItemImage.sourceAspectRatio > baseImageAspectRatio) {
-      return {
-        width: baseImage.height * loadedItemImage.sourceAspectRatio,
-        height: baseImage.height,
-        instance: loadedItemImage.sourceInstance,
-      };
-    }
-    return {
-      width: baseImage.width,
-      height: baseImage.width / loadedItemImage.sourceAspectRatio,
-      instance: loadedItemImage.sourceInstance,
-    };
+    const width =
+      loadedItemImage.sourceAspectRatio > baseImageAspectRatio
+        ? baseImage.height * loadedItemImage.sourceAspectRatio
+        : baseImage.width;
+    const height =
+      loadedItemImage.sourceAspectRatio > baseImageAspectRatio
+        ? baseImage.height
+        : baseImage.width / loadedItemImage.sourceAspectRatio;
+
+    const x = baseImage.width / 2 - width / 2;
+    const y = baseImage.height / 2 - height / 2;
+
+    return { x, y, width, height, instance: loadedItemImage.sourceInstance };
   }, [loadedItemImage, baseImage.width, baseImage.height]);
 
   return (
@@ -60,6 +61,8 @@ const ImageRenderer: FC<Props> = ({
         <Image
           alt={""}
           image={itemImage.instance}
+          x={itemImage.x}
+          y={itemImage.y}
           width={itemImage.width}
           height={itemImage.height}
         />
