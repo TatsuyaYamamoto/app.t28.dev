@@ -1,10 +1,12 @@
-import type { FC } from "react";
+import type { Ref, FC } from "react";
+import { useMemo } from "react";
+import type Konva from "konva";
 import { Stage, Layer, Image } from "react-konva";
 
 import { useCanvasImageSource } from "../../../helper/konva/useCanvasImageSource";
-import { useMemo } from "react";
 
 interface Props {
+  konvaStageRef?: Ref<Konva.Stage>;
   windowWidth: number;
   windowHeight: number;
   baseImageUrl?: string | undefined;
@@ -12,6 +14,7 @@ interface Props {
 }
 
 const ImageRenderer: FC<Props> = ({
+  konvaStageRef,
   windowWidth,
   windowHeight,
   baseImageUrl,
@@ -56,7 +59,11 @@ const ImageRenderer: FC<Props> = ({
   }, [loadedItemImage, baseImage.width, baseImage.height]);
 
   return (
-    <Stage width={baseImage.width} height={baseImage.height}>
+    <Stage
+      ref={konvaStageRef}
+      width={baseImage.width}
+      height={baseImage.height}
+    >
       <Layer>
         <Image
           alt={""}

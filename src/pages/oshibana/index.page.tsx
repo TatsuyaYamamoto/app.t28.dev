@@ -1,26 +1,27 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Box, Button } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
+import type Konva from "konva";
 
 import { DESCRIPTION, TITLE } from "./configs";
-import { blobToDataUrl, useNextRouterQuery } from "../../helper/utils";
+import {
+  blobToDataUrl,
+  downloadFile,
+  useNextRouterQuery,
+} from "../../helper/utils";
+import { useBaseImageUrlQuery } from "./_hooks/useBaseImageUrlQuery";
 
 const ImageRenderer = dynamic(() => import("./_components/ImageRenderer"), {
   ssr: false,
 });
 
 const OshibanaIndex: NextPage = () => {
-  const { baseImageUrl: baseImageUrlQuery } = useNextRouterQuery();
-
+  const konvaStageRef = useRef<Konva.Stage>(null);
   const [rendererSize, setRendererSize] = useState({ width: 0, height: 0 });
-
-  const [baseImageUrl, setBaseImageUrl] = useState<string | undefined>(
-    baseImageUrlQuery
-  );
+  const { baseImageUrl, setBaseImageUrl } = useBaseImageUrlQuery();
   const [itemImageUrl, setItemImageUrl] = useState<string | undefined>(
     undefined
   );
@@ -61,6 +62,17 @@ const OshibanaIndex: NextPage = () => {
     });
   };
 
+  const onDownload = () => {
+    const dataUrl = konvaStageRef.current?.toDataURL({
+      pixelRatio: 3,
+    });
+    if (!dataUrl) {
+      return;
+    }
+
+    downloadFile(`Oshibana_${new Date().toISOString()}.png`, dataUrl);
+  };
+
   useEffect(() => {
     const onResize = () => {
       setRendererSize({
@@ -81,6 +93,7 @@ const OshibanaIndex: NextPage = () => {
       <NextSeo title={TITLE} description={DESCRIPTION} />
       <Box>
         <ImageRenderer
+          konvaStageRef={konvaStageRef}
           windowWidth={rendererSize.width}
           windowHeight={rendererSize.height}
           baseImageUrl={baseImageUrl}
@@ -88,9 +101,10 @@ const OshibanaIndex: NextPage = () => {
         />
         <Box position="fixed" bottom={5}>
           <Button onClick={onClickBaseImageButton}>{`フレーム`}</Button>
-          <Button
-            onClick={onClickItemImageButton}
-          >{`スクリーンショット`}</Button>
+          <Button onClick={onClickItemImageButton}>
+            {`スクリーンショット`}
+          </Button>
+          <Button onClick={onDownload}>{`ダウンロード`}</Button>
         </Box>
       </Box>
     </>

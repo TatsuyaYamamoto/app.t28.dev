@@ -8,6 +8,7 @@ export const useCanvasImageSource = (imageUrl?: string | undefined) => {
 
   useEffect(() => {
     const image = new window.Image();
+    image.crossOrigin = "Anonymous";
     image.addEventListener("load", () => {
       setSource(image);
       setSourceAspectRatio(image.naturalWidth / image.naturalHeight);
