@@ -48,7 +48,7 @@ const TextCardList: FC<Props> = (props) => {
       label: type.label,
       value: inputChars
         .map((char) =>
-          char.convert({ block: "mathematicalAlphanumeric", ...type })
+          char.convert({ block: "mathematicalAlphanumeric", ...type }),
         )
         .join(""),
     }));

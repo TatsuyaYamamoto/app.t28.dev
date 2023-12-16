@@ -5,7 +5,7 @@ const ALLOW_HOSTS = ["pbs.twimg.com"];
 export const useBaseImageUrlQuery = () => {
   const [baseImageUrl, setBaseImageUrl] = useState<string | undefined>(() => {
     const baseImageUrl = new URLSearchParams(location.search).get(
-      "baseImageUrl"
+      "baseImageUrl",
     );
 
     if (!baseImageUrl) {

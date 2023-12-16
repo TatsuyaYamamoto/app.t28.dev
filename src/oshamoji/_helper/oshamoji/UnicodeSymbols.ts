@@ -37,7 +37,7 @@ const toIntCodePoint = (codePoint: string): number => {
 
 const getBasicLatinTopCodepoint = (
   characterType: CharacterType,
-  letterCase?: LetterCase
+  letterCase?: LetterCase,
 ): number => {
   if (characterType === "digit") {
     return toIntCodePoint(AsciiDigits.codePointRange.from);
@@ -56,7 +56,7 @@ const getBasicLatinTopCodepoint = (
 
 export const include = (
   codePoint: number,
-  unicodeSymbols: UnicodeSymbols
+  unicodeSymbols: UnicodeSymbols,
 ): boolean => {
   const inRange =
     toIntCodePoint(unicodeSymbols.codePointRange.from) <= codePoint &&
@@ -75,11 +75,11 @@ export const include = (
 
 export const convert = (
   basicLatinCodePoint: number,
-  targetUnicodeSymbols: UnicodeSymbols
+  targetUnicodeSymbols: UnicodeSymbols,
 ): string => {
   const basicLatinTopCodepoint = getBasicLatinTopCodepoint(
     targetUnicodeSymbols.characterType,
-    targetUnicodeSymbols.letterCase
+    targetUnicodeSymbols.letterCase,
   );
   const codePointDiff = basicLatinCodePoint - basicLatinTopCodepoint;
   const targetCharCodepoint =
@@ -88,7 +88,7 @@ export const convert = (
   const reservedSymbol = targetUnicodeSymbols.reservedSymbols?.find(
     (reserved) => {
       return toIntCodePoint(reserved.codePoint) === targetCharCodepoint;
-    }
+    },
   );
 
   return reservedSymbol
@@ -98,13 +98,13 @@ export const convert = (
 
 export const toBasicLatinChar = (
   sourceCharCodePoint: number,
-  sourceUnicodeSymbols: UnicodeSymbols
+  sourceUnicodeSymbols: UnicodeSymbols,
 ): string => {
   const topCodepoint = toIntCodePoint(sourceUnicodeSymbols.codePointRange.from);
   const reservedSymbol = sourceUnicodeSymbols.reservedSymbols?.find(
     (reserved) => {
       return toIntCodePoint(reserved.assignedCodePoint) === sourceCharCodePoint;
-    }
+    },
   );
 
   const codePointDiff = reservedSymbol
@@ -113,7 +113,7 @@ export const toBasicLatinChar = (
 
   const basicLatinTopCodepoint = getBasicLatinTopCodepoint(
     sourceUnicodeSymbols.characterType,
-    sourceUnicodeSymbols.letterCase
+    sourceUnicodeSymbols.letterCase,
   );
 
   const basicLatinCharCodepoint = basicLatinTopCodepoint + codePointDiff;

@@ -55,7 +55,7 @@ const TextCard: FC<TextCardProps> = (props) => {
         }
         tooltipTimeoutId.current = setTimeout(
           () => setOpenTooltip(false),
-          1500
+          1500,
         );
       })
       .catch((e) => {

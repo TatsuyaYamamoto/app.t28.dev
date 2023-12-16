@@ -3,7 +3,7 @@ const GA_TRACKING_ID = "G-G1W2QZ0HDW";
 
 export type Ga4Parameters<
   CustomDimensions extends string = string,
-  CustomMetrics extends string = string
+  CustomMetrics extends string = string,
 > =
   | {
       [key in CustomDimensions]?: string;
@@ -28,7 +28,7 @@ export const sendVirtualPageView = (virtualPathname: string) => {
  */
 export const sendEvent = (
   eventName: string,
-  eventParams: Ga4Parameters = {}
+  eventParams: Ga4Parameters = {},
 ) => {
   // 文字列長の制限を超えたら、切り捨てる
   const eventName_truncated = eventName.slice(0, 40);
@@ -36,7 +36,7 @@ export const sendEvent = (
   if (eventName_truncated !== eventName) {
     console.error(
       `Length of event name is limited to 40. Drop excess before sending. See analytics help (https://support.google.com/analytics/answer/9267744?hl=ja)`,
-      { eventName, eventName_truncated }
+      { eventName, eventName_truncated },
     );
   }
 
@@ -49,7 +49,7 @@ export const sendEvent = (
     if (eventParamKey_truncated !== eventParamKey) {
       console.error(
         `Length of parameter name is limited to 40. Drop excess before sending. See analytics help (https://support.google.com/analytics/answer/9267744?hl=ja)`,
-        { eventParamKey, eventParamKey_truncated }
+        { eventParamKey, eventParamKey_truncated },
       );
     }
 
@@ -64,7 +64,7 @@ export const sendEvent = (
       if (eventParamValue_truncated !== eventParamValue) {
         console.error(
           `Length of parameter value is limited to 100. Drop excess before sending. See analytics help (https://support.google.com/analytics/answer/9267744?hl=ja)`,
-          { eventParamValue, eventParamValue_truncated }
+          { eventParamValue, eventParamValue_truncated },
         );
       }
     } else {
