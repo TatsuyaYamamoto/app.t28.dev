@@ -82,6 +82,7 @@ const TextCard: FC<TextCardProps> = (props) => {
   }
 
   return (
+    // @ts-expect-error TS2590: Expression produces a union type that is too complex to represent.
     <Tooltip isOpen={isOpenTooltip} hasArrow={true} label={"Copy!"}>
       {card}
     </Tooltip>

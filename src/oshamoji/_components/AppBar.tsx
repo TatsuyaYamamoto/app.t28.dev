@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { useEffect, UIEvent, useState } from "react";
+import { useEffect, useState } from "react";
 
 const AppBar = () => {
   const [showShadow, setShowShadow] = useState(false);

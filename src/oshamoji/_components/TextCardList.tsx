@@ -1,4 +1,4 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 
 import { Grid, GridItem } from "@chakra-ui/react";
 import TextCard from "./TextCard";

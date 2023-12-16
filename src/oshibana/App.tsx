@@ -1,24 +1,13 @@
-import type { NextPage } from "next";
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 
 import { Box, Button, Flex } from "@chakra-ui/react";
-import { NextSeo } from "next-seo";
 import type Konva from "konva";
 
-import { DESCRIPTION, TITLE } from "./configs";
-import {
-  blobToDataUrl,
-  downloadFile,
-  useNextRouterQuery,
-} from "../../helper/utils";
+import { blobToDataUrl, downloadFile } from "../helper/utils";
 import { useBaseImageUrlQuery } from "./_hooks/useBaseImageUrlQuery";
+import ImageRenderer from "./_components/ImageRenderer";
 
-const ImageRenderer = dynamic(() => import("./_components/ImageRenderer"), {
-  ssr: false,
-});
-
-const OshibanaIndex: NextPage = () => {
+const App: FC = () => {
   const konvaStageRef = useRef<Konva.Stage>(null);
   const [rendererSize, setRendererSize] = useState({ width: 0, height: 0 });
   const { baseImageUrl, setBaseImageUrl } = useBaseImageUrlQuery();
@@ -90,7 +79,6 @@ const OshibanaIndex: NextPage = () => {
 
   return (
     <>
-      <NextSeo title={TITLE} description={DESCRIPTION} />
       <Box>
         <ImageRenderer
           konvaStageRef={konvaStageRef}
@@ -115,4 +103,4 @@ const OshibanaIndex: NextPage = () => {
   );
 };
 
-export default OshibanaIndex;
+export default App;

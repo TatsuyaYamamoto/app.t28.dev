@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <!-- prettier-ignore -->
+  <%
+    const TITLE = "Oshibana | app.t28.dev";
+    const DESCRIPTION = "";
+    const GA_TRACKING_ID = "G-G1W2QZ0HDW";
+  %>
+
+  <head>
+    <meta charset="UTF-8" />
+
+    <title><%= TITLE %></title>
+    <meta name="description" content="<%= DESCRIPTION %>" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="<%= TITLE %>" />
+    <meta property="og:description" content="<%= DESCRIPTION %>" />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=<%= GA_TRACKING_ID %>"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "<%= GA_TRACKING_ID %>", {
+        debug_mode: location.host !== "app.t28.dev",
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

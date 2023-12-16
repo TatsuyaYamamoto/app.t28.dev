@@ -1,18 +1,20 @@
 import { useState } from "react";
-import { useNextRouterQuery } from "../../../helper/utils";
 
 const ALLOW_HOSTS = ["pbs.twimg.com"];
 
 export const useBaseImageUrlQuery = () => {
-  const { baseImageUrl: baseImageUrlQuery } = useNextRouterQuery();
   const [baseImageUrl, setBaseImageUrl] = useState<string | undefined>(() => {
-    if (!baseImageUrlQuery) {
+    const baseImageUrl = new URLSearchParams(location.search).get(
+      "baseImageUrl"
+    );
+
+    if (!baseImageUrl) {
       return;
     }
 
     let url;
     try {
-      url = new URL(baseImageUrlQuery);
+      url = new URL(baseImageUrl);
     } catch (e) {
       return; // parse error
     }
@@ -21,7 +23,7 @@ export const useBaseImageUrlQuery = () => {
       return;
     }
 
-    return baseImageUrlQuery;
+    return baseImageUrl;
   });
 
   return { baseImageUrl, setBaseImageUrl };
