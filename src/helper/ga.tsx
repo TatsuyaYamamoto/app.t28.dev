@@ -16,6 +16,7 @@ export type Ga4Parameters<
  * https://developers.google.com/analytics/devguides/migration/measurement/virtual-pageviews?hl=ja
  */
 export const sendVirtualPageView = (virtualPathname: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).gtag("config", GA_TRACKING_ID, {
     page_location: location.origin + virtualPathname,
   });
@@ -73,31 +74,6 @@ export const sendEvent = (
   });
 
   // 送信
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).gtag("event", eventName_truncated, eventParams_truncated);
 };
-
-/**
- * https://developers.google.com/tag-platform/gtagjs/install?hl=ja
- */
-export const GaScript = () => (
-  <>
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-    />
-    <script
-      dangerouslySetInnerHTML={{
-        __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            if (location.host === "app.t28.dev") {
-              gtag("config", "${GA_TRACKING_ID}");
-            } else {
-              gtag("config", "${GA_TRACKING_ID}", { debug_mode: true });
-            }
-          `,
-      }}
-    />
-  </>
-);
