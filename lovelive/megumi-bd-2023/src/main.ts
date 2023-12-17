@@ -1,5 +1,6 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import Tres from "@tresjs/core";
 
-createApp(App).mount('#app')
+import App from "./App.vue";
+
+createApp(App).use(Tres).mount("#app");
