@@ -41,7 +41,6 @@ const TextCard: FC<TextCardProps> = (props) => {
   const tooltipTimeoutId = useRef<NodeJS.Timeout | null>(null);
 
   const onClick = (e: MouseEvent) => {
-    console.log(e)
     e.preventDefault();
 
     sendEvent("click", { click_target: "text_card", label });

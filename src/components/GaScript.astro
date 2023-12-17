@@ -6,10 +6,10 @@ const GA_TRACKING_ID = "G-G1W2QZ0HDW";
     src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
 >
 </script>
-<script is:inline define:vars={{GA_TRACKING_ID}}>
+<script is:inline define:vars={{ GA_TRACKING_ID }}>
   window.dataLayer = window.dataLayer || [];
 
-  function gtag() {
+  window.gtag = function () {
     dataLayer.push(arguments);
   }
 
