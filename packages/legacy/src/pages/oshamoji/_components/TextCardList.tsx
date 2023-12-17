@@ -55,6 +55,7 @@ const TextCardList: FC<Props> = (props) => {
   }, [vanillaText]);
 
   return (
+    // @ts-ignore
     <Grid
       templateColumns="repeat(1, 1fr)"
       templateRows={"auto"}

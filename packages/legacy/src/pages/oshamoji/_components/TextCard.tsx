@@ -82,6 +82,7 @@ const TextCard: FC<TextCardProps> = (props) => {
   }
 
   return (
+    // @ts-ignore
     <Tooltip isOpen={isOpenTooltip} hasArrow={true} label={"Copy!"}>
       {card}
     </Tooltip>
