@@ -5,7 +5,12 @@
 </template>
 
 <script setup lang="ts">
+import { extend } from "@tresjs/core";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
 import ThreeScene from "./components/ThreeScene.vue";
+
+extend({ OrbitControls });
 </script>
 
 <style>
