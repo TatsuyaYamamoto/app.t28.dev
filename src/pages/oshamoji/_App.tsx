@@ -14,7 +14,7 @@ import ModalEditor from "./_components/ModalEditor";
 import { sendEvent } from "./_helper/ga";
 import { theme } from "../../helper/theme.ts";
 
-const App: FC = () => {
+const _App: FC = () => {
   const [isOpenModalEditor, setOpenModalEditor] = useState(false);
   const [vanillaText, setVanillaText] = useState("");
   const [tweetText, setTweetText] = useState("");
@@ -99,4 +99,4 @@ const App: FC = () => {
   );
 };
 
-export default App;
+export default _App;

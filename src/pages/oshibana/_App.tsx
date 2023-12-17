@@ -10,7 +10,7 @@ import { theme } from "../../helper/theme.ts";
 
 const ImageRenderer = lazy(() => import("./_components/ImageRenderer"));
 
-const App: FC = () => {
+const _App: FC = () => {
   const konvaStageRef = useRef<Konva.Stage>(null);
   const [rendererSize, setRendererSize] = useState({ width: 0, height: 0 });
   const { baseImageUrl, setBaseImageUrl } = useBaseImageUrlQuery();
@@ -106,4 +106,4 @@ const App: FC = () => {
   );
 };
 
-export default App;
+export default _App;
