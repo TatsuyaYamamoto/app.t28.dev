@@ -1,6 +1,3 @@
-import { useMemo } from "react";
-import { useRouter } from "next/router";
-
 export const blobToDataUrl = (blob: Blob) => {
   const reader = new FileReader();
 
@@ -12,23 +9,6 @@ export const blobToDataUrl = (blob: Blob) => {
     });
     reader.readAsDataURL(blob);
   });
-};
-
-/**
- * https://github.com/vercel/next.js/discussions/11484#discussioncomment-1204888
- */
-export const useNextRouterQuery = <
-  T extends Record<string, string | undefined>
->(): T => {
-  const router = useRouter();
-
-  return useMemo(() => {
-    const dummyUrl = new URL(`https://example.com${router.asPath}`);
-    if (dummyUrl.search.length <= 0) return {} as T;
-    return Object.fromEntries(
-      new URLSearchParams(dummyUrl.search).entries()
-    ) as T;
-  }, [router.asPath]);
 };
 
 export const downloadFile = (name: string, href: string): void => {
