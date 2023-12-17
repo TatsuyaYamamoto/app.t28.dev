@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState, type FC } from "react";
+import { useEffect, useRef, useState, lazy, type FC } from "react";
 
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, ChakraProvider } from "@chakra-ui/react";
 import type Konva from "konva";
 
 import { blobToDataUrl, downloadFile } from "../../helper/utils";
 import { useBaseImageUrlQuery } from "./_hooks/useBaseImageUrlQuery";
 
-import ImageRenderer from "./_components/ImageRenderer";
+import { theme } from "../../helper/theme.ts";
+
+const ImageRenderer = lazy(() => import("./_components/ImageRenderer"));
 
 const App: FC = () => {
   const konvaStageRef = useRef<Konva.Stage>(null);
@@ -79,7 +81,7 @@ const App: FC = () => {
   }, []);
 
   return (
-    <>
+    <ChakraProvider resetCSS={true} theme={theme}>
       <Box>
         <ImageRenderer
           konvaStageRef={konvaStageRef}
@@ -100,7 +102,7 @@ const App: FC = () => {
           <Button onClick={onDownload}>{`ダウンロード`}</Button>
         </Flex>
       </Box>
-    </>
+    </ChakraProvider>
   );
 };
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, type FC } from "react";
 
 import { css, Global } from "@emotion/react";
-import { Box } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
 import { useInView } from "react-intersection-observer";
 
@@ -12,6 +12,7 @@ import Fabs from "./_components/Fabs";
 import ModalEditor from "./_components/ModalEditor";
 
 import { sendEvent } from "./_helper/ga";
+import { theme } from "../../helper/theme.ts";
 
 const App: FC = () => {
   const [isOpenModalEditor, setOpenModalEditor] = useState(false);
@@ -72,26 +73,28 @@ const App: FC = () => {
           }
         `}
       />
-      <Box paddingTop={72 /* appbar */ + 24 + "px"}>
-        <AppBar />
-        <Box position={"relative"} paddingBottom={16}>
-          <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
-          <Fabs
-            showTweetFab={showTwitterFab}
-            isFooterViewed={isFooterViewed}
-            onClickEdit={onClickEditFab}
-            onClickTweet={onClickTweetFab}
-          />
+      <ChakraProvider resetCSS={true} theme={theme}>
+        <Box paddingTop={72 /* appbar */ + 24 + "px"}>
+          <AppBar />
+          <Box position={"relative"} paddingBottom={16}>
+            <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
+            <Fabs
+              showTweetFab={showTwitterFab}
+              isFooterViewed={isFooterViewed}
+              onClickEdit={onClickEditFab}
+              onClickTweet={onClickTweetFab}
+            />
+          </Box>
+          <Box height={"52px" /* footer */} ref={footerAreaDummyElRef} />
+          <Footer />
         </Box>
-        <Box height={"52px" /* footer */} ref={footerAreaDummyElRef} />
-        <Footer />
-      </Box>
-      <ModalEditor
-        value={vanillaText}
-        isOpen={isOpenModalEditor}
-        onClose={onCloseModal}
-        onChangeText={onChangeText}
-      />
+        <ModalEditor
+          value={vanillaText}
+          isOpen={isOpenModalEditor}
+          onClose={onCloseModal}
+          onChangeText={onChangeText}
+        />
+      </ChakraProvider>
     </>
   );
 };

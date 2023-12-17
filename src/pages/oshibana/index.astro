@@ -1,9 +1,7 @@
 ---
-import { ChakraProvider } from "@chakra-ui/react";
 import App from './App.tsx';
 
 import { DESCRIPTION, TITLE } from "./configs";
-import { theme } from "../../helper/theme";
 ---
 
 <html lang="en">
@@ -17,9 +15,7 @@ import { theme } from "../../helper/theme";
 </head>
 <body>
 <main>
-  <ChakraProvider client:visible resetCSS={true} theme={theme}>
-    <App/>
-  </ChakraProvider>
+  <App client:only="react" />
 </main>
 </body>
 </html>
