@@ -10,7 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@chakra-ui/react": "2.4.9",
+    "@chakra-ui/react": "2.8.2",
     "hotkeys-js": "3.8.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",

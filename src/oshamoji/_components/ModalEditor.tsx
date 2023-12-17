@@ -1,6 +1,5 @@
 import { FC, FormEvent, useRef } from "react";
 
-import { css } from "@emotion/react";
 import {
   Modal,
   ModalBody,
@@ -10,8 +9,20 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 import TextareaAutosize from "react-textarea-autosize";
 import { PLACEHOLDER } from "../_helper/config";
+
+const StyledTextareaAutosize = styled(TextareaAutosize)`
+  width: 100%;
+  min-height: 200px;
+
+  font-size: 24px;
+
+  outline: none; // hide textarea border on focus
+  overflow: hidden; // hide scrollbar
+  resize: none; // hide resize controller
+`;
 
 interface Props {
   value: string;
@@ -46,24 +57,14 @@ const ModalEditor: FC<Props> = (props) => {
         <ModalHeader />
         <ModalCloseButton />
         <ModalBody>
-          <TextareaAutosize
+          <StyledTextareaAutosize
             placeholder={PLACEHOLDER}
             onInput={onInput}
             value={value}
             ref={textareaElRef}
-            css={css`
-              width: 100%;
-              min-height: 200px;
-
-              font-size: 24px;
-
-              outline: none; // hide textarea border on focus
-              overflow: hidden; // hide scrollbar
-              resize: none; // hide resize controller
-            `}
           />
         </ModalBody>
-        <ModalFooter></ModalFooter>
+        <ModalFooter />
       </ModalContent>
     </Modal>
   );

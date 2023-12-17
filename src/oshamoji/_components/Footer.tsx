@@ -1,6 +1,5 @@
 import { forwardRef } from "react";
 import { Box } from "@chakra-ui/react";
-import { css } from "@emotion/react";
 
 interface Props {}
 
@@ -29,12 +28,7 @@ export default forwardRef<HTMLDivElement, Props>(function Footer(_props, ref) {
     >
       <Box textAlign={"center"}>
         {`Made for myself in 🇯🇵 by`}
-        <a
-          css={css`
-            margin: 0 5px;
-          `}
-          href="https://twitter.com/T28_tatsuya"
-        >
+        <a style={{ margin: "0 5px" }} href="https://twitter.com/T28_tatsuya">
           @T28_tatsuya
         </a>
         {`and share with you!`}
