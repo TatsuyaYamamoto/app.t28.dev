@@ -75,29 +75,3 @@ export const sendEvent = (
   // 送信
   (window as any).gtag("event", eventName_truncated, eventParams_truncated);
 };
-
-/**
- * https://developers.google.com/tag-platform/gtagjs/install?hl=ja
- */
-export const GaScript = () => (
-  <>
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-    />
-    <script
-      dangerouslySetInnerHTML={{
-        __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            if (location.host === "app.t28.dev") {
-              gtag("config", "${GA_TRACKING_ID}");
-            } else {
-              gtag("config", "${GA_TRACKING_ID}", { debug_mode: true });
-            }
-          `,
-      }}
-    />
-  </>
-);

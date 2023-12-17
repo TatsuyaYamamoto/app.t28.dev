@@ -7,9 +7,9 @@ import {
   convert,
   include,
   toBasicLatinChar,
-  Typeface,
-  UnicodeSymbols,
-  Variant,
+  type Typeface,
+  type UnicodeSymbols,
+  type Variant,
 } from "./UnicodeSymbols";
 
 /**

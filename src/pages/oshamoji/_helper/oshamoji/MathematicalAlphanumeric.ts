@@ -3,7 +3,7 @@ import {
   LowercaseLatinAlphabet,
   UppercaseLatinAlphabet,
 } from "./BasicLatin";
-import { UnicodeSymbols } from "./UnicodeSymbols";
+import type { UnicodeSymbols } from "./UnicodeSymbols";
 import { objectFlatten } from "./utils";
 
 /* A */

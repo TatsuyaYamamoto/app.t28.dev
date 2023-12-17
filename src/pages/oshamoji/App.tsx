@@ -20,19 +20,6 @@ const App: FC = () => {
   const showTwitterFab = !!tweetText;
   const [footerAreaDummyElRef, isFooterViewed] = useInView();
 
-  // スクロールで最下部に行くと FabとFooterが重なるため、状態によって Fab の positionを切り替える
-  const fabPosition =
-    // prettier-ignore
-    // スクロールが必要な高さで
-    (typeof document !== "undefined" && document.documentElement.clientHeight < document.documentElement.scrollHeight) &&
-    // Footerが見えていたら
-    isFooterViewed
-      // TextCardList(の親要素)の範囲で bottom: 20 の位置 (footerに重ならない)
-      ? "absolute"
-      // Footer が見えない、またはスクロールが発生しない状態でFooterが表示されていたら
-      // ViewPort の範囲で bottom: 20 の位置 (このときはFabとFooterが重なるけれど、許容)
-      : "fixed";
-
   const onClickEditFab = () => {
     sendEvent("click", { click_target: "edit_fab" });
     setOpenModalEditor(true);
@@ -91,13 +78,9 @@ const App: FC = () => {
           <TextCardList vanillaText={vanillaText} onClickCard={onClickCard} />
           <Fabs
             showTweetFab={showTwitterFab}
+            isFooterViewed={isFooterViewed}
             onClickEdit={onClickEditFab}
             onClickTweet={onClickTweetFab}
-            css={css`
-              position: ${fabPosition};
-              right: 20px;
-              bottom: 20px;
-            `}
           />
         </Box>
         <Box height={"52px" /* footer */} ref={footerAreaDummyElRef} />

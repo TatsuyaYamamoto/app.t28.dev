@@ -28,7 +28,7 @@ const AppBar = () => {
       backdropFilter={"blur(13px)"}
       fontSize={"36px"}
       padding={"24px 16px 24px"}
-      boxShadow={showShadow ? "md" : undefined}
+      boxShadow={showShadow ? "md" : "none"}
       transition={"box-shadow 200ms"}
       sx={{
         "@media  (min-width: 600px)": {},

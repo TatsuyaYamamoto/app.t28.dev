@@ -1,4 +1,4 @@
-import { Typeface, UnicodeSymbols, Variant } from "./UnicodeSymbols";
+import type { Typeface, UnicodeSymbols, Variant } from "./UnicodeSymbols";
 
 export const objectFlatten = (object: {
   [key in Typeface]?: { [key in Variant]?: UnicodeSymbols };

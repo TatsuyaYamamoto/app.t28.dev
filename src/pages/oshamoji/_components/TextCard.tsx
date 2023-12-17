@@ -1,4 +1,4 @@
-import { FC, useRef, useState, MouseEvent } from "react";
+import { type FC, useRef, useState, type MouseEvent } from "react";
 import { Tooltip } from "@chakra-ui/react";
 
 import styled from "@emotion/styled";
@@ -41,6 +41,7 @@ const TextCard: FC<TextCardProps> = (props) => {
   const tooltipTimeoutId = useRef<NodeJS.Timeout | null>(null);
 
   const onClick = (e: MouseEvent) => {
+    console.log(e)
     e.preventDefault();
 
     sendEvent("click", { click_target: "text_card", label });

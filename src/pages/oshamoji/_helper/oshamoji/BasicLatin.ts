@@ -1,4 +1,4 @@
-import { UnicodeSymbols } from "./UnicodeSymbols";
+import type { UnicodeSymbols } from "./UnicodeSymbols";
 
 export const AsciiDigits: UnicodeSymbols = {
   typeface: "serif",

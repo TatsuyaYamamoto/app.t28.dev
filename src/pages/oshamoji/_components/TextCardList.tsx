@@ -1,10 +1,10 @@
-import { FC, useMemo } from "react";
+import { type FC, useMemo } from "react";
 
 import { Grid, GridItem } from "@chakra-ui/react";
 import TextCard from "./TextCard";
 
 import OshalizableChar from "../_helper/oshamoji/OshalizableChar";
-import { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
+import type { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
 import { PLACEHOLDER } from "../_helper/config";
 
 const convertTargetTypes: {

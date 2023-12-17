@@ -1,6 +1,7 @@
 ---
 import { ChakraProvider } from "@chakra-ui/react";
 import App from './App';
+import GaScript from '../../components/GaScript.astro';
 
 import { DESCRIPTION, TITLE } from "./configs";
 import { theme } from "../../helper/theme";
@@ -15,11 +16,17 @@ import { theme } from "../../helper/theme";
   <meta name="viewport" content="width=device-width"/>
   <meta name="generator" content={Astro.generator}/>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta property="og:title" content={TITLE}>
+  <meta property="og:description" content={DESCRIPTION}>
+
+  <GaScript/>
 </head>
 <body>
 <main>
   <ChakraProvider client:visible resetCSS={true} theme={theme}>
-    <App/>
+    <App client:visible/>
   </ChakraProvider>
 </main>
 </body>

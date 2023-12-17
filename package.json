@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.9",
+    "@chakra-ui/react": "2.8.2",
     "@astrojs/react": "3.0.7",
     "astro": "4.0.6",
     "hotkeys-js": "^3.8.7",
@@ -24,13 +24,14 @@
     "react-textarea-autosize": "^8.4.1"
   },
   "devDependencies": {
+    "@astrojs/check": "0.3.3",
     "@types/node": "20.2.1",
     "@types/react": "^18.2.6",
     "eslint": "8.9.0",
     "eslint-config-next": "^12.3.4",
     "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8",
-    "typescript": "^4.9.5",
+    "typescript": "5.3.3",
     "vitest": "^0.31.1"
   }
 }
