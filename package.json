@@ -3,13 +3,16 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.9",
+    "@astrojs/react": "3.0.7",
+    "astro": "4.0.6",
     "hotkeys-js": "^3.8.7",
     "next": "^12.3.4",
     "next-seo": "^5.2.0",

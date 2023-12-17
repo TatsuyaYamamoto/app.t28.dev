@@ -1,0 +1,25 @@
+---
+import { ChakraProvider } from "@chakra-ui/react";
+import App from './App.tsx';
+
+import { DESCRIPTION, TITLE } from "./configs";
+import { theme } from "../../helper/theme";
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>{TITLE}</title>
+  <meta name="description" content={DESCRIPTION}/>
+  <meta name="viewport" content="width=device-width"/>
+  <meta name="generator" content={Astro.generator}/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+</head>
+<body>
+<main>
+  <ChakraProvider client:visible resetCSS={true} theme={theme}>
+    <App/>
+  </ChakraProvider>
+</main>
+</body>
+</html>

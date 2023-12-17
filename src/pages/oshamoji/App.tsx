@@ -1,26 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, type FC } from "react";
 
-import dynamic from "next/dynamic";
-import Head from "next/head";
 import { css, Global } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
 import { useInView } from "react-intersection-observer";
-import { NextSeo } from "next-seo";
 
 import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";
 import Footer from "./_components/Footer";
-const Fabs = dynamic(() => import("./_components/Fabs"), {
-  ssr: false,
-});
-const ModalEditor = dynamic(() => import("./_components/ModalEditor"), {
-  ssr: false,
-});
-import { sendEvent } from "./_helper/ga";
-import { DESCRIPTION, TITLE } from "./configs";
+import Fabs from "./_components/Fabs";
+import ModalEditor from "./_components/ModalEditor";
 
-export default function Home() {
+import { sendEvent } from "./_helper/ga";
+
+const App: FC = () => {
   const [isOpenModalEditor, setOpenModalEditor] = useState(false);
   const [vanillaText, setVanillaText] = useState("");
   const [tweetText, setTweetText] = useState("");
@@ -85,7 +78,6 @@ export default function Home() {
 
   return (
     <>
-      <NextSeo title={TITLE} description={DESCRIPTION} />
       <Global
         styles={css`
           html {
@@ -119,4 +111,6 @@ export default function Home() {
       />
     </>
   );
-}
+};
+
+export default App;
