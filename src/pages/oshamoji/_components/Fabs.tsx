@@ -2,8 +2,8 @@ import type { FC } from "react";
 
 import { Box, Button, Tooltip, Icon, ScaleFade } from "@chakra-ui/react";
 import styled from "@emotion/styled";
-import { FcIdea as FaTwitter } from "react-icons/fc";
-import { FcAbout as AiFillEdit } from "react-icons/fc";
+import { AiFillEdit } from "react-icons/ai";
+import { FaTwitter } from "react-icons/fa";
 
 const editIcon = <Icon as={AiFillEdit} height={"24px"} width={"24px"} />;
 const twitterIcon = <Icon as={FaTwitter} height={"24px"} width={"24px"} />;
