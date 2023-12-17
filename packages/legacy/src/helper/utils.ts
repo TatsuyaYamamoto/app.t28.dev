@@ -18,7 +18,7 @@ export const blobToDataUrl = (blob: Blob) => {
  * https://github.com/vercel/next.js/discussions/11484#discussioncomment-1204888
  */
 export const useNextRouterQuery = <
-  T extends Record<string, string | undefined>
+  T extends Record<string, string | undefined>,
 >(): T => {
   const router = useRouter();
 
@@ -26,7 +26,7 @@ export const useNextRouterQuery = <
     const dummyUrl = new URL(`https://example.com${router.asPath}`);
     if (dummyUrl.search.length <= 0) return {} as T;
     return Object.fromEntries(
-      new URLSearchParams(dummyUrl.search).entries()
+      new URLSearchParams(dummyUrl.search).entries(),
     ) as T;
   }, [router.asPath]);
 };

@@ -19,7 +19,7 @@ import {
  * @return null if a supported Unicode subheading is not found.
  */
 const analyze = (
-  char: string
+  char: string,
 ): {
   basicLatinChar: string;
   unicodeSymbols: UnicodeSymbols;
@@ -49,7 +49,7 @@ const analyze = (
 
   const basicLatinChar = toBasicLatinChar(
     inputCharCodePoint,
-    inputCharUnicodeSymbols
+    inputCharUnicodeSymbols,
   );
 
   return {
@@ -70,7 +70,7 @@ class OshalizableChar {
         ? new OshalizableChar(
             result.basicLatinChar,
             result.unicodeSymbols,
-            char
+            char,
           )
         : // provided char is not supported.
           new OshalizableChar(null, null, char);
@@ -80,7 +80,7 @@ class OshalizableChar {
   private constructor(
     readonly basicLatinChar: string | null,
     readonly unicodeSymbols: UnicodeSymbols | null,
-    readonly inputChar: string
+    readonly inputChar: string,
   ) {}
 
   public convert(
@@ -90,7 +90,7 @@ class OshalizableChar {
           block: "mathematicalAlphanumeric";
           typeface: Typeface;
           variant: Variant;
-        }
+        },
   ): string {
     if (!this.basicLatinChar || !this.unicodeSymbols) {
       return this.inputChar;

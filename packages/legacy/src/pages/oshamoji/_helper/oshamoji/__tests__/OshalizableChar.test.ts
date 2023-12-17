@@ -9,7 +9,7 @@ const toBasic = (source: string) => {
     .map((char) =>
       char.convert({
         block: "basicLatin",
-      })
+      }),
     )
     .join("");
 };
@@ -22,7 +22,7 @@ const toSerif = (source: string, variant: Variant) => {
         block: "mathematicalAlphanumeric",
         typeface: "serif",
         variant,
-      })
+      }),
     )
     .join("");
 };
@@ -35,7 +35,7 @@ const toSansSerif = (source: string, variant: Variant) => {
         block: "mathematicalAlphanumeric",
         typeface: "sansSerif",
         variant,
-      })
+      }),
     )
     .join("");
 };
@@ -48,7 +48,7 @@ const toScript = (source: string, variant: Variant) => {
         block: "mathematicalAlphanumeric",
         typeface: "script",
         variant,
-      })
+      }),
     )
     .join("");
 };
@@ -61,7 +61,7 @@ const toFraktur = (source: string, variant: Variant) => {
         block: "mathematicalAlphanumeric",
         typeface: "fraktur",
         variant,
-      })
+      }),
     )
     .join("");
 };
@@ -74,7 +74,7 @@ const toMonoSpace = (source: string, variant: Variant) => {
         block: "mathematicalAlphanumeric",
         typeface: "monoSpace",
         variant,
-      })
+      }),
     )
     .join("");
 };
@@ -87,7 +87,7 @@ const toDoubleStruck = (source: string, variant: Variant) => {
         block: "mathematicalAlphanumeric",
         typeface: "doubleStruck",
         variant,
-      })
+      }),
     )
     .join("");
 };
@@ -139,7 +139,7 @@ describe("OshalizableChar", () => {
         `("$test", ({ actualValue, expectValue }) => {
           expect(actualValue.codePointAt(0)).toBe(expectValue.codePointAt(0));
         });
-      }
+      },
     );
   });
 
@@ -259,7 +259,7 @@ describe("OshalizableChar", () => {
         `("$test", ({ actualValue, expectValue }) => {
           expect(actualValue.codePointAt(0)).toBe(expectValue.codePointAt(0));
         });
-      }
+      },
     );
   });
 });

@@ -27,6 +27,6 @@ export const copyToClipboard = (text: string): Promise<void> => {
   return result
     ? Promise.resolve()
     : Promise.reject(
-        new Error("Copy is not supported or enable on this device.")
+        new Error("Copy is not supported or enable on this device."),
       );
 };

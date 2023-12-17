@@ -23,7 +23,7 @@ const OshibanaIndex: NextPage = () => {
   const [rendererSize, setRendererSize] = useState({ width: 0, height: 0 });
   const { baseImageUrl, setBaseImageUrl } = useBaseImageUrlQuery();
   const [itemImageUrl, setItemImageUrl] = useState<string | undefined>(
-    undefined
+    undefined,
   );
 
   const selectImage = async () => {

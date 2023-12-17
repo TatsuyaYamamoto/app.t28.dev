@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export const useCanvasImageSource = (imageUrl?: string | undefined) => {
   const [sourceInstance, setSource] = useState<CanvasImageSource | undefined>(
-    undefined
+    undefined,
   );
   const [sourceAspectRatio, setSourceAspectRatio] = useState(1);
 
