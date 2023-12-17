@@ -1,17 +1,25 @@
 ---
 import App from './_App.tsx';
+import GtagScript from "../../components/GtagScript.astro";
 
 import { DESCRIPTION, TITLE } from "./_helpers/configs";
 ---
 
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8"/>
   <title>{TITLE}</title>
   <meta name="description" content={DESCRIPTION}/>
+
   <meta name="viewport" content="width=device-width"/>
   <meta name="generator" content={Astro.generator}/>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta property="og:title" content={TITLE}>
+  <meta property="og:description" content={DESCRIPTION}>
+
+  <GtagScript/>
 </head>
 <body>
 <main>

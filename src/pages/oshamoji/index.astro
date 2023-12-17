@@ -1,6 +1,6 @@
 ---
 import App from './_App';
-import GaScript from '../../components/GaScript.astro';
+import GtagScript from '../../components/GtagScript.astro';
 
 import { DESCRIPTION, TITLE } from "./_helper/config";
 ---
@@ -9,7 +9,7 @@ import { DESCRIPTION, TITLE } from "./_helper/config";
 <head>
   <meta charset="utf-8"/>
   <title>{TITLE}</title>
-  <meta name="desction" content={DESCRIPTION}/>
+  <meta name="description" content={DESCRIPTION}/>
 
   <meta name="viewport" content="width=device-width"/>
   <meta name="generator" content={Astro.generator}/>
@@ -19,7 +19,7 @@ import { DESCRIPTION, TITLE } from "./_helper/config";
   <meta property="og:title" content={TITLE}>
   <meta property="og:description" content={DESCRIPTION}>
 
-  <GaScript/>
+  <GtagScript/>
 </head>
 <body>
 <main>
