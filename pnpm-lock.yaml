@@ -4,63 +4,79 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@chakra-ui/react':
-    specifier: ^2.4.9
-    version: 2.4.9(@emotion/react@11.11.0)(@emotion/styled@11.11.0)(@types/react@18.2.6)(framer-motion@10.12.12)(react-dom@18.2.0)(react@18.2.0)
-  hotkeys-js:
-    specifier: ^3.8.7
-    version: 3.8.7
-  next:
-    specifier: ^12.3.4
-    version: 12.3.4(react-dom@18.2.0)(react@18.2.0)
-  next-seo:
-    specifier: ^5.2.0
-    version: 5.2.0(next@12.3.4)(react-dom@18.2.0)(react@18.2.0)
-  react:
-    specifier: ^18.2.0
-    version: 18.2.0
-  react-dom:
-    specifier: ^18.2.0
-    version: 18.2.0(react@18.2.0)
-  react-icons:
-    specifier: ^4.8.0
-    version: 4.8.0(react@18.2.0)
-  react-intersection-observer:
-    specifier: ^8.33.1
-    version: 8.33.1(react@18.2.0)
-  react-konva:
-    specifier: ^18.2.8
-    version: 18.2.8(konva@9.0.2)(react-dom@18.2.0)(react@18.2.0)
-  react-textarea-autosize:
-    specifier: ^8.4.1
-    version: 8.4.1(@types/react@18.2.6)(react@18.2.0)
+importers:
 
-devDependencies:
-  '@types/node':
-    specifier: 20.2.1
-    version: 20.2.1
-  '@types/react':
-    specifier: ^18.2.6
-    version: 18.2.6
-  eslint:
-    specifier: 8.9.0
-    version: 8.9.0
-  eslint-config-next:
-    specifier: ^12.3.4
-    version: 12.3.4(eslint@8.9.0)(typescript@4.9.5)
-  eslint-config-prettier:
-    specifier: ^8.8.0
-    version: 8.8.0(eslint@8.9.0)
-  prettier:
-    specifier: ^2.8.8
-    version: 2.8.8
-  typescript:
-    specifier: ^4.9.5
-    version: 4.9.5
-  vitest:
-    specifier: ^0.31.1
-    version: 0.31.1
+  .:
+    devDependencies:
+      '@types/node':
+        specifier: 20.2.1
+        version: 20.2.1
+      '@types/react':
+        specifier: ^18.2.6
+        version: 18.2.6
+      eslint:
+        specifier: 8.9.0
+        version: 8.9.0
+      eslint-config-next:
+        specifier: ^12.3.4
+        version: 12.3.4(eslint@8.9.0)(typescript@4.9.5)
+      eslint-config-prettier:
+        specifier: ^8.8.0
+        version: 8.8.0(eslint@8.9.0)
+      prettier:
+        specifier: ^2.8.8
+        version: 2.8.8
+      typescript:
+        specifier: ^4.9.5
+        version: 4.9.5
+      vitest:
+        specifier: ^0.31.1
+        version: 0.31.1
+
+  packages/legacy:
+    dependencies:
+      '@chakra-ui/react':
+        specifier: 2.4.9
+        version: 2.4.9(@emotion/react@11.11.0)(@emotion/styled@11.11.0)(@types/react@18.2.6)(framer-motion@10.12.12)(react-dom@18.2.0)(react@18.2.0)
+      '@chakra-ui/theme-tools':
+        specifier: 2.0.17
+        version: 2.0.17(@chakra-ui/styled-system@2.5.2)
+      '@emotion/react':
+        specifier: 11.11.0
+        version: 11.11.0(@types/react@18.2.6)(react@18.2.0)
+      '@emotion/styled':
+        specifier: 11.11.0
+        version: 11.11.0(@emotion/react@11.11.0)(@types/react@18.2.6)(react@18.2.0)
+      hotkeys-js:
+        specifier: 3.8.7
+        version: 3.8.7
+      konva:
+        specifier: 9.0.2
+        version: 9.0.2
+      next:
+        specifier: 12.3.4
+        version: 12.3.4(react-dom@18.2.0)(react@18.2.0)
+      next-seo:
+        specifier: 5.2.0
+        version: 5.2.0(next@12.3.4)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-icons:
+        specifier: 4.8.0
+        version: 4.8.0(react@18.2.0)
+      react-intersection-observer:
+        specifier: 8.33.1
+        version: 8.33.1(react@18.2.0)
+      react-konva:
+        specifier: 18.2.8
+        version: 18.2.8(konva@9.0.2)(react-dom@18.2.0)(react@18.2.0)
+      react-textarea-autosize:
+        specifier: 8.4.1
+        version: 8.4.1(@types/react@18.2.6)(react@18.2.0)
 
 packages:
 
