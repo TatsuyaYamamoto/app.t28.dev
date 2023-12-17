@@ -26,8 +26,6 @@
     "@astrojs/check": "0.3.3",
     "@types/node": "20.2.1",
     "@types/react": "18.2.6",
-    "eslint": "8.9.0",
-    "eslint-config-prettier": "8.8.0",
     "prettier": "2.8.8",
     "typescript": "5.3.3",
     "vitest": "0.31.1"
