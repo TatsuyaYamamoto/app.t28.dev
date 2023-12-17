@@ -2,7 +2,7 @@
   "name": "legacy",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export && mkdir -p ../../dist && mv -f out/* ../../dist",
     "start": "next start",
     "lint": "next lint"
   },
