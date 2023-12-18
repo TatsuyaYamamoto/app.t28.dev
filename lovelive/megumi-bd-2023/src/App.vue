@@ -1,6 +1,12 @@
 <template>
   <div class="canvas-wrapper">
     <TresCanvas id="three-renderer" clear-color="#82DBC5">
+      <ThreeOrbitControls />
+      <TresPerspectiveCamera
+        :args="[32, 2.3]"
+        :position="[0, 0, 1000]"
+        :look-at="[0, 0, 0]"
+      />
       <TitlePage />
     </TresCanvas>
   </div>
@@ -13,6 +19,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { useWindowSize } from "@vueuse/core";
 
 import TitlePage from "./pages/TitlePage.vue";
+import ThreeOrbitControls from "./components/ThreeOrbitControls.vue";
 
 extend({ OrbitControls });
 

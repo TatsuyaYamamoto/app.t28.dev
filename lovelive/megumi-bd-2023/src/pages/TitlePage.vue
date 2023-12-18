@@ -1,10 +1,4 @@
 <template>
-  <TresOrbitControls v-if="camera" :args="[camera, renderer.domElement]" />
-  <TresPerspectiveCamera
-    :args="[32, 2.3]"
-    :position="[0, 0, 1000]"
-    :look-at="[0, 0, 0]"
-  />
   <TresMesh>
     <!--    <TresBoxGeometry :args="[200, 200, 200]" />-->
     <TresPlaneGeometry :args="[1000, 600]" />
@@ -23,7 +17,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import { Mesh, TextureLoader, Color } from "three";
-import { useTresContext, useRenderLoop } from "@tresjs/core";
+import { useRenderLoop } from "@tresjs/core";
 import {
   ThreeJsTexture,
   AtlasAttachmentLoader,
@@ -38,7 +32,6 @@ import skeletonFile from "../../spines/title-megumi/out/megumi-title.json";
 import atlasText from "../../spines/title-megumi/out/megumi-title.atlas?raw";
 import atlasImage from "../../spines/title-megumi/out/megumi-title.png";
 
-const { camera, renderer } = useTresContext();
 const { onLoop } = useRenderLoop();
 
 const wireframeColor = new Color(0xffffff);
