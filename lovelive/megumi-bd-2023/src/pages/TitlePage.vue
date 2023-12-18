@@ -18,7 +18,6 @@
   <TresMesh ref="meshRef" :position="[0, -300, 0]">
     <TresMeshBasicMaterial :color="wireframeColor" :wireframe="true" />
   </TresMesh>
-  <TresAmbientLight :intensity="5" />
 </template>
 
 <script setup lang="ts">
