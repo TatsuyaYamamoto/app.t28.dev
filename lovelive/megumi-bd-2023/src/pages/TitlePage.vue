@@ -16,57 +16,34 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
-import { Mesh, TextureLoader, Color } from "three";
+import { Mesh, Color } from "three";
 import { useRenderLoop } from "@tresjs/core";
 import {
-  ThreeJsTexture,
   AtlasAttachmentLoader,
   SkeletonMesh,
   SkeletonJson,
-  TextureAtlas,
 } from "@esotericsoftware/spine-threejs";
 
-import background1 from "../../spines/title-megumi/images/背景（外まで）.png";
-import backgroundEffect from "../../spines/title-megumi/images/集中線.png";
-import skeletonFile from "../../spines/title-megumi/out/megumi-title.json";
-import atlasText from "../../spines/title-megumi/out/megumi-title.atlas?raw";
-import atlasImage from "../../spines/title-megumi/out/megumi-title.png";
+import { useAssetLoader } from "../components/useAssetLoader.ts";
 
 const { onLoop } = useRenderLoop();
+const { getTexture, getSpine } = useAssetLoader();
 
 const wireframeColor = new Color(0xffffff);
 
 const meshRef = ref<Mesh>();
 let skeletonMesh: SkeletonMesh | null = null;
 
-const background1Texture = new TextureLoader().load(background1);
-const backgroundEffectTexture = new TextureLoader().load(backgroundEffect);
+const background1Texture = getTexture("background_title_base");
+const backgroundEffectTexture = getTexture("background_title_line");
+const megumi = getSpine("title_megumi");
 
 const init = async () => {
-  const i = new Image();
-  await new Promise((resolve) => {
-    i.onload = resolve;
-    i.src = atlasImage;
-  });
-
-  const atlas = new TextureAtlas(atlasText);
-  atlas.pages.forEach((page) => {
-    page.setTexture(new ThreeJsTexture(i));
-  });
-  // Create a AtlasAttachmentLoader that resolves region, mesh, boundingbox and path attachments
-  const atlasLoader = new AtlasAttachmentLoader(atlas);
-
-  // Create a SkeletonJson instance for parsing the .json file.
-  let skeletonJson = new SkeletonJson(atlasLoader);
-
-  // Set the scale to apply during parsing, parse the file, and create a new skeleton.
+  const atlasLoader = new AtlasAttachmentLoader(megumi.textureAtlas);
+  const skeletonJson = new SkeletonJson(atlasLoader);
   skeletonJson.scale = 0.1;
-  const skeletonData = skeletonJson.readSkeletonData(
-    // assetManager.require(skeletonFile),
-    skeletonFile,
-  );
+  const skeletonData = skeletonJson.readSkeletonData(megumi.skeleton);
 
-  // Create a SkeletonMesh from the data and attach it to the scene
   skeletonMesh = new SkeletonMesh(skeletonData, (parameters) => {
     parameters.alphaTest = 0.5;
     parameters.blendDst = 205;

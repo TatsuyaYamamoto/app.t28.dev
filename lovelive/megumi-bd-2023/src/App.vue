@@ -7,24 +7,40 @@
         :position="[0, 0, 1000]"
         :look-at="[0, 0, 0]"
       />
-      <TitlePage />
+      <LoadingPage
+        v-if="currentPage === 'loading'"
+        @loadCompleted="onLoadCompleted"
+      />
+      <TitlePage v-if="currentPage === 'title'" />
     </TresCanvas>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { extend } from "@tresjs/core";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { useWindowSize } from "@vueuse/core";
 
+import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
 import ThreeOrbitControls from "./components/ThreeOrbitControls.vue";
 
 extend({ OrbitControls });
 
+const pageMap = {
+  loading: "loading",
+  title: "title",
+  game: "game",
+};
+
 const { width: windowWidth } = useWindowSize();
 const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
+const currentPage = ref<keyof typeof pageMap>("loading");
+
+const onLoadCompleted = () => {
+  currentPage.value = "title";
+};
 </script>
 
 <style>
