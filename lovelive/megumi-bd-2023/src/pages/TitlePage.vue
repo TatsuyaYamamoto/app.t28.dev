@@ -1,17 +1,21 @@
 <template>
   <TresOrbitControls v-if="camera" :args="[camera, renderer.domElement]" />
-  <TresPerspectiveCamera :position="[0, 0, 1000]" :look-at="[0, 0, 0]" />
+  <TresPerspectiveCamera
+    :args="[32, 2.3]"
+    :position="[0, 0, 1000]"
+    :look-at="[0, 0, 0]"
+  />
   <TresMesh>
-    <TresPlaneGeometry :args="[500, 300]" />
+    <!--    <TresBoxGeometry :args="[200, 200, 200]" />-->
+    <TresPlaneGeometry :args="[1000, 600]" />
     <TresMeshBasicMaterial :map="background1Texture" transparent />
   </TresMesh>
   <TresMesh>
-    <TresPlaneGeometry :args="[500, 300]" />
+    <TresPlaneGeometry :args="[1000, 600]" />
     <TresMeshBasicMaterial :map="backgroundEffectTexture" transparent />
   </TresMesh>
 
-  <TresMesh ref="meshRef">
-    <TresBoxGeometry :args="[200, 200, 200]" />
+  <TresMesh ref="meshRef" :position="[0, -300, 0]">
     <TresMeshBasicMaterial :color="new Color(0xffffff)" :wireframe="true" />
   </TresMesh>
   <TresAmbientLight :intensity="5" />
