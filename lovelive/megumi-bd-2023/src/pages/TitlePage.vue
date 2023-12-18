@@ -16,7 +16,7 @@
   </TresMesh>
 
   <TresMesh ref="meshRef" :position="[0, -300, 0]">
-    <TresMeshBasicMaterial :color="new Color(0xffffff)" :wireframe="true" />
+    <TresMeshBasicMaterial :color="wireframeColor" :wireframe="true" />
   </TresMesh>
   <TresAmbientLight :intensity="5" />
 </template>
@@ -42,15 +42,16 @@ import atlasImage from "../../spines/title-megumi/out/megumi-title.png";
 const { camera, renderer } = useTresContext();
 const { onLoop } = useRenderLoop();
 
+const wireframeColor = new Color(0xffffff);
+
 const meshRef = ref<Mesh>();
 let skeletonMesh: SkeletonMesh | null = null;
 
 const background1Texture = new TextureLoader().load(background1);
 const backgroundEffectTexture = new TextureLoader().load(backgroundEffect);
 
-const i = new Image();
-
 const init = async () => {
+  const i = new Image();
   await new Promise((resolve) => {
     i.onload = resolve;
     i.src = atlasImage;
