@@ -2,7 +2,11 @@ import { ref } from "vue";
 import { TextureLoader, Texture } from "three";
 import { TextureAtlas, ThreeJsTexture } from "@esotericsoftware/spine-threejs";
 
-import { IMAGE_MANIFEST, SPINE_MANIFEST } from "../assets/manifest.ts";
+import {
+  IMAGE_MANIFEST,
+  type ImageKey,
+  SPINE_MANIFEST,
+} from "../assets/manifest.ts";
 
 const loadImage = (src: string) => {
   const i = new Image();
@@ -28,7 +32,7 @@ const spineStore = ref<{
 }>();
 
 export const useAssetLoader = () => {
-  const getTexture = (id: string) => {
+  const getTexture = (id: ImageKey) => {
     return textureStore.value?.[id] as unknown as Texture;
   };
 

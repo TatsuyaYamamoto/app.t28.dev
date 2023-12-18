@@ -1,5 +1,5 @@
 <template>
-  <TresMesh>
+  <TresMesh @click="$emit('start')">
     <!--    <TresBoxGeometry :args="[200, 200, 200]" />-->
     <TresPlaneGeometry :args="[1000, 600]" />
     <TresMeshBasicMaterial :map="background1Texture" transparent />
@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onBeforeUnmount, ref } from "vue";
 import { Mesh, Color } from "three";
-import { useRenderLoop } from "@tresjs/core";
+import { useRenderLoop, useTresContext } from "@tresjs/core";
 import {
   AtlasAttachmentLoader,
   SkeletonMesh,
@@ -26,6 +26,11 @@ import {
 
 import { useAssetLoader } from "../components/useAssetLoader.ts";
 
+defineEmits<{
+  (e: "start"): void;
+}>();
+
+const { scene } = useTresContext();
 const { onLoop } = useRenderLoop();
 const { getTexture, getSpine } = useAssetLoader();
 
@@ -68,11 +73,11 @@ onLoop(({ delta }) => {
 
 onMounted(() => {
   init();
+  console.log("mount");
 });
 
-onUnmounted(() => {
-  if (skeletonMesh) {
-    meshRef.value?.remove(skeletonMesh);
-  }
+onBeforeUnmount(() => {
+  console.log("unmount");
+  scene.value.clear();
 });
 </script>
