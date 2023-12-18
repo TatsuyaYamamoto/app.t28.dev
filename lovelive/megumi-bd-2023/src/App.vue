@@ -1,16 +1,23 @@
 <template>
-  <TresCanvas clear-color="#82DBC5" window-size>
-    <ThreeScene />
-  </TresCanvas>
+  <div class="canvas-wrapper">
+    <TresCanvas id="three-renderer" clear-color="#82DBC5">
+      <TitlePage />
+    </TresCanvas>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { extend } from "@tresjs/core";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { useWindowSize } from "@vueuse/core";
 
-import ThreeScene from "./components/ThreeScene.vue";
+import TitlePage from "./pages/TitlePage.vue";
 
 extend({ OrbitControls });
+
+const { width: windowWidth } = useWindowSize();
+const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
 </script>
 
 <style>
@@ -24,5 +31,15 @@ body {
 #app {
   height: 100%;
   width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+</style>
+
+<style scoped>
+.canvas-wrapper {
+  width: 100%;
+  height: v-bind(rendererHeight);
 }
 </style>

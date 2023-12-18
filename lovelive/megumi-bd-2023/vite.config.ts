@@ -6,6 +6,7 @@ const basePath = "/lovelive/megumi-bd-2023";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: basePath,
+  assetsInclude: ["**/*.atlas"],
   plugins: [
     vue({
       template: {
