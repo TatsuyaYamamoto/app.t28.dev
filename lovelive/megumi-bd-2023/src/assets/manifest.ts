@@ -1,3 +1,4 @@
+import title from "../assets/title.png";
 import background_title_base from "../../spines/title-megumi/images/背景（外まで）.png";
 import background_title_line from "../../spines/title-megumi/images/集中線.png";
 import bowl1 from "../assets/bowl1.png";
@@ -18,6 +19,10 @@ export const IMAGE_MANIFEST = [
   {
     id: "background_title_line",
     src: background_title_line,
+  },
+  {
+    id: "title",
+    src: title,
   },
   {
     id: "bowl1",

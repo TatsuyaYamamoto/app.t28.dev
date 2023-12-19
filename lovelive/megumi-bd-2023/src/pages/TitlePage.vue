@@ -8,6 +8,10 @@
       <TresPlaneGeometry :args="[1000, 600]" />
       <TresMeshBasicMaterial :map="backgroundEffectTexture" transparent />
     </TresMesh>
+    <TresMesh :position="[180, 100, 100]">
+      <TresPlaneGeometry :args="[500, 300]" />
+      <TresMeshBasicMaterial :map="title" transparent />
+    </TresMesh>
   </TresGroup>
 </template>
 
@@ -36,6 +40,7 @@ let skeletonMesh: SkeletonMesh | null = null;
 const background1Texture = getTexture("background_title_base");
 const backgroundEffectTexture = getTexture("background_title_line");
 const megumi = getSpine("title_megumi");
+const title = getTexture("title");
 
 const init = async () => {
   const atlasLoader = new AtlasAttachmentLoader(megumi.textureAtlas);
@@ -58,7 +63,7 @@ const init = async () => {
     parameters.transparent = true;
   });
   skeletonMesh.state.setAnimation(0, "idling", true);
-  skeletonMesh.position.y = -300;
+  skeletonMesh.position.y = -320;
   groupRef.value?.add(skeletonMesh);
 };
 

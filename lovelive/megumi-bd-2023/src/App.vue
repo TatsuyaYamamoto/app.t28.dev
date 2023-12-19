@@ -55,7 +55,7 @@ const { width: windowWidth } = useWindowSize();
 const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
 
 const currentPage = ref<keyof typeof pageMap>("loading");
-const shouldShowGameResultModal = ref(true);
+const shouldShowGameResultModal = ref(false);
 
 const onLoadCompleted = () => {
   currentPage.value = "title";
