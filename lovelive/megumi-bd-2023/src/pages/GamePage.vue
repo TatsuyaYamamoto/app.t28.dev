@@ -25,7 +25,12 @@ import { useRenderLoop } from "@tresjs/core";
 
 import { useAssetLoader } from "../components/useAssetLoader.ts";
 
+const emit = defineEmits<{
+  (e: "finish"): void;
+}>();
+
 const counter = ref<"1" | "2">("1");
+let shakeCounter = 0;
 
 const { onLoop } = useRenderLoop();
 const { getTexture } = useAssetLoader();
@@ -48,6 +53,11 @@ const bowlTexture = computed(() => {
 const onClickBowl = () => {
   console.log("game:onClickBowl");
   counter.value = counter.value === "1" ? "2" : "1";
+  shakeCounter += 1;
+
+  if (20 < shakeCounter) {
+    emit("finish");
+  }
 };
 
 onLoop(() => {});

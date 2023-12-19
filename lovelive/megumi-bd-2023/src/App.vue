@@ -19,8 +19,14 @@
         @loadCompleted="onLoadCompleted"
       />
       <TitlePage v-if="currentPage === 'title'" @start="onGameStart" />
-      <GamePage v-if="currentPage === 'game'" />
+      <GamePage v-if="currentPage === 'game'" @finish="onGameFinish" />
     </TresCanvas>
+
+    <GameResultModal
+      v-if="shouldShowGameResultModal"
+      :image-type="1"
+      @click-button="onClickButtonGameResultModal"
+    />
   </div>
 </template>
 
@@ -35,6 +41,7 @@ import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
 import GamePage from "./pages/GamePage.vue";
 import ThreeOrbitControls from "./components/ThreeOrbitControls.vue";
+import GameResultModal from "./components/GameResultModal.vue";
 
 extend({ OrbitControls });
 
@@ -46,7 +53,9 @@ const pageMap = {
 
 const { width: windowWidth } = useWindowSize();
 const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
+
 const currentPage = ref<keyof typeof pageMap>("loading");
+const shouldShowGameResultModal = ref(false);
 
 const onLoadCompleted = () => {
   currentPage.value = "title";
@@ -54,6 +63,14 @@ const onLoadCompleted = () => {
 
 const onGameStart = () => {
   currentPage.value = "game";
+};
+
+const onGameFinish = () => {
+  shouldShowGameResultModal.value = true;
+};
+
+const onClickButtonGameResultModal = () => {
+  shouldShowGameResultModal.value = false;
 };
 </script>
 
@@ -76,6 +93,7 @@ body {
 
 <style scoped>
 .canvas-wrapper {
+  position: relative;
   width: 100%;
   height: v-bind(rendererHeight);
 }
