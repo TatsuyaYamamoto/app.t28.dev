@@ -1,23 +1,20 @@
 <template>
-  <TresMesh @click="$emit('start')">
-    <!--    <TresBoxGeometry :args="[200, 200, 200]" />-->
-    <TresPlaneGeometry :args="[1000, 600]" />
-    <TresMeshBasicMaterial :map="background1Texture" transparent />
-  </TresMesh>
-  <TresMesh>
-    <TresPlaneGeometry :args="[1000, 600]" />
-    <TresMeshBasicMaterial :map="backgroundEffectTexture" transparent />
-  </TresMesh>
-
-  <TresMesh ref="meshRef" :position="[0, -300, 0]">
-    <TresMeshBasicMaterial :color="wireframeColor" :wireframe="true" />
-  </TresMesh>
+  <TresGroup ref="groupRef">
+    <TresMesh @click="onClick">
+      <TresPlaneGeometry :args="[1000, 600]" />
+      <TresMeshBasicMaterial :map="background1Texture" transparent />
+    </TresMesh>
+    <TresMesh>
+      <TresPlaneGeometry :args="[1000, 600]" />
+      <TresMeshBasicMaterial :map="backgroundEffectTexture" transparent />
+    </TresMesh>
+  </TresGroup>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from "vue";
-import { Mesh, Color } from "three";
-import { useRenderLoop, useTresContext } from "@tresjs/core";
+import { onMounted, ref } from "vue";
+import { Mesh, Color, Group } from "three";
+import { useRenderLoop } from "@tresjs/core";
 import {
   AtlasAttachmentLoader,
   SkeletonMesh,
@@ -26,17 +23,14 @@ import {
 
 import { useAssetLoader } from "../components/useAssetLoader.ts";
 
-defineEmits<{
+const emit = defineEmits<{
   (e: "start"): void;
 }>();
 
-const { scene } = useTresContext();
 const { onLoop } = useRenderLoop();
 const { getTexture, getSpine } = useAssetLoader();
 
-const wireframeColor = new Color(0xffffff);
-
-const meshRef = ref<Mesh>();
+const groupRef = ref<Group>();
 let skeletonMesh: SkeletonMesh | null = null;
 
 const background1Texture = getTexture("background_title_base");
@@ -64,7 +58,18 @@ const init = async () => {
     parameters.transparent = true;
   });
   skeletonMesh.state.setAnimation(0, "idling", true);
-  meshRef.value?.add(skeletonMesh);
+  skeletonMesh.position.y = -300;
+  groupRef.value?.add(skeletonMesh);
+
+  setTimeout(() => {
+    console.log(groupRef.value?.uuid);
+    console.log(groupRef.value?.children);
+  }, 1000);
+};
+
+const onClick = () => {
+  console.log("title:onClick");
+  emit("start");
 };
 
 onLoop(({ delta }) => {
@@ -74,10 +79,5 @@ onLoop(({ delta }) => {
 onMounted(() => {
   init();
   console.log("mount");
-});
-
-onBeforeUnmount(() => {
-  console.log("unmount");
-  scene.value.clear();
 });
 </script>
