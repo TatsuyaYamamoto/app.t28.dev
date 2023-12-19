@@ -12,6 +12,7 @@
     "@esotericsoftware/spine-threejs": "4.2.33",
     "@tresjs/core": "3.6.0",
     "@vueuse/core": "10.7.0",
+    "gsap": "^3.12.4",
     "three": "0.158.0",
     "vue": "3.3.12"
   },
