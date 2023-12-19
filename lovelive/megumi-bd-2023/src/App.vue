@@ -8,7 +8,8 @@
         LinearSRGBColorSpace
       "
     >
-      <ThreeOrbitControls />
+      <!--  FOR DEBUG    -->
+      <!--  <ThreeOrbitControls /> -->
       <TresPerspectiveCamera
         :args="[32, 2.3]"
         :position="[0, 0, 1000]"
