@@ -22,7 +22,7 @@
       <GamePage v-if="currentPage === 'game'" @finish="onGameFinish" />
     </TresCanvas>
 
-    <StartAnnounce v-if="currentPage === 'title'" />
+    <StartAnnounce v-if="currentPage === 'title'" @click="onGameStart" />
 
     <GameResultModal
       v-if="gameResultModalType !== null"
