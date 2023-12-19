@@ -22,6 +22,8 @@
       <GamePage v-if="currentPage === 'game'" @finish="onGameFinish" />
     </TresCanvas>
 
+    <StartAnnounce v-if="currentPage === 'title'" />
+
     <GameResultModal
       v-if="gameResultModalType !== null"
       :image-type="gameResultModalType"
@@ -42,6 +44,7 @@ import TitlePage from "./pages/TitlePage.vue";
 import GamePage from "./pages/GamePage.vue";
 import ThreeOrbitControls from "./components/ThreeOrbitControls.vue";
 import GameResultModal from "./components/GameResultModal.vue";
+import StartAnnounce from "./components/StartAnnounce.vue";
 
 extend({ OrbitControls });
 
