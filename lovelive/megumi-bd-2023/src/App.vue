@@ -77,7 +77,7 @@ const onGameStart = () => {
 };
 
 const onGameFinish = () => {
-  gameResultModalType.value = getRandomInt(1, 3) as 1 | 2 | 3;
+  gameResultModalType.value = getRandomInt(1, 4) as 1 | 2 | 3;
 };
 
 const onClickButtonGameResultModal = () => {
