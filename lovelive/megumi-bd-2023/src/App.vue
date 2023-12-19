@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { extend } from "@tresjs/core";
 import { LinearSRGBColorSpace } from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
@@ -55,7 +55,7 @@ const { width: windowWidth } = useWindowSize();
 const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
 
 const currentPage = ref<keyof typeof pageMap>("loading");
-const shouldShowGameResultModal = ref(false);
+const shouldShowGameResultModal = ref(true);
 
 const onLoadCompleted = () => {
   currentPage.value = "title";
@@ -70,8 +70,14 @@ const onGameFinish = () => {
 };
 
 const onClickButtonGameResultModal = () => {
+  currentPage.value = "title";
   shouldShowGameResultModal.value = false;
 };
+watch([windowWidth], ([currentWidth]) => {
+  const baseWidth = 2500;
+  const fontSize = (currentWidth / baseWidth) * 100;
+  document.documentElement.style.fontSize = `${fontSize}px`;
+});
 </script>
 
 <style>
