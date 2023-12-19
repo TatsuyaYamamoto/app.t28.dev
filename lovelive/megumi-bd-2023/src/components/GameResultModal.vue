@@ -3,7 +3,11 @@
     <div class="modal" :style="{ backgroundImage: `url(${back})` }">
       <img :src="srcs.tkg" class="modal-tkg-image" />
       <img :src="srcs.result" class="modal-result-label" />
-      <div>
+      <div
+        :class="{
+          'buttons--hide': !shouldShowButtons,
+        }"
+      >
         <button class="button" @click="onClickForTitle">
           <img class="button-image" alt="タイトルへ" :src="button1" />
         </button>
@@ -16,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref, onMounted } from "vue";
 
 import back from "../assets/back.jpg";
 import tkg1 from "../assets/tkg_1.png";
@@ -31,6 +35,7 @@ import button2 from "../assets/button_2.png";
 const props = defineProps<{ imageType: 1 | 2 | 3 }>();
 const emit = defineEmits<{ (e: "clickButton"): void }>();
 
+const shouldShowButtons = ref(false);
 const srcs = computed(() => {
   const tkgs = {
     1: tkg1,
@@ -71,8 +76,15 @@ const onClickForShare = () => {
 ${hashtags}
 ${appUrl}`,
   );
+
   location.href = url.toString();
 };
+
+onMounted(() => {
+  setTimeout(() => {
+    shouldShowButtons.value = true;
+  }, 1000);
+});
 </script>
 
 <style scoped>
@@ -102,16 +114,20 @@ ${appUrl}`,
 }
 
 .modal-tkg-image {
-  width: 15rem;
+  width: 8rem;
 }
 
 .modal-result-label {
-  width: 15rem;
+  width: 8rem;
   transform: translateY(-1rem);
 }
 
+.buttons--hide {
+  visibility: hidden;
+}
+
 .button {
-  width: 10rem;
+  width: 6rem;
   border: 0;
   background: transparent;
 }

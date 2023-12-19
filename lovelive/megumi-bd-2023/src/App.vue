@@ -80,11 +80,15 @@ const onClickButtonGameResultModal = () => {
   gameResultModalType.value = null;
 };
 
-watch([windowWidth], ([currentWidth]) => {
-  const baseWidth = 2500;
-  const fontSize = (currentWidth / baseWidth) * 100;
-  document.documentElement.style.fontSize = `${fontSize}px`;
-});
+watch(
+  [windowWidth],
+  ([currentWidth]) => {
+    const baseWidth = 2500;
+    const fontSize = (currentWidth / baseWidth) * 100;
+    document.documentElement.style.fontSize = `${fontSize}px`;
+  },
+  { immediate: true },
+);
 </script>
 
 <style>
