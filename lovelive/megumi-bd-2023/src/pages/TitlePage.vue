@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { Mesh, Color, Group } from "three";
+import { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
 import {
   AtlasAttachmentLoader,
@@ -60,11 +60,6 @@ const init = async () => {
   skeletonMesh.state.setAnimation(0, "idling", true);
   skeletonMesh.position.y = -300;
   groupRef.value?.add(skeletonMesh);
-
-  setTimeout(() => {
-    console.log(groupRef.value?.uuid);
-    console.log(groupRef.value?.children);
-  }, 1000);
 };
 
 const onClick = () => {
