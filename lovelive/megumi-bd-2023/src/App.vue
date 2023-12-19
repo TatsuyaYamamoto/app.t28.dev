@@ -23,8 +23,8 @@
     </TresCanvas>
 
     <GameResultModal
-      v-if="shouldShowGameResultModal"
-      :image-type="1"
+      v-if="gameResultModalType !== null"
+      :image-type="gameResultModalType"
       @click-button="onClickButtonGameResultModal"
     />
   </div>
@@ -55,7 +55,12 @@ const { width: windowWidth } = useWindowSize();
 const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
 
 const currentPage = ref<keyof typeof pageMap>("loading");
-const shouldShowGameResultModal = ref(false);
+const gameResultModalType = ref<1 | 2 | 3 | null>(null);
+
+// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+const getRandomInt = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+};
 
 const onLoadCompleted = () => {
   currentPage.value = "title";
@@ -66,13 +71,14 @@ const onGameStart = () => {
 };
 
 const onGameFinish = () => {
-  shouldShowGameResultModal.value = true;
+  gameResultModalType.value = getRandomInt(1, 3) as 1 | 2 | 3;
 };
 
 const onClickButtonGameResultModal = () => {
   currentPage.value = "title";
-  shouldShowGameResultModal.value = false;
+  gameResultModalType.value = null;
 };
+
 watch([windowWidth], ([currentWidth]) => {
   const baseWidth = 2500;
   const fontSize = (currentWidth / baseWidth) * 100;
