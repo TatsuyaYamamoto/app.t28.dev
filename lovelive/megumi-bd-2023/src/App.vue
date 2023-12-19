@@ -29,6 +29,8 @@
       :image-type="gameResultModalType"
       @click-button="onClickButtonGameResultModal"
     />
+
+    <Credits v-if="currentPage === 'title'" />
   </div>
 </template>
 
@@ -45,6 +47,7 @@ import GamePage from "./pages/GamePage.vue";
 import ThreeOrbitControls from "./components/ThreeOrbitControls.vue";
 import GameResultModal from "./components/GameResultModal.vue";
 import StartAnnounce from "./components/StartAnnounce.vue";
+import Credits from "./components/Credits.vue";
 
 extend({ OrbitControls });
 
