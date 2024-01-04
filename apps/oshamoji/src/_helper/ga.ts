@@ -1,4 +1,4 @@
-import { Ga4Parameters, sendEvent as _sendEvent } from "../../../helper/ga";
+import { Ga4Parameters, sendEvent as _sendEvent } from "shared/helpers/ga";
 
 export type EventName = "click" | "submit";
 

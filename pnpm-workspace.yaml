@@ -2,3 +2,4 @@ packages:
   - "apps/*"
   - "lovelive/*"
   - "packages/*"
+  - "shared"

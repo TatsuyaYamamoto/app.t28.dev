@@ -125,22 +125,19 @@ describe("OshalizableChar", () => {
       ${"a"} | ${"𝖺"} | ${"𝗮"} | ${"𝘢"} | ${"𝙖"}
       ${"m"} | ${"𝗆"} | ${"𝗺"} | ${"𝘮"} | ${"𝙢"}
       ${"z"} | ${"𝗓"} | ${"𝘇"} | ${"𝘻"} | ${"𝙯"}
-    `(
-      "mutual conversion ($serif)",
-      ({ serif, normal, bold, italic, boldItalic }) => {
-        test.each`
-          test                        | actualValue                          | expectValue
-          ${"normal => bold"}         | ${toSansSerif(normal, "bold")}       | ${bold}
-          ${"bold => normal"}         | ${toSansSerif(bold, "normal")}       | ${normal}
-          ${"normal => italic"}       | ${toSansSerif(normal, "italic")}     | ${italic}
-          ${"italic => normal"}       | ${toSansSerif(italic, "normal")}     | ${normal}
-          ${"normal =>  bold italic"} | ${toSansSerif(normal, "boldItalic")} | ${boldItalic}
-          ${"bold italic => normal"}  | ${toSansSerif(boldItalic, "normal")} | ${normal}
-        `("$test", ({ actualValue, expectValue }) => {
-          expect(actualValue.codePointAt(0)).toBe(expectValue.codePointAt(0));
-        });
-      },
-    );
+    `("mutual conversion ($serif)", ({ normal, bold, italic, boldItalic }) => {
+      test.each`
+        test                        | actualValue                          | expectValue
+        ${"normal => bold"}         | ${toSansSerif(normal, "bold")}       | ${bold}
+        ${"bold => normal"}         | ${toSansSerif(bold, "normal")}       | ${normal}
+        ${"normal => italic"}       | ${toSansSerif(normal, "italic")}     | ${italic}
+        ${"italic => normal"}       | ${toSansSerif(italic, "normal")}     | ${normal}
+        ${"normal =>  bold italic"} | ${toSansSerif(normal, "boldItalic")} | ${boldItalic}
+        ${"bold italic => normal"}  | ${toSansSerif(boldItalic, "normal")} | ${normal}
+      `("$test", ({ actualValue, expectValue }) => {
+        expect(actualValue.codePointAt(0)).toBe(expectValue.codePointAt(0));
+      });
+    });
   });
 
   describe(`Latin letters Script`, () => {
@@ -161,7 +158,7 @@ describe("OshalizableChar", () => {
       ${"g"} | ${"ℊ"} | ${"𝓰"}
       ${"o"} | ${"ℴ"} | ${"𝓸"}
       ${"z"} | ${"𝓏"} | ${"𝔃"}
-    `("mutual conversion ($serif)", ({ serif, normal, bold }) => {
+    `("mutual conversion ($serif)", ({ normal, bold }) => {
       test.each`
         test                | actualValue                 | expectValue
         ${"normal => bold"} | ${toScript(normal, "bold")} | ${bold}
@@ -183,7 +180,7 @@ describe("OshalizableChar", () => {
       ${"Z"} | ${"ℨ"} | ${"𝖅"}
       ${"a"} | ${"𝔞"} | ${"𝖆"}
       ${"z"} | ${"𝔷"} | ${"𝖟"}
-    `("mutual conversion ($serif)", ({ serif, normal, bold }) => {
+    `("mutual conversion ($serif)", ({ normal, bold }) => {
       test.each`
         test                | actualValue                  | expectValue
         ${"normal => bold"} | ${toFraktur(normal, "bold")} | ${bold}
