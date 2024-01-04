@@ -38,6 +38,8 @@ importers:
         specifier: 0.31.1
         version: 0.31.1
 
+  apps/oshamoji: {}
+
   lovelive/megumi-bd-2023:
     dependencies:
       '@esotericsoftware/spine-threejs':
