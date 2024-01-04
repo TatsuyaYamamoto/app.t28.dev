@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { css, Global } from "@emotion/react";
-import { Box } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
 import { useInView } from "react-intersection-observer";
+
+import { theme } from "shared/helpers/chakraTheme.ts";
 
 import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";
@@ -76,7 +78,7 @@ export default function Home() {
   }, [onClickTweetFab]);
 
   return (
-    <>
+    <ChakraProvider resetCSS={true} theme={theme}>
       <Global
         styles={css`
           html {
@@ -108,6 +110,6 @@ export default function Home() {
         onClose={onCloseModal}
         onChangeText={onChangeText}
       />
-    </>
+    </ChakraProvider>
   );
 }

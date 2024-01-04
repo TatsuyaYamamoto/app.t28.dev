@@ -183,6 +183,12 @@ importers:
 
   shared:
     dependencies:
+      '@chakra-ui/react':
+        specifier: 2.4.9
+        version: 2.4.9(@emotion/react@11.11.0)(@emotion/styled@11.11.0)(@types/react@18.2.6)(framer-motion@10.12.12)(react-dom@18.2.0)(react@18.2.0)
+      '@chakra-ui/theme-tools':
+        specifier: 2.0.17
+        version: 2.0.17(@chakra-ui/styled-system@2.5.2)
       '@emotion/react':
         specifier: 11.11.0
         version: 11.11.0(@types/react@18.2.6)(react@18.2.0)
