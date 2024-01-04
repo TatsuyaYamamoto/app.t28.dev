@@ -1,6 +1,25 @@
 {
   "name": "oshamoji",
   "scripts": {},
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@chakra-ui/react": "2.4.9",
+    "@chakra-ui/theme-tools": "2.0.17",
+    "@emotion/react": "11.11.0",
+    "@emotion/styled": "11.11.0",
+    "hotkeys-js": "3.8.7",
+    "konva": "9.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "4.8.0",
+    "react-intersection-observer": "8.33.1",
+    "react-konva": "18.2.8",
+    "react-textarea-autosize": "8.4.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.6",
+    "@vitejs/plugin-react": "4.2.1",
+    "typescript": "5.3.3",
+    "vite": "5.0.10"
+  }
 }
