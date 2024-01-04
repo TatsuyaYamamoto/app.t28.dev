@@ -14,6 +14,21 @@
       content="https://app.t28.dev/lovelive/megumi-bd-2023/ogp.jpg"
     />
     <meta name="twitter:card" content="summary" />
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=%VITE_GA_TRACKING_ID%"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "%VITE_GA_TRACKING_ID%", {
+        debug_mode: location.host !== "app.t28.dev",
+      });
+    </script>
   </head>
   <body>
     <div id="app"></div>
