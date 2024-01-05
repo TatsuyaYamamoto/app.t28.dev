@@ -1,0 +1,30 @@
+<% var trackingId = "G-G1W2QZ0HDW" %>
+
+<meta charset="UTF-8"/>
+<link rel="icon" href="/favicon.ico"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title><%- title %></title>
+<meta name="description" content="<%- description %>"/>
+
+<meta property="og:title" content="<%- title %>"/>
+<meta property="og:description" content="<%- description %>"/>
+<% if(typeof ogImageUrl !== "undefined"){ %>
+    <meta property="og:image" content="<%- ogImageUrl %>"/>
+<% } %>
+<meta name="twitter:card" content="summary"/>
+
+<script async
+        src="https://www.googletagmanager.com/gtag/js?id=<%- trackingId %>"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag("js", new Date());
+  gtag("config", "<%- trackingId %>", {
+    debug_mode: location.host !== "app.t28.dev",
+  });
+</script>
