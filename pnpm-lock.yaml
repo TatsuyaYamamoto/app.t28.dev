@@ -93,7 +93,51 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(vite@5.0.10)
 
-  apps/oshibana: {}
+  apps/oshibana:
+    dependencies:
+      '@chakra-ui/react':
+        specifier: 2.4.9
+        version: 2.4.9(@emotion/react@11.11.0)(@emotion/styled@11.11.0)(@types/react@18.2.6)(framer-motion@10.12.12)(react-dom@18.2.0)(react@18.2.0)
+      '@emotion/react':
+        specifier: 11.11.0
+        version: 11.11.0(@types/react@18.2.6)(react@18.2.0)
+      '@emotion/styled':
+        specifier: 11.11.0
+        version: 11.11.0(@emotion/react@11.11.0)(@types/react@18.2.6)(react@18.2.0)
+      konva:
+        specifier: 9.0.2
+        version: 9.0.2
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-konva:
+        specifier: 18.2.8
+        version: 18.2.8(konva@9.0.2)(react-dom@18.2.0)(react@18.2.0)
+    devDependencies:
+      '@tsconfig/vite-react':
+        specifier: 3.0.0
+        version: 3.0.0
+      '@types/react':
+        specifier: 18.2.6
+        version: 18.2.6
+      '@types/react-dom':
+        specifier: 18.2.6
+        version: 18.2.6
+      '@vitejs/plugin-react':
+        specifier: 4.2.1
+        version: 4.2.1(vite@5.0.10)
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+      vite:
+        specifier: 5.0.10
+        version: 5.0.10(@types/node@20.2.1)
+      vite-plugin-html:
+        specifier: 3.2.1
+        version: 3.2.1(vite@5.0.10)
 
   lovelive/megumi-bd-2023:
     dependencies:
@@ -2421,7 +2465,7 @@ packages:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
     dependencies:
       '@babel/parser': 7.23.6
-      '@babel/types': 7.21.5
+      '@babel/types': 7.23.6
       '@types/babel__generator': 7.6.8
       '@types/babel__template': 7.4.4
       '@types/babel__traverse': 7.20.5
