@@ -5,7 +5,7 @@ import { Box, ChakraProvider } from "@chakra-ui/react";
 import hotkeys from "hotkeys-js";
 import { useInView } from "react-intersection-observer";
 
-import { theme } from "shared/helpers/chakraTheme.ts";
+import { theme } from "shared/helpers/chakraTheme";
 
 import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";

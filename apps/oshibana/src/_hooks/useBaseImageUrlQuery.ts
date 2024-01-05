@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useNextRouterQuery } from "../../../helper/utils";
 
 const ALLOW_HOSTS = ["pbs.twimg.com"];
 
 export const useBaseImageUrlQuery = () => {
-  const { baseImageUrl: baseImageUrlQuery } = useNextRouterQuery();
   const [baseImageUrl, setBaseImageUrl] = useState<string | undefined>(() => {
+    const baseImageUrlQuery = new URLSearchParams(location.search).get(
+      "baseImageUrl",
+    );
+
     if (!baseImageUrlQuery) {
       return;
     }

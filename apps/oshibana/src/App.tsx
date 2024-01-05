@@ -1,24 +1,15 @@
-import type { NextPage } from "next";
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 
-import { Box, Button, Flex } from "@chakra-ui/react";
-import { NextSeo } from "next-seo";
+import { Box, Button, Flex, ChakraProvider } from "@chakra-ui/react";
 import type Konva from "konva";
 
-import { DESCRIPTION, TITLE } from "./configs";
-import {
-  blobToDataUrl,
-  downloadFile,
-  useNextRouterQuery,
-} from "../../helper/utils";
+import { blobToDataUrl, downloadFile } from "shared/helpers/utils";
+import { theme } from "shared/helpers/chakraTheme";
+
+import ImageRenderer from "./_components/ImageRenderer";
 import { useBaseImageUrlQuery } from "./_hooks/useBaseImageUrlQuery";
 
-const ImageRenderer = dynamic(() => import("./_components/ImageRenderer"), {
-  ssr: false,
-});
-
-const OshibanaIndex: NextPage = () => {
+const OshibanaIndex: FC = () => {
   const konvaStageRef = useRef<Konva.Stage>(null);
   const [rendererSize, setRendererSize] = useState({ width: 0, height: 0 });
   const { baseImageUrl, setBaseImageUrl } = useBaseImageUrlQuery();
@@ -89,8 +80,7 @@ const OshibanaIndex: NextPage = () => {
   }, []);
 
   return (
-    <>
-      <NextSeo title={TITLE} description={DESCRIPTION} />
+    <ChakraProvider resetCSS={true} theme={theme}>
       <Box>
         <ImageRenderer
           konvaStageRef={konvaStageRef}
@@ -99,6 +89,7 @@ const OshibanaIndex: NextPage = () => {
           baseImageUrl={baseImageUrl}
           itemImageUrl={itemImageUrl}
         />
+        {/* @ts-expect-error */}
         <Flex
           position="fixed"
           width={"100%"}
@@ -111,7 +102,7 @@ const OshibanaIndex: NextPage = () => {
           <Button onClick={onDownload}>{`ダウンロード`}</Button>
         </Flex>
       </Box>
-    </>
+    </ChakraProvider>
   );
 };
 

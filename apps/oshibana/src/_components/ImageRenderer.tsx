@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import type Konva from "konva";
 import { Stage, Layer, Image } from "react-konva";
 
-import { useCanvasImageSource } from "../../../helper/konva/useCanvasImageSource";
+import { useCanvasImageSource } from "shared/hooks/useCanvasImageSource";
 
 interface Props {
   konvaStageRef?: Ref<Konva.Stage>;
