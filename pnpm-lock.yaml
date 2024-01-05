@@ -156,6 +156,9 @@ importers:
       gsap:
         specifier: 3.12.4
         version: 3.12.4
+      shared:
+        specifier: workspace:*
+        version: link:../../shared
       three:
         specifier: 0.158.0
         version: 0.158.0
@@ -175,6 +178,9 @@ importers:
       vite:
         specifier: 5.0.10
         version: 5.0.10(@types/node@20.2.1)
+      vite-plugin-html:
+        specifier: 3.2.1
+        version: 3.2.1(vite@5.0.10)
       vue-tsc:
         specifier: 1.8.25
         version: 1.8.25(typescript@5.3.3)

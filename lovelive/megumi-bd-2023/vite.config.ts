@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import { createHtmlPlugin } from "vite-plugin-html";
 
 const basePath = "/lovelive/megumi-bd-2023";
 
@@ -16,6 +17,9 @@ export default defineConfig({
             tag.startsWith("Tres") && tag !== "TresCanvas",
         },
       },
+    }),
+    createHtmlPlugin({
+      inject: { ejsOptions: { views: ["../../shared/ejs"] } },
     }),
   ],
   build: {
