@@ -93,6 +93,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(vite@5.0.10)
 
+  apps/oshibana: {}
+
   lovelive/megumi-bd-2023:
     dependencies:
       '@esotericsoftware/spine-threejs':
