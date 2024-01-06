@@ -7,12 +7,12 @@
         LinearSRGBColorSpace
       "
     >
-      <ThreeOrbitControls v-if="false" />
       <TresPerspectiveCamera
         :args="[32, 2.3]"
         :position="[0, 0, 1000]"
         :look-at="[0, 0, 0]"
       />
+      <CameraControls v-if="false" />
       <LoadingPage
         v-if="currentPage === 'loading'"
         @loadCompleted="onLoadCompleted"
@@ -35,9 +35,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { extend } from "@tresjs/core";
 import { LinearSRGBColorSpace } from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { CameraControls } from "@tresjs/cientos";
 
 import { getRandomInt } from "shared/helpers/utils";
 import { useRendererSize } from "shared/hooks/useRendererSize";
@@ -45,12 +44,9 @@ import { useRendererSize } from "shared/hooks/useRendererSize";
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
 import GamePage from "./pages/GamePage.vue";
-import ThreeOrbitControls from "./components/ThreeOrbitControls.vue";
 import GameResultModal from "./components/GameResultModal.vue";
 import StartAnnounce from "./components/StartAnnounce.vue";
 import Credits from "./components/Credits.vue";
-
-extend({ OrbitControls });
 
 const pageMap = {
   loading: "loading",
