@@ -1,7 +1,6 @@
 <template>
   <div class="canvas-wrapper">
     <TresCanvas
-      id="three-renderer"
       clear-color="#82DBC5"
       :output-color-space="
         /* https://discourse.threejs.org/t/why-the-color-palette-change-from-v0-150-1-to-v0-152-2/51417/2 */
@@ -35,13 +34,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { ref } from "vue";
 import { extend } from "@tresjs/core";
 import { LinearSRGBColorSpace } from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { useWindowSize } from "@vueuse/core";
 
-import { getRandomInt } from "shared/helpers/utils.ts";
+import { getRandomInt } from "shared/helpers/utils";
+import { useRendererSize } from "shared/hooks/useRendererSize";
 
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
@@ -59,8 +58,10 @@ const pageMap = {
   game: "game",
 };
 
-const { width: windowWidth } = useWindowSize();
-const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
+const { rendererRotate, rendererWidthPx, rendererHeightPx } = useRendererSize(
+  6868,
+  4226,
+);
 
 const currentPage = ref<keyof typeof pageMap>("loading");
 const gameResultModalType = ref<1 | 2 | 3 | null>(null);
@@ -81,16 +82,6 @@ const onClickButtonGameResultModal = () => {
   currentPage.value = "title";
   gameResultModalType.value = null;
 };
-
-watch(
-  [windowWidth],
-  ([currentWidth]) => {
-    const baseWidth = 2500;
-    const fontSize = (currentWidth / baseWidth) * 100;
-    document.documentElement.style.fontSize = `${fontSize}px`;
-  },
-  { immediate: true },
-);
 </script>
 
 <style>
@@ -106,6 +97,7 @@ body {
   width: 100%;
 
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 </style>
@@ -113,7 +105,9 @@ body {
 <style scoped>
 .canvas-wrapper {
   position: relative;
-  width: 100%;
-  height: v-bind(rendererHeight);
+  flex-shrink: 0;
+  width: v-bind(rendererWidthPx);
+  height: v-bind(rendererHeightPx);
+  transform: rotate(v-bind(rendererRotate));
 }
 </style>
