@@ -41,6 +41,8 @@ import { LinearSRGBColorSpace } from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { useWindowSize } from "@vueuse/core";
 
+import { getRandomInt } from "shared/helpers/utils.ts";
+
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
 import GamePage from "./pages/GamePage.vue";
@@ -63,11 +65,6 @@ const rendererHeight = computed(() => `${windowWidth.value * (4226 / 6868)}px`);
 const currentPage = ref<keyof typeof pageMap>("loading");
 const gameResultModalType = ref<1 | 2 | 3 | null>(null);
 
-// https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-const getRandomInt = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
-};
-
 const onLoadCompleted = () => {
   currentPage.value = "title";
 };
@@ -77,7 +74,7 @@ const onGameStart = () => {
 };
 
 const onGameFinish = () => {
-  gameResultModalType.value = getRandomInt(1, 4) as 1 | 2 | 3;
+  gameResultModalType.value = getRandomInt(1, 3);
 };
 
 const onClickButtonGameResultModal = () => {
