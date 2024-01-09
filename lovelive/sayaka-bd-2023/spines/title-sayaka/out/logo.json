@@ -1,0 +1,66 @@
+{
+"skeleton": { "hash": "w0MYxYAPG/k", "spine": "4.1.24", "x": 29, "y": -4123, "width": 3568, "height": 3972 },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "gizagiza", "bone": "root", "attachment": "gizagiza" },
+	{ "name": "title_moji", "bone": "root", "attachment": "title_moji" },
+	{ "name": "carrot1", "bone": "root", "attachment": "carrot1" },
+	{ "name": "carrot2", "bone": "root", "attachment": "carrot2" },
+	{ "name": "carrot3", "bone": "root", "attachment": "carrot3" },
+	{ "name": "carrot4", "bone": "root", "attachment": "carrot4" },
+	{ "name": "star1", "bone": "root", "attachment": "star1" },
+	{ "name": "star2", "bone": "root", "attachment": "star2" },
+	{ "name": "star3", "bone": "root", "attachment": "star3" },
+	{ "name": "star4", "bone": "root", "attachment": "star4" },
+	{ "name": "pimento1", "bone": "root", "attachment": "pimento1" },
+	{ "name": "pimento2", "bone": "root", "attachment": "pimento2" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"carrot1": {
+				"carrot1": { "x": 296, "y": -2855.5, "width": 392, "height": 377 }
+			},
+			"carrot2": {
+				"carrot2": { "x": 2620.5, "y": -3827.5, "width": 633, "height": 591 }
+			},
+			"carrot3": {
+				"carrot3": { "x": 3436.5, "y": -2514.5, "width": 321, "height": 311 }
+			},
+			"carrot4": {
+				"carrot4": { "x": 784.5, "y": -488.5, "width": 653, "height": 675 }
+			},
+			"gizagiza": {
+				"gizagiza": { "x": 1842, "y": -2022.5, "width": 3176, "height": 3115 }
+			},
+			"pimento1": {
+				"pimento1": { "x": 501, "y": -3506, "width": 638, "height": 620 }
+			},
+			"pimento2": {
+				"pimento2": { "x": 2427, "y": -486.5, "width": 654, "height": 615 }
+			},
+			"star1": {
+				"star1": { "x": 1100, "y": -3920, "width": 320, "height": 314 }
+			},
+			"star2": {
+				"star2": { "x": 3130.5, "y": -3221.5, "width": 355, "height": 327 }
+			},
+			"star3": {
+				"star3": { "x": 3321.5, "y": -612.5, "width": 391, "height": 391 }
+			},
+			"star4": {
+				"star4": { "x": 198, "y": -1094.5, "width": 338, "height": 317 }
+			},
+			"title_moji": {
+				"title_moji": { "x": 1815.5, "y": -2176.5, "width": 2125, "height": 1555 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}

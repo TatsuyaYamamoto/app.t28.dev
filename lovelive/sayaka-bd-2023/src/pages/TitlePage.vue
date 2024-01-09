@@ -1,9 +1,9 @@
 <template>
   <TresGroup ref="groupRef">
-    <!--    <TresMesh @click="onClick">-->
-    <!--      <TresPlaneGeometry :args="[1000, 600]" />-->
-    <!--      <TresMeshBasicMaterial :map="background1Texture" transparent />-->
-    <!--    </TresMesh>-->
+    <TresMesh :position="[0, 0, -1]">
+      <TresPlaneGeometry :args="[1200,800]"/>
+      <TresMeshBasicMaterial :map="back" transparent />
+    </TresMesh>
     <!--    <TresMesh>-->
     <!--      <TresPlaneGeometry :args="[1000, 600]" />-->
     <!--      <TresMeshBasicMaterial :map="backgroundEffectTexture" transparent />-->
@@ -25,6 +25,8 @@ import {
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
 
+import { wait } from "shared/helpers/utils.ts";
+
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 
 const emit = defineEmits<{
@@ -32,29 +34,46 @@ const emit = defineEmits<{
 }>();
 
 const { onLoop } = useRenderLoop();
-const { getSpine } = useAssetLoader();
+const { getSpine, getTexture } = useAssetLoader();
 
 const groupRef = ref<Group>();
-let skeletonMesh: SkeletonMesh | null = null;
+let sayakaSkeletonMesh: SkeletonMesh | null = null;
+let logoSkeletonMesh: SkeletonMesh | null = null;
+const back = getTexture("back");
 
 const sayaka = getSpine("title_sayaka");
+const logo = getSpine("title_logo");
 
-const init = async () => {
-  const atlasLoader = new AtlasAttachmentLoader(sayaka.textureAtlas);
+const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
+  const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
   const skeletonJson = new SkeletonJson(atlasLoader);
-  const skeletonData = skeletonJson.readSkeletonData(sayaka.skeleton);
+  const skeletonData = skeletonJson.readSkeletonData(spine.skeleton);
 
-  skeletonMesh = new SkeletonMesh(skeletonData, (parameters) => {
+  return new SkeletonMesh(skeletonData, (parameters) => {
     parameters.depthWrite = false;
   });
-  skeletonMesh.position.set(-300, 200, 0);
-  skeletonMesh.scale.setScalar(0.1);
-  skeletonMesh.state.setAnimation(0, "idling", true);
-  groupRef.value?.add(skeletonMesh);
+};
+
+const init = async () => {
+  logoSkeletonMesh = createSkeletonMesh(logo);
+  logoSkeletonMesh.position.set(-450, 250, 0);
+  logoSkeletonMesh.scale.setScalar(0.125);
+
+  sayakaSkeletonMesh = createSkeletonMesh(sayaka);
+  sayakaSkeletonMesh.position.set(-400, 250, 0);
+  sayakaSkeletonMesh.scale.setScalar(0.125);
+
+  groupRef.value?.add(logoSkeletonMesh, sayakaSkeletonMesh);
+
+  await wait(1000);
+
+  sayakaSkeletonMesh.state.setAnimation(0, "start");
+  sayakaSkeletonMesh.state.addAnimation(0, "idle", true);
 };
 
 onLoop(({ delta }) => {
-  skeletonMesh?.update(delta);
+  sayakaSkeletonMesh?.update(delta);
+  logoSkeletonMesh?.update(delta);
 });
 
 onMounted(() => {
