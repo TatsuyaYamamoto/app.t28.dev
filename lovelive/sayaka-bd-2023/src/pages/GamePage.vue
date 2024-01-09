@@ -1,6 +1,6 @@
 <template>
   <TresGroup ref="groupRef">
-    <TresMesh :position="[0, 0, -1]" @click="$emit('start')">
+    <TresMesh :position="[0, 0, -1]" @click="onClick">
       <TresPlaneGeometry :args="[1200, 800]" />
       <TresMeshBasicMaterial :map="backTexture" transparent />
     </TresMesh>
@@ -25,8 +25,6 @@ import {
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
 
-import { wait } from "shared/helpers/utils.ts";
-
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 
 const emit = defineEmits<{
@@ -38,11 +36,9 @@ const { getSpine, getTexture } = useAssetLoader();
 
 const groupRef = ref<Group>();
 let sayakaSkeletonMesh: SkeletonMesh | null = null;
-let logoSkeletonMesh: SkeletonMesh | null = null;
 const backTexture = getTexture("back");
 
-const sayaka = getSpine("title_sayaka");
-const logo = getSpine("title_logo");
+const sayaka = getSpine("game_sayaka");
 
 const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
   const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
@@ -55,37 +51,22 @@ const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
 };
 
 const init = async () => {
-  logoSkeletonMesh = createSkeletonMesh(logo);
-  logoSkeletonMesh.position.set(-450, 250, 0);
-  logoSkeletonMesh.scale.setScalar(0.125);
-
   sayakaSkeletonMesh = createSkeletonMesh(sayaka);
-  sayakaSkeletonMesh.position.set(-400, 250, 0);
-  sayakaSkeletonMesh.scale.setScalar(0.125);
-  sayakaSkeletonMesh.visible = false;
+  sayakaSkeletonMesh.position.set(-480, 280, 0);
+  sayakaSkeletonMesh.scale.setScalar(0.138);
 
-  groupRef.value?.add(logoSkeletonMesh, sayakaSkeletonMesh);
+  groupRef.value?.add(sayakaSkeletonMesh);
 
-  await wait(1000);
+  // sayakaSkeletonMesh.state.setAnimation(0, "start");
+  // sayakaSkeletonMesh.state.addAnimation(0, "idle", true);
+};
 
-  sayakaSkeletonMesh.state.addListener({
-    start: (entry) => {
-      if (entry.animation?.name === "start") {
-        setTimeout(() => {
-          if (sayakaSkeletonMesh) {
-            sayakaSkeletonMesh.visible = true;
-          }
-        }, 0);
-      }
-    },
-  });
-  sayakaSkeletonMesh.state.setAnimation(0, "start");
-  sayakaSkeletonMesh.state.addAnimation(0, "idle", true);
+const onClick = () => {
+  sayakaSkeletonMesh?.state.setAnimation(0, "cut");
 };
 
 onLoop(({ delta }) => {
   sayakaSkeletonMesh?.update(delta);
-  logoSkeletonMesh?.update(delta);
 });
 
 onMounted(() => {

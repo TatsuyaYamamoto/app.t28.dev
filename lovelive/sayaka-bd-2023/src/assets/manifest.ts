@@ -1,9 +1,12 @@
-import title_sayaka_atlas from "../../spines/title-sayaka/out/sayaka.atlas?raw";
-import title_sayaka_skeleton from "../../spines/title-sayaka/out/sayaka.json";
-import title_sayaka_sprite from "../../spines/title-sayaka/out/sayaka.png";
-import title_logo_atlas from "../../spines/title-sayaka/out/logo.atlas?raw";
-import title_logo_skeleton from "../../spines/title-sayaka/out/logo.json";
-import title_logo_sprite from "../../spines/title-sayaka/out/logo.png";
+import title_sayaka_atlas from "../../spines/exports/sayaka.atlas?raw";
+import title_sayaka_skeleton from "../../spines/exports/sayaka.json";
+import title_sayaka_sprite from "../../spines/exports/sayaka.png";
+import title_logo_atlas from "../../spines/exports/logo.atlas?raw";
+import title_logo_skeleton from "../../spines/exports/logo.json";
+import title_logo_sprite from "../../spines/exports/logo.png";
+import game_sayaka_atlas from "../../spines/exports/game-sayaka.atlas?raw";
+import game_sayaka_skeleton from "../../spines/exports/game-sayaka.json";
+import game_sayaka_sprite from "../../spines/exports/game-sayaka.png";
 
 import back from "./back.jpg";
 
@@ -28,6 +31,12 @@ export const SPINE_MANIFEST = [
     atlas: title_logo_atlas,
     skeleton: title_logo_skeleton,
     sprite: title_logo_sprite,
+  },
+  {
+    id: "game_sayaka",
+    atlas: game_sayaka_atlas,
+    skeleton: game_sayaka_skeleton,
+    sprite: game_sayaka_sprite,
   },
 ];
 

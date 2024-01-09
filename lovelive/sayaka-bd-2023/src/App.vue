@@ -27,6 +27,7 @@
         @loadCompleted="onLoadCompleted"
       />
       <TitlePage v-if="currentPage === 'title'" @start="onGameStart" />
+      <GamePage v-if="currentPage === 'game'" />
     </TresCanvas>
   </div>
 </template>
@@ -40,6 +41,7 @@ import { useRendererSize } from "shared/hooks/useRendererSize";
 import { usePageHandler } from "./hooks/usePageHandler";
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
+import GamePage from "./pages/GamePage.vue";
 
 const { rendererRotate, rendererWidthPx, rendererHeightPx } = useRendererSize(
   6868,
