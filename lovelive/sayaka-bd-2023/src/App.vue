@@ -12,7 +12,7 @@
         :position="[0, 0, 1000]"
         :look-at="[0, 0, 0]"
       />
-      <CameraControls v-if="true" />
+      <CameraControls v-if="false" />
       <TresGridHelper
         :args="[
           /* size */ 1000,

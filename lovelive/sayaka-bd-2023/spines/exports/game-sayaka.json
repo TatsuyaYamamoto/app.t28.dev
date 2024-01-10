@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "FyfCKJNQMlQ", "spine": "4.1.24", "x": -1, "y": -4451, "width": 6868, "height": 4192 },
+"skeleton": { "hash": "WzBzHA+4k58", "spine": "4.1.24", "x": -1, "y": -4451, "width": 6868, "height": 4192 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "sayaka", "parent": "root", "x": 3742.23, "y": -3132.57 },
@@ -33,9 +33,7 @@
 	{ "name": "eri", "bone": "body_upper", "attachment": "eri" },
 	{ "name": "apron", "bone": "body_upper", "attachment": "apron" },
 	{ "name": "table", "bone": "root", "attachment": "table" },
-	{ "name": "carrot1", "bone": "vegetable", "attachment": "carrot1" },
-	{ "name": "popeye1", "bone": "vegetable" },
-	{ "name": "negi1", "bone": "vegetable" },
+	{ "name": "vegetable", "bone": "vegetable", "attachment": "negi3" },
 	{ "name": "bowl1", "bone": "root", "attachment": "bowl1" },
 	{ "name": "bowl2", "bone": "root", "attachment": "bowl2" },
 	{ "name": "bowl3", "bone": "root", "attachment": "bowl3" },
@@ -84,11 +82,6 @@
 			},
 			"bowl3": {
 				"bowl3": { "x": 1747, "y": -3420, "width": 1160, "height": 790 }
-			},
-			"carrot1": {
-				"carrot1": { "x": 41.86, "y": -15.87, "width": 918, "height": 314 },
-				"carrot2": { "x": 41.86, "y": -15.87, "width": 967, "height": 314 },
-				"carrot3": { "x": 41.86, "y": -15.87, "width": 1005, "height": 322 }
 			},
 			"eri": {
 				"eri": { "x": 368.25, "y": -34.86, "rotation": -90, "width": 663, "height": 365 }
@@ -178,16 +171,6 @@
 			"mouth": {
 				"mouth": { "x": 241.28, "y": 39.89, "rotation": -93.46, "width": 306, "height": 61 }
 			},
-			"negi1": {
-				"negi1": { "x": 1.86, "y": -37.87, "width": 1422, "height": 280 },
-				"negi2": { "x": 16.36, "y": -37.87, "width": 1451, "height": 280 },
-				"negi3": { "x": 16.36, "y": -37.87, "width": 1477, "height": 280 }
-			},
-			"popeye1": {
-				"popeye1": { "x": -13.64, "y": -21.37, "width": 997, "height": 429 },
-				"popeye2": { "x": -13.64, "y": -21.37, "width": 1021, "height": 429 },
-				"popeye3": { "x": -13.64, "y": -21.37, "width": 1040, "height": 447 }
-			},
 			"ribbon_left": {
 				"ribbon_left": { "x": -386.84, "y": -91.39, "rotation": -93.46, "width": 761, "height": 826 }
 			},
@@ -211,6 +194,17 @@
 			},
 			"tai": {
 				"tai": { "x": 200.25, "y": -23.36, "rotation": -90, "width": 544, "height": 279 }
+			},
+			"vegetable": {
+				"carrot1": { "x": 41.86, "y": -15.87, "width": 918, "height": 314 },
+				"carrot2": { "x": 41.86, "y": -15.87, "width": 967, "height": 314 },
+				"carrot3": { "x": 41.86, "y": -15.87, "width": 1005, "height": 322 },
+				"negi1": { "x": 1.86, "y": -37.87, "width": 1422, "height": 280 },
+				"negi2": { "x": 16.36, "y": -37.87, "width": 1451, "height": 280 },
+				"negi3": { "x": 16.36, "y": -37.87, "width": 1477, "height": 280 },
+				"popeye1": { "x": -13.64, "y": -21.37, "width": 997, "height": 429 },
+				"popeye2": { "x": -13.64, "y": -21.37, "width": 1021, "height": 429 },
+				"popeye3": { "x": -13.64, "y": -21.37, "width": 1040, "height": 447 }
 			}
 		}
 	}
@@ -245,7 +239,7 @@
 	},
 	"slide": {
 		"slots": {
-			"carrot1": {
+			"vegetable": {
 				"rgba": [
 					{ "time": 0.1667, "color": "ffffffff" },
 					{ "time": 0.3333, "color": "ffffff00", "curve": "stepped" },
