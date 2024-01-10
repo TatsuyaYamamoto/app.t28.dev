@@ -13,7 +13,6 @@ const { load } = useAssetLoader();
 
 onMounted(() => {
   load().then(() => {
-    console.log("load!!");
     emit("loadCompleted");
   });
 });

@@ -1,6 +1,6 @@
 <template>
   <TresGroup ref="groupRef">
-    <TresMesh :position="[0, 0, -1]" @click="$emit('start')">
+    <TresMesh :position="[0, 0, -1]" @click="onClick">
       <TresPlaneGeometry :args="[1200, 800]" />
       <TresMeshBasicMaterial :map="backTexture" transparent />
     </TresMesh>
@@ -81,6 +81,10 @@ const init = async () => {
   });
   sayakaSkeletonMesh.state.setAnimation(0, "start");
   sayakaSkeletonMesh.state.addAnimation(0, "idle", true);
+};
+
+const onClick = () => {
+  emit("start");
 };
 
 onLoop(({ delta }) => {
