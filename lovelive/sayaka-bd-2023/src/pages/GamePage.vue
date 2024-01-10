@@ -54,6 +54,7 @@ const init = async () => {
   sayakaSkeletonMesh = createSkeletonMesh(sayaka);
   sayakaSkeletonMesh.position.set(-480, 280, 0);
   sayakaSkeletonMesh.scale.setScalar(0.138);
+  sayakaSkeletonMesh.skeleton.setAttachment("carrot1", "carrot1");
 
   groupRef.value?.add(sayakaSkeletonMesh);
 
@@ -63,6 +64,27 @@ const init = async () => {
 
 const onClick = () => {
   sayakaSkeletonMesh?.state.setAnimation(0, "cut");
+
+  const attachmentName = sayakaSkeletonMesh?.skeleton
+    ?.findSlot("carrot1")
+    ?.getAttachment()?.name;
+
+  if (attachmentName === "carrot1") {
+    sayakaSkeletonMesh?.skeleton.setAttachment("carrot1", "carrot2");
+  }
+  if (attachmentName === "carrot2") {
+    sayakaSkeletonMesh?.skeleton.setAttachment("carrot1", "carrot3");
+  }
+  if (attachmentName === "carrot3") {
+    const anim = sayakaSkeletonMesh?.state.setAnimation(0, "slide");
+    if (anim) {
+      anim.listener = {
+        complete() {
+          console.log("slide complete");
+        },
+      };
+    }
+  }
 };
 
 onLoop(({ delta }) => {
