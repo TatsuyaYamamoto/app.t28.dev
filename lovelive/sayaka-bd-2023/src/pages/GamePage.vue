@@ -28,6 +28,7 @@ import {
 import { getRandomInt } from "shared/helpers/utils.ts";
 
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
+import { loopBlinkAnim } from "../utils.ts";
 
 const emit = defineEmits<{
   (e: "start"): void;
@@ -82,7 +83,7 @@ const init = async () => {
   groupRef.value?.add(sayakaSkeletonMesh);
 
   // sayakaSkeletonMesh.state.setAnimation(0, "start");
-  // sayakaSkeletonMesh.state.addAnimation(0, "idle", true);
+  loopBlinkAnim(sayakaSkeletonMesh.state, 1);
 
   canClick = true;
 };
