@@ -27,7 +27,7 @@
       <GamePage v-if="shouldShowGame" @finish="onGameFinished" />
     </TresCanvas>
 
-    <ResultModal v-model="gameResultModalModel" />
+    <ResultModal v-model="gameResultModalTypeModel" />
   </div>
 </template>
 
@@ -37,6 +37,7 @@ import { LinearSRGBColorSpace } from "three";
 import { CameraControls } from "@tresjs/cientos";
 
 import { useRendererSize } from "shared/hooks/useRendererSize";
+import { getRandomInt } from "shared/helpers/utils.ts";
 
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
@@ -48,7 +49,7 @@ const { rendererRotate, rendererWidthPx, rendererHeightPx } = useRendererSize(
   4226,
 );
 
-const gameResultModalModel = ref(false);
+const gameResultModalTypeModel = ref<1 | 2 | 3 | undefined>();
 const shouldShowLoading = ref(true);
 const shouldShowTitle = ref(false);
 const shouldShowGame = ref(false);
@@ -69,7 +70,7 @@ const onGameStart = (animationPromise: Promise<void>) => {
 };
 
 const onGameFinished = () => {
-  gameResultModalModel.value = true;
+  gameResultModalTypeModel.value = getRandomInt(1, 3);
 };
 </script>
 
