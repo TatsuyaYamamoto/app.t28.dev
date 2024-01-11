@@ -31,7 +31,7 @@ import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim } from "../utils.ts";
 
 const emit = defineEmits<{
-  (e: "start"): void;
+  (e: "finish"): void;
 }>();
 
 const { onLoop } = useRenderLoop();
@@ -49,6 +49,8 @@ const SKELETON_CONST = {
 };
 
 let canClick = false;
+let requiredCount = 3 * 3;
+let currentCurrent = 0;
 
 const getVegetableRandomly = () => {
   const map = {
@@ -88,12 +90,16 @@ const init = async () => {
   canClick = true;
 };
 
+const isFinished = () => {
+  return requiredCount <= currentCurrent;
+};
+
 const onClick = () => {
-  if (!canClick) {
+  if (!canClick || !sayakaSkeletonMesh) {
     return;
   }
 
-  const attachmentName = sayakaSkeletonMesh?.skeleton
+  const attachmentName = sayakaSkeletonMesh.skeleton
     ?.findSlot(SKELETON_CONST.SLOT.VEGETABLE)
     ?.getAttachment()?.name;
 
@@ -107,35 +113,45 @@ const onClick = () => {
 
   if (number === 1 || number === 2) {
     canClick = false;
-    const cutAnim = sayakaSkeletonMesh?.state.setAnimation(0, "cut");
-    if (cutAnim) {
-      cutAnim.listener = {
-        complete: () => {
-          canClick = true;
-          sayakaSkeletonMesh?.skeleton.setAttachment(
-            SKELETON_CONST.SLOT.VEGETABLE,
-            `${type}${number + 1}`,
-          );
-        },
-      };
-    }
+    currentCurrent += 1;
+
+    const cutAnim = sayakaSkeletonMesh.state.setAnimation(0, "cut");
+    cutAnim.listener = {
+      complete: () => {
+        canClick = true;
+        sayakaSkeletonMesh?.skeleton.setAttachment(
+          SKELETON_CONST.SLOT.VEGETABLE,
+          `${type}${number + 1}`,
+        );
+      },
+    };
     return;
   }
 
   if (number === 3) {
     canClick = false;
-    const slideAnim = sayakaSkeletonMesh?.state.setAnimation(0, "slide");
-    if (slideAnim) {
-      slideAnim.listener = {
-        complete: () => {
-          canClick = true;
+    currentCurrent += 1;
+
+    if (isFinished()) {
+      emit("finish");
+      return;
+    }
+
+    const slideAnim = sayakaSkeletonMesh.state.setAnimation(0, "slide");
+    slideAnim.listener = {
+      complete: () => {
+        canClick = true;
+
+        if (isFinished()) {
+          emit("finish");
+        } else {
           sayakaSkeletonMesh?.skeleton.setAttachment(
             SKELETON_CONST.SLOT.VEGETABLE,
             `${getVegetableRandomly()}1`,
           );
-        },
-      };
-    }
+        }
+      },
+    };
     return;
   }
 };

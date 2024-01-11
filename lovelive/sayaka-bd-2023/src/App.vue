@@ -24,8 +24,10 @@
 
       <LoadingPage v-if="shouldShowLoading" @loadCompleted="onLoadCompleted" />
       <TitlePage v-if="shouldShowTitle" @start="onGameStart" />
-      <GamePage v-if="shouldShowGame" />
+      <GamePage v-if="shouldShowGame" @finish="onGameFinished" />
     </TresCanvas>
+
+    <ResultModal v-model="gameResultModalModel" />
   </div>
 </template>
 
@@ -39,12 +41,14 @@ import { useRendererSize } from "shared/hooks/useRendererSize";
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
 import GamePage from "./pages/GamePage.vue";
+import ResultModal from "./components/ResultModal.vue";
 
 const { rendererRotate, rendererWidthPx, rendererHeightPx } = useRendererSize(
   6868,
   4226,
 );
 
+const gameResultModalModel = ref(false);
 const shouldShowLoading = ref(true);
 const shouldShowTitle = ref(false);
 const shouldShowGame = ref(false);
@@ -62,6 +66,10 @@ const onGameStart = (animationPromise: Promise<void>) => {
     console.log("game");
     shouldShowTitle.value = false;
   });
+};
+
+const onGameFinished = () => {
+  gameResultModalModel.value = true;
 };
 </script>
 

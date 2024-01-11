@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { createHtmlPlugin } from "vite-plugin-html";
+import vuetify from "vite-plugin-vuetify";
 
 const basePath = "/lovelive/sayaka-bd-2023";
 
@@ -17,6 +18,7 @@ export default defineConfig({
         },
       },
     }),
+    vuetify(),
     createHtmlPlugin({
       inject: { ejsOptions: { views: ["../../shared/ejs"] } },
     }),
