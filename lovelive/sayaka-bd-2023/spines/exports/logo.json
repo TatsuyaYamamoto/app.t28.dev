@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "gkQyvuqwZ3w", "spine": "4.1.24", "x": 29, "y": -4123, "width": 3568, "height": 3972 },
+"skeleton": { "hash": "o30mqQRJlSs", "spine": "4.1.24", "x": 29, "y": -4123, "width": 3568, "height": 3972 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "gizagiza", "parent": "root", "x": 1809.77, "y": -2061.63 },
@@ -66,7 +66,7 @@
 				"star4": { "x": -21.14, "y": -38.9, "width": 338, "height": 317 }
 			},
 			"title_moji": {
-				"title_moji": { "x": 1815.5, "y": -2176.5, "width": 2125, "height": 1555 }
+				"title_moji": { "x": 1815.5, "y": -2176.5, "width": 2672, "height": 2202 }
 			}
 		}
 	}
