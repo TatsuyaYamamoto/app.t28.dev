@@ -45,12 +45,13 @@ const sayaka = getSpine("game_sayaka");
 const SKELETON_CONST = {
   SLOT: {
     VEGETABLE: "vegetable",
+    BOWL: "bowl",
   },
 };
 
 let canClick = false;
 let requiredCount = 3 * getRandomInt(2, 4);
-let currentCurrent = 0;
+let currentCount = 0;
 
 const getVegetableRandomly = () => {
   const map = {
@@ -91,7 +92,7 @@ const init = async () => {
 };
 
 const isFinished = () => {
-  return requiredCount <= currentCurrent;
+  return requiredCount <= currentCount;
 };
 
 const onClick = () => {
@@ -99,21 +100,21 @@ const onClick = () => {
     return;
   }
 
-  const attachmentName = sayakaSkeletonMesh.skeleton
+  const vegetableAttachment = sayakaSkeletonMesh.skeleton
     ?.findSlot(SKELETON_CONST.SLOT.VEGETABLE)
     ?.getAttachment()?.name;
 
-  if (!attachmentName) {
+  if (!vegetableAttachment) {
     return;
   }
 
-  const numberString = attachmentName.slice(-1);
+  const numberString = vegetableAttachment.slice(-1);
   const number = Number(numberString);
-  const type = attachmentName.replace(numberString, "");
+  const type = vegetableAttachment.replace(numberString, "");
 
   if (number === 1 || number === 2) {
     canClick = false;
-    currentCurrent += 1;
+    currentCount += 1;
 
     const cutAnim = sayakaSkeletonMesh.state.setAnimation(0, "cut");
     cutAnim.listener = {
@@ -130,17 +131,18 @@ const onClick = () => {
 
   if (number === 3) {
     canClick = false;
-    currentCurrent += 1;
-
-    if (isFinished()) {
-      emit("finish");
-      return;
-    }
+    currentCount += 1;
 
     const slideAnim = sayakaSkeletonMesh.state.setAnimation(0, "slide");
     slideAnim.listener = {
       complete: () => {
         canClick = true;
+
+        const bowlNumber = Math.min(1 + Math.floor(currentCount / 3), 3);
+        sayakaSkeletonMesh?.skeleton.setAttachment(
+          SKELETON_CONST.SLOT.BOWL,
+          `bowl${bowlNumber}`,
+        );
 
         if (isFinished()) {
           emit("finish");
