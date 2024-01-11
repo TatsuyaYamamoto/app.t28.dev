@@ -27,7 +27,10 @@
       <GamePage v-if="shouldShowGame" @finish="onGameFinished" />
     </TresCanvas>
 
-    <ResultModal v-model="gameResultModalTypeModel" />
+    <ResultModal
+      v-model="gameResultModalTypeModel"
+      @click-button="onClickResultButton"
+    />
   </div>
 </template>
 
@@ -71,6 +74,12 @@ const onGameStart = (animationPromise: Promise<void>) => {
 
 const onGameFinished = () => {
   gameResultModalTypeModel.value = getRandomInt(1, 3);
+};
+
+const onClickResultButton = () => {
+  gameResultModalTypeModel.value = undefined;
+  shouldShowTitle.value = true;
+  shouldShowGame.value = false;
 };
 </script>
 
