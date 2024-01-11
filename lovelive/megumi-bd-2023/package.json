@@ -16,7 +16,7 @@
     "gsap": "3.12.4",
     "shared": "workspace:*",
     "three": "0.158.0",
-    "vue": "3.3.12"
+    "vue": "3.4.9"
   },
   "devDependencies": {
     "@types/three": "0.158.3",
