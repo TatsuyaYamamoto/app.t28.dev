@@ -28,10 +28,10 @@ import {
 import { wait } from "shared/helpers/utils.ts";
 
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
-import { loopBlinkAnim } from "../utils.ts";
+import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
 
 const emit = defineEmits<{
-  (e: "start"): void;
+  (e: "start", animationPromise: Promise<void>): void;
 }>();
 
 const { onLoop } = useRenderLoop();
@@ -45,6 +45,15 @@ const backTexture = getTexture("back");
 const sayaka = getSpine("title_sayaka");
 const logo = getSpine("title_logo");
 
+const SKELETON_CONST = {
+  ANIMATION: {
+    titleToGame: "titleToGame",
+  },
+  EVENT: {
+    readyToShowGame: "readyToShowGame",
+  },
+};
+
 const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
   const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
   const skeletonJson = new SkeletonJson(atlasLoader);
@@ -57,7 +66,7 @@ const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
 
 const init = async () => {
   logoSkeletonMesh = createSkeletonMesh(logo);
-  logoSkeletonMesh.position.set(-450, 250, 0);
+  logoSkeletonMesh.position.set(-450, 250, 1);
   logoSkeletonMesh.scale.setScalar(0.125);
 
   sayakaSkeletonMesh = createSkeletonMesh(sayaka);
@@ -86,7 +95,30 @@ const init = async () => {
 };
 
 const onClick = () => {
-  emit("start");
+  if (!logoSkeletonMesh) {
+    return;
+  }
+
+  const logoAnim = logoSkeletonMesh.state.setAnimation(
+    0,
+    SKELETON_CONST.ANIMATION.titleToGame,
+  );
+
+  const { promise, resolve } = promiseWithResolvers();
+
+  logoAnim.listener = {
+    event(_, event) {
+      if (event.data.name === SKELETON_CONST.EVENT.readyToShowGame) {
+        if (sayakaSkeletonMesh) {
+          sayakaSkeletonMesh.visible = false;
+        }
+        emit("start", promise);
+      }
+    },
+    complete() {
+      resolve();
+    },
+  };
 };
 
 onLoop(({ delta }) => {

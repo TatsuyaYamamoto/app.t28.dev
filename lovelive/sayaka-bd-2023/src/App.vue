@@ -22,23 +22,20 @@
         :rotate-x="-(Math.PI / 2)"
       />
 
-      <LoadingPage
-        v-if="currentPage === 'loading'"
-        @loadCompleted="onLoadCompleted"
-      />
-      <TitlePage v-if="currentPage === 'title'" @start="onGameStart" />
-      <GamePage v-if="currentPage === 'game'" />
+      <LoadingPage v-if="shouldShowLoading" @loadCompleted="onLoadCompleted" />
+      <TitlePage v-if="shouldShowTitle" @start="onGameStart" />
+      <GamePage v-if="shouldShowGame" />
     </TresCanvas>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import { LinearSRGBColorSpace } from "three";
 import { CameraControls } from "@tresjs/cientos";
 
 import { useRendererSize } from "shared/hooks/useRendererSize";
 
-import { usePageHandler } from "./hooks/usePageHandler";
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
 import GamePage from "./pages/GamePage.vue";
@@ -47,18 +44,24 @@ const { rendererRotate, rendererWidthPx, rendererHeightPx } = useRendererSize(
   6868,
   4226,
 );
-const { currentPage, changePage } = usePageHandler([
-  "loading",
-  "title",
-  "game",
-] as const);
+
+const shouldShowLoading = ref(true);
+const shouldShowTitle = ref(false);
+const shouldShowGame = ref(false);
 
 const onLoadCompleted = () => {
-  changePage("title");
+  shouldShowTitle.value = true;
+  shouldShowLoading.value = false;
 };
 
-const onGameStart = () => {
-  changePage("game");
+const onGameStart = (animationPromise: Promise<void>) => {
+  console.log("onGameStart");
+  shouldShowGame.value = true;
+
+  animationPromise.then(() => {
+    console.log("game");
+    shouldShowTitle.value = false;
+  });
 };
 </script>
 
