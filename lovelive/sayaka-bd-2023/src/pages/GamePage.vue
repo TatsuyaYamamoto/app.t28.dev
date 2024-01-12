@@ -124,9 +124,7 @@ const onClick = () => {
     return;
   }
 
-  if (2 < currentCount) {
-    shouldShowIndicator.value = false;
-  }
+  shouldShowIndicator.value = false;
 
   const numberString = vegetableAttachment.slice(-1);
   const number = Number(numberString);
