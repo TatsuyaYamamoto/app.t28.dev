@@ -4,6 +4,17 @@
       <TresPlaneGeometry :args="[1200, 800]" />
       <TresMeshBasicMaterial :map="backTexture" transparent />
     </TresMesh>
+
+    <!-- TresGroup の中で CanvasPortal を定義しないと、unmount 時に tres が止まる -->
+    <CanvasPortal v-if="!isStarted">
+      <div class="portal-root">
+        <div class="announce">TAP TO START</div>
+        <div class="credits">
+          <span>🎨 <a href="https://twitter.com/xxsanzashixx">さんざし</a></span>
+          <span>💻 <a href="https://twitter.com/T28_tatsuya">T28</a></span>
+        </div>
+      </div>
+    </CanvasPortal>
   </TresGroup>
 </template>
 
@@ -17,6 +28,7 @@ import {
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
 
+import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
 
@@ -35,7 +47,7 @@ const backTexture = getTexture("back");
 const sayaka = getSpine("title_sayaka");
 const logo = getSpine("title_logo");
 
-let isStarted = false;
+const isStarted = ref(false);
 let canStart = false;
 
 const SKELETON_CONST = {
@@ -112,7 +124,7 @@ const onClick = () => {
     return;
   }
 
-  if (isStarted) {
+  if (isStarted.value) {
     return;
   }
 
@@ -124,7 +136,7 @@ const onClick = () => {
     0,
     SKELETON_CONST.ANIMATION.titleToGame,
   );
-  isStarted = true;
+  isStarted.value = true;
 
   const { promise, resolve } = promiseWithResolvers();
 
@@ -152,3 +164,34 @@ onMounted(() => {
   init();
 });
 </script>
+
+<style scoped>
+.portal-root {
+  position: relative;
+  height: 100%;
+}
+
+.announce {
+  position: absolute;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  bottom: 0.3rem;
+
+  color: #ffffff;
+  text-shadow: #0077ff 1px 0 10px;
+}
+
+.credits {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+
+  font-size: 0.5rem;
+}
+a {
+  color: rgb(83, 46, 33);
+  text-decoration: none;
+}
+</style>
