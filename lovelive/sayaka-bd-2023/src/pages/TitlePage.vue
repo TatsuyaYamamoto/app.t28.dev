@@ -4,14 +4,6 @@
       <TresPlaneGeometry :args="[1200, 800]" />
       <TresMeshBasicMaterial :map="backTexture" transparent />
     </TresMesh>
-    <!--    <TresMesh>-->
-    <!--      <TresPlaneGeometry :args="[1000, 600]" />-->
-    <!--      <TresMeshBasicMaterial :map="backgroundEffectTexture" transparent />-->
-    <!--    </TresMesh>-->
-    <!--    <TresMesh :position="[180, 100, 100]">-->
-    <!--      <TresPlaneGeometry :args="[500, 300]" />-->
-    <!--      <TresMeshBasicMaterial :map="title" transparent />-->
-    <!--    </TresMesh>-->
   </TresGroup>
 </template>
 
@@ -49,6 +41,9 @@ let isStarted = false;
 
 const SKELETON_CONST = {
   ANIMATION: {
+    idle: "idle",
+    start: "start",
+    start_ready: "start_ready",
     titleToGame: "titleToGame",
   },
   EVENT: {
@@ -78,22 +73,32 @@ const init = async () => {
 
   groupRef.value?.add(logoSkeletonMesh, sayakaSkeletonMesh);
 
-  await wait(1000);
-
   sayakaSkeletonMesh.state.addListener({
     start: (entry) => {
-      if (entry.animation?.name === "start") {
-        setTimeout(() => {
-          if (sayakaSkeletonMesh) {
-            sayakaSkeletonMesh.visible = true;
-          }
-        }, 0);
+      if (entry.animation?.name === SKELETON_CONST.ANIMATION.start_ready) {
+        if (sayakaSkeletonMesh) {
+          sayakaSkeletonMesh.visible = true;
+        }
+      }
+    },
+    complete() {
+      if (sayakaSkeletonMesh) {
+        loopBlinkAnim(sayakaSkeletonMesh.state, 1);
       }
     },
   });
-  sayakaSkeletonMesh.state.setAnimation(0, "start");
-  sayakaSkeletonMesh.state.addAnimation(0, "idle", true);
-  loopBlinkAnim(sayakaSkeletonMesh.state, 1);
+  sayakaSkeletonMesh.state.setAnimation(
+    0,
+    SKELETON_CONST.ANIMATION.start_ready,
+    false,
+  );
+  sayakaSkeletonMesh.state.addAnimation(
+    0,
+    SKELETON_CONST.ANIMATION.start,
+    false,
+    0.5,
+  );
+  sayakaSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
 };
 
 const onClick = () => {

@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "jHw4QctGl4M", "spine": "4.1.24", "x": 3390, "y": -4430, "width": 3366, "height": 4428 },
+"skeleton": { "hash": "FZpDZoxsxf4", "spine": "4.1.24", "x": 3390, "y": -4430, "width": 3366, "height": 4428 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "sayaka", "parent": "root", "x": 5004.99, "y": -3379.96 },
@@ -986,8 +986,8 @@
 				"translate": [
 					{
 						"x": 260.75,
-						"y": -3742.31,
-						"curve": [ 0, 131.18, 0.184, -49.67, 0, -2021.98, 0.184, 595.52 ]
+						"y": -4390.31,
+						"curve": [ 0, 131.18, 0.184, -49.67, 0, -2669.98, 0.184, 595.52 ]
 					},
 					{
 						"time": 0.9,
@@ -1072,6 +1072,121 @@
 				]
 			},
 			{ "time": 0.7667 }
+		]
+	},
+	"start_ready": {
+		"slots": {
+			"eyes_close_L": {
+				"attachment": [
+					{ "name": "eye_close_left_1" }
+				]
+			},
+			"eyes_close_R": {
+				"attachment": [
+					{ "name": "eye_close_right_1" }
+				]
+			},
+			"futae_left": {
+				"attachment": [
+					{}
+				]
+			},
+			"futae_right": {
+				"attachment": [
+					{}
+				]
+			},
+			"matsuge_left": {
+				"attachment": [
+					{}
+				]
+			},
+			"matsuge_right": {
+				"attachment": [
+					{}
+				]
+			},
+			"shita_matsuge_left": {
+				"attachment": [
+					{}
+				]
+			},
+			"shita_matsuge_right": {
+				"attachment": [
+					{}
+				]
+			}
+		},
+		"bones": {
+			"arm_L_1": {
+				"rotate": [
+					{ "value": 63.36 }
+				]
+			},
+			"arm_R_1": {
+				"rotate": [
+					{ "value": 41.68 }
+				]
+			},
+			"arm_R_2": {
+				"rotate": [
+					{ "value": 21.85 }
+				]
+			},
+			"arm_L_2": {
+				"rotate": [
+					{ "value": -40.74 }
+				]
+			},
+			"obentou": {
+				"rotate": [
+					{ "value": -55.52 }
+				],
+				"translate": [
+					{ "x": 206.74, "y": -11.7 }
+				]
+			},
+			"sayaka": {
+				"translate": [
+					{ "x": 260.75, "y": -4390.31 }
+				]
+			},
+			"head": {
+				"rotate": [
+					{ "value": 7.71 }
+				]
+			},
+			"hair_control_front": {
+				"rotate": [
+					{ "value": -36.8 }
+				]
+			},
+			"hair_control_osage": {
+				"rotate": [
+					{ "value": -31.66 }
+				]
+			}
+		},
+		"attachments": {
+			"default": {
+				"kao": {
+					"kao": {
+						"deform": [
+							{
+								"offset": 30,
+								"vertices": [ -382.98828, 9.55396, -414.61816, 18.14429, -222.70312, 38.20386, 92.36914, 35.6123, 104.21826, -5.31836, 0, 0, -232.6128, -45.78198, -218.81787, -48.83398, -365.68896, -3.79614, -440.35498, 29.32251, -249.1372, 33.07471, -41.19141, 6.44751, 79.78271, -1.33911, 63.78564, -6.72705, -33.17529, -17.23755 ]
+							}
+						]
+					}
+				}
+			}
+		},
+		"drawOrder": [
+			{
+				"offsets": [
+					{ "slot": "obentou", "offset": -7 }
+				]
+			}
 		]
 	}
 }

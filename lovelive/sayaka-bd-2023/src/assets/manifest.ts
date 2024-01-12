@@ -9,11 +9,36 @@ import game_sayaka_skeleton from "../../spines/exports/game-sayaka.json";
 import game_sayaka_sprite from "../../spines/exports/game-sayaka.png";
 
 import back from "./back.jpg";
+import bento_1 from "./bento_1.png";
+import bento_2 from "./bento_2.png";
+import bento_3 from "./bento_3.png";
+import kekka_share from "./kekka_share.png";
+import kekka_title from "./kekka_title.png";
 
 export const IMAGE_MANIFEST = [
   {
     id: "back",
     src: back,
+  },
+  {
+    id: "bento_1",
+    src: bento_1,
+  },
+  {
+    id: "bento_2",
+    src: bento_2,
+  },
+  {
+    id: "bento_3",
+    src: bento_3,
+  },
+  {
+    id: "kekka_share",
+    src: kekka_share,
+  },
+  {
+    id: "kekka_title",
+    src: kekka_title,
   },
 ] as const;
 
