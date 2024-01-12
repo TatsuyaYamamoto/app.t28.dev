@@ -50,7 +50,7 @@ const SKELETON_CONST = {
 };
 
 let canClick = false;
-let requiredCount = 3 * getRandomInt(2, 4);
+let requiredCount = 3 * 3;
 let currentCount = 0;
 
 const getVegetableRandomly = () => {
