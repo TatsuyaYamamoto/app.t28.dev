@@ -86,6 +86,11 @@ const init = async () => {
 
   groupRef.value?.add(logoSkeletonMesh, sayakaSkeletonMesh);
 
+  sayakaSkeletonMesh.state.data.setMix(
+    SKELETON_CONST.ANIMATION.start,
+    SKELETON_CONST.ANIMATION.idle,
+    0.5,
+  );
   sayakaSkeletonMesh.state.addListener({
     start: (entry) => {
       if (!sayakaSkeletonMesh) {
@@ -118,7 +123,11 @@ const init = async () => {
     false,
     0.5,
   );
-  sayakaSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
+  sayakaSkeletonMesh.state.addAnimation(
+    0,
+    SKELETON_CONST.ANIMATION.idle,
+    true,
+  );
 };
 
 const onClick = () => {

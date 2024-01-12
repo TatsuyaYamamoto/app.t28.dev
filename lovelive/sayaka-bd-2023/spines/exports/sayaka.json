@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "Soteo0JL6rc", "spine": "4.1.24", "x": 3390, "y": -4430, "width": 3366, "height": 4428 },
+"skeleton": { "hash": "qvCYaE8H/KU", "spine": "4.1.24", "x": 3390, "y": -4430, "width": 3366, "height": 4428 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "sayaka", "parent": "root", "x": 5004.99, "y": -3379.96 },
@@ -950,54 +950,62 @@
 			},
 			"eyes_smail_L": {
 				"attachment": [
-					{ "time": 1, "name": "eye_close_left_2" }
+					{ "time": 1, "name": "eye_close_left_2" },
+					{ "time": 1.5 }
 				]
 			},
 			"eyes_smail_R": {
 				"attachment": [
-					{ "time": 1, "name": "eye_close_right_2" }
+					{ "time": 1, "name": "eye_close_right_2" },
+					{ "time": 1.5 }
 				]
 			},
 			"futae_left": {
 				"attachment": [
 					{},
 					{ "time": 0.2333, "name": "futae_left" },
-					{ "time": 1 }
+					{ "time": 1 },
+					{ "time": 1.5, "name": "futae_left" }
 				]
 			},
 			"futae_right": {
 				"attachment": [
 					{},
 					{ "time": 0.2333, "name": "futae_right" },
-					{ "time": 1 }
+					{ "time": 1 },
+					{ "time": 1.5, "name": "futae_right" }
 				]
 			},
 			"matsuge_left": {
 				"attachment": [
 					{},
 					{ "time": 0.2333, "name": "matsuge_left" },
-					{ "time": 1 }
+					{ "time": 1 },
+					{ "time": 1.5, "name": "matsuge_left" }
 				]
 			},
 			"matsuge_right": {
 				"attachment": [
 					{},
 					{ "time": 0.2333, "name": "matsuge_right" },
-					{ "time": 1 }
+					{ "time": 1 },
+					{ "time": 1.5, "name": "matsuge_right" }
 				]
 			},
 			"shita_matsuge_left": {
 				"attachment": [
 					{},
 					{ "time": 0.2333, "name": "shita_matsuge_left" },
-					{ "time": 1 }
+					{ "time": 1 },
+					{ "time": 1.5, "name": "shita_matsuge_left" }
 				]
 			},
 			"shita_matsuge_right": {
 				"attachment": [
 					{},
 					{ "time": 0.2333, "name": "shita_matsuge_right" },
-					{ "time": 1 }
+					{ "time": 1 },
+					{ "time": 1.5, "name": "shita_matsuge_right" }
 				]
 			}
 		},
@@ -1124,13 +1132,28 @@
 			"hair_control_front": {
 				"rotate": [
 					{ "value": -36.8, "curve": "stepped" },
-					{ "time": 0.1667, "value": -36.8 },
+					{
+						"time": 0.1667,
+						"value": -36.8,
+						"curve": [ 0.344, -17.37, 0.522, 21.49 ]
+					},
 					{ "time": 0.7, "value": 21.49, "curve": "stepped" },
-					{ "time": 0.9, "value": 21.49 },
-					{ "time": 1.1, "value": -23.25 },
-					{ "time": 1.3, "value": 7.28 },
-					{ "time": 1.4333, "curve": "stepped" },
-					{ "time": 1.4667 }
+					{
+						"time": 0.9,
+						"value": 21.49,
+						"curve": [ 0.967, 21.49, 1.033, -23.25 ]
+					},
+					{
+						"time": 1.1,
+						"value": -23.25,
+						"curve": [ 1.167, -23.25, 1.233, 21.87 ]
+					},
+					{
+						"time": 1.3,
+						"value": 21.87,
+						"curve": [ 1.378, 21.87, 1.456, 7.29 ]
+					},
+					{ "time": 1.5333 }
 				]
 			},
 			"hair_control_osage": {
@@ -1162,8 +1185,16 @@
 							{
 								"time": 1,
 								"offset": 30,
+								"vertices": [ -329.34424, 7.0105, -305.3772, 16.5437, -239.9082, 53.35522, 172.4834, 62.28125, 193.79199, -5.98486, 0, 0, -234.65771, -51.06567, -218.81787, -48.83398, -294.71045, -7.15894, -337.71094, 22.58862, -291.92505, 38.84375, -90.47949, 33.11597, 188.72363, 45.91919, 164.82715, -7.77002, -33.17529, -17.23755 ],
+								"curve": "stepped"
+							},
+							{
+								"time": 1.4667,
+								"offset": 30,
 								"vertices": [ -329.34424, 7.0105, -305.3772, 16.5437, -239.9082, 53.35522, 172.4834, 62.28125, 193.79199, -5.98486, 0, 0, -234.65771, -51.06567, -218.81787, -48.83398, -294.71045, -7.15894, -337.71094, 22.58862, -291.92505, 38.84375, -90.47949, 33.11597, 188.72363, 45.91919, 164.82715, -7.77002, -33.17529, -17.23755 ]
-							}
+							},
+							{ "time": 1.5, "curve": "stepped" },
+							{ "time": 2 }
 						]
 					}
 				}
