@@ -67,8 +67,8 @@ const onClickForShare = () => {
     return;
   }
 
-  const hashtags = `#さやかちゃんのおべんとう #蓮ノ空 #村野さやか生誕祭2023`;
-  const appUrl = `https://app.t28.dev/lovelive/sayaka-bd-2023`;
+  const hashtags = `#さやかちゃんのおべんとう #蓮ノ空 #村野さやか生誕祭2024`;
+  const appUrl = `https://app.t28.dev/lovelive/sayaka-bd-2024`;
 
   const texts = {
     1: `ずっとたべたいからあげ`,

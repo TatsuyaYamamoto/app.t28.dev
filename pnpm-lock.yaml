@@ -188,7 +188,7 @@ importers:
         specifier: 1.8.25
         version: 1.8.25(typescript@5.3.3)
 
-  lovelive/sayaka-bd-2023:
+  lovelive/sayaka-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
         specifier: 4.2.33
