@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "o30mqQRJlSs", "spine": "4.1.24", "x": 29, "y": -4123, "width": 3568, "height": 3972 },
+"skeleton": { "hash": "vfsh0aFHY68", "spine": "4.1.24", "x": 29, "y": -4123, "width": 3568, "height": 3972 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "gizagiza", "parent": "root", "x": 1809.77, "y": -2061.63 },
@@ -21,7 +21,7 @@
 	{ "name": "carrot2", "bone": "carrot2", "attachment": "carrot2" },
 	{ "name": "carrot3", "bone": "carrot3", "attachment": "carrot3" },
 	{ "name": "carrot4", "bone": "carrot4", "attachment": "carrot4" },
-	{ "name": "star1", "bone": "star1", "attachment": "star1" },
+	{ "name": "star1", "bone": "star1" },
 	{ "name": "star2", "bone": "star2", "attachment": "star2" },
 	{ "name": "star3", "bone": "star3", "attachment": "star3" },
 	{ "name": "star4", "bone": "star4", "attachment": "star4" },

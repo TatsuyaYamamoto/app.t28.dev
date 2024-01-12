@@ -195,7 +195,7 @@ onMounted(() => {
 .credits {
   position: absolute;
   left: 0.5rem;
-  bottom: 0.5rem;
+  bottom: 0.6rem;
 
   font-size: 0.5rem;
 }
