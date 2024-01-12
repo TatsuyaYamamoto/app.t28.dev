@@ -73,7 +73,7 @@ const onClickForShare = () => {
   const texts = {
     1: `ずっとたべたいからあげ`,
     2: `おーかわいい`,
-    3: `ねるねるねるねおいしいね`,
+    3: `ねるねるおいしいね`,
   };
 
   const url = new URL("https://twitter.com/intent/tweet");
