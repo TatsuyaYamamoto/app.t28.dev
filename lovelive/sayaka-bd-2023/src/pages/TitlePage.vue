@@ -17,8 +17,6 @@ import {
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
 
-import { wait } from "shared/helpers/utils.ts";
-
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
 
@@ -38,6 +36,7 @@ const sayaka = getSpine("title_sayaka");
 const logo = getSpine("title_logo");
 
 let isStarted = false;
+let canStart = false;
 
 const SKELETON_CONST = {
   ANIMATION: {
@@ -75,15 +74,22 @@ const init = async () => {
 
   sayakaSkeletonMesh.state.addListener({
     start: (entry) => {
+      if (!sayakaSkeletonMesh) {
+        return;
+      }
+
       if (entry.animation?.name === SKELETON_CONST.ANIMATION.start_ready) {
-        if (sayakaSkeletonMesh) {
-          sayakaSkeletonMesh.visible = true;
-        }
+        sayakaSkeletonMesh.visible = true;
       }
     },
-    complete() {
-      if (sayakaSkeletonMesh) {
+    complete(entry) {
+      if (!sayakaSkeletonMesh) {
+        return;
+      }
+
+      if (entry.animation?.name === SKELETON_CONST.ANIMATION.start) {
         loopBlinkAnim(sayakaSkeletonMesh.state, 1);
+        canStart = true;
       }
     },
   });
@@ -107,6 +113,10 @@ const onClick = () => {
   }
 
   if (isStarted) {
+    return;
+  }
+
+  if (!canStart) {
     return;
   }
 
