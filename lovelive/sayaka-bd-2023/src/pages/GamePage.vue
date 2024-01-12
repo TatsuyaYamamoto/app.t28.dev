@@ -4,20 +4,17 @@
       <TresPlaneGeometry :args="[1200, 800]" />
       <TresMeshBasicMaterial :map="backTexture" transparent />
     </TresMesh>
-    <!--    <TresMesh>-->
-    <!--      <TresPlaneGeometry :args="[1000, 600]" />-->
-    <!--      <TresMeshBasicMaterial :map="backgroundEffectTexture" transparent />-->
-    <!--    </TresMesh>-->
-    <!--    <TresMesh :position="[180, 100, 100]">-->
-    <!--      <TresPlaneGeometry :args="[500, 300]" />-->
-    <!--      <TresMeshBasicMaterial :map="title" transparent />-->
-    <!--    </TresMesh>-->
+    <TresMesh v-if="shouldShowIndicator" :position="[0, -200, -1]">
+      <!-- 本当は平面のわっかを描画したい-->
+      <TresTorusGeometry :args="[indicatorArgs.radius, indicatorArgs.tube]" />
+      <TresMeshBasicMaterial transparent />
+    </TresMesh>
   </TresGroup>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { Group } from "three";
+import { onMounted, reactive, ref } from "vue";
+import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
 import {
   AtlasAttachmentLoader,
@@ -25,10 +22,11 @@ import {
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
 
-import { getRandomInt } from "shared/helpers/utils.ts";
+import { getRandomInt, wait } from "shared/helpers/utils.ts";
 
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim } from "../utils.ts";
+import gsap from "gsap";
 
 const emit = defineEmits<{
   (e: "finish"): void;
@@ -37,11 +35,10 @@ const emit = defineEmits<{
 const { onLoop } = useRenderLoop();
 const { getSpine, getTexture } = useAssetLoader();
 
-const groupRef = ref<Group>();
 let sayakaSkeletonMesh: SkeletonMesh | null = null;
 const backTexture = getTexture("back");
-
 const sayaka = getSpine("game_sayaka");
+
 const SKELETON_CONST = {
   SLOT: {
     VEGETABLE: "vegetable",
@@ -49,9 +46,25 @@ const SKELETON_CONST = {
   },
 };
 
+const groupRef = ref<Group>();
+const indicatorArgs = reactive({ radius: 50, tube: 10 });
+const shouldShowIndicator = ref(false);
 let canClick = false;
 let requiredCount = 3 * 3;
 let currentCount = 0;
+
+const indicatorAnimation = gsap.fromTo(
+  indicatorArgs,
+  { radius: 50, tube: 5 },
+  {
+    radius: 20,
+    tube: 2,
+    duration: 0.8,
+    repeat: -1,
+    ease: "bounce.in",
+    paused: true,
+  },
+);
 
 const getVegetableRandomly = () => {
   const map = {
@@ -85,10 +98,13 @@ const init = async () => {
 
   groupRef.value?.add(sayakaSkeletonMesh);
 
-  // sayakaSkeletonMesh.state.setAnimation(0, "start");
   loopBlinkAnim(sayakaSkeletonMesh.state, 1);
 
   canClick = true;
+  indicatorAnimation.play();
+
+  await wait(800);
+  shouldShowIndicator.value = true;
 };
 
 const isFinished = () => {
@@ -106,6 +122,10 @@ const onClick = () => {
 
   if (!vegetableAttachment) {
     return;
+  }
+
+  if (2 < currentCount) {
+    shouldShowIndicator.value = false;
   }
 
   const numberString = vegetableAttachment.slice(-1);

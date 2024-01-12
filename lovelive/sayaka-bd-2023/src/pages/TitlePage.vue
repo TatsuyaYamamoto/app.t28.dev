@@ -1,6 +1,6 @@
 <template>
   <TresGroup ref="groupRef">
-    <TresMesh :position="[0, 0, -1]" @click="onClick">
+    <TresMesh :position="[0, 0, 0]" @click="onClick">
       <TresPlaneGeometry :args="[1200, 800]" />
       <TresMeshBasicMaterial :map="backTexture" transparent />
     </TresMesh>
