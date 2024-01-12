@@ -8,7 +8,7 @@
     <!-- TresGroup の中で CanvasPortal を定義しないと、unmount 時に tres が止まる -->
     <CanvasPortal v-if="!isStarted">
       <div class="portal-root">
-        <div class="announce">TAP TO START</div>
+        <div class="announce" v-if="shouldShowStartAnnounce">TAP TO START</div>
         <div class="credits">
           <span>
             🎨 <a href="https://twitter.com/xxsanzashixx">さんざし</a>
@@ -49,6 +49,7 @@ const backTexture = getTexture("back");
 const sayaka = getSpine("title_sayaka");
 const logo = getSpine("title_logo");
 
+const shouldShowStartAnnounce = ref(false);
 const isStarted = ref(false);
 let canStart = false;
 
@@ -109,6 +110,7 @@ const init = async () => {
       if (entry.animation?.name === SKELETON_CONST.ANIMATION.start) {
         loopBlinkAnim(sayakaSkeletonMesh.state, 1);
         canStart = true;
+        shouldShowStartAnnounce.value = true;
       }
     },
   });
@@ -123,11 +125,7 @@ const init = async () => {
     false,
     0.5,
   );
-  sayakaSkeletonMesh.state.addAnimation(
-    0,
-    SKELETON_CONST.ANIMATION.idle,
-    true,
-  );
+  sayakaSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
 };
 
 const onClick = () => {
