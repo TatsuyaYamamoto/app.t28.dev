@@ -35,8 +35,6 @@ const innerEl = computed(() => {
 });
 const vNode = ref<VNode>();
 
-console.log("!");
-
 watchEffect(() => {
   if (portalTargetEl && !innerEl.value.parentNode) {
     portalTargetEl.appendChild(innerEl.value);

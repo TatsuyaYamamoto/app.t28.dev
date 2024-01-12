@@ -64,11 +64,9 @@ const onLoadCompleted = () => {
 };
 
 const onGameStart = (animationPromise: Promise<void>) => {
-  console.log("onGameStart");
   shouldShowGame.value = true;
 
   animationPromise.then(() => {
-    console.log("game");
     shouldShowTitle.value = false;
   });
 };
