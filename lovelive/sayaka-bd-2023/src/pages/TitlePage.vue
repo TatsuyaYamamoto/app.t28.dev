@@ -1,6 +1,6 @@
 <template>
   <TresGroup ref="groupRef">
-    <TresMesh :position="[0, 0, 0]" @click="onClick">
+    <TresMesh :position="[0, 0, -1]" @click="onClick">
       <TresPlaneGeometry :args="[1200, 800]" />
       <TresMeshBasicMaterial :map="backTexture" transparent />
     </TresMesh>
@@ -10,7 +10,9 @@
       <div class="portal-root">
         <div class="announce">TAP TO START</div>
         <div class="credits">
-          <span>🎨 <a href="https://twitter.com/xxsanzashixx">さんざし</a></span>
+          <span>
+            🎨 <a href="https://twitter.com/xxsanzashixx">さんざし</a>
+          </span>
           <span>💻 <a href="https://twitter.com/T28_tatsuya">T28</a></span>
         </div>
       </div>
