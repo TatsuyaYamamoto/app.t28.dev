@@ -45,6 +45,8 @@ const backTexture = getTexture("back");
 const sayaka = getSpine("title_sayaka");
 const logo = getSpine("title_logo");
 
+let isStarted = false;
+
 const SKELETON_CONST = {
   ANIMATION: {
     titleToGame: "titleToGame",
@@ -99,10 +101,15 @@ const onClick = () => {
     return;
   }
 
+  if (isStarted) {
+    return;
+  }
+
   const logoAnim = logoSkeletonMesh.state.setAnimation(
     0,
     SKELETON_CONST.ANIMATION.titleToGame,
   );
+  isStarted = true;
 
   const { promise, resolve } = promiseWithResolvers();
 
