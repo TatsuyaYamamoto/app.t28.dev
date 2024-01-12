@@ -1,5 +1,11 @@
 import type { IntRange } from "type-fest";
 
+export const wait = (ms: number): Promise<void> => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+};
+
 export const blobToDataUrl = (blob: Blob) => {
   const reader = new FileReader();
 
