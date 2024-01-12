@@ -14,6 +14,7 @@
       />
       <CameraControls v-if="false" />
       <TresGridHelper
+        v-if="false"
         :args="[
           /* size */ 1000,
           /* divisions */ 10,
