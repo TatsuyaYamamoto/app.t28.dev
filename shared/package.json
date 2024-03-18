@@ -1,7 +1,7 @@
 {
   "name": "shared",
   "dependencies": {
-    "@chakra-ui/react": "2.4.9",
+    "@chakra-ui/react": "2.8.2",
     "@chakra-ui/theme-tools": "2.0.17",
     "@emotion/react": "11.11.0",
     "@vueuse/core": "10.7.0",
