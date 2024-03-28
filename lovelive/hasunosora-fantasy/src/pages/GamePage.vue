@@ -8,6 +8,13 @@
       <TresPlaneGeometry :args="[100, 100]" />
       <TresMeshBasicMaterial :map="textures.tsuzuriWalk1" transparent />
     </TresMesh>
+
+    <!-- TresGroup の中で CanvasPortal を定義しないと、unmount 時に tres が止まる -->
+    <CanvasPortal>
+      <div class="keyboard-area">
+        <Keyboard />
+      </div>
+    </CanvasPortal>
   </TresGroup>
 </template>
 
@@ -16,7 +23,9 @@ import { computed, onMounted, shallowRef } from "vue";
 import { useRenderLoop } from "@tresjs/core";
 import { useMagicKeys } from "@vueuse/core";
 
+import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../components/useAssetLoader.ts";
+import Keyboard from "../components/Keyboard.vue";
 
 const emit = defineEmits<{
   (e: "finish"): void;
@@ -63,7 +72,6 @@ const velocity = computed(() => {
 const position = shallowRef<[number, number, number]>([0, 0, 0]);
 
 onLoop(({ delta }) => {
-  console.log(velocity.value);
   position.value = [
     position.value[0] - velocity.value.x * delta,
     position.value[1] - velocity.value.y * delta,
@@ -73,3 +81,12 @@ onLoop(({ delta }) => {
 
 onMounted(() => {});
 </script>
+
+<style scoped>
+.keyboard-area {
+  position: absolute;
+
+  left: 0.5rem;
+  bottom: 0.5rem;
+}
+</style>

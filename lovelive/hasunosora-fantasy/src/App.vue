@@ -41,9 +41,6 @@ import { useRendererSize } from "shared/hooks/useRendererSize";
 
 import LoadingPage from "./pages/LoadingPage.vue";
 import GamePage from "./pages/GamePage.vue";
-import GameResultModal from "./components/GameResultModal.vue";
-import StartAnnounce from "./components/StartAnnounce.vue";
-import Credits from "./components/Credits.vue";
 
 const pageMap = {
   loading: "loading",
@@ -57,7 +54,6 @@ const { rendererRotate, rendererWidthPx, rendererHeightPx } = useRendererSize(
 );
 
 const currentPage = ref<keyof typeof pageMap>("loading");
-const gameResultModalType = ref<1 | 2 | 3 | null>(null);
 
 const onLoadCompleted = () => {
   currentPage.value = "game";
