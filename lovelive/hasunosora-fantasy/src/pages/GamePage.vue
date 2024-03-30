@@ -1,9 +1,17 @@
 <template>
   <TresGroup>
-    <TresMesh :position="position">
-      <TresPlaneGeometry :args="[1000, 600]" />
-      <TresMeshBasicMaterial :map="textures.fieldGrass" transparent />
-    </TresMesh>
+    <TresGroup :position="charaPosition">
+      <template v-for="(tiles, i) in FIELD_TILE_BLOCKS">
+        <template v-for="(_tile, j) in tiles">
+          <TresMesh
+            :position="[FIELD_TILE_WIDTH * i, FIELD_TILE_HEIGHT * j, 0]"
+          >
+            <TresPlaneGeometry :args="[FIELD_TILE_WIDTH, FIELD_TILE_HEIGHT]" />
+            <TresMeshBasicMaterial :map="textures.fieldGrass" transparent />
+          </TresMesh>
+        </template>
+      </template>
+    </TresGroup>
     <TresMesh :position="[0, 0, 0]">
       <TresPlaneGeometry :args="[100, 100]" />
       <TresMeshBasicMaterial :map="textures.tsuzuriWalk1" transparent />
@@ -42,6 +50,16 @@ const textures = {
 
 const WALK_VELOCITY = 300;
 
+const FIELD_TILE_WIDTH = 600;
+const FIELD_TILE_HEIGHT = 600;
+const FIELD_TILE_BLOCKS = [
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+] as const;
+const fieldWidth = FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length;
+const fieldHeight = FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length;
+
 const velocity = computed(() => {
   let x = 0;
   let y = 0;
@@ -69,13 +87,13 @@ const velocity = computed(() => {
   };
 });
 
-const position = shallowRef<[number, number, number]>([0, 0, 0]);
+const charaPosition = shallowRef<[number, number, number]>([0, 0, 0]);
 
 onLoop(({ delta }) => {
-  position.value = [
-    position.value[0] - velocity.value.x * delta,
-    position.value[1] - velocity.value.y * delta,
-    position.value[2],
+  charaPosition.value = [
+    charaPosition.value[0] - velocity.value.x * delta,
+    charaPosition.value[1] - velocity.value.y * delta,
+    charaPosition.value[2],
   ];
 });
 
