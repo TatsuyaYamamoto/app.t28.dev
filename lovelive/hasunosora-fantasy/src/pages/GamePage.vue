@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef } from "vue";
+import { computed, onMounted, ref, shallowRef, watch } from "vue";
 import { useRenderLoop } from "@tresjs/core";
 import { useMagicKeys } from "@vueuse/core";
 
@@ -57,9 +57,14 @@ const textures = {
   fieldGrass: getTexture("field_grass"),
   tsuzuriWalk1: getTexture("tsuzuri_walk_1"),
 };
+const animations = {
+  idle: "idle",
+  walk_L: "walk_L",
+};
 
 const WALK_VELOCITY = 300;
 
+const TSUZURI_SKELETON_SCALE = 0.05;
 const FIELD_TILE_WIDTH = 600;
 const FIELD_TILE_HEIGHT = 600;
 const FIELD_TILE_BLOCKS = [
@@ -69,6 +74,43 @@ const FIELD_TILE_BLOCKS = [
 ] as const;
 const fieldWidth = FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length;
 const fieldHeight = FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length;
+
+const tsuzuriMotionState = computed<"idle" | "walk_L" | "walk_R">((prev) => {
+  if (right.value) {
+    return "walk_L";
+  }
+
+  if (left.value) {
+    return "walk_R";
+  }
+
+  if (up.value || down.value) {
+    if (prev === "walk_L" || prev === "walk_R") {
+      return prev;
+    }
+    return "walk_L";
+  }
+
+  return "idle";
+});
+
+watch(tsuzuriMotionState, (current) => {
+  console.log(current);
+
+  if (!tsuzuriSkeletonMesh) {
+    return;
+  }
+
+  if (current === "walk_R") {
+    tsuzuriSkeletonMesh.scale.setX(-1 * TSUZURI_SKELETON_SCALE);
+  }
+  if (current === "walk_L") {
+    tsuzuriSkeletonMesh.scale.setX(TSUZURI_SKELETON_SCALE);
+  }
+
+  const animationName = current === "walk_R" ? "walk_L" : current;
+  tsuzuriSkeletonMesh.state.setAnimation(0, animationName, true);
+});
 
 const velocity = computed(() => {
   let x = 0;
@@ -112,10 +154,9 @@ const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
 const init = async () => {
   tsuzuriSkeletonMesh = createSkeletonMesh(tsuzuriSpine);
   tsuzuriSkeletonMesh.position.set(0, 0, 1);
-  tsuzuriSkeletonMesh.scale.setScalar(0.05);
+  tsuzuriSkeletonMesh.scale.setScalar(TSUZURI_SKELETON_SCALE);
 
-  tsuzuriSkeletonMesh.state.addAnimation(1, "animation", true);
-
+  tsuzuriSkeletonMesh.state.setAnimation(0, animations.idle, true);
   rootGroupRef.value?.add(tsuzuriSkeletonMesh);
 };
 
