@@ -5,7 +5,7 @@ import { TextureAtlas, ThreeJsTexture } from "@esotericsoftware/spine-threejs";
 import {
   IMAGE_MANIFEST,
   type ImageKey,
-  SPINE_MANIFEST,
+  SPINE_MANIFEST, SpineKey,
 } from "../assets/manifest.ts";
 
 const loadImage = (src: string) => {
@@ -36,7 +36,7 @@ export const useAssetLoader = () => {
     return textureStore.value?.[id] as unknown as Texture;
   };
 
-  const getSpine = (id: string) => {
+  const getSpine = (id: SpineKey) => {
     return spineStore.value?.[id] as unknown as {
       textureAtlas: TextureAtlas;
       skeleton: {};

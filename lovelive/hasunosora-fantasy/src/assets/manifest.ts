@@ -9,9 +9,9 @@ import table from "../assets/table.png";
 import field_grass from "../assets/field_grass.png";
 import tsuzuri_walk_1 from "../assets/tsuzuri_walk_1.png";
 
-// import title_megumi_atlas from "../../spines/title-megumi/out/megumi-title.atlas?raw";
-// import title_megumi_skeleton from "../../spines/title-megumi/out/megumi-title.json";
-// import title_megumi_sprite from "../../spines/title-megumi/out/megumi-title.png";
+import tsuzuri_atlas from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.atlas?raw";
+import tsuzuri_skeleton from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.json";
+import tsuzuri_sprite from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.png";
 
 export const IMAGE_MANIFEST = [
   {
@@ -59,10 +59,12 @@ export const IMAGE_MANIFEST = [
 export type ImageKey = (typeof IMAGE_MANIFEST)[number]["id"];
 
 export const SPINE_MANIFEST = [
-  // {
-  //   id: "title_megumi",
-  //   atlas: title_megumi_atlas,
-  //   skeleton: title_megumi_skeleton,
-  //   sprite: title_megumi_sprite,
-  // },
-];
+  {
+    id: "tsuzuri",
+    atlas: tsuzuri_atlas,
+    skeleton: tsuzuri_skeleton,
+    sprite: tsuzuri_sprite,
+  },
+] as const;
+
+export type SpineKey = (typeof SPINE_MANIFEST)[number]["id"];

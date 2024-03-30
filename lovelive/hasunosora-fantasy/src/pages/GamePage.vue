@@ -1,5 +1,5 @@
 <template>
-  <TresGroup>
+  <TresGroup ref="rootGroupRef">
     <TresGroup :position="charaPosition">
       <template v-for="(tiles, i) in FIELD_TILE_BLOCKS">
         <template v-for="(_tile, j) in tiles">
@@ -12,10 +12,10 @@
         </template>
       </template>
     </TresGroup>
-    <TresMesh :position="[0, 0, 0]">
-      <TresPlaneGeometry :args="[100, 100]" />
-      <TresMeshBasicMaterial :map="textures.tsuzuriWalk1" transparent />
-    </TresMesh>
+    <!--    <TresMesh :position="[0, 0, 0]">-->
+    <!--      <TresPlaneGeometry :args="[100, 100]" />-->
+    <!--      <TresMeshBasicMaterial :map="textures.tsuzuriWalk1" transparent />-->
+    <!--    </TresMesh>-->
 
     <!-- TresGroup の中で CanvasPortal を定義しないと、unmount 時に tres が止まる -->
     <CanvasPortal>
@@ -27,9 +27,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, shallowRef } from "vue";
+import { computed, onMounted, ref, shallowRef } from "vue";
 import { useRenderLoop } from "@tresjs/core";
 import { useMagicKeys } from "@vueuse/core";
+
+import {
+  AtlasAttachmentLoader,
+  SkeletonJson,
+  SkeletonMesh,
+} from "@esotericsoftware/spine-threejs";
+import type { Group } from "three";
 
 import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../components/useAssetLoader.ts";
@@ -40,9 +47,12 @@ const emit = defineEmits<{
 }>();
 
 const { onLoop } = useRenderLoop();
-const { getTexture } = useAssetLoader();
+const { getTexture, getSpine } = useAssetLoader();
 const { w: up, a: left, s: down, d: right } = useMagicKeys();
 
+const rootGroupRef = ref<Group>();
+let tsuzuriSkeletonMesh: SkeletonMesh | null = null;
+const tsuzuriSpine = getSpine("tsuzuri");
 const textures = {
   fieldGrass: getTexture("field_grass"),
   tsuzuriWalk1: getTexture("tsuzuri_walk_1"),
@@ -89,7 +99,29 @@ const velocity = computed(() => {
 
 const charaPosition = shallowRef<[number, number, number]>([0, 0, 0]);
 
+const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
+  const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
+  const skeletonJson = new SkeletonJson(atlasLoader);
+  const skeletonData = skeletonJson.readSkeletonData(spine.skeleton);
+
+  return new SkeletonMesh(skeletonData, (parameters) => {
+    parameters.depthWrite = false;
+  });
+};
+
+const init = async () => {
+  tsuzuriSkeletonMesh = createSkeletonMesh(tsuzuriSpine);
+  tsuzuriSkeletonMesh.position.set(0, 0, 1);
+  tsuzuriSkeletonMesh.scale.setScalar(0.05);
+
+  tsuzuriSkeletonMesh.state.addAnimation(1, "animation", true);
+
+  rootGroupRef.value?.add(tsuzuriSkeletonMesh);
+};
+
 onLoop(({ delta }) => {
+  tsuzuriSkeletonMesh?.update(delta);
+
   charaPosition.value = [
     charaPosition.value[0] - velocity.value.x * delta,
     charaPosition.value[1] - velocity.value.y * delta,
@@ -97,7 +129,9 @@ onLoop(({ delta }) => {
   ];
 });
 
-onMounted(() => {});
+onMounted(() => {
+  init();
+});
 </script>
 
 <style scoped>
