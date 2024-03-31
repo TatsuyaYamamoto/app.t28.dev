@@ -2,12 +2,12 @@
   <TresGroup ref="rootGroupRef">
     <TresGroup>
       <!--  フィールド    -->
-      <template v-for="(tiles, i) in FIELD_TILE_BLOCKS">
+      <template v-for="(tiles, i) in RENDERING_FIELD_TILE_BLOCKS">
         <template v-for="(_tile, j) in tiles">
           <TresMesh
             :position="[
-              FIELD_TILE_WIDTH * i - FIELD_POSITION_OFFSETS.x,
-              FIELD_TILE_HEIGHT * j - FIELD_POSITION_OFFSETS.y,
+              FIELD_TILE_WIDTH * i - RENDERING_FIELD_POSITION_OFFSETS.x,
+              FIELD_TILE_HEIGHT * j - RENDERING_FIELD_POSITION_OFFSETS.y,
               0,
             ]"
           >
@@ -102,23 +102,39 @@ const WALK_VELOCITY = 300;
 const TSUZURI_SKELETON_SCALE = 0.05;
 const FIELD_TILE_WIDTH = 350;
 const FIELD_TILE_HEIGHT = 350;
-const FIELD_TILE_BLOCKS = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
+const RENDERING_FIELD_TILE_BLOCKS = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ] as const;
-const FIELD_WIDTH = FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length;
-const FIELD_HEIGHT = FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length;
-const FIELD_POSITION_OFFSETS = {
+const RENDERING_FIELD_WIDTH =
+  FIELD_TILE_WIDTH * RENDERING_FIELD_TILE_BLOCKS[0].length;
+const RENDERING_FIELD_HEIGHT =
+  FIELD_TILE_HEIGHT * RENDERING_FIELD_TILE_BLOCKS.length;
+const RENDERING_FIELD_POSITION_OFFSETS = {
   // field 全体の半分から tile 幅半分を引く (tile は中心を原点に描画されるから)
-  x: FIELD_WIDTH / 2 - FIELD_TILE_WIDTH / 2,
-  y: FIELD_HEIGHT / 2 - FIELD_TILE_HEIGHT / 2,
+  x: RENDERING_FIELD_WIDTH / 2 - FIELD_TILE_WIDTH / 2,
+  y: RENDERING_FIELD_HEIGHT / 2 - FIELD_TILE_HEIGHT / 2,
 };
+
+const CONTROLLABLE_FIELD_WIDTH = FIELD_TILE_WIDTH * 5;
+const CONTROLLABLE_FIELD_HEIGHT = FIELD_TILE_HEIGHT * 5;
 const CHARA_POSITION_RANGE = {
-  x: { min: (-1 * FIELD_WIDTH) / 2, max: FIELD_WIDTH / 2 },
-  y: { min: (-1 * FIELD_HEIGHT) / 2, max: FIELD_HEIGHT / 2 },
+  x: {
+    min: (-1 * CONTROLLABLE_FIELD_WIDTH) / 2,
+    max: CONTROLLABLE_FIELD_WIDTH / 2,
+  },
+  y: {
+    min: (-1 * CONTROLLABLE_FIELD_HEIGHT) / 2,
+    max: CONTROLLABLE_FIELD_HEIGHT / 2,
+  },
 } as const;
 const FIELD_MAP_SIZE = {
   x: 100,
@@ -228,8 +244,8 @@ const fieldMapPosition = computed<[number, number, number]>(() => {
 });
 const fieldMapPinPosition = computed<[number, number, number]>(() => {
   return [
-    charaPosition.value[0] * (FIELD_MAP_SIZE.x / FIELD_WIDTH),
-    charaPosition.value[1] * (FIELD_MAP_SIZE.y / FIELD_HEIGHT),
+    charaPosition.value[0] * (FIELD_MAP_SIZE.x / CONTROLLABLE_FIELD_WIDTH),
+    charaPosition.value[1] * (FIELD_MAP_SIZE.y / CONTROLLABLE_FIELD_HEIGHT),
     0,
   ];
 });

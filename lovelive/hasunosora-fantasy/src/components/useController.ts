@@ -35,7 +35,6 @@ export const useController = () => {
   };
 
   onMounted(() => {
-    console.log(upPointerEl.value, leftPointerEl.value);
     upPointerEl.value?.addEventListener("touchstart", onTouchStart.up);
     leftPointerEl.value?.addEventListener("touchstart", onTouchStart.left);
     downPointerEl.value?.addEventListener("touchstart", onTouchStart.down);
