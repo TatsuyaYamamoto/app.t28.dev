@@ -87,6 +87,7 @@ const tsuzuriSpine = getSpine("tsuzuri");
 const textures = {
   fieldGrass: getTexture("field_grass"),
   kaho: getTexture("target_kaho"),
+  kozue: getTexture("target_kozue"),
   sayaka: getTexture("target_sayaka"),
   megumi: getTexture("target_megumi"),
   rurino: getTexture("target_rurino"),
@@ -135,8 +136,8 @@ const targetItems = shallowRef([
   },
   {
     position: { x: 300, y: 300 },
-    size: { x: 50, y: 50 },
-    texture: textures.sayaka,
+    size: { x: 246 * 0.2, y: 350 * 0.2 },
+    texture: textures.kozue,
     isGot: false,
   },
   {

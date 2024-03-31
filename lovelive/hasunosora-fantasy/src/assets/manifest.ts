@@ -1,6 +1,7 @@
 import field_grass from "../assets/field_grass.jpg";
 
 import target_kaho from "../assets/target_kaho.png";
+import target_kozue from "../assets/target_kozue.png";
 import target_sayaka from "../assets/tsuzuri_walk_1.png";
 import target_megumi from "../assets/target_megumi.png";
 import target_rurino from "../assets/target_rurino.png";
@@ -17,6 +18,10 @@ export const IMAGE_MANIFEST = [
   {
     id: "target_kaho",
     src: target_kaho,
+  },
+  {
+    id: "target_kozue",
+    src: target_kozue,
   },
   {
     id: "target_sayaka",
