@@ -18,9 +18,7 @@
       <div class="serifu">
         <img class="text-icon" :src="tsuzuri_icon" />
         <span class="text">
-          {{ text }}
-        </span>
-        <span>
+          {{ text }}<br />
           {{ `あと、今日はエイプリルフールだね。` }}
         </span>
       </div>
@@ -101,7 +99,7 @@ const onClickForShare = () => {
   }
 
   const hashtags = `#しらないところでかくれんぼしてきたよ #蓮ノ空 #lovelive`;
-  const appUrl = `https://app.t28.dev/lovelive/aprilfool-202`;
+  const appUrl = `https://app.t28.dev/lovelive/aprilfool-2024`;
 
   const url = new URL("https://twitter.com/intent/tweet");
   url.searchParams.set(
@@ -164,7 +162,7 @@ ${appUrl}`,
 }
 
 .text-icon {
-  width: 1rem;
+  width: 1.5rem;
   margin-right: 0.5rem;
 }
 
