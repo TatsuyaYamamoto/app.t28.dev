@@ -20,6 +20,9 @@
         <span class="text">
           {{ text }}
         </span>
+        <span>
+          {{ `あと、今日はエイプリルフールだね。` }}
+        </span>
       </div>
 
       <div class="buttons">
@@ -79,11 +82,11 @@ const text = computed(() => {
   }
 
   const map = {
-    kaho: `かほ、みーつけた`,
-    kozue: `こず、みーつけた`,
-    sayaka: `さや、みーつけた`,
-    megumi: `めぐ、みーつけた`,
-    rurino: `るり、みーつけた`,
+    kaho: `かほ、みーつけた。`,
+    kozue: `こず、みーつけた。`,
+    sayaka: `さや、みーつけた。`,
+    megumi: `めぐ、みーつけた。`,
+    rurino: `るり、みーつけた。`,
   };
   return map[model.value];
 });
@@ -97,8 +100,8 @@ const onClickForShare = () => {
     return;
   }
 
-  const hashtags = `#ハスノソラファンタジー #蓮ノ空 #lovelive`;
-  const appUrl = `https://app.t28.dev/lovelive/sayaka-bd-2024`;
+  const hashtags = `#しらないところでかくれんぼしてきたよ #蓮ノ空 #lovelive`;
+  const appUrl = `https://app.t28.dev/lovelive/aprilfool-202`;
 
   const url = new URL("https://twitter.com/intent/tweet");
   url.searchParams.set(
