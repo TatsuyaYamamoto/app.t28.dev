@@ -1,6 +1,6 @@
 <template>
   <TresGroup ref="rootGroupRef">
-    <TresGroup :position="charaPosition">
+    <TresGroup>
       <!--  フィールド    -->
       <template v-for="(tiles, i) in FIELD_TILE_BLOCKS">
         <template v-for="(_tile, j) in tiles">
@@ -27,7 +27,7 @@
     </TresGroup>
 
     <!-- フィールドマップ -->
-    <TresGroup :position="[-400, 200, 1]">
+    <TresGroup :position="fieldMapPosition">
       <TresMesh>
         <TresPlaneGeometry :args="[FIELD_MAP_SIZE.x, FIELD_MAP_SIZE.y]" />
         <TresMeshBasicMaterial color="white" />
@@ -43,13 +43,18 @@
       <div class="keyboard-area">
         <Keyboard />
       </div>
+      <div class="notification-area">
+        <FieldBorderNotification
+          :model-value="shouldOpenFieldBorderNotification"
+        />
+      </div>
     </CanvasPortal>
   </TresGroup>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, ref, shallowRef, watch } from "vue";
-import { useRenderLoop } from "@tresjs/core";
+import { useRenderLoop, useTresContext } from "@tresjs/core";
 import { useMagicKeys } from "@vueuse/core";
 
 import {
@@ -62,11 +67,13 @@ import type { Group } from "three";
 import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../components/useAssetLoader.ts";
 import Keyboard from "../components/Keyboard.vue";
+import FieldBorderNotification from "../components/FieldBorderNotification.vue";
 
 const emit = defineEmits<{
   (e: "finish"): void;
 }>();
 
+const { camera } = useTresContext();
 const { onLoop } = useRenderLoop();
 const { getTexture, getSpine } = useAssetLoader();
 const { w: up, a: left, s: down, d: right } = useMagicKeys();
@@ -103,6 +110,10 @@ const FIELD_POSITION_OFFSETS = {
   x: FIELD_WIDTH / 2 - FIELD_TILE_WIDTH / 2,
   y: FIELD_HEIGHT / 2 - FIELD_TILE_HEIGHT / 2,
 };
+const CHARA_POSITION_RANGE = {
+  x: { min: (-1 * FIELD_WIDTH) / 2, max: FIELD_WIDTH / 2 },
+  y: { min: (-1 * FIELD_HEIGHT) / 2, max: FIELD_HEIGHT / 2 },
+} as const;
 const TARGET_ITEMS = [
   {
     position: { x: 100, y: 100 },
@@ -119,6 +130,8 @@ const FIELD_MAP_SIZE = {
   x: 100,
   y: 100,
 };
+
+const shouldOpenFieldBorderNotification = ref(false);
 
 const tsuzuriMotionState = computed<"idle" | "walk_L" | "walk_R">((prev) => {
   if (right.value) {
@@ -183,7 +196,16 @@ const velocity = computed(() => {
 });
 
 const charaPosition = shallowRef<[number, number, number]>([0, 0, 0]);
-const fieldMapPinPosition = shallowRef<[number, number, number]>([0, 0, 0]);
+const fieldMapPosition = computed<[number, number, number]>(() => {
+  return [charaPosition.value[0] - 400, charaPosition.value[1] + 200, 1];
+});
+const fieldMapPinPosition = computed<[number, number, number]>(() => {
+  return [
+    charaPosition.value[0] * (FIELD_MAP_SIZE.x / FIELD_WIDTH),
+    charaPosition.value[1] * (FIELD_MAP_SIZE.y / FIELD_HEIGHT),
+    0,
+  ];
+});
 
 const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
   const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
@@ -207,17 +229,38 @@ const init = async () => {
 onLoop(({ delta }) => {
   tsuzuriSkeletonMesh?.update(delta);
 
-  charaPosition.value = [
-    charaPosition.value[0] - velocity.value.x * delta,
-    charaPosition.value[1] - velocity.value.y * delta,
-    charaPosition.value[2],
-  ];
+  let newCharaPositionX = charaPosition.value[0] + velocity.value.x * delta;
+  let newCharaPositionY = charaPosition.value[1] + velocity.value.y * delta;
 
-  fieldMapPinPosition.value = [
-    -1 * charaPosition.value[0] * (FIELD_MAP_SIZE.x / FIELD_WIDTH),
-    -1 * charaPosition.value[1] * (FIELD_MAP_SIZE.y / FIELD_HEIGHT),
-    0,
-  ];
+  tsuzuriSkeletonMesh?.position.setX(newCharaPositionX);
+  tsuzuriSkeletonMesh?.position.setY(newCharaPositionY);
+  camera.value?.position.setX(newCharaPositionX);
+  camera.value?.position.setY(newCharaPositionY);
+
+  // if (newCharaPositionX < CHARA_POSITION_RANGE.x.min) {
+  //   newCharaPositionX = CHARA_POSITION_RANGE.x.min;
+  //   shouldOpenFieldBorderNotification.value = true;
+  //
+  //   console.log("???", {
+  //     newCharaPositionX,
+  //     shouldOpenFieldBorderNotification:
+  //       shouldOpenFieldBorderNotification.value,
+  //   });
+  // }
+  // if (CHARA_POSITION_RANGE.x.max < newCharaPositionX) {
+  //   newCharaPositionX = CHARA_POSITION_RANGE.x.max;
+  //   shouldOpenFieldBorderNotification.value = true;
+  // }
+  // if (newCharaPositionY < CHARA_POSITION_RANGE.y.min) {
+  //   newCharaPositionY = CHARA_POSITION_RANGE.y.min;
+  //   shouldOpenFieldBorderNotification.value = true;
+  // }
+  // if (CHARA_POSITION_RANGE.y.max < newCharaPositionY) {
+  //   newCharaPositionY = CHARA_POSITION_RANGE.y.max;
+  //   shouldOpenFieldBorderNotification.value = true;
+  // }
+
+  charaPosition.value = [newCharaPositionX, newCharaPositionY, 0];
 });
 
 onMounted(() => {
@@ -231,5 +274,11 @@ onMounted(() => {
 
   left: 0.5rem;
   bottom: 0.5rem;
+}
+
+.notification-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
 }
 </style>
