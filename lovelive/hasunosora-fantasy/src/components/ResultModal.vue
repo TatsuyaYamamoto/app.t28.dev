@@ -15,9 +15,16 @@
     >
       <img v-if="imageUrl" :src="imageUrl" class="image" />
 
+      <div class="serifu">
+        <img class="text-icon" :src="tsuzuri_icon" />
+        <span class="text">
+          {{ text }}
+        </span>
+      </div>
+
       <div class="buttons">
         <button class="button" @click="onClickForTitle">
-          <img class="button-image" alt="タイトルへ" :src="kekka_retry" />
+          <img class="button-image" alt="タイトルへ" :src="kekka_continue" />
         </button>
         <button class="button" @click="onClickForShare">
           <img class="button-image" alt="結果をシェア" :src="kekka_share" />
@@ -33,8 +40,9 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import kekka_retry from "../assets/kekka_retry.png";
+import kekka_continue from "../assets/kekka_continue.png";
 import kekka_share from "../assets/kekka_share.png";
+import tsuzuri_icon from "../assets/tsuzuri_icon.png";
 
 import kaho from "../assets/target_kaho.png";
 import kozue from "../assets/target_kozue.png";
@@ -65,6 +73,21 @@ const imageUrl = computed(() => {
   return map[model.value];
 });
 
+const text = computed(() => {
+  if (!model.value) {
+    return;
+  }
+
+  const map = {
+    kaho: `かほ、みーつけた`,
+    kozue: `こず、みーつけた`,
+    sayaka: `さや、みーつけた`,
+    megumi: `めぐ、みーつけた`,
+    rurino: `るり、みーつけた`,
+  };
+  return map[model.value];
+});
+
 const onClickForTitle = () => {
   emit("clickButton");
 };
@@ -77,18 +100,10 @@ const onClickForShare = () => {
   const hashtags = `#ハスノソラファンタジー #蓮ノ空 #lovelive`;
   const appUrl = `https://app.t28.dev/lovelive/sayaka-bd-2024`;
 
-  const texts = {
-    kaho: `かほ、みーつけた`,
-    kozue: `こず、みーつけた`,
-    sayaka: `さや、みーつけた`,
-    megumi: `める、みーつけた`,
-    rurino: `るり、みーつけた`,
-  };
-
   const url = new URL("https://twitter.com/intent/tweet");
   url.searchParams.set(
     "text",
-    `${texts[model.value]}
+    `${text.value}
 
 ${hashtags}
 ${appUrl}`,
@@ -133,6 +148,25 @@ ${appUrl}`,
 
 .button-image {
   width: 100%;
+}
+
+.serifu {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+
+  margin: 0.2rem 0;
+}
+
+.text-icon {
+  width: 1rem;
+  margin-right: 0.5rem;
+}
+
+.text {
+  font-size: 0.8rem;
 }
 
 .credits {
