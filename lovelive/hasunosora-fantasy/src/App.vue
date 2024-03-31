@@ -27,10 +27,13 @@
         v-if="currentPage === 'loading'"
         @loadCompleted="onLoadCompleted"
       />
-      <GamePage v-if="currentPage === 'game'" @finish="onGameFinished" />
+      <GamePage
+        v-if="currentPage === 'game'"
+        v-model:game-result="gameResult"
+      />
     </TresCanvas>
 
-    <ResultModal v-model="gameResult" />
+    <ResultModal v-model="gameResult" @click-button="onClickContinue" />
   </div>
 </template>
 
@@ -64,11 +67,8 @@ const onLoadCompleted = () => {
   currentPage.value = "game";
 };
 
-const onGameFinished = (
-  result: "kaho" | "kozue" | "sayaka" | "megumi" | "rurino",
-) => {
-  console.log("finish!", result);
-  gameResult.value = result;
+const onClickContinue = () => {
+  gameResult.value = null;
 };
 </script>
 

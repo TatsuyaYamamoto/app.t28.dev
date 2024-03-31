@@ -23,6 +23,10 @@
           <img class="button-image" alt="結果をシェア" :src="kekka_share" />
         </button>
       </div>
+      <div class="credits">
+        <span>🎨 <a href="https://twitter.com/xxsanzashixx">さんざし</a></span>
+        <span>💻 <a href="https://twitter.com/T28_tatsuya">T28</a></span>
+      </div>
     </div>
   </v-overlay>
 </template>
@@ -70,15 +74,15 @@ const onClickForShare = () => {
     return;
   }
 
-  const hashtags = `#さやかちゃんのおべんとう #蓮ノ空 #村野さやか生誕祭2024`;
+  const hashtags = `#ハスノソラファンタジー #蓮ノ空 #lovelive`;
   const appUrl = `https://app.t28.dev/lovelive/sayaka-bd-2024`;
 
   const texts = {
-    kaho: `かほ`,
-    kozue: `こず`,
-    sayaka: `さや`,
-    megumi: `める`,
-    rurino: `るり`,
+    kaho: `かほ、みーつけた`,
+    kozue: `こず、みーつけた`,
+    sayaka: `さや、みーつけた`,
+    megumi: `める、みーつけた`,
+    rurino: `るり、みーつけた`,
   };
 
   const url = new URL("https://twitter.com/intent/tweet");
@@ -129,5 +133,16 @@ ${appUrl}`,
 
 .button-image {
   width: 100%;
+}
+
+.credits {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.4rem;
+}
+a {
+  color: rgb(83, 46, 33);
+  text-decoration: none;
 }
 </style>

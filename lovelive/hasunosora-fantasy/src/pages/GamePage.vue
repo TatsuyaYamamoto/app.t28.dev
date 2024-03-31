@@ -21,7 +21,6 @@
     <!--  ターゲット -->
     <template v-for="target in targets">
       <TresMesh
-        v-if="target.active"
         :position="[
           target.position.x,
           target.position.y + target.item.size.y / 2,
@@ -60,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef, watch } from "vue";
+import { computed, onMounted, ref, shallowRef, triggerRef, watch } from "vue";
 import { useRenderLoop, useTresContext } from "@tresjs/core";
 
 import {
@@ -76,9 +75,9 @@ import Keyboard from "../components/Keyboard.vue";
 import FieldBorderNotification from "../components/FieldBorderNotification.vue";
 import { useController } from "../components/useController.ts";
 
-const emit = defineEmits<{
-  (e: "finish", chara: "kaho" | "kozue" | "sayaka" | "megumi" | "rurino"): void;
-}>();
+const gameResultModel = defineModel<
+  "kaho" | "kozue" | "sayaka" | "megumi" | "rurino" | null
+>("gameResult", { required: true });
 
 const { camera } = useTresContext();
 const { onLoop } = useRenderLoop();
@@ -151,10 +150,7 @@ const FIELD_MAP_SIZE = {
 };
 const TARGET_COLLISION_AREA_RADIUS = 100;
 
-const result = ref<"kaho" | "kozue" | "sayaka" | "megumi" | "rurino" | null>(
-  null,
-);
-const isPlayerControllable = computed(() => !result.value);
+const isPlayerControllable = computed(() => !gameResultModel.value);
 const shouldOpenFieldBorderNotification = ref(false);
 const targets = shallowRef<
   {
@@ -164,7 +160,7 @@ const targets = shallowRef<
       size: { x: number; y: number };
       texture: Texture;
     };
-    active: boolean;
+    isFound: boolean;
   }[]
 >([
   {
@@ -174,7 +170,7 @@ const targets = shallowRef<
       size: { x: 377 * 0.2, y: 600 * 0.2 },
       texture: textures.kahoItem,
     },
-    active: true,
+    isFound: false,
   },
   {
     name: "kozue",
@@ -183,7 +179,7 @@ const targets = shallowRef<
       size: { x: 799 * 0.2, y: 600 * 0.2 },
       texture: textures.kozueItem,
     },
-    active: true,
+    isFound: false,
   },
   {
     name: "sayaka",
@@ -192,7 +188,7 @@ const targets = shallowRef<
       size: { x: 759 * 0.2, y: 422 * 0.2 },
       texture: textures.sayakaItem,
     },
-    active: true,
+    isFound: false,
   },
   {
     name: "megumi",
@@ -201,7 +197,7 @@ const targets = shallowRef<
       size: { x: 659 * 0.2, y: 600 * 0.2 },
       texture: textures.megumiItem,
     },
-    active: true,
+    isFound: false,
   },
   {
     name: "rurino",
@@ -210,7 +206,7 @@ const targets = shallowRef<
       size: { x: 870 * 0.2, y: 600 * 0.2 },
       texture: textures.rurinoItem,
     },
-    active: true,
+    isFound: false,
   },
 ]);
 
@@ -251,12 +247,6 @@ watch(tsuzuriMotionState, (current) => {
 
   const animationName = current === "walk_R" ? "walk_L" : current;
   tsuzuriSkeletonMesh.state.setAnimation(0, animationName, true);
-});
-
-watch(result, (current) => {
-  if (current) {
-    emit("finish", current);
-  }
 });
 
 const velocity = computed(() => {
@@ -326,8 +316,6 @@ const init = async () => {
 
   tsuzuriSkeletonMesh.state.setAnimation(0, animations.idle, true);
   rootGroupRef.value?.add(tsuzuriSkeletonMesh);
-
-  result.value = null;
 };
 
 onLoop(({ delta }) => {
@@ -360,9 +348,9 @@ onLoop(({ delta }) => {
 
   charaPosition.value = [newCharaPositionX, newCharaPositionY, 0];
 
-  if (!result.value) {
+  if (!gameResultModel.value) {
     for (const item of targets.value) {
-      if (!item.active) {
+      if (item.isFound) {
         continue;
       }
 
@@ -372,7 +360,9 @@ onLoop(({ delta }) => {
       );
 
       if (distance < TARGET_COLLISION_AREA_RADIUS) {
-        result.value = item.name;
+        gameResultModel.value = item.name;
+        item.isFound = true;
+        triggerRef(targets);
         break;
       }
     }
