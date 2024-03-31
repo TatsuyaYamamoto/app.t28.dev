@@ -27,8 +27,10 @@
         v-if="currentPage === 'loading'"
         @loadCompleted="onLoadCompleted"
       />
-      <GamePage v-if="currentPage === 'game'" />
+      <GamePage v-if="currentPage === 'game'" @finish="onGameFinished" />
     </TresCanvas>
+
+    <ResultModal v-model="gameResult" />
   </div>
 </template>
 
@@ -41,10 +43,10 @@ import { useRendererSize } from "shared/hooks/useRendererSize";
 
 import LoadingPage from "./pages/LoadingPage.vue";
 import GamePage from "./pages/GamePage.vue";
+import ResultModal from "./components/ResultModal.vue";
 
 const pageMap = {
   loading: "loading",
-  title: "title",
   game: "game",
 };
 
@@ -53,10 +55,20 @@ const { rendererRotate, rendererWidthPx, rendererHeightPx } = useRendererSize(
   4226,
 );
 
+const gameResult = ref<
+  "kaho" | "kozue" | "sayaka" | "megumi" | "rurino" | null
+>(null);
 const currentPage = ref<keyof typeof pageMap>("loading");
 
 const onLoadCompleted = () => {
   currentPage.value = "game";
+};
+
+const onGameFinished = (
+  result: "kaho" | "kozue" | "sayaka" | "megumi" | "rurino",
+) => {
+  console.log("finish!", result);
+  gameResult.value = result;
 };
 </script>
 

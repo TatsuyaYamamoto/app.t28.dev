@@ -1,7 +1,7 @@
 <template>
   <TresGroup ref="rootGroupRef">
+    <!--  フィールド    -->
     <TresGroup>
-      <!--  フィールド    -->
       <template v-for="(tiles, i) in RENDERING_FIELD_TILE_BLOCKS">
         <template v-for="(_tile, j) in tiles">
           <TresMesh
@@ -16,18 +16,22 @@
           </TresMesh>
         </template>
       </template>
-
-      <!--  ターゲット -->
-      <template v-for="item in targetItems">
-        <TresMesh
-          v-if="!item.isGot"
-          :position="[item.position.x, item.position.y, 0]"
-        >
-          <TresPlaneGeometry :args="[item.size.x, item.size.y]" />
-          <TresMeshBasicMaterial :map="item.texture" transparent />
-        </TresMesh>
-      </template>
     </TresGroup>
+
+    <!--  ターゲット -->
+    <template v-for="target in targets">
+      <TresMesh
+        v-if="target.active"
+        :position="[
+          target.position.x,
+          target.position.y + target.item.size.y / 2,
+          0,
+        ]"
+      >
+        <TresPlaneGeometry :args="[target.item.size.x, target.item.size.y]" />
+        <TresMeshBasicMaterial :map="target.item.texture" transparent />
+      </TresMesh>
+    </template>
 
     <!-- フィールドマップ -->
     <TresGroup :position="fieldMapPosition">
@@ -56,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef, watch, triggerRef } from "vue";
+import { computed, onMounted, ref, shallowRef, watch } from "vue";
 import { useRenderLoop, useTresContext } from "@tresjs/core";
 
 import {
@@ -64,7 +68,7 @@ import {
   SkeletonJson,
   SkeletonMesh,
 } from "@esotericsoftware/spine-threejs";
-import type { Group } from "three";
+import type { Group, Texture } from "three";
 
 import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../components/useAssetLoader.ts";
@@ -73,7 +77,7 @@ import FieldBorderNotification from "../components/FieldBorderNotification.vue";
 import { useController } from "../components/useController.ts";
 
 const emit = defineEmits<{
-  (e: "finish"): void;
+  (e: "finish", chara: "kaho" | "kozue" | "sayaka" | "megumi" | "rurino"): void;
 }>();
 
 const { camera } = useTresContext();
@@ -87,10 +91,15 @@ const tsuzuriSpine = getSpine("tsuzuri");
 const textures = {
   fieldGrass: getTexture("field_grass"),
   kaho: getTexture("target_kaho"),
+  kahoItem: getTexture("target_kaho_item"),
   kozue: getTexture("target_kozue"),
+  kozueItem: getTexture("target_kozue_item"),
   sayaka: getTexture("target_sayaka"),
+  sayakaItem: getTexture("target_sayaka_item"),
   megumi: getTexture("target_megumi"),
+  megumiItem: getTexture("target_megumi_item"),
   rurino: getTexture("target_rurino"),
+  rurinoItem: getTexture("target_rurino_item"),
 };
 const animations = {
   idle: "idle",
@@ -99,7 +108,7 @@ const animations = {
 
 const WALK_VELOCITY = 300;
 
-const TSUZURI_SKELETON_SCALE = 0.05;
+const TSUZURI_SKELETON_SCALE = 0.08;
 const FIELD_TILE_WIDTH = 350;
 const FIELD_TILE_HEIGHT = 350;
 const RENDERING_FIELD_TILE_BLOCKS = [
@@ -124,8 +133,8 @@ const RENDERING_FIELD_POSITION_OFFSETS = {
   y: RENDERING_FIELD_HEIGHT / 2 - FIELD_TILE_HEIGHT / 2,
 };
 
-const CONTROLLABLE_FIELD_WIDTH = FIELD_TILE_WIDTH * 5;
-const CONTROLLABLE_FIELD_HEIGHT = FIELD_TILE_HEIGHT * 5;
+const CONTROLLABLE_FIELD_WIDTH = FIELD_TILE_WIDTH * 7;
+const CONTROLLABLE_FIELD_HEIGHT = FIELD_TILE_HEIGHT * 7;
 const CHARA_POSITION_RANGE = {
   x: {
     min: (-1 * CONTROLLABLE_FIELD_WIDTH) / 2,
@@ -140,43 +149,76 @@ const FIELD_MAP_SIZE = {
   x: 100,
   y: 100,
 };
-const TARGET_COLLISION_AREA_RADIUS = 50;
+const TARGET_COLLISION_AREA_RADIUS = 100;
 
+const result = ref<"kaho" | "kozue" | "sayaka" | "megumi" | "rurino" | null>(
+  null,
+);
+const isPlayerControllable = computed(() => !result.value);
 const shouldOpenFieldBorderNotification = ref(false);
-const targetItems = shallowRef([
+const targets = shallowRef<
   {
-    position: { x: 100, y: 100 },
-    size: { x: 300 * 0.2, y: 352 * 0.2 },
-    texture: textures.kaho,
-    isGot: false,
+    name: "kaho" | "kozue" | "sayaka" | "megumi" | "rurino";
+    position: { x: number; y: number };
+    item: {
+      size: { x: number; y: number };
+      texture: Texture;
+    };
+    active: boolean;
+  }[]
+>([
+  {
+    name: "kaho",
+    position: { x: 200, y: 0 },
+    item: {
+      size: { x: 377 * 0.2, y: 600 * 0.2 },
+      texture: textures.kahoItem,
+    },
+    active: true,
   },
   {
-    position: { x: 300, y: 300 },
-    size: { x: 246 * 0.2, y: 350 * 0.2 },
-    texture: textures.kozue,
-    isGot: false,
-  },
-  {
+    name: "kozue",
     position: { x: 500, y: 500 },
-    size: { x: 50, y: 50 },
-    texture: textures.sayaka,
-    isGot: false,
+    item: {
+      size: { x: 799 * 0.2, y: 600 * 0.2 },
+      texture: textures.kozueItem,
+    },
+    active: true,
   },
   {
-    position: { x: 300, y: -100 },
-    size: { x: 300 * 0.2, y: 437 * 0.2 },
-    texture: textures.megumi,
-    isGot: false,
+    name: "sayaka",
+    position: { x: -500, y: -500 },
+    item: {
+      size: { x: 759 * 0.2, y: 422 * 0.2 },
+      texture: textures.sayakaItem,
+    },
+    active: true,
   },
   {
-    position: { x: -300, y: -300 },
-    size: { x: 300 * 0.2, y: 347 * 0.2 },
-    texture: textures.rurino,
-    isGot: false,
+    name: "megumi",
+    position: { x: 300, y: -700 },
+    item: {
+      size: { x: 659 * 0.2, y: 600 * 0.2 },
+      texture: textures.megumiItem,
+    },
+    active: true,
+  },
+  {
+    name: "rurino",
+    position: { x: -600, y: -600 },
+    item: {
+      size: { x: 870 * 0.2, y: 600 * 0.2 },
+      texture: textures.rurinoItem,
+    },
+    active: true,
   },
 ]);
 
 const tsuzuriMotionState = computed<"idle" | "walk_L" | "walk_R">((prev) => {
+  if (!isPlayerControllable.value) {
+    return "idle";
+  }
+
   if (right.value) {
     return "walk_L";
   }
@@ -211,7 +253,17 @@ watch(tsuzuriMotionState, (current) => {
   tsuzuriSkeletonMesh.state.setAnimation(0, animationName, true);
 });
 
+watch(result, (current) => {
+  if (current) {
+    emit("finish", current);
+  }
+});
+
 const velocity = computed(() => {
+  if (!isPlayerControllable.value) {
+    return { x: 0, y: 0 };
+  }
+
   let x = 0;
   let y = 0;
   if (up.value) {
@@ -274,6 +326,8 @@ const init = async () => {
 
   tsuzuriSkeletonMesh.state.setAnimation(0, animations.idle, true);
   rootGroupRef.value?.add(tsuzuriSkeletonMesh);
+
+  result.value = null;
 };
 
 onLoop(({ delta }) => {
@@ -306,20 +360,21 @@ onLoop(({ delta }) => {
 
   charaPosition.value = [newCharaPositionX, newCharaPositionY, 0];
 
-  for (const item of targetItems.value) {
-    if (item.isGot) {
-      continue;
-    }
+  if (!result.value) {
+    for (const item of targets.value) {
+      if (!item.active) {
+        continue;
+      }
 
-    const distance = calcDistance(
-      { x: newCharaPositionX, y: newCharaPositionY },
-      item.position,
-    );
+      const distance = calcDistance(
+        { x: newCharaPositionX, y: newCharaPositionY },
+        item.position,
+      );
 
-    if (distance < TARGET_COLLISION_AREA_RADIUS) {
-      item.isGot = true;
-      triggerRef(targetItems);
-      break;
+      if (distance < TARGET_COLLISION_AREA_RADIUS) {
+        result.value = item.name;
+        break;
+      }
     }
   }
 });
