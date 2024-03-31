@@ -58,7 +58,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, shallowRef, watch, triggerRef } from "vue";
 import { useRenderLoop, useTresContext } from "@tresjs/core";
-import { useMagicKeys } from "@vueuse/core";
 
 import {
   AtlasAttachmentLoader,
@@ -71,6 +70,7 @@ import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../components/useAssetLoader.ts";
 import Keyboard from "../components/Keyboard.vue";
 import FieldBorderNotification from "../components/FieldBorderNotification.vue";
+import { useController } from "../components/useController.ts";
 
 const emit = defineEmits<{
   (e: "finish"): void;
@@ -79,7 +79,7 @@ const emit = defineEmits<{
 const { camera } = useTresContext();
 const { onLoop } = useRenderLoop();
 const { getTexture, getSpine } = useAssetLoader();
-const { w: up, a: left, s: down, d: right } = useMagicKeys();
+const { up, left, down, right } = useController();
 
 const rootGroupRef = ref<Group>();
 let tsuzuriSkeletonMesh: SkeletonMesh | null = null;
