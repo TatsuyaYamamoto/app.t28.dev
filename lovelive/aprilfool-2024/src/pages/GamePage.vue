@@ -166,7 +166,7 @@ const targets = shallowRef<
 >([
   {
     name: "kaho",
-    position: { x: 200, y: 0, z: 0 },
+    position: { x: 300, y: 250, z: 0 },
     item: {
       size: { x: 377 * 0.2, y: 600 * 0.2 },
       texture: textures.kahoItem,
@@ -175,7 +175,7 @@ const targets = shallowRef<
   },
   {
     name: "kozue",
-    position: { x: 500, y: 500, z: 0 },
+    position: { x: 700, y: 700, z: 0 },
     item: {
       size: { x: 799 * 0.2, y: 600 * 0.2 },
       texture: textures.kozueItem,
@@ -193,7 +193,7 @@ const targets = shallowRef<
   },
   {
     name: "megumi",
-    position: { x: 300, y: -700, z: 0 },
+    position: { x: 300, y: -800, z: 0 },
     item: {
       size: { x: 659 * 0.2, y: 600 * 0.2 },
       texture: textures.megumiItem,
@@ -202,7 +202,7 @@ const targets = shallowRef<
   },
   {
     name: "rurino",
-    position: { x: -600, y: -600, z: 0 },
+    position: { x: -1100, y: 1100, z: 0 },
     item: {
       size: { x: 870 * 0.2, y: 600 * 0.2 },
       texture: textures.rurinoItem,
