@@ -33,10 +33,12 @@
     <TresGroup :position="fieldMapPosition">
       <TresMesh>
         <TresPlaneGeometry :args="[FIELD_MAP_SIZE.x, FIELD_MAP_SIZE.y]" />
+        <!-- @vue-expect-error -->
         <TresMeshBasicMaterial color="white" />
       </TresMesh>
       <TresMesh :position="fieldMapPinPosition">
         <TresSphereGeometry :args="[2, 32, 32]" />
+        <!-- @vue-expect-error -->
         <TresMeshBasicMaterial color="red" />
       </TresMesh>
     </TresGroup>
