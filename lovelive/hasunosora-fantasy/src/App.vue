@@ -1,7 +1,7 @@
 <template>
   <div class="canvas-wrapper">
     <TresCanvas
-      clear-color="#82DBC5"
+      clear-color="#ffffff"
       :output-color-space="
         /* https://discourse.threejs.org/t/why-the-color-palette-change-from-v0-150-1-to-v0-152-2/51417/2 */
         LinearSRGBColorSpace
