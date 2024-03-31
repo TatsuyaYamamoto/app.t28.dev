@@ -44,18 +44,19 @@ const {
 
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 .keyboard-line {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .key {
   text-align: center;
   box-sizing: border-box;
-  height: 1.8rem;
+  height: 2rem;
+  width: 2.2rem;
   line-height: 1rem;
   padding: 0.1rem 0.4rem;
   user-select: none;
@@ -65,6 +66,7 @@ const {
   cursor: pointer;
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 .pressed {
