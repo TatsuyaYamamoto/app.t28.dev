@@ -86,6 +86,8 @@ const textures = {
   fieldGrass: getTexture("field_grass"),
   kaho: getTexture("target_kaho"),
   sayaka: getTexture("target_sayaka"),
+  megumi: getTexture("target_megumi"),
+  rurino: getTexture("target_rurino"),
 };
 const animations = {
   idle: "idle",
@@ -143,14 +145,14 @@ const targetItems = shallowRef([
   },
   {
     position: { x: 300, y: -100 },
-    size: { x: 50, y: 50 },
-    texture: textures.sayaka,
+    size: { x: 300 * 0.2, y: 437 * 0.2 },
+    texture: textures.megumi,
     isGot: false,
   },
   {
     position: { x: -300, y: -300 },
-    size: { x: 50, y: 50 },
-    texture: textures.sayaka,
+    size: { x: 300 * 0.2, y: 347 * 0.2 },
+    texture: textures.rurino,
     isGot: false,
   },
 ]);

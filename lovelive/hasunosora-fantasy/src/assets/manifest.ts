@@ -1,19 +1,13 @@
-import title from "../assets/title.png";
-import background_title_base from "../assets/background_title_base.png";
-import background_title_line from "../assets/background_title_line.png";
-import bowl1 from "../assets/bowl1.png";
-import bowl2 from "../assets/bowl2.png";
-import game_megumi1 from "../assets/megumi1.png";
-import game_megumi2 from "../assets/megumi2.png";
-import table from "../assets/table.png";
 import field_grass from "../assets/field_grass.jpg";
 
 import target_kaho from "../assets/target_kaho.png";
 import target_sayaka from "../assets/tsuzuri_walk_1.png";
+import target_megumi from "../assets/target_megumi.png";
+import target_rurino from "../assets/target_rurino.png";
 
-import tsuzuri_atlas from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.atlas?raw";
-import tsuzuri_skeleton from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.json";
-import tsuzuri_sprite from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.png";
+import tsuzuri_atlas from "../../spines/aprilfool-2024-tsuzuri/exports/aprilfool-2024-tsuzuri.atlas?raw";
+import tsuzuri_skeleton from "../../spines/aprilfool-2024-tsuzuri/exports/aprilfool-2024-tsuzuri.json";
+import tsuzuri_sprite from "../../spines/aprilfool-2024-tsuzuri/exports/aprilfool-2024-tsuzuri.png";
 
 export const IMAGE_MANIFEST = [
   {
@@ -29,36 +23,12 @@ export const IMAGE_MANIFEST = [
     src: target_sayaka,
   },
   {
-    id: "background_title_base",
-    src: background_title_base,
+    id: "target_megumi",
+    src: target_megumi,
   },
   {
-    id: "background_title_line",
-    src: background_title_line,
-  },
-  {
-    id: "title",
-    src: title,
-  },
-  {
-    id: "bowl1",
-    src: bowl1,
-  },
-  {
-    id: "bowl2",
-    src: bowl2,
-  },
-  {
-    id: "game_megumi1",
-    src: game_megumi1,
-  },
-  {
-    id: "game_megumi2",
-    src: game_megumi2,
-  },
-  {
-    id: "table",
-    src: table,
+    id: "target_rurino",
+    src: target_rurino,
   },
 ] as const;
 
