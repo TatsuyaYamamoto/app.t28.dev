@@ -35,27 +35,34 @@ export const useController = () => {
   };
 
   onMounted(() => {
-    upPointerEl.value?.addEventListener("touchstart", onTouchStart.up);
-    leftPointerEl.value?.addEventListener("touchstart", onTouchStart.left);
-    downPointerEl.value?.addEventListener("touchstart", onTouchStart.down);
-    rightPointerEl.value?.addEventListener("touchstart", onTouchStart.right);
+    if (isTouchDevice) {
+      upPointerEl.value?.addEventListener("touchstart", onTouchStart.up);
+      leftPointerEl.value?.addEventListener("touchstart", onTouchStart.left);
+      downPointerEl.value?.addEventListener("touchstart", onTouchStart.down);
+      rightPointerEl.value?.addEventListener("touchstart", onTouchStart.right);
 
-    upPointerEl.value?.addEventListener("touchend", onTouchEnd.up);
-    leftPointerEl.value?.addEventListener("touchend", onTouchEnd.left);
-    downPointerEl.value?.addEventListener("touchend", onTouchEnd.down);
-    rightPointerEl.value?.addEventListener("touchend", onTouchEnd.right);
+      upPointerEl.value?.addEventListener("touchend", onTouchEnd.up);
+      leftPointerEl.value?.addEventListener("touchend", onTouchEnd.left);
+      downPointerEl.value?.addEventListener("touchend", onTouchEnd.down);
+      rightPointerEl.value?.addEventListener("touchend", onTouchEnd.right);
+    }
   });
 
   onUnmounted(() => {
-    upPointerEl.value?.removeEventListener("touchstart", onTouchStart.up);
-    leftPointerEl.value?.removeEventListener("touchstart", onTouchStart.left);
-    downPointerEl.value?.removeEventListener("touchstart", onTouchStart.down);
-    rightPointerEl.value?.removeEventListener("touchstart", onTouchStart.right);
+    if (isTouchDevice) {
+      upPointerEl.value?.removeEventListener("touchstart", onTouchStart.up);
+      leftPointerEl.value?.removeEventListener("touchstart", onTouchStart.left);
+      downPointerEl.value?.removeEventListener("touchstart", onTouchStart.down);
+      rightPointerEl.value?.removeEventListener(
+        "touchstart",
+        onTouchStart.right,
+      );
 
-    upPointerEl.value?.removeEventListener("touchend", onTouchEnd.up);
-    leftPointerEl.value?.removeEventListener("touchend", onTouchEnd.left);
-    downPointerEl.value?.removeEventListener("touchend", onTouchEnd.down);
-    rightPointerEl.value?.removeEventListener("touchend", onTouchEnd.right);
+      upPointerEl.value?.removeEventListener("touchend", onTouchEnd.up);
+      leftPointerEl.value?.removeEventListener("touchend", onTouchEnd.left);
+      downPointerEl.value?.removeEventListener("touchend", onTouchEnd.down);
+      rightPointerEl.value?.removeEventListener("touchend", onTouchEnd.right);
+    }
   });
 
   return {
