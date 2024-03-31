@@ -1,6 +1,7 @@
 <template>
   <TresGroup ref="rootGroupRef">
     <TresGroup :position="charaPosition">
+      <!--  フィールド    -->
       <template v-for="(tiles, i) in FIELD_TILE_BLOCKS">
         <template v-for="(_tile, j) in tiles">
           <TresMesh
@@ -11,11 +12,15 @@
           </TresMesh>
         </template>
       </template>
+
+      <!--  ターゲット -->
+      <template v-for="item in TARGET_ITEMS">
+        <TresMesh :position="[item.position.x, item.position.y, 0]">
+          <TresPlaneGeometry :args="[item.size.x, item.size.y]" />
+          <TresMeshBasicMaterial :map="item.texture" transparent />
+        </TresMesh>
+      </template>
     </TresGroup>
-    <!--    <TresMesh :position="[0, 0, 0]">-->
-    <!--      <TresPlaneGeometry :args="[100, 100]" />-->
-    <!--      <TresMeshBasicMaterial :map="textures.tsuzuriWalk1" transparent />-->
-    <!--    </TresMesh>-->
 
     <!-- TresGroup の中で CanvasPortal を定義しないと、unmount 時に tres が止まる -->
     <CanvasPortal>
@@ -55,7 +60,8 @@ let tsuzuriSkeletonMesh: SkeletonMesh | null = null;
 const tsuzuriSpine = getSpine("tsuzuri");
 const textures = {
   fieldGrass: getTexture("field_grass"),
-  tsuzuriWalk1: getTexture("tsuzuri_walk_1"),
+  kaho: getTexture("target_kaho"),
+  sayaka: getTexture("target_sayaka"),
 };
 const animations = {
   idle: "idle",
@@ -65,13 +71,27 @@ const animations = {
 const WALK_VELOCITY = 300;
 
 const TSUZURI_SKELETON_SCALE = 0.05;
-const FIELD_TILE_WIDTH = 600;
-const FIELD_TILE_HEIGHT = 600;
+const FIELD_TILE_WIDTH = 350;
+const FIELD_TILE_HEIGHT = 350;
 const FIELD_TILE_BLOCKS = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
 ] as const;
+const TARGET_ITEMS = [
+  {
+    position: { x: 100, y: 100 },
+    size: { x: 300 * 0.2, y: 352 * 0.2 },
+    texture: textures.kaho,
+  },
+  {
+    position: { x: 300, y: 300 },
+    size: { x: 50, y: 50 },
+    texture: textures.sayaka,
+  },
+];
 const fieldWidth = FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length;
 const fieldHeight = FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length;
 
@@ -95,8 +115,6 @@ const tsuzuriMotionState = computed<"idle" | "walk_L" | "walk_R">((prev) => {
 });
 
 watch(tsuzuriMotionState, (current) => {
-  console.log(current);
-
   if (!tsuzuriSkeletonMesh) {
     return;
   }

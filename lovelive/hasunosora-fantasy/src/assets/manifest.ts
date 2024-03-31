@@ -6,8 +6,10 @@ import bowl2 from "../assets/bowl2.png";
 import game_megumi1 from "../assets/megumi1.png";
 import game_megumi2 from "../assets/megumi2.png";
 import table from "../assets/table.png";
-import field_grass from "../assets/field_grass.png";
-import tsuzuri_walk_1 from "../assets/tsuzuri_walk_1.png";
+import field_grass from "../assets/field_grass.jpg";
+
+import target_kaho from "../assets/target_kaho.png";
+import target_sayaka from "../assets/tsuzuri_walk_1.png";
 
 import tsuzuri_atlas from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.atlas?raw";
 import tsuzuri_skeleton from "../../spines/aprilfool-2024-tsuzuri/out/aprilfool-2024-tsuzuri.json";
@@ -19,8 +21,12 @@ export const IMAGE_MANIFEST = [
     src: field_grass,
   },
   {
-    id: "tsuzuri_walk_1",
-    src: tsuzuri_walk_1,
+    id: "target_kaho",
+    src: target_kaho,
+  },
+  {
+    id: "target_sayaka",
+    src: target_sayaka,
   },
   {
     id: "background_title_base",
