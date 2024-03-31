@@ -21,10 +21,11 @@
     <!--  ターゲット -->
     <template v-for="target in targets">
       <TresMesh
+        v-if="!target.isFound"
         :position="[
           target.position.x,
           target.position.y + target.item.size.y / 2,
-          0,
+          target.position.z,
         ]"
       >
         <TresPlaneGeometry :args="[target.item.size.x, target.item.size.y]" />
@@ -155,7 +156,7 @@ const shouldOpenFieldBorderNotification = ref(false);
 const targets = shallowRef<
   {
     name: "kaho" | "kozue" | "sayaka" | "megumi" | "rurino";
-    position: { x: number; y: number };
+    position: { x: number; y: number; z: number };
     item: {
       size: { x: number; y: number };
       texture: Texture;
@@ -165,7 +166,7 @@ const targets = shallowRef<
 >([
   {
     name: "kaho",
-    position: { x: 200, y: 0 },
+    position: { x: 200, y: 0, z: 0 },
     item: {
       size: { x: 377 * 0.2, y: 600 * 0.2 },
       texture: textures.kahoItem,
@@ -174,7 +175,7 @@ const targets = shallowRef<
   },
   {
     name: "kozue",
-    position: { x: 500, y: 500 },
+    position: { x: 500, y: 500, z: 0 },
     item: {
       size: { x: 799 * 0.2, y: 600 * 0.2 },
       texture: textures.kozueItem,
@@ -183,7 +184,7 @@ const targets = shallowRef<
   },
   {
     name: "sayaka",
-    position: { x: -500, y: -500 },
+    position: { x: -500, y: -500, z: 0 },
     item: {
       size: { x: 759 * 0.2, y: 422 * 0.2 },
       texture: textures.sayakaItem,
@@ -192,7 +193,7 @@ const targets = shallowRef<
   },
   {
     name: "megumi",
-    position: { x: 300, y: -700 },
+    position: { x: 300, y: -700, z: 0 },
     item: {
       size: { x: 659 * 0.2, y: 600 * 0.2 },
       texture: textures.megumiItem,
@@ -201,7 +202,7 @@ const targets = shallowRef<
   },
   {
     name: "rurino",
-    position: { x: -600, y: -600 },
+    position: { x: -600, y: -600, z: 0 },
     item: {
       size: { x: 870 * 0.2, y: 600 * 0.2 },
       texture: textures.rurinoItem,
@@ -280,7 +281,7 @@ const velocity = computed(() => {
   };
 });
 
-const charaPosition = shallowRef<[number, number, number]>([0, 0, 0]);
+const charaPosition = shallowRef<[number, number, number]>([0, 0, 1]);
 const fieldMapPosition = computed<[number, number, number]>(() => {
   return [charaPosition.value[0] - 400, charaPosition.value[1] + 200, 1];
 });
@@ -348,8 +349,11 @@ onLoop(({ delta }) => {
 
   charaPosition.value = [newCharaPositionX, newCharaPositionY, 0];
 
-  if (!gameResultModel.value) {
+  if (!gameResultModel.value && tsuzuriSkeletonMesh) {
     for (const item of targets.value) {
+      item.position.z =
+        item.position.y < tsuzuriSkeletonMesh?.position.y ? 2 : 0;
+
       if (item.isFound) {
         continue;
       }
@@ -362,10 +366,10 @@ onLoop(({ delta }) => {
       if (distance < TARGET_COLLISION_AREA_RADIUS) {
         gameResultModel.value = item.name;
         item.isFound = true;
-        triggerRef(targets);
-        break;
       }
     }
+
+    triggerRef(targets);
   }
 });
 
