@@ -5,7 +5,11 @@
       <template v-for="(tiles, i) in FIELD_TILE_BLOCKS">
         <template v-for="(_tile, j) in tiles">
           <TresMesh
-            :position="[FIELD_TILE_WIDTH * i, FIELD_TILE_HEIGHT * j, 0]"
+            :position="[
+              FIELD_TILE_WIDTH * i - FIELD_POSITION_OFFSETS.x,
+              FIELD_TILE_HEIGHT * j - FIELD_POSITION_OFFSETS.y,
+              0,
+            ]"
           >
             <TresPlaneGeometry :args="[FIELD_TILE_WIDTH, FIELD_TILE_HEIGHT]" />
             <TresMeshBasicMaterial :map="textures.fieldGrass" transparent />
@@ -80,6 +84,12 @@ const FIELD_TILE_BLOCKS = [
   [0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0],
 ] as const;
+const FIELD_POSITION_OFFSETS = {
+  x:
+    // field 全体の半分から tile 幅半分を引く (tile は中心を原点に描画されるから)
+    (FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length) / 2 - FIELD_TILE_WIDTH / 2,
+  y: (FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length) / 2 - FIELD_TILE_HEIGHT / 2,
+};
 const TARGET_ITEMS = [
   {
     position: { x: 100, y: 100 },
@@ -92,8 +102,6 @@ const TARGET_ITEMS = [
     texture: textures.sayaka,
   },
 ];
-const fieldWidth = FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length;
-const fieldHeight = FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length;
 
 const tsuzuriMotionState = computed<"idle" | "walk_L" | "walk_R">((prev) => {
   if (right.value) {
