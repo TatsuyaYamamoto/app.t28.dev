@@ -26,6 +26,18 @@
       </template>
     </TresGroup>
 
+    <!-- フィールドマップ -->
+    <TresGroup :position="[-400, 200, 1]">
+      <TresMesh>
+        <TresPlaneGeometry :args="[FIELD_MAP_SIZE.x, FIELD_MAP_SIZE.y]" />
+        <TresMeshBasicMaterial color="white" />
+      </TresMesh>
+      <TresMesh :position="fieldMapPinPosition">
+        <TresSphereGeometry :args="[2, 32, 32]" />
+        <TresMeshBasicMaterial color="red" />
+      </TresMesh>
+    </TresGroup>
+
     <!-- TresGroup の中で CanvasPortal を定義しないと、unmount 時に tres が止まる -->
     <CanvasPortal>
       <div class="keyboard-area">
@@ -84,11 +96,12 @@ const FIELD_TILE_BLOCKS = [
   [0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0],
 ] as const;
+const FIELD_WIDTH = FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length;
+const FIELD_HEIGHT = FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length;
 const FIELD_POSITION_OFFSETS = {
-  x:
-    // field 全体の半分から tile 幅半分を引く (tile は中心を原点に描画されるから)
-    (FIELD_TILE_WIDTH * FIELD_TILE_BLOCKS[0].length) / 2 - FIELD_TILE_WIDTH / 2,
-  y: (FIELD_TILE_HEIGHT * FIELD_TILE_BLOCKS.length) / 2 - FIELD_TILE_HEIGHT / 2,
+  // field 全体の半分から tile 幅半分を引く (tile は中心を原点に描画されるから)
+  x: FIELD_WIDTH / 2 - FIELD_TILE_WIDTH / 2,
+  y: FIELD_HEIGHT / 2 - FIELD_TILE_HEIGHT / 2,
 };
 const TARGET_ITEMS = [
   {
@@ -102,6 +115,10 @@ const TARGET_ITEMS = [
     texture: textures.sayaka,
   },
 ];
+const FIELD_MAP_SIZE = {
+  x: 100,
+  y: 100,
+};
 
 const tsuzuriMotionState = computed<"idle" | "walk_L" | "walk_R">((prev) => {
   if (right.value) {
@@ -166,6 +183,7 @@ const velocity = computed(() => {
 });
 
 const charaPosition = shallowRef<[number, number, number]>([0, 0, 0]);
+const fieldMapPinPosition = shallowRef<[number, number, number]>([0, 0, 0]);
 
 const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
   const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
@@ -193,6 +211,12 @@ onLoop(({ delta }) => {
     charaPosition.value[0] - velocity.value.x * delta,
     charaPosition.value[1] - velocity.value.y * delta,
     charaPosition.value[2],
+  ];
+
+  fieldMapPinPosition.value = [
+    -1 * charaPosition.value[0] * (FIELD_MAP_SIZE.x / FIELD_WIDTH),
+    -1 * charaPosition.value[1] * (FIELD_MAP_SIZE.y / FIELD_HEIGHT),
+    0,
   ];
 });
 
