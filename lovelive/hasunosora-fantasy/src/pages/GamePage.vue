@@ -18,8 +18,11 @@
       </template>
 
       <!--  ターゲット -->
-      <template v-for="item in TARGET_ITEMS">
-        <TresMesh :position="[item.position.x, item.position.y, 0]">
+      <template v-for="item in targetItems">
+        <TresMesh
+          v-if="!item.isGot"
+          :position="[item.position.x, item.position.y, 0]"
+        >
           <TresPlaneGeometry :args="[item.size.x, item.size.y]" />
           <TresMeshBasicMaterial :map="item.texture" transparent />
         </TresMesh>
@@ -51,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef, watch } from "vue";
+import { computed, onMounted, ref, shallowRef, watch, triggerRef } from "vue";
 import { useRenderLoop, useTresContext } from "@tresjs/core";
 import { useMagicKeys } from "@vueuse/core";
 
@@ -112,24 +115,45 @@ const CHARA_POSITION_RANGE = {
   x: { min: (-1 * FIELD_WIDTH) / 2, max: FIELD_WIDTH / 2 },
   y: { min: (-1 * FIELD_HEIGHT) / 2, max: FIELD_HEIGHT / 2 },
 } as const;
-const TARGET_ITEMS = [
+const FIELD_MAP_SIZE = {
+  x: 100,
+  y: 100,
+};
+const TARGET_COLLISION_AREA_RADIUS = 50;
+
+const shouldOpenFieldBorderNotification = ref(false);
+const targetItems = shallowRef([
   {
     position: { x: 100, y: 100 },
     size: { x: 300 * 0.2, y: 352 * 0.2 },
     texture: textures.kaho,
+    isGot: false,
   },
   {
     position: { x: 300, y: 300 },
     size: { x: 50, y: 50 },
     texture: textures.sayaka,
+    isGot: false,
   },
-];
-const FIELD_MAP_SIZE = {
-  x: 100,
-  y: 100,
-};
-
-const shouldOpenFieldBorderNotification = ref(false);
+  {
+    position: { x: 500, y: 500 },
+    size: { x: 50, y: 50 },
+    texture: textures.sayaka,
+    isGot: false,
+  },
+  {
+    position: { x: 300, y: -100 },
+    size: { x: 50, y: 50 },
+    texture: textures.sayaka,
+    isGot: false,
+  },
+  {
+    position: { x: -300, y: -300 },
+    size: { x: 50, y: 50 },
+    texture: textures.sayaka,
+    isGot: false,
+  },
+]);
 
 const tsuzuriMotionState = computed<"idle" | "walk_L" | "walk_R">((prev) => {
   if (right.value) {
@@ -205,6 +229,13 @@ const fieldMapPinPosition = computed<[number, number, number]>(() => {
   ];
 });
 
+const calcDistance = (
+  a: { x: number; y: number },
+  b: { x: number; y: number },
+) => {
+  return Math.sqrt((b.x - a.x) ** 2 + (b.y - a.y) ** 2);
+};
+
 const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
   const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
   const skeletonJson = new SkeletonJson(atlasLoader);
@@ -253,6 +284,23 @@ onLoop(({ delta }) => {
   camera.value?.position.setY(newCharaPositionY);
 
   charaPosition.value = [newCharaPositionX, newCharaPositionY, 0];
+
+  for (const item of targetItems.value) {
+    if (item.isGot) {
+      continue;
+    }
+
+    const distance = calcDistance(
+      { x: newCharaPositionX, y: newCharaPositionY },
+      item.position,
+    );
+
+    if (distance < TARGET_COLLISION_AREA_RADIUS) {
+      item.isGot = true;
+      triggerRef(targetItems);
+      break;
+    }
+  }
 });
 
 onMounted(() => {
