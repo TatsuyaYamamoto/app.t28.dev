@@ -12,9 +12,9 @@
         :position="[0, 0, 1000]"
         :look-at="[0, 0, 0]"
       />
-      <CameraControls v-if="true" />
+      <CameraControls v-if="false" />
       <TresGridHelper
-        v-if="true"
+        v-if="false"
         :args="[
           /* size */ 1000,
           /* divisions */ 10,
