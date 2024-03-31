@@ -44,9 +44,7 @@
         <Keyboard />
       </div>
       <div class="notification-area">
-        <FieldBorderNotification
-          :model-value="shouldOpenFieldBorderNotification"
-        />
+        <FieldBorderNotification v-model="shouldOpenFieldBorderNotification" />
       </div>
     </CanvasPortal>
   </TresGroup>
@@ -232,33 +230,27 @@ onLoop(({ delta }) => {
   let newCharaPositionX = charaPosition.value[0] + velocity.value.x * delta;
   let newCharaPositionY = charaPosition.value[1] + velocity.value.y * delta;
 
+  if (newCharaPositionX < CHARA_POSITION_RANGE.x.min) {
+    newCharaPositionX = CHARA_POSITION_RANGE.x.min;
+    shouldOpenFieldBorderNotification.value = true;
+  }
+  if (CHARA_POSITION_RANGE.x.max < newCharaPositionX) {
+    newCharaPositionX = CHARA_POSITION_RANGE.x.max;
+    shouldOpenFieldBorderNotification.value = true;
+  }
+  if (newCharaPositionY < CHARA_POSITION_RANGE.y.min) {
+    newCharaPositionY = CHARA_POSITION_RANGE.y.min;
+    shouldOpenFieldBorderNotification.value = true;
+  }
+  if (CHARA_POSITION_RANGE.y.max < newCharaPositionY) {
+    newCharaPositionY = CHARA_POSITION_RANGE.y.max;
+    shouldOpenFieldBorderNotification.value = true;
+  }
+
   tsuzuriSkeletonMesh?.position.setX(newCharaPositionX);
   tsuzuriSkeletonMesh?.position.setY(newCharaPositionY);
   camera.value?.position.setX(newCharaPositionX);
   camera.value?.position.setY(newCharaPositionY);
-
-  // if (newCharaPositionX < CHARA_POSITION_RANGE.x.min) {
-  //   newCharaPositionX = CHARA_POSITION_RANGE.x.min;
-  //   shouldOpenFieldBorderNotification.value = true;
-  //
-  //   console.log("???", {
-  //     newCharaPositionX,
-  //     shouldOpenFieldBorderNotification:
-  //       shouldOpenFieldBorderNotification.value,
-  //   });
-  // }
-  // if (CHARA_POSITION_RANGE.x.max < newCharaPositionX) {
-  //   newCharaPositionX = CHARA_POSITION_RANGE.x.max;
-  //   shouldOpenFieldBorderNotification.value = true;
-  // }
-  // if (newCharaPositionY < CHARA_POSITION_RANGE.y.min) {
-  //   newCharaPositionY = CHARA_POSITION_RANGE.y.min;
-  //   shouldOpenFieldBorderNotification.value = true;
-  // }
-  // if (CHARA_POSITION_RANGE.y.max < newCharaPositionY) {
-  //   newCharaPositionY = CHARA_POSITION_RANGE.y.max;
-  //   shouldOpenFieldBorderNotification.value = true;
-  // }
 
   charaPosition.value = [newCharaPositionX, newCharaPositionY, 0];
 });
