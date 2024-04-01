@@ -1,6 +1,6 @@
 {
   "name": "app.t28.dev",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "packageManager": "pnpm@8.12.1",
   "private": true,
   "scripts": {
