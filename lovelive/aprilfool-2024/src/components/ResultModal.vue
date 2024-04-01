@@ -19,7 +19,7 @@
         <img class="text-icon" :src="tsuzuri_icon" />
         <span class="text">
           {{ text }}<br />
-          {{ `あと、今日はエイプリルフールだね。` }}
+          {{ `あと、${todayText}はエイプリルフールだね。` }}
         </span>
       </div>
 
@@ -41,6 +41,8 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
+import { differenceInDays } from "shared/helpers/utils.ts";
+
 import kekka_continue from "../assets/kekka_continue.png";
 import kekka_share from "../assets/kekka_share.png";
 import tsuzuri_icon from "../assets/tsuzuri_icon.png";
@@ -58,6 +60,18 @@ const model = defineModel<
 const emit = defineEmits<{
   (e: "clickButton"): void;
 }>();
+
+const now = new Date();
+const aprilFoolDate = new Date(`${now.getFullYear()}/04/01`);
+const diffDays = differenceInDays(now, aprilFoolDate);
+const diffDaysSign = Math.sign(diffDays);
+const absDiffDays = Math.abs(diffDays);
+const todayText =
+  diffDaysSign === -1
+    ? `${absDiffDays}日後`
+    : diffDaysSign === 1
+      ? `${absDiffDays}日前`
+      : "今日";
 
 const imageUrl = computed(() => {
   if (!model.value) {

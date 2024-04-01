@@ -39,3 +39,9 @@ export const getRandomInt = <Min extends number, Max extends number>(
     Math.random() * (maxInt - minInt + 1) + minInt,
   ) as unknown as IntRange<Min, Max, 1> | Max;
 };
+
+export const differenceInDays = (a: Date, b: Date) => {
+  const diffMs = a.getTime() - b.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24)) % 365;
+  return diffDays;
+};
