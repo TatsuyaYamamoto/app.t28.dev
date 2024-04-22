@@ -145,8 +145,8 @@ importers:
   lovelive/aprilfool-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.33
-        version: 4.2.33
+        specifier: 4.2.36
+        version: 4.2.36
       '@tresjs/cientos':
         specifier: 3.7.0
         version: 3.7.0(@tresjs/core@3.6.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9)
@@ -197,8 +197,8 @@ importers:
   lovelive/megumi-bd-2023:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.33
-        version: 4.2.33
+        specifier: 4.2.36
+        version: 4.2.36
       '@tresjs/cientos':
         specifier: 3.7.0
         version: 3.7.0(@tresjs/core@3.6.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9)
@@ -243,8 +243,8 @@ importers:
   lovelive/sayaka-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.33
-        version: 4.2.33
+        specifier: 4.2.36
+        version: 4.2.36
       '@tresjs/cientos':
         specifier: 3.7.0
         version: 3.7.0(@tresjs/core@3.6.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9)
@@ -1961,14 +1961,14 @@ packages:
       - supports-color
     dev: true
 
-  /@esotericsoftware/spine-core@4.2.33:
-    resolution: {integrity: sha512-p6/2t1/7jVdBpbup35tIsLaWiLYfBq3Rngue86GBU8lXYxCKWT5P9uFXhJF1aKcm8CyileCcoGOAeA+aLht7nw==}
+  /@esotericsoftware/spine-core@4.2.36:
+    resolution: {integrity: sha512-gR6kStYJr0+nvsQhdapMNzFc+O3HjHJI3uv7D1+sHw7VIz1Z5SbGC2UcqIsqZQyIciTVj+Ab9ScE4o/YCrOnGw==}
     dev: false
 
-  /@esotericsoftware/spine-threejs@4.2.33:
-    resolution: {integrity: sha512-E/XLX+mo3A/dKvb7hVdieBNP2PbACFs9FXrj6RYob0EYlG0KCyV4RlXfURo4LkZmoXcQI6J2QR4BvvoHa0V2BA==}
+  /@esotericsoftware/spine-threejs@4.2.36:
+    resolution: {integrity: sha512-3QYg0mu3pBzEgwvPcM2U5NH7RwFXoj/PKkH2gYFkOH9PMVtC5R9CJNDplejqudQNxlXHjnRJCy6lvZkVRTp9gg==}
     dependencies:
-      '@esotericsoftware/spine-core': 4.2.33
+      '@esotericsoftware/spine-core': 4.2.36
     dev: false
 
   /@humanwhocodes/config-array@0.9.3:
