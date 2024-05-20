@@ -1,0 +1,134 @@
+{
+"skeleton": { "hash": "8RuZQkqh/dc", "spine": "4.2.22", "x": -1713, "y": -1433, "width": 3255, "height": 3403 },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "後髪", "bone": "root", "attachment": "後髪" },
+	{ "name": "右髪", "bone": "root", "attachment": "右髪" },
+	{ "name": "左髪", "bone": "root", "attachment": "左髪" },
+	{ "name": "右手", "bone": "root", "attachment": "右手" },
+	{ "name": "左手", "bone": "root", "attachment": "左手" },
+	{ "name": "体", "bone": "root", "attachment": "体" },
+	{ "name": "リボン", "bone": "root", "attachment": "リボン" },
+	{ "name": "首～セーラー襟", "bone": "root", "attachment": "首～セーラー襟" },
+	{ "name": "顔", "bone": "root", "attachment": "顔" },
+	{ "name": "鼻", "bone": "root", "attachment": "鼻" },
+	{ "name": "口１", "bone": "root", "attachment": "口１" },
+	{ "name": "口２", "bone": "root", "attachment": "口２" },
+	{ "name": "口３", "bone": "root", "attachment": "口３" },
+	{ "name": "左白目", "bone": "root", "attachment": "左白目" },
+	{ "name": "右白目", "bone": "root", "attachment": "右白目" },
+	{ "name": "左瞳", "bone": "root", "attachment": "左瞳" },
+	{ "name": "左まつ毛", "bone": "root", "attachment": "左まつ毛" },
+	{ "name": "右瞳", "bone": "root", "attachment": "右瞳" },
+	{ "name": "右まつ毛", "bone": "root", "attachment": "右まつ毛" },
+	{ "name": "左眉毛", "bone": "root", "attachment": "左眉毛" },
+	{ "name": "右眉毛", "bone": "root", "attachment": "右眉毛" },
+	{ "name": "左目閉じ", "bone": "root", "attachment": "左目閉じ" },
+	{ "name": "右目閉じ", "bone": "root", "attachment": "右目閉じ" },
+	{ "name": "左の触覚", "bone": "root", "attachment": "左の触覚" },
+	{ "name": "左のうさぎ", "bone": "root", "attachment": "左のうさぎ" },
+	{ "name": "右の触覚", "bone": "root", "attachment": "右の触覚" },
+	{ "name": "右のうさぎ", "bone": "root", "attachment": "右のうさぎ" },
+	{ "name": "前髪", "bone": "root", "attachment": "前髪" },
+	{ "name": "ほほの線", "bone": "root", "attachment": "ほほの線" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"ほほの線": {
+				"ほほの線": { "x": -92, "y": -17, "width": 1210, "height": 196 }
+			},
+			"リボン": {
+				"リボン": { "x": -72.5, "y": -677.5, "width": 301, "height": 239 }
+			},
+			"体": {
+				"体": { "x": -44.5, "y": -897, "width": 1171, "height": 1072 }
+			},
+			"前髪": {
+				"前髪": { "x": -116.5, "y": 1147.5, "width": 2301, "height": 1569 }
+			},
+			"口１": {
+				"口１": { "x": -76.5, "y": -89, "width": 281, "height": 52 }
+			},
+			"口２": {
+				"口２": { "x": -81.5, "y": -108, "width": 93, "height": 94 }
+			},
+			"口３": {
+				"口３": { "x": -70, "y": -115.5, "width": 322, "height": 217 }
+			},
+			"右のうさぎ": {
+				"右のうさぎ": { "x": -1006, "y": 413, "width": 166, "height": 200 }
+			},
+			"右の触覚": {
+				"右の触覚": { "x": -1372.5, "y": 350.5, "width": 681, "height": 419 }
+			},
+			"右まつ毛": {
+				"右まつ毛": { "x": -603, "y": 392, "width": 694, "height": 434 }
+			},
+			"右手": {
+				"右手": { "x": -517, "y": -639, "width": 852, "height": 548 }
+			},
+			"右白目": {
+				"右白目": { "x": -530, "y": 293.5, "width": 532, "height": 447 }
+			},
+			"右目閉じ": {
+				"右目閉じ": { "x": -537.5, "y": 159.5, "width": 555, "height": 173 }
+			},
+			"右眉毛": {
+				"右眉毛": { "x": -620.5, "y": 738.5, "width": 677, "height": 295 }
+			},
+			"右瞳": {
+				"右瞳": { "x": -474.5, "y": 278.5, "width": 361, "height": 441 }
+			},
+			"右髪": {
+				"右髪": { "x": -1022, "y": 281, "width": 788, "height": 1590 }
+			},
+			"左のうさぎ": {
+				"左のうさぎ": { "x": 835, "y": 493, "width": 166, "height": 200 }
+			},
+			"左の触覚": {
+				"左の触覚": { "x": 1201.5, "y": 430.5, "width": 681, "height": 419 }
+			},
+			"左まつ毛": {
+				"左まつ毛": { "x": 436, "y": 413, "width": 696, "height": 434 }
+			},
+			"左手": {
+				"左手": { "x": 429.5, "y": -626.5, "width": 899, "height": 559 }
+			},
+			"左白目": {
+				"左白目": { "x": 374.5, "y": 304, "width": 535, "height": 442 }
+			},
+			"左目閉じ": {
+				"左目閉じ": { "x": 386.5, "y": 170.5, "width": 549, "height": 173 }
+			},
+			"左眉毛": {
+				"左眉毛": { "x": 408.5, "y": 757.5, "width": 677, "height": 295 }
+			},
+			"左瞳": {
+				"左瞳": { "x": 333.5, "y": 295, "width": 371, "height": 436 }
+			},
+			"左髪": {
+				"左髪": { "x": 858, "y": 418.5, "width": 970, "height": 1823 }
+			},
+			"後髪": {
+				"後髪": { "x": -66.5, "y": 719, "width": 2343, "height": 2502 }
+			},
+			"顔": {
+				"顔": { "x": 108, "y": 732.5, "width": 2404, "height": 2125 }
+			},
+			"首～セーラー襟": {
+				"首～セーラー襟": { "x": -46.5, "y": -427, "width": 523, "height": 354 }
+			},
+			"鼻": {
+				"鼻": { "x": -111, "y": 101, "width": 22, "height": 20 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}

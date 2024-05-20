@@ -33,7 +33,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import back from "../assets/back.jpg";
+import back from "../assets/back.png";
 import bento1 from "../assets/bento_1.png";
 import bento2 from "../assets/bento_2.png";
 import bento3 from "../assets/bento_3.png";

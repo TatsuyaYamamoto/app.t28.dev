@@ -4,11 +4,12 @@ import title_sayaka_sprite from "../../spines/exports/sayaka.png";
 import title_logo_atlas from "../../spines/exports/logo.atlas?raw";
 import title_logo_skeleton from "../../spines/exports/logo.json";
 import title_logo_sprite from "../../spines/exports/logo.png";
-import game_sayaka_atlas from "../../spines/exports/game-sayaka.atlas?raw";
-import game_sayaka_skeleton from "../../spines/exports/game-sayaka.json";
-import game_sayaka_sprite from "../../spines/exports/game-sayaka.png";
+import game_kaho_atlas from "../../spines/exports/kaho-game.atlas?raw";
+import game_kaho_skeleton from "../../spines/exports/kaho-game.json";
+import game_kaho_sprite from "../../spines/exports/kaho-game.png";
 
-import back from "./back.jpg";
+import back from "./back.png";
+import desk from "./desk.png";
 import bento_1 from "./bento_1.png";
 import bento_2 from "./bento_2.png";
 import bento_3 from "./bento_3.png";
@@ -21,6 +22,10 @@ export const IMAGE_MANIFEST = [
   {
     id: "back",
     src: back,
+  },
+  {
+    id: "desk",
+    src: desk,
   },
   {
     id: "bento_1",
@@ -68,11 +73,11 @@ export const SPINE_MANIFEST = [
     sprite: title_logo_sprite,
   },
   {
-    id: "game_sayaka",
-    atlas: game_sayaka_atlas,
-    skeleton: game_sayaka_skeleton,
-    sprite: game_sayaka_sprite,
+    id: "game_kaho",
+    atlas: game_kaho_atlas,
+    skeleton: game_kaho_skeleton,
+    sprite: game_kaho_sprite,
   },
-];
+] as const;
 
 export type SpineKey = (typeof SPINE_MANIFEST)[number]["id"];

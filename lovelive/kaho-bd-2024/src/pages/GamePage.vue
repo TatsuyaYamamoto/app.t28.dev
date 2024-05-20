@@ -1,8 +1,13 @@
 <template>
   <TresGroup ref="groupRef">
     <TresMesh :position="[0, 0, -1]" @click="onClick">
-      <TresPlaneGeometry :args="[1200, 800]" />
+      <TresPlaneGeometry :args="[1717 * 0.6, 1057 * 0.6]" />
       <TresMeshBasicMaterial :map="textures.back" transparent />
+    </TresMesh>
+
+    <TresMesh :position="[0, -230, 2]">
+      <TresPlaneGeometry :args="[1717 * 0.6, 277 * 0.6]" />
+      <TresMeshBasicMaterial :map="textures.desk" transparent />
     </TresMesh>
 
     <CanvasPortal>
@@ -38,7 +43,7 @@ import { getRandomInt, wait } from "shared/helpers/utils.ts";
 
 import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
-import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
+import { promiseWithResolvers } from "../utils.ts";
 import GameTimer from "../components/GameTimer.vue";
 
 const emit = defineEmits<{
@@ -50,12 +55,13 @@ const { getSpine, getTexture } = useAssetLoader();
 
 const textures = {
   back: getTexture("back"),
+  desk: getTexture("desk"),
   teaStep1: getTexture("tea_step_1"),
   teaStep2: getTexture("tea_step_2"),
 };
 
 let sayakaSkeletonMesh: SkeletonMesh | null = null;
-const sayaka = getSpine("game_sayaka");
+const kaho = getSpine("game_kaho");
 
 const SKELETON_CONST = {
   SLOT: {
@@ -144,17 +150,11 @@ const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
 };
 
 const init = async () => {
-  sayakaSkeletonMesh = createSkeletonMesh(sayaka);
-  sayakaSkeletonMesh.position.set(-480, 280, 0);
+  sayakaSkeletonMesh = createSkeletonMesh(kaho);
+  sayakaSkeletonMesh.position.set(0, 0, 0);
   sayakaSkeletonMesh.scale.setScalar(0.138);
-  sayakaSkeletonMesh.skeleton.setAttachment(
-    SKELETON_CONST.SLOT.VEGETABLE,
-    `${getVegetableRandomly()}1`,
-  );
 
   groupRef.value?.add(sayakaSkeletonMesh);
-
-  loopBlinkAnim(sayakaSkeletonMesh.state, 1);
 
   canClick = true;
 
