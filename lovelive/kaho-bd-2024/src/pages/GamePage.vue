@@ -39,12 +39,16 @@ import {
 } from "@esotericsoftware/spine-threejs";
 import gsap from "gsap";
 
-import { getRandomInt, wait } from "shared/helpers/utils.ts";
+import {
+  getRandomInt,
+  wait,
+  promiseWithResolvers,
+} from "shared/helpers/utils.ts";
 
 import CanvasPortal from "../components/CanvasPortal.vue";
-import { useAssetLoader } from "../hooks/useAssetLoader.ts";
-import { promiseWithResolvers } from "../utils.ts";
 import GameTimer from "../components/GameTimer.vue";
+import { useAssetLoader } from "../hooks/useAssetLoader.ts";
+import { loopBlinkAnim } from "../utils.ts";
 
 const emit = defineEmits<{
   (e: "finish"): void;
@@ -60,7 +64,7 @@ const textures = {
   teaStep2: getTexture("tea_step_2"),
 };
 
-let sayakaSkeletonMesh: SkeletonMesh | null = null;
+let kahoSkeletonMesh: SkeletonMesh | null = null;
 const kaho = getSpine("game_kaho");
 
 const SKELETON_CONST = {
@@ -150,11 +154,12 @@ const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
 };
 
 const init = async () => {
-  sayakaSkeletonMesh = createSkeletonMesh(kaho);
-  sayakaSkeletonMesh.position.set(0, 0, 0);
-  sayakaSkeletonMesh.scale.setScalar(0.138);
+  kahoSkeletonMesh = createSkeletonMesh(kaho);
+  kahoSkeletonMesh.position.set(0, -200, 0);
+  kahoSkeletonMesh.scale.setScalar(0.138);
 
-  groupRef.value?.add(sayakaSkeletonMesh);
+  groupRef.value?.add(kahoSkeletonMesh);
+  loopBlinkAnim(kahoSkeletonMesh.state, 1);
 
   canClick = true;
 
@@ -171,11 +176,11 @@ const isFinished = () => {
 };
 
 const onClick = () => {
-  if (!canClick || !sayakaSkeletonMesh) {
+  if (!canClick || !kahoSkeletonMesh) {
     return;
   }
 
-  const vegetableAttachment = sayakaSkeletonMesh.skeleton
+  const vegetableAttachment = kahoSkeletonMesh.skeleton
     ?.findSlot(SKELETON_CONST.SLOT.VEGETABLE)
     ?.getAttachment()?.name;
 
@@ -193,11 +198,11 @@ const onClick = () => {
     canClick = false;
     currentCount += 1;
 
-    const cutAnim = sayakaSkeletonMesh.state.setAnimation(0, "cut");
+    const cutAnim = kahoSkeletonMesh.state.setAnimation(0, "cut");
     cutAnim.listener = {
       complete: () => {
         canClick = true;
-        sayakaSkeletonMesh?.skeleton.setAttachment(
+        kahoSkeletonMesh?.skeleton.setAttachment(
           SKELETON_CONST.SLOT.VEGETABLE,
           `${type}${number + 1}`,
         );
@@ -210,13 +215,13 @@ const onClick = () => {
     canClick = false;
     currentCount += 1;
 
-    const slideAnim = sayakaSkeletonMesh.state.setAnimation(0, "slide");
+    const slideAnim = kahoSkeletonMesh.state.setAnimation(0, "slide");
     slideAnim.listener = {
       complete: () => {
         canClick = true;
 
         const bowlNumber = Math.min(1 + Math.floor(currentCount / 3), 3);
-        sayakaSkeletonMesh?.skeleton.setAttachment(
+        kahoSkeletonMesh?.skeleton.setAttachment(
           SKELETON_CONST.SLOT.BOWL,
           `bowl${bowlNumber}`,
         );
@@ -224,7 +229,7 @@ const onClick = () => {
         if (isFinished()) {
           emit("finish");
         } else {
-          sayakaSkeletonMesh?.skeleton.setAttachment(
+          kahoSkeletonMesh?.skeleton.setAttachment(
             SKELETON_CONST.SLOT.VEGETABLE,
             `${getVegetableRandomly()}1`,
           );
@@ -236,7 +241,7 @@ const onClick = () => {
 };
 
 onLoop(({ delta }) => {
-  sayakaSkeletonMesh?.update(delta);
+  kahoSkeletonMesh?.update(delta);
 
   clockHands.long += delta * 120;
   clockHands.short += delta * 10;

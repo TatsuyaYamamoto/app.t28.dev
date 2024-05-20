@@ -30,9 +30,11 @@ import {
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
 
+import { promiseWithResolvers } from "shared/helpers/utils";
+
 import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
-import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
+import { loopBlinkAnim } from "../utils.ts";
 
 const emit = defineEmits<{
   (e: "start", animationPromise: Promise<void>): void;
