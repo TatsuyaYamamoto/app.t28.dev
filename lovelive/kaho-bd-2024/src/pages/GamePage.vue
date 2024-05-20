@@ -16,6 +16,9 @@
           :src="textures.teaStep2.image.src"
         />
       </div>
+      <div>
+        <GameTimer :long="clockHands.long" :short="clockHands.short" />
+      </div>
     </CanvasPortal>
   </TresGroup>
 </template>
@@ -36,6 +39,7 @@ import { getRandomInt, wait } from "shared/helpers/utils.ts";
 import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
+import GameTimer from "../components/GameTimer.vue";
 
 const emit = defineEmits<{
   (e: "finish"): void;
@@ -62,6 +66,7 @@ const SKELETON_CONST = {
 
 const groupRef = ref<Group>();
 const shouldShow = reactive({ readyStepAnimation: false });
+const clockHands = reactive({ short: 0, long: 0 });
 
 const classes = {
   teaStep1: "tea-step-1",
@@ -232,6 +237,9 @@ const onClick = () => {
 
 onLoop(({ delta }) => {
   sayakaSkeletonMesh?.update(delta);
+
+  clockHands.long += delta * 120;
+  clockHands.short += delta * 10;
 });
 
 onMounted(() => {
