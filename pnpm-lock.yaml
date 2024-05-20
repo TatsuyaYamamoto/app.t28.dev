@@ -93,8 +93,8 @@ importers:
         specifier: 2.4.9
         version: 2.4.9(@emotion/react@11.11.0(@types/react@18.2.6)(react@18.2.0))(@emotion/styled@11.11.0(@emotion/react@11.11.0(@types/react@18.2.6)(react@18.2.0))(@types/react@18.2.6)(react@18.2.0))(@types/react@18.2.6)(framer-motion@10.12.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       konva:
-        specifier: 9.0.2
-        version: 9.0.2
+        specifier: 9.3.8
+        version: 9.3.8
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -103,7 +103,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-konva:
         specifier: 18.2.8
-        version: 18.2.8(konva@9.0.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        version: 18.2.8(konva@9.3.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       shared:
         specifier: workspace:*
         version: link:../../shared
@@ -2007,8 +2007,8 @@ packages:
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
 
-  konva@9.0.2:
-    resolution: {integrity: sha512-kHPqZkIN191ysRD5OnWezIzcJtENyMZkCqRxi4szq9iyGzBDugxZkx5RmHWkmuDE9cR1lyeJoeQTeV5hoaGplg==}
+  konva@9.3.8:
+    resolution: {integrity: sha512-acfS9hSBI0186DVjP4hnCgVQUGg5USn2I9U18skbOG+wFaVB2d84CmUNBfBAPTqsYjO5A0+qHZh7nj20UMNUEA==}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -4725,7 +4725,7 @@ snapshots:
     optionalDependencies:
       graceful-fs: 4.2.11
 
-  konva@9.0.2: {}
+  konva@9.3.8: {}
 
   levn@0.4.1:
     dependencies:
@@ -4970,11 +4970,11 @@ snapshots:
 
   react-is@18.2.0: {}
 
-  react-konva@18.2.8(konva@9.0.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+  react-konva@18.2.8(konva@9.3.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@types/react-reconciler': 0.28.2
       its-fine: 1.1.1(react@18.2.0)
-      konva: 9.0.2
+      konva: 9.3.8
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-reconciler: 0.29.0(react@18.2.0)
