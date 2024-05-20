@@ -14,6 +14,8 @@ import bento_2 from "./bento_2.png";
 import bento_3 from "./bento_3.png";
 import kekka_share from "./kekka_share.png";
 import kekka_title from "./kekka_title.png";
+import tea_step_1 from "./tea-step-1.png";
+import tea_step_2 from "./tea-step-2.png";
 
 export const IMAGE_MANIFEST = [
   {
@@ -39,6 +41,14 @@ export const IMAGE_MANIFEST = [
   {
     id: "kekka_title",
     src: kekka_title,
+  },
+  {
+    id: "tea_step_1",
+    src: tea_step_1,
+  },
+  {
+    id: "tea_step_2",
+    src: tea_step_2,
   },
 ] as const;
 

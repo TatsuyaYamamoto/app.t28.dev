@@ -45,3 +45,16 @@ export const differenceInDays = (a: Date, b: Date) => {
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24)) % 365;
   return diffDays;
 };
+
+/**
+ * @see https://github.com/tc39/proposal-promise-with-resolvers
+ */
+export const promiseWithResolvers = <T = void>() => {
+  let resolve!: (value: T | PromiseLike<T>) => void;
+  let reject!: (reason: unknown) => void;
+  const promise = new Promise<T>((_resolve, _reject) => {
+    resolve = _resolve;
+    reject = _reject;
+  });
+  return { resolve, reject, promise };
+};

@@ -2,18 +2,26 @@
   <TresGroup ref="groupRef">
     <TresMesh :position="[0, 0, -1]" @click="onClick">
       <TresPlaneGeometry :args="[1200, 800]" />
-      <TresMeshBasicMaterial :map="backTexture" transparent />
+      <TresMeshBasicMaterial :map="textures.back" transparent />
     </TresMesh>
-    <TresMesh v-if="shouldShowIndicator" :position="[0, -200, -1]">
-      <!-- 本当は平面のわっかを描画したい-->
-      <TresTorusGeometry :args="[indicatorArgs.radius, indicatorArgs.tube]" />
-      <TresMeshBasicMaterial transparent />
-    </TresMesh>
+
+    <CanvasPortal>
+      <div v-if="shouldShow.readyStepAnimation">
+        <img
+          :class="['tea-step', classes.teaStep1]"
+          :src="textures.teaStep1.image.src"
+        />
+        <img
+          :class="['tea-step', classes.teaStep2]"
+          :src="textures.teaStep2.image.src"
+        />
+      </div>
+    </CanvasPortal>
   </TresGroup>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
+import { nextTick, onMounted, reactive, ref } from "vue";
 import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
 import {
@@ -21,12 +29,13 @@ import {
   SkeletonMesh,
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
+import gsap from "gsap";
 
 import { getRandomInt, wait } from "shared/helpers/utils.ts";
 
+import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
-import { loopBlinkAnim } from "../utils.ts";
-import gsap from "gsap";
+import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
 
 const emit = defineEmits<{
   (e: "finish"): void;
@@ -35,8 +44,13 @@ const emit = defineEmits<{
 const { onLoop } = useRenderLoop();
 const { getSpine, getTexture } = useAssetLoader();
 
+const textures = {
+  back: getTexture("back"),
+  teaStep1: getTexture("tea_step_1"),
+  teaStep2: getTexture("tea_step_2"),
+};
+
 let sayakaSkeletonMesh: SkeletonMesh | null = null;
-const backTexture = getTexture("back");
 const sayaka = getSpine("game_sayaka");
 
 const SKELETON_CONST = {
@@ -47,24 +61,61 @@ const SKELETON_CONST = {
 };
 
 const groupRef = ref<Group>();
-const indicatorArgs = reactive({ radius: 50, tube: 10 });
+const shouldShow = reactive({ readyStepAnimation: false });
+
+const classes = {
+  teaStep1: "tea-step-1",
+  teaStep2: "tea-step-2",
+};
+
 const shouldShowIndicator = ref(false);
 let canClick = false;
 let requiredCount = 3 * 3;
 let currentCount = 0;
 
-const indicatorAnimation = gsap.fromTo(
-  indicatorArgs,
-  { radius: 50, tube: 5 },
-  {
-    radius: 20,
-    tube: 2,
-    duration: 0.8,
-    repeat: -1,
-    ease: "bounce.in",
-    paused: true,
-  },
-);
+const playReadyTimeline = () => {
+  const { promise, resolve } = promiseWithResolvers();
+
+  gsap
+    .timeline()
+    .add(
+      gsap
+        .timeline()
+        .fromTo(
+          `.${classes.teaStep1}`,
+          { left: "10rem" },
+          { left: "13rem", duration: 2 },
+        )
+        .fromTo(
+          `.${classes.teaStep1}`,
+          { opacity: 0 },
+          { opacity: 1, duration: 1 },
+          "<",
+        )
+        .to(`.${classes.teaStep1}`, { opacity: 0, duration: 0.7 }, ">"),
+    )
+    .add(
+      gsap
+        .timeline()
+        .fromTo(
+          `.${classes.teaStep2}`,
+          { left: "16rem" },
+          { left: "20rem", duration: 2 },
+        )
+        .fromTo(
+          `.${classes.teaStep2}`,
+          { opacity: 0 },
+          { opacity: 1, duration: 1 },
+          "<",
+        )
+        .to(`.${classes.teaStep2}`, { opacity: 0, duration: 0.7 }, ">"),
+    )
+    .add(() => {
+      resolve();
+    });
+
+  return promise;
+};
 
 const getVegetableRandomly = () => {
   const map = {
@@ -101,10 +152,13 @@ const init = async () => {
   loopBlinkAnim(sayakaSkeletonMesh.state, 1);
 
   canClick = true;
-  indicatorAnimation.play();
 
   await wait(800);
   shouldShowIndicator.value = true;
+
+  shouldShow.readyStepAnimation = true;
+  await nextTick();
+  await playReadyTimeline();
 };
 
 const isFinished = () => {
@@ -184,3 +238,9 @@ onMounted(() => {
   init();
 });
 </script>
+
+<style scoped>
+.tea-step {
+  position: absolute;
+}
+</style>
