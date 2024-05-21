@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "DIK+h1jxYX4", "spine": "4.2.22", "x": -3262, "y": -1894, "width": 3446, "height": 3853 },
+"skeleton": { "hash": "QWF2yflcwZQ", "spine": "4.2.22", "x": -3262, "y": -1894, "width": 3446, "height": 3853 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "cookie2", "parent": "root", "x": -333.99, "y": 1611.65 },
@@ -46,7 +46,7 @@
 				"クッキー８": { "x": 17.93, "y": -31.17, "width": 479, "height": 432 }
 			},
 			"タイトル2": {
-				"タイトル": { "x": -1583.5, "y": -9, "width": 2615, "height": 1748 }
+				"タイトル": { "x": -1583.5, "y": -9, "width": 2676, "height": 1811 }
 			}
 		}
 	}
