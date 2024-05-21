@@ -29,6 +29,10 @@
           :long="clockHands.long"
         />
       </Transition>
+
+      <Transition name="fade">
+        <TapAnnounce v-if="shouldShow.tapAnnounce" />
+      </Transition>
     </CanvasPortal>
   </TresGroup>
 </template>
@@ -52,6 +56,7 @@ import {
 
 import CanvasPortal from "../components/CanvasPortal.vue";
 import GameTimer from "../components/GameTimer.vue";
+import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim } from "../utils.ts";
 
@@ -80,7 +85,11 @@ const SKELETON_CONST = {
 };
 
 const groupRef = ref<Group>();
-const shouldShow = reactive({ readyStepAnimation: false, timer: false });
+const shouldShow = reactive({
+  readyStepAnimation: false,
+  timer: false,
+  tapAnnounce: false,
+});
 const clockHands = reactive({ short: 0, long: 0 });
 
 const classes = {
@@ -88,7 +97,6 @@ const classes = {
   teaStep2: "tea-step-2",
 };
 
-const shouldShowIndicator = ref(false);
 let canClick = false;
 let requiredCount = 3 * 3;
 let currentCount = 0;
@@ -104,7 +112,7 @@ const playReadyTimeline = () => {
         .fromTo(
           `.${classes.teaStep1}`,
           { top: "2rem", left: "2rem" },
-          { left: "5rem", duration: 2 },
+          { left: "5rem", duration: 1.5 },
         )
         .fromTo(
           `.${classes.teaStep1}`,
@@ -120,7 +128,7 @@ const playReadyTimeline = () => {
         .fromTo(
           `.${classes.teaStep2}`,
           { top: "7rem", left: "14rem" },
-          { left: "17rem", duration: 2 },
+          { left: "17rem", duration: 1.5 },
         )
         .fromTo(
           `.${classes.teaStep2}`,
@@ -168,14 +176,16 @@ const init = async () => {
 
   canClick = true;
 
-  await wait(800);
-  shouldShowIndicator.value = true;
+  await wait(300);
 
   shouldShow.readyStepAnimation = true;
   await nextTick();
   await playReadyTimeline();
   shouldShow.readyStepAnimation = false;
   shouldShow.timer = true;
+  shouldShow.tapAnnounce = true;
+  await wait(3000);
+  shouldShow.tapAnnounce = false;
 };
 
 const isFinished = () => {
@@ -194,8 +204,6 @@ const onClick = () => {
   if (!vegetableAttachment) {
     return;
   }
-
-  shouldShowIndicator.value = false;
 
   const numberString = vegetableAttachment.slice(-1);
   const number = Number(numberString);
