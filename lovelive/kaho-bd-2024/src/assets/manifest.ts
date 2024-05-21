@@ -13,8 +13,8 @@ import desk from "./desk.png";
 import pot_and_cup from "./pot-and-cup.png";
 import kekka_share from "./kekka_share.png";
 import kekka_title from "./kekka_title.png";
-import tea_step_1 from "./tea-step-1.png";
-import tea_step_2 from "./tea-step-2.png";
+import tea_step_1 from "./tea-step-1.jpg";
+import tea_step_2 from "./tea-step-2.jpg";
 
 export const IMAGE_MANIFEST = [
   {

@@ -209,7 +209,8 @@ onMounted(() => {
 <style scoped>
 .tea-step {
   position: absolute;
-  width: 6rem;
+  width: 7rem;
+  border-radius: 1rem;
 }
 
 .timer {
