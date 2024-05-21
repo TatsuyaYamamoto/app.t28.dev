@@ -77,13 +77,6 @@ const textures = {
 let kahoSkeletonMesh: SkeletonMesh | null = null;
 const kaho = getSpine("game_kaho");
 
-const SKELETON_CONST = {
-  SLOT: {
-    VEGETABLE: "vegetable",
-    BOWL: "bowl",
-  },
-};
-
 const groupRef = ref<Group>();
 const shouldShow = reactive({
   readyStepAnimation: false,
@@ -98,8 +91,7 @@ const classes = {
 };
 
 let canClick = false;
-let requiredCount = 3 * 3;
-let currentCount = 0;
+let isFinished = false;
 
 const playReadyTimeline = () => {
   const { promise, resolve } = promiseWithResolvers();
@@ -145,17 +137,6 @@ const playReadyTimeline = () => {
   return promise;
 };
 
-const getVegetableRandomly = () => {
-  const map = {
-    1: "carrot",
-    2: "negi",
-    3: "popeye",
-  };
-  const random = getRandomInt(1, 3);
-
-  return map[random];
-};
-
 const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
   const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
   const skeletonJson = new SkeletonJson(atlasLoader);
@@ -176,8 +157,6 @@ const init = async () => {
   kahoSkeletonMesh.state.setAnimation(0, animationName, true);
   loopBlinkAnim(kahoSkeletonMesh.state, 1);
 
-  canClick = true;
-
   await wait(300);
 
   shouldShow.readyStepAnimation = true;
@@ -186,82 +165,33 @@ const init = async () => {
   shouldShow.readyStepAnimation = false;
   shouldShow.timer = true;
   shouldShow.tapAnnounce = true;
-  await wait(3000);
-  shouldShow.tapAnnounce = false;
+  canClick = true;
+
+  wait(3000).then(() => {
+    shouldShow.tapAnnounce = false;
+  });
 };
 
-const isFinished = () => {
-  return requiredCount <= currentCount;
-};
-
-const onClick = () => {
+const onClick = async () => {
   if (!canClick || !kahoSkeletonMesh) {
     return;
   }
 
-  const vegetableAttachment = kahoSkeletonMesh.skeleton
-    ?.findSlot(SKELETON_CONST.SLOT.VEGETABLE)
-    ?.getAttachment()?.name;
+  isFinished = true;
+  const entry = kahoSkeletonMesh.state.setAnimation(0, "success", false);
+  entry.mixDuration = 0.3;
 
-  if (!vegetableAttachment) {
-    return;
-  }
-
-  const numberString = vegetableAttachment.slice(-1);
-  const number = Number(numberString);
-  const type = vegetableAttachment.replace(numberString, "");
-
-  if (number === 1 || number === 2) {
-    canClick = false;
-    currentCount += 1;
-
-    const cutAnim = kahoSkeletonMesh.state.setAnimation(0, "cut");
-    cutAnim.listener = {
-      complete: () => {
-        canClick = true;
-        kahoSkeletonMesh?.skeleton.setAttachment(
-          SKELETON_CONST.SLOT.VEGETABLE,
-          `${type}${number + 1}`,
-        );
-      },
-    };
-    return;
-  }
-
-  if (number === 3) {
-    canClick = false;
-    currentCount += 1;
-
-    const slideAnim = kahoSkeletonMesh.state.setAnimation(0, "slide");
-    slideAnim.listener = {
-      complete: () => {
-        canClick = true;
-
-        const bowlNumber = Math.min(1 + Math.floor(currentCount / 3), 3);
-        kahoSkeletonMesh?.skeleton.setAttachment(
-          SKELETON_CONST.SLOT.BOWL,
-          `bowl${bowlNumber}`,
-        );
-
-        if (isFinished()) {
-          emit("finish");
-        } else {
-          kahoSkeletonMesh?.skeleton.setAttachment(
-            SKELETON_CONST.SLOT.VEGETABLE,
-            `${getVegetableRandomly()}1`,
-          );
-        }
-      },
-    };
-    return;
-  }
+  await wait(500);
+  emit("finish");
 };
 
 onLoop(({ delta }) => {
   kahoSkeletonMesh?.update(delta);
 
-  clockHands.long += delta * 120;
-  clockHands.short += delta * 10;
+  if (!isFinished) {
+    clockHands.long += delta * 120;
+    clockHands.short += delta * 10;
+  }
 });
 
 onMounted(() => {
