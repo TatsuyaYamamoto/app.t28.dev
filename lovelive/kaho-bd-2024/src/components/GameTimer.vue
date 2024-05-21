@@ -1,5 +1,5 @@
 <template>
-  <svg width="200" height="200" viewBox="0 0 640 640" xml:space="preserve">
+  <svg width="120" height="120" viewBox="0 0 640 640" xml:space="preserve">
     <g transform="matrix(1.2980940605 0 0 1.2980940605 320 320.9009009009)">
       <path
         style="
@@ -20,6 +20,7 @@
       />
     </g>
     <g
+      v-if="short !== undefined"
       :transform="`rotate(${short}) matrix(1 0 0 1 319.999997393 255.8802012758)`"
       transform-origin="center"
     >
@@ -42,6 +43,7 @@
       />
     </g>
     <g
+      v-if="long !== undefined"
       :transform="`rotate(${long}) matrix(1 0 0 1 319.9999974142 413.2899287993)`"
       transform-origin="center"
     >
@@ -68,7 +70,7 @@
 
 <script setup lang="ts">
 defineProps<{
-  long: number;
-  short: number;
+  long?: number;
+  short?: number;
 }>();
 </script>

@@ -21,9 +21,14 @@
           :src="textures.teaStep2.image.src"
         />
       </div>
-      <div>
-        <GameTimer :long="clockHands.long" :short="clockHands.short" />
-      </div>
+
+      <Transition name="fade">
+        <GameTimer
+          v-if="shouldShow.timer"
+          class="timer"
+          :long="clockHands.long"
+        />
+      </Transition>
     </CanvasPortal>
   </TresGroup>
 </template>
@@ -75,7 +80,7 @@ const SKELETON_CONST = {
 };
 
 const groupRef = ref<Group>();
-const shouldShow = reactive({ readyStepAnimation: false });
+const shouldShow = reactive({ readyStepAnimation: false, timer: false });
 const clockHands = reactive({ short: 0, long: 0 });
 
 const classes = {
@@ -98,8 +103,8 @@ const playReadyTimeline = () => {
         .timeline()
         .fromTo(
           `.${classes.teaStep1}`,
-          { left: "10rem" },
-          { left: "13rem", duration: 2 },
+          { top: "4rem", left: "3rem" },
+          { left: "6rem", duration: 2 },
         )
         .fromTo(
           `.${classes.teaStep1}`,
@@ -114,7 +119,7 @@ const playReadyTimeline = () => {
         .timeline()
         .fromTo(
           `.${classes.teaStep2}`,
-          { left: "16rem" },
+          { top: "7rem", left: "16rem" },
           { left: "20rem", duration: 2 },
         )
         .fromTo(
@@ -169,6 +174,8 @@ const init = async () => {
   shouldShow.readyStepAnimation = true;
   await nextTick();
   await playReadyTimeline();
+  shouldShow.readyStepAnimation = false;
+  shouldShow.timer = true;
 };
 
 const isFinished = () => {
@@ -255,5 +262,23 @@ onMounted(() => {
 <style scoped>
 .tea-step {
   position: absolute;
+}
+
+.timer {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
