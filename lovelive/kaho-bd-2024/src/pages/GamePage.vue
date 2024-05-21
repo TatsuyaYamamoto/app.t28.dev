@@ -172,6 +172,8 @@ const init = async () => {
   kahoSkeletonMesh.scale.setScalar(0.138);
 
   groupRef.value?.add(kahoSkeletonMesh);
+  const animationName = getRandomInt(0, 1) === 0 ? "think" : "idle";
+  kahoSkeletonMesh.state.setAnimation(0, animationName, true);
   loopBlinkAnim(kahoSkeletonMesh.state, 1);
 
   canClick = true;
