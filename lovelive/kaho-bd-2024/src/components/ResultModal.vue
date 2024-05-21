@@ -33,10 +33,10 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import back from "../assets/back.png";
-import bento1 from "../assets/bento_1.png";
-import bento2 from "../assets/bento_2.png";
-import bento3 from "../assets/bento_3.png";
+import back from "../assets/back.jpg";
+import result_1 from "../assets/result_1.png";
+import result_2 from "../assets/result_2.png";
+import result_3 from "../assets/result_3.png";
 import buttonTitleImage from "../assets/kekka_title.png";
 import buttonTitleShare from "../assets/kekka_share.png";
 
@@ -51,11 +51,11 @@ const imageUrl = computed(() => {
   }
 
   const map = {
-    bento1,
-    bento2,
-    bento3,
+    result_1,
+    result_2,
+    result_3,
   };
-  return map[`bento${model.value}`];
+  return map[`result_${model.value}`];
 });
 
 const onClickForTitle = () => {

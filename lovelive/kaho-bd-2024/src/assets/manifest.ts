@@ -8,7 +8,7 @@ import game_kaho_atlas from "../../spines/exports/kaho-game.atlas?raw";
 import game_kaho_skeleton from "../../spines/exports/kaho-game.json";
 import game_kaho_sprite from "../../spines/exports/kaho-game.png";
 
-import back from "./back.png";
+import back from "./back.jpg";
 import desk from "./desk.png";
 import pot_and_cup from "./pot-and-cup.png";
 import kekka_share from "./kekka_share.png";
