@@ -71,9 +71,9 @@ const onClickForShare = () => {
   const appUrl = `https://app.t28.dev/lovelive/kaho-bd-2024`;
 
   const texts = {
-    1: `ずっとたべたいからあげ`,
-    2: `おーかわいい`,
-    3: `ねるねるおいしいね`,
+    1: `いいかおりね、すばらしいわ！`,
+    2: `花帆、よくがんばったわね、はなまるよ！`,
+    3: `次、またがんばりましょう`,
   };
 
   const url = new URL("https://twitter.com/intent/tweet");
