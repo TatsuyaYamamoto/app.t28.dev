@@ -1,9 +1,9 @@
-import title_sayaka_atlas from "../../spines/exports/sayaka.atlas?raw";
-import title_sayaka_skeleton from "../../spines/exports/sayaka.json";
-import title_sayaka_sprite from "../../spines/exports/sayaka.png";
-import title_logo_atlas from "../../spines/exports/logo.atlas?raw";
-import title_logo_skeleton from "../../spines/exports/logo.json";
-import title_logo_sprite from "../../spines/exports/logo.png";
+import title_kaho_atlas from "../../spines/exports/title-kaho.atlas?raw";
+import title_kaho_skeleton from "../../spines/exports/title-kaho.json";
+import title_kaho_sprite from "../../spines/exports/title-kaho.png";
+import title_logo_atlas from "../../spines/exports/title-logo.atlas?raw";
+import title_logo_skeleton from "../../spines/exports/title-logo.json";
+import title_logo_sprite from "../../spines/exports/title-logo.png";
 import game_kaho_atlas from "../../spines/exports/kaho-game.atlas?raw";
 import game_kaho_skeleton from "../../spines/exports/kaho-game.json";
 import game_kaho_sprite from "../../spines/exports/kaho-game.png";
@@ -61,10 +61,10 @@ export type ImageKey = (typeof IMAGE_MANIFEST)[number]["id"];
 
 export const SPINE_MANIFEST = [
   {
-    id: "title_sayaka",
-    atlas: title_sayaka_atlas,
-    skeleton: title_sayaka_skeleton,
-    sprite: title_sayaka_sprite,
+    id: "title_kaho",
+    atlas: title_kaho_atlas,
+    skeleton: title_kaho_skeleton,
+    sprite: title_kaho_sprite,
   },
   {
     id: "title_logo",

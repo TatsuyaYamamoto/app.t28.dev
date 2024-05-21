@@ -44,11 +44,11 @@ const { onLoop } = useRenderLoop();
 const { getSpine, getTexture } = useAssetLoader();
 
 const groupRef = ref<Group>();
-let sayakaSkeletonMesh: SkeletonMesh | null = null;
+let kahoSkeletonMesh: SkeletonMesh | null = null;
 let logoSkeletonMesh: SkeletonMesh | null = null;
 const backTexture = getTexture("back");
 
-const sayaka = getSpine("title_sayaka");
+const kaho = getSpine("title_kaho");
 const logo = getSpine("title_logo");
 
 const shouldShowStartAnnounce = ref(false);
@@ -79,55 +79,55 @@ const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
 
 const init = async () => {
   logoSkeletonMesh = createSkeletonMesh(logo);
-  logoSkeletonMesh.position.set(-450, 250, 1);
+  logoSkeletonMesh.position.set(-10, 0, 2);
   logoSkeletonMesh.scale.setScalar(0.125);
 
-  sayakaSkeletonMesh = createSkeletonMesh(sayaka);
-  sayakaSkeletonMesh.position.set(-400, 250, 0);
-  sayakaSkeletonMesh.scale.setScalar(0.125);
-  sayakaSkeletonMesh.visible = false;
+  kahoSkeletonMesh = createSkeletonMesh(kaho);
+  kahoSkeletonMesh.position.set(20, -20, 0);
+  kahoSkeletonMesh.scale.setScalar(0.125);
+  kahoSkeletonMesh.visible = false;
 
-  groupRef.value?.add(logoSkeletonMesh, sayakaSkeletonMesh);
+  groupRef.value?.add(logoSkeletonMesh, kahoSkeletonMesh);
 
-  sayakaSkeletonMesh.state.data.setMix(
+  kahoSkeletonMesh.state.data.setMix(
     SKELETON_CONST.ANIMATION.start,
     SKELETON_CONST.ANIMATION.idle,
     0.5,
   );
-  sayakaSkeletonMesh.state.addListener({
+  kahoSkeletonMesh.state.addListener({
     start: (entry) => {
-      if (!sayakaSkeletonMesh) {
+      if (!kahoSkeletonMesh) {
         return;
       }
 
       if (entry.animation?.name === SKELETON_CONST.ANIMATION.start_ready) {
-        sayakaSkeletonMesh.visible = true;
+        kahoSkeletonMesh.visible = true;
       }
     },
     complete(entry) {
-      if (!sayakaSkeletonMesh) {
+      if (!kahoSkeletonMesh) {
         return;
       }
 
       if (entry.animation?.name === SKELETON_CONST.ANIMATION.start) {
-        loopBlinkAnim(sayakaSkeletonMesh.state, 1);
+        loopBlinkAnim(kahoSkeletonMesh.state, 1);
         canStart = true;
         shouldShowStartAnnounce.value = true;
       }
     },
   });
-  sayakaSkeletonMesh.state.setAnimation(
+  kahoSkeletonMesh.state.setAnimation(
     0,
     SKELETON_CONST.ANIMATION.start_ready,
     false,
   );
-  sayakaSkeletonMesh.state.addAnimation(
+  kahoSkeletonMesh.state.addAnimation(
     0,
     SKELETON_CONST.ANIMATION.start,
     false,
     0.5,
   );
-  sayakaSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
+  kahoSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
 };
 
 const onClick = () => {
@@ -154,8 +154,8 @@ const onClick = () => {
   logoAnim.listener = {
     event(_, event) {
       if (event.data.name === SKELETON_CONST.EVENT.readyToShowGame) {
-        if (sayakaSkeletonMesh) {
-          sayakaSkeletonMesh.visible = false;
+        if (kahoSkeletonMesh) {
+          kahoSkeletonMesh.visible = false;
         }
         emit("start", promise);
       }
@@ -167,7 +167,7 @@ const onClick = () => {
 };
 
 onLoop(({ delta }) => {
-  sayakaSkeletonMesh?.update(delta);
+  kahoSkeletonMesh?.update(delta);
   logoSkeletonMesh?.update(delta);
 });
 
@@ -191,7 +191,7 @@ onMounted(() => {
   bottom: 0.3rem;
 
   color: #ffffff;
-  text-shadow: #0077ff 1px 0 10px;
+  text-shadow: #ffc400 1px 0 10px;
 }
 
 .credits {
