@@ -103,8 +103,8 @@ const playReadyTimeline = () => {
         .timeline()
         .fromTo(
           `.${classes.teaStep1}`,
-          { top: "4rem", left: "3rem" },
-          { left: "6rem", duration: 2 },
+          { top: "2rem", left: "2rem" },
+          { left: "5rem", duration: 2 },
         )
         .fromTo(
           `.${classes.teaStep1}`,
@@ -119,8 +119,8 @@ const playReadyTimeline = () => {
         .timeline()
         .fromTo(
           `.${classes.teaStep2}`,
-          { top: "7rem", left: "16rem" },
-          { left: "20rem", duration: 2 },
+          { top: "7rem", left: "14rem" },
+          { left: "17rem", duration: 2 },
         )
         .fromTo(
           `.${classes.teaStep2}`,
@@ -262,6 +262,7 @@ onMounted(() => {
 <style scoped>
 .tea-step {
   position: absolute;
+  width: 6rem;
 }
 
 .timer {
