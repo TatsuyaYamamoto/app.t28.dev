@@ -10,9 +10,7 @@ import game_kaho_sprite from "../../spines/exports/kaho-game.png";
 
 import back from "./back.png";
 import desk from "./desk.png";
-import bento_1 from "./bento_1.png";
-import bento_2 from "./bento_2.png";
-import bento_3 from "./bento_3.png";
+import pot_and_cup from "./pot-and-cup.png";
 import kekka_share from "./kekka_share.png";
 import kekka_title from "./kekka_title.png";
 import tea_step_1 from "./tea-step-1.png";
@@ -28,16 +26,8 @@ export const IMAGE_MANIFEST = [
     src: desk,
   },
   {
-    id: "bento_1",
-    src: bento_1,
-  },
-  {
-    id: "bento_2",
-    src: bento_2,
-  },
-  {
-    id: "bento_3",
-    src: bento_3,
+    id: "pot_and_cup",
+    src: pot_and_cup,
   },
   {
     id: "kekka_share",

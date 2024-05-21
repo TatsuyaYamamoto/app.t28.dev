@@ -10,6 +10,11 @@
       <TresMeshBasicMaterial :map="textures.desk" transparent />
     </TresMesh>
 
+    <TresMesh :position="[0, -200, 2]">
+      <TresPlaneGeometry :args="[539 * 0.6, 170 * 0.6]" />
+      <TresMeshBasicMaterial :map="textures.potAndCup" transparent />
+    </TresMesh>
+
     <CanvasPortal>
       <div v-if="shouldShow.readyStepAnimation">
         <img
@@ -72,6 +77,7 @@ const textures = {
   desk: getTexture("desk"),
   teaStep1: getTexture("tea_step_1"),
   teaStep2: getTexture("tea_step_2"),
+  potAndCup: getTexture("pot_and_cup"),
 };
 
 let kahoSkeletonMesh: SkeletonMesh | null = null;
@@ -178,6 +184,7 @@ const onClick = async () => {
   }
 
   isFinished = true;
+  kahoSkeletonMesh.state.clearTrack(1); // stop blink
   const entry = kahoSkeletonMesh.state.setAnimation(0, "success", false);
   entry.mixDuration = 0.3;
 
