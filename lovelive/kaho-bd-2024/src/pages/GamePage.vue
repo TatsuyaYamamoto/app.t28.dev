@@ -109,8 +109,8 @@ const playReadyTimeline = () => {
         .timeline()
         .fromTo(
           `.${classes.teaStep1}`,
-          { top: "2rem", left: "2rem" },
-          { left: "5rem", duration: 1.5 },
+          { top: "2rem", left: "1rem" },
+          { left: "3rem", duration: 1.5 },
         )
         .fromTo(
           `.${classes.teaStep1}`,
