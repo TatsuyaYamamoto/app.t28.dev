@@ -79,13 +79,13 @@ importers:
         version: 18.2.6
       '@vitejs/plugin-react':
         specifier: 4.2.1
-        version: 4.2.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 4.2.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
       vite:
-        specifier: 5.2.11
-        version: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-plugin-html:
         specifier: 3.2.2
-        version: 3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
 
   apps/oshibana:
     dependencies:
@@ -119,22 +119,22 @@ importers:
         version: 18.2.6
       '@vitejs/plugin-react':
         specifier: 4.2.1
-        version: 4.2.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 4.2.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
       vite:
-        specifier: 5.2.11
-        version: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-plugin-html:
         specifier: 3.2.2
-        version: 3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
 
   apps/root:
     devDependencies:
       vite:
-        specifier: 5.2.11
-        version: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-plugin-html:
         specifier: 3.2.2
-        version: 3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
 
   lovelive/aprilfool-2024:
     dependencies:
@@ -171,16 +171,16 @@ importers:
         version: 0.158.3
       '@vitejs/plugin-vue':
         specifier: 4.5.2
-        version: 4.5.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
+        version: 4.5.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
       vite:
-        specifier: 5.2.11
-        version: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-plugin-html:
         specifier: 3.2.2
-        version: 3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
       vite-plugin-vuetify:
         specifier: 2.0.1
-        version: 2.0.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
+        version: 2.0.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
       vue-tsc:
         specifier: 2.0.19
         version: 2.0.19(typescript@5.4.5)
@@ -220,19 +220,19 @@ importers:
         version: 0.158.3
       '@vitejs/plugin-vue':
         specifier: 4.5.2
-        version: 4.5.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))
+        version: 4.5.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))
       typescript:
         specifier: 5.3.3
         version: 5.3.3
       vite:
-        specifier: 5.2.11
-        version: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-plugin-html:
         specifier: 3.2.2
-        version: 3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
       vite-plugin-vuetify:
         specifier: 2.0.1
-        version: 2.0.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))(vuetify@3.4.10)
+        version: 2.0.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))(vuetify@3.4.10)
       vue-tsc:
         specifier: 1.8.25
         version: 1.8.25(typescript@5.3.3)
@@ -269,13 +269,13 @@ importers:
         version: 0.158.3
       '@vitejs/plugin-vue':
         specifier: 4.5.2
-        version: 4.5.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
+        version: 4.5.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
       vite:
-        specifier: 5.2.11
-        version: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-plugin-html:
         specifier: 3.2.2
-        version: 3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
       vue-tsc:
         specifier: 2.0.19
         version: 2.0.19(typescript@5.4.5)
@@ -315,16 +315,16 @@ importers:
         version: 0.158.3
       '@vitejs/plugin-vue':
         specifier: 4.5.2
-        version: 4.5.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
+        version: 4.5.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
       vite:
-        specifier: 5.2.11
-        version: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+        specifier: 5.2.13
+        version: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-plugin-html:
         specifier: 3.2.2
-        version: 3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))
+        version: 3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))
       vite-plugin-vuetify:
         specifier: 2.0.1
-        version: 2.0.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
+        version: 2.0.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
       vue-tsc:
         specifier: 2.0.19
         version: 2.0.19(typescript@5.4.5)
@@ -1159,9 +1159,11 @@ packages:
   '@humanwhocodes/config-array@0.9.3':
     resolution: {integrity: sha512-3xSMlXHh03hCcCmFc0rbKp3Ivt2PFEJnQUJDDMTJQ2wkECZWdq4GePs2ctc5H8zV+cHPaq8k2vU8mrQjA6iHdQ==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/object-schema@1.2.1':
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@jest/schemas@29.6.3':
     resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
@@ -1923,6 +1925,7 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
@@ -1996,6 +1999,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -2417,6 +2421,7 @@ packages:
 
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rollup@4.17.2:
@@ -2689,8 +2694,8 @@ packages:
       vue: ^3.0.0
       vuetify: ^3.0.0
 
-  vite@5.2.11:
-    resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
+  vite@5.2.13:
+    resolution: {integrity: sha512-SSq1noJfY9pR3I1TUENL3rQYDQCFqgD+lM6fTRAM8Nv6Lsg5hDLaXkjETVeBt+7vZBCMoibD+6IWnT2mJ+Zb/A==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -4085,25 +4090,25 @@ snapshots:
 
   '@types/webxr@0.5.10': {}
 
-  '@vitejs/plugin-react@4.2.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))':
+  '@vitejs/plugin-react@4.2.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))':
     dependencies:
       '@babel/core': 7.23.7
       '@babel/plugin-transform-react-jsx-self': 7.23.3(@babel/core@7.23.7)
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitejs/plugin-vue@4.5.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))':
+  '@vitejs/plugin-vue@4.5.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))':
     dependencies:
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vue: 3.4.9(typescript@5.3.3)
 
-  '@vitejs/plugin-vue@4.5.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))':
+  '@vitejs/plugin-vue@4.5.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))':
     dependencies:
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vue: 3.4.9(typescript@5.4.5)
 
   '@vitest/expect@1.3.1':
@@ -5447,7 +5452,7 @@ snapshots:
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5458,7 +5463,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-html@3.2.2(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0)):
+  vite-plugin-html@3.2.2(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0)):
     dependencies:
       '@rollup/pluginutils': 4.2.1
       colorette: 2.0.20
@@ -5472,31 +5477,31 @@ snapshots:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
 
-  vite-plugin-vuetify@2.0.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))(vuetify@3.4.10):
+  vite-plugin-vuetify@2.0.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))(vuetify@3.4.10):
     dependencies:
       '@vuetify/loader-shared': 2.0.1(vue@3.4.9(typescript@5.3.3))(vuetify@3.4.10(typescript@5.3.3)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.3.3)))
       debug: 4.3.4
       upath: 2.0.1
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vue: 3.4.9(typescript@5.3.3)
       vuetify: 3.4.10(typescript@5.3.3)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.3.3))
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-vuetify@2.0.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10):
+  vite-plugin-vuetify@2.0.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10):
     dependencies:
       '@vuetify/loader-shared': 2.0.1(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5)))
       debug: 4.3.4
       upath: 2.0.1
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vue: 3.4.9(typescript@5.4.5)
       vuetify: 3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5))
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.2.11(@types/node@20.2.1)(terser@5.26.0):
+  vite@5.2.13(@types/node@20.2.1)(terser@5.26.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
@@ -5525,7 +5530,7 @@ snapshots:
       strip-literal: 2.0.0
       tinybench: 2.6.0
       tinypool: 0.8.2
-      vite: 5.2.11(@types/node@20.2.1)(terser@5.26.0)
+      vite: 5.2.13(@types/node@20.2.1)(terser@5.26.0)
       vite-node: 1.3.1(@types/node@20.2.1)(terser@5.26.0)
       why-is-node-running: 2.2.2
     optionalDependencies:
@@ -5591,14 +5596,14 @@ snapshots:
       vue: 3.4.9(typescript@5.3.3)
     optionalDependencies:
       typescript: 5.3.3
-      vite-plugin-vuetify: 2.0.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))(vuetify@3.4.10)
+      vite-plugin-vuetify: 2.0.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.3.3))(vuetify@3.4.10)
 
   vuetify@3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5)):
     dependencies:
       vue: 3.4.9(typescript@5.4.5)
     optionalDependencies:
       typescript: 5.4.5
-      vite-plugin-vuetify: 2.0.1(vite@5.2.11(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
+      vite-plugin-vuetify: 2.0.1(vite@5.2.13(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
 
   which@2.0.2:
     dependencies:
