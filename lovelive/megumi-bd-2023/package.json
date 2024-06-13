@@ -22,7 +22,6 @@
     "@types/three": "0.158.3",
     "@vitejs/plugin-vue": "4.5.2",
     "vite": "5.2.11",
-    "vite-plugin-html": "3.2.2",
-    "vue-tsc": "2.0.19"
+    "vite-plugin-html": "3.2.2"
   }
 }
