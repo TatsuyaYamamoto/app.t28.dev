@@ -29,8 +29,8 @@ import {
   SkeletonMesh,
   SkeletonJson,
 } from "@esotericsoftware/spine-threejs";
+import CanvasPortal from "shared/components/CanvasPortal.vue";
 
-import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";
 
