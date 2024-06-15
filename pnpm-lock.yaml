@@ -65,8 +65,8 @@ importers:
         specifier: 8.33.1
         version: 8.33.1(react@18.2.0)
       react-textarea-autosize:
-        specifier: 8.4.1
-        version: 8.4.1(@types/react@18.2.6)(react@18.2.0)
+        specifier: 8.5.3
+        version: 8.5.3(@types/react@18.2.6)(react@18.2.0)
       shared:
         specifier: workspace:*
         version: link:../../shared
@@ -2351,8 +2351,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-textarea-autosize@8.4.1:
-    resolution: {integrity: sha512-aD2C+qK6QypknC+lCMzteOdIjoMbNlgSFmJjCV+DrfTPwp59i/it9mMNf2HDzvRjQgKAyBDPyLJhcrzElf2U4Q==}
+  react-textarea-autosize@8.5.3:
+    resolution: {integrity: sha512-XT1024o2pqCuZSuBt9FwHlaDeNtVrtCXu0Rnz88t1jUGheCLa3PhjE1GH8Ctm2axEtvdCl5SUHYschyQ0L5QHQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5061,7 +5061,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.6
 
-  react-textarea-autosize@8.4.1(@types/react@18.2.6)(react@18.2.0):
+  react-textarea-autosize@8.5.3(@types/react@18.2.6)(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.21.5
       react: 18.2.0
