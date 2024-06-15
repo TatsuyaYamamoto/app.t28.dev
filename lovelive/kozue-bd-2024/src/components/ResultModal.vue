@@ -67,8 +67,8 @@ const onClickForShare = () => {
     return;
   }
 
-  const hashtags = `#かほちゃんのおこうちゃ #蓮ノ空 #日野下花帆生誕祭2024`;
-  const appUrl = `https://app.t28.dev/lovelive/kaho-bd-2024`;
+  const hashtags = `#こずえちゃんのおこうちゃ #蓮ノ空 #乙宗梢生誕祭2024`;
+  const appUrl = `https://app.t28.dev/lovelive/kozue-bd-2024`;
 
   const texts = {
     1: `いいかおりね、すばらしいわ！`,
