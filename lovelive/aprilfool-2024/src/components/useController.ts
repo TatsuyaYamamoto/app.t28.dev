@@ -67,16 +67,16 @@ export const useController = () => {
 
   return {
     up: computed(() => {
-      return w.value || upPointer.value;
+      return w?.value || upPointer.value;
     }),
     left: computed(() => {
-      return a.value || leftPointer.value;
+      return a?.value || leftPointer.value;
     }),
     down: computed(() => {
-      return s.value || downPointer.value;
+      return s?.value || downPointer.value;
     }),
     right: computed(() => {
-      return d.value || rightPointer.value;
+      return d?.value || rightPointer.value;
     }),
     isTouchDevice,
     upPointerEl,

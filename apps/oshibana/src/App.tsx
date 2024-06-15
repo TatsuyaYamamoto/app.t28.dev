@@ -97,6 +97,7 @@ const OshibanaIndex: FC = () => {
           justifyContent="center"
           gap={2}
         >
+          {/* @ts-expect-error */}
           <Button onClick={onClickBaseImageButton}>{`フレーム`}</Button>
           <Button onClick={onClickItemImageButton}>{`スクショ`}</Button>
           <Button onClick={onDownload}>{`ダウンロード`}</Button>

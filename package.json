@@ -8,6 +8,7 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
+    "@tsconfig/strictest": "2.0.5",
     "@types/node": "20.2.1",
     "@types/react": "18.2.6",
     "eslint": "8.9.0",
