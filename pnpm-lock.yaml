@@ -151,8 +151,8 @@ importers:
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
-        specifier: 10.7.0
-        version: 10.7.0(vue@3.4.9(typescript@5.4.5))
+        specifier: 10.11.0
+        version: 10.11.0(vue@3.4.9(typescript@5.4.5))
       gsap:
         specifier: 3.12.5
         version: 3.12.5
@@ -197,8 +197,8 @@ importers:
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
-        specifier: 10.7.0
-        version: 10.7.0(vue@3.4.9(typescript@5.4.5))
+        specifier: 10.11.0
+        version: 10.11.0(vue@3.4.9(typescript@5.4.5))
       gsap:
         specifier: 3.12.5
         version: 3.12.5
@@ -243,8 +243,8 @@ importers:
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
-        specifier: 10.7.0
-        version: 10.7.0(vue@3.4.9(typescript@5.4.5))
+        specifier: 10.11.0
+        version: 10.11.0(vue@3.4.9(typescript@5.4.5))
       gsap:
         specifier: 3.12.5
         version: 3.12.5
@@ -283,8 +283,8 @@ importers:
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
-        specifier: 10.7.0
-        version: 10.7.0(vue@3.4.9(typescript@5.4.5))
+        specifier: 10.11.0
+        version: 10.11.0(vue@3.4.9(typescript@5.4.5))
       gsap:
         specifier: 3.12.5
         version: 3.12.5
@@ -332,8 +332,8 @@ importers:
         specifier: 3.7.0
         version: 3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
-        specifier: 10.7.0
-        version: 10.7.0(vue@3.4.9(typescript@5.4.5))
+        specifier: 10.11.0
+        version: 10.11.0(vue@3.4.9(typescript@5.4.5))
       three:
         specifier: 0.158.0
         version: 0.158.0
@@ -1446,14 +1446,14 @@ packages:
       vue: ^3.0.0
       vuetify: ^3.0.0
 
-  '@vueuse/core@10.7.0':
-    resolution: {integrity: sha512-4EUDESCHtwu44ZWK3Gc/hZUVhVo/ysvdtwocB5vcauSV4B7NiGY5972WnsojB3vRNdxvAt7kzJWE2h9h7C9d5w==}
+  '@vueuse/core@10.11.0':
+    resolution: {integrity: sha512-x3sD4Mkm7PJ+pcq3HX8PLPBadXCAlSDR/waK87dz0gQE+qJnaaFhc/dZVfJz+IUYzTMVGum2QlR7ImiJQN4s6g==}
 
-  '@vueuse/metadata@10.7.0':
-    resolution: {integrity: sha512-GlaH7tKP2iBCZ3bHNZ6b0cl9g0CJK8lttkBNUX156gWvNYhTKEtbweWLm9rxCPIiwzYcr/5xML6T8ZUEt+DkvA==}
+  '@vueuse/metadata@10.11.0':
+    resolution: {integrity: sha512-kQX7l6l8dVWNqlqyN3ePW3KmjCQO3ZMgXuBMddIu83CmucrsBfXlH+JoviYyRBws/yLTQO8g3Pbw+bdIoVm4oQ==}
 
-  '@vueuse/shared@10.7.0':
-    resolution: {integrity: sha512-kc00uV6CiaTdc3i1CDC4a3lBxzaBE9AgYNtFN87B5OOscqeWElj/uza8qVDmk7/U8JbqoONLbtqiLJ5LGRuqlw==}
+  '@vueuse/shared@10.11.0':
+    resolution: {integrity: sha512-fyNoIXEq3PfX1L3NkNhtVQUSRtqYwJtJg+Bp9rIzculIZWHTkKSysujrOk2J+NrRulLTQH9+3gGSfYLWSEWU1A==}
 
   '@zag-js/element-size@0.3.0':
     resolution: {integrity: sha512-5/hEI+0c6ZNCx6KHlOS5/WeHsd6+I7gk7Y/b/zATp4Rp3tHirs/tu1frq+iy5BmfaG9hbQtfHfUJTjOcI5jnoQ==}
@@ -2719,8 +2719,8 @@ packages:
       jsdom:
         optional: true
 
-  vue-demi@0.14.6:
-    resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}
+  vue-demi@0.14.8:
+    resolution: {integrity: sha512-Uuqnk9YE9SsWeReYqK2alDI5YzciATE0r2SkA6iMAtuXvNTMNACJLJEXNXaEy94ECuBe4Sk6RzRU80kjdbIo1Q==}
     engines: {node: '>=12'}
     hasBin: true
     peerDependencies:
@@ -3937,7 +3937,7 @@ snapshots:
   '@tresjs/cientos@3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))':
     dependencies:
       '@tresjs/core': 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
-      '@vueuse/core': 10.7.0(vue@3.4.9(typescript@5.4.5))
+      '@vueuse/core': 10.11.0(vue@3.4.9(typescript@5.4.5))
       camera-controls: 2.7.3(three@0.158.0)
       stats-gl: 2.0.1
       stats.js: 0.17.0
@@ -3954,7 +3954,7 @@ snapshots:
   '@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))':
     dependencies:
       '@alvarosabu/utils': 3.1.1
-      '@vueuse/core': 10.7.0(vue@3.4.9(typescript@5.4.5))
+      '@vueuse/core': 10.11.0(vue@3.4.9(typescript@5.4.5))
       three: 0.158.0
       vue: 3.4.9(typescript@5.4.5)
     transitivePeerDependencies:
@@ -4159,21 +4159,21 @@ snapshots:
       vue: 3.4.9(typescript@5.4.5)
       vuetify: 3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5))
 
-  '@vueuse/core@10.7.0(vue@3.4.9(typescript@5.4.5))':
+  '@vueuse/core@10.11.0(vue@3.4.9(typescript@5.4.5))':
     dependencies:
       '@types/web-bluetooth': 0.0.20
-      '@vueuse/metadata': 10.7.0
-      '@vueuse/shared': 10.7.0(vue@3.4.9(typescript@5.4.5))
-      vue-demi: 0.14.6(vue@3.4.9(typescript@5.4.5))
+      '@vueuse/metadata': 10.11.0
+      '@vueuse/shared': 10.11.0(vue@3.4.9(typescript@5.4.5))
+      vue-demi: 0.14.8(vue@3.4.9(typescript@5.4.5))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/metadata@10.7.0': {}
+  '@vueuse/metadata@10.11.0': {}
 
-  '@vueuse/shared@10.7.0(vue@3.4.9(typescript@5.4.5))':
+  '@vueuse/shared@10.11.0(vue@3.4.9(typescript@5.4.5))':
     dependencies:
-      vue-demi: 0.14.6(vue@3.4.9(typescript@5.4.5))
+      vue-demi: 0.14.8(vue@3.4.9(typescript@5.4.5))
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -5408,7 +5408,7 @@ snapshots:
       - supports-color
       - terser
 
-  vue-demi@0.14.6(vue@3.4.9(typescript@5.4.5)):
+  vue-demi@0.14.8(vue@3.4.9(typescript@5.4.5)):
     dependencies:
       vue: 3.4.9(typescript@5.4.5)
 
