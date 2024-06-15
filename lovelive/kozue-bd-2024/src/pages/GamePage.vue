@@ -45,11 +45,7 @@ import {
 } from "@esotericsoftware/spine-threejs";
 import gsap from "gsap";
 
-import {
-  getRandomInt,
-  wait,
-  promiseWithResolvers,
-} from "shared/helpers/utils.ts";
+import { wait, promiseWithResolvers } from "shared/helpers/utils.ts";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
 
 import TapAnnounce from "../components/TapAnnounce.vue";
@@ -178,7 +174,7 @@ const onClick = async () => {
   const entry = kozueSkeletonMesh.state.setAnimation(0, "success", false);
   entry.mixDuration = 0.3;
 
-  await wait(500);
+  await wait(1500);
   emit("finish");
 };
 
