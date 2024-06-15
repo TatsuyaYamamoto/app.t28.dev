@@ -1,0 +1,26 @@
+{
+"skeleton": { "hash": "+ossiO9I3wU", "spine": "4.2.22", "x": -3444.32, "y": -2113, "width": 6868, "height": 1392 },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "机2", "bone": "root", "attachment": "机" },
+	{ "name": "ポット・カップ2", "bone": "root", "attachment": "ポット・カップ" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"ポット・カップ2": {
+				"ポット・カップ": { "x": 590, "y": -1060, "width": 2156, "height": 678 }
+			},
+			"机2": {
+				"机": { "x": -10.32, "y": -1559.5, "width": 6868, "height": 1107 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}
