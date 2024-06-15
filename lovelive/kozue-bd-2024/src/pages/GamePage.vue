@@ -28,14 +28,6 @@
       </div>
 
       <Transition name="fade">
-        <GameTimer
-          v-if="shouldShow.timer"
-          class="timer"
-          :long="clockHands.long"
-        />
-      </Transition>
-
-      <Transition name="fade">
         <TapAnnounce v-if="shouldShow.tapAnnounce" />
       </Transition>
     </CanvasPortal>
@@ -60,7 +52,6 @@ import {
 } from "shared/helpers/utils.ts";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
 
-import GameTimer from "../components/GameTimer.vue";
 import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim } from "../utils.ts";
@@ -211,14 +202,6 @@ onMounted(() => {
   position: absolute;
   width: 7rem;
   border-radius: 1rem;
-}
-
-.timer {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 4rem;
-  height: 4rem;
 }
 
 .fade-enter-active,

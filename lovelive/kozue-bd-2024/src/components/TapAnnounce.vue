@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <div>紅茶はどれぐらい蒸らすと良いかな？</div>
+    <div>程よく紅茶を蒸らしましょう</div>
     <div>(タップで蒸らしを終える）</div>
   </div>
 </template>
