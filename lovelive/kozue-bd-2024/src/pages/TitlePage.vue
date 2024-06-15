@@ -89,18 +89,13 @@ const init = async () => {
 
   groupRef.value?.add(logoSkeletonMesh, kozueSkeletonMesh);
 
-  kozueSkeletonMesh.state.data.setMix(
-    SKELETON_CONST.ANIMATION.start,
-    SKELETON_CONST.ANIMATION.idle,
-    0.5,
-  );
   kozueSkeletonMesh.state.addListener({
     start: (entry) => {
       if (!kozueSkeletonMesh) {
         return;
       }
 
-      if (entry.animation?.name === SKELETON_CONST.ANIMATION.start_ready) {
+      if (entry.animation?.name === SKELETON_CONST.ANIMATION.start) {
         kozueSkeletonMesh.visible = true;
       }
     },
@@ -110,24 +105,28 @@ const init = async () => {
       }
 
       if (entry.animation?.name === SKELETON_CONST.ANIMATION.start) {
-        loopBlinkAnim(kozueSkeletonMesh.state, 1);
         canStart = true;
         shouldShowStartAnnounce.value = true;
       }
     },
   });
-  kozueSkeletonMesh.state.setAnimation(
-    0,
-    SKELETON_CONST.ANIMATION.start_ready,
-    false,
-  );
+  const track = 0;
+  kozueSkeletonMesh.state.setEmptyAnimation(track, 0);
   kozueSkeletonMesh.state.addAnimation(
-    0,
+    track,
     SKELETON_CONST.ANIMATION.start,
     false,
-    0.5,
+    0,
   );
-  kozueSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
+  const idleEntry = kozueSkeletonMesh.state.addAnimation(
+    track,
+    SKELETON_CONST.ANIMATION.idle,
+    true,
+    0,
+  );
+  idleEntry.mixDuration = 1;
+
+  loopBlinkAnim(kozueSkeletonMesh.state, 1);
 };
 
 const onClick = () => {

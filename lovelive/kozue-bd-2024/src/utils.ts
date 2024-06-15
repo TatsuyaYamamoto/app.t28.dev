@@ -10,7 +10,7 @@ export const loopBlinkAnim = (
   const setCompleteListener = (entry: TrackEntry) => {
     entry.listener = {
       complete() {
-        const delay = Math.random() * 5 + 0.5;
+        const delay = Math.random() * 4 + 0.5;
         const blinkAnim = state.addAnimation(1, "blink", false, delay);
         setCompleteListener(blinkAnim);
       },

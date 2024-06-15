@@ -150,8 +150,7 @@ const init = async () => {
   kozueSkeletonMesh.scale.setScalar(0.138);
 
   groupRef.value?.add(kozueSkeletonMesh);
-  const animationName = getRandomInt(0, 1) === 0 ? "think" : "idle";
-  kozueSkeletonMesh.state.setAnimation(0, animationName, true);
+  kozueSkeletonMesh.state.setAnimation(0, "idle", true);
   loopBlinkAnim(kozueSkeletonMesh.state, 1);
 
   await wait(300);
