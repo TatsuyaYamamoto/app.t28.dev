@@ -148,8 +148,8 @@ importers:
         specifier: 4.2.41
         version: 4.2.41
       '@tresjs/cientos':
-        specifier: 3.7.0
-        version: 3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
+        specifier: 3.9.0
+        version: 3.9.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
@@ -194,8 +194,8 @@ importers:
         specifier: 4.2.41
         version: 4.2.41
       '@tresjs/cientos':
-        specifier: 3.7.0
-        version: 3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
+        specifier: 3.9.0
+        version: 3.9.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
@@ -240,8 +240,8 @@ importers:
         specifier: 4.2.41
         version: 4.2.41
       '@tresjs/cientos':
-        specifier: 3.7.0
-        version: 3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
+        specifier: 3.9.0
+        version: 3.9.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
@@ -280,8 +280,8 @@ importers:
         specifier: 4.2.41
         version: 4.2.41
       '@tresjs/cientos':
-        specifier: 3.7.0
-        version: 3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
+        specifier: 3.9.0
+        version: 3.9.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 3.6.0
         version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
@@ -332,8 +332,8 @@ importers:
         specifier: 11.11.0
         version: 11.11.0(@types/react@18.2.6)(react@18.2.0)
       '@tresjs/cientos':
-        specifier: 3.7.0
-        version: 3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
+        specifier: 3.9.0
+        version: 3.9.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
         specifier: 10.11.0
         version: 10.11.0(vue@3.4.9(typescript@5.4.5))
@@ -1292,8 +1292,8 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  '@tresjs/cientos@3.7.0':
-    resolution: {integrity: sha512-et5SNCgRZGb6/NU7CQbrn5E31wr9qq/I8v3YvX7TXWw+RmLmP6UBh4Ctr/dNNpsXwXnUr9oJ6KtFbJU2Gwmd5Q==}
+  '@tresjs/cientos@3.9.0':
+    resolution: {integrity: sha512-LAtMveKlecKvWh7TNWdwEs3nQUYMLqz9DZy0YhSZ6OVTfL2vevx2K4sH9744UME8OedUf4fkFFkX4OWQRHaDRQ==}
     peerDependencies:
       '@tresjs/core': '>=3.2'
       three: '>=0.133'
@@ -1311,6 +1311,9 @@ packages:
 
   '@tsconfig/vite-react@3.0.0':
     resolution: {integrity: sha512-haOFbphpavQ1+eyQjeqvlz7sRkQue/bS0GvFmraHml31Ufhv+7juUSc8PVe0In7sly+n+5zTLmzc287KciiGXg==}
+
+  '@tweenjs/tween.js@23.1.2':
+    resolution: {integrity: sha512-kMCNaZCJugWI86xiEHaY338CU5JpD0B97p1j1IKNn/Zto8PgACjQx0UxbHjmOcLl/dDOBnItwD07KmCs75pxtQ==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -1365,6 +1368,9 @@ packages:
 
   '@types/three@0.158.3':
     resolution: {integrity: sha512-6Qs1rUvLSbkJ4hlIe6/rdwIf61j1x2UKvGJg7s8KjswYsz1C1qDTs6voVXXB8kYaI0hgklgZgbZUupfL1l9xdA==}
+
+  '@types/three@0.163.0':
+    resolution: {integrity: sha512-uIdDhsXRpQiBUkflBS/i1l3JX14fW6Ot9csed60nfbZNXHDTRsnV2xnTVwXcgbvTiboAR4IW+t+lTL5f1rqIqA==}
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
@@ -1557,8 +1563,8 @@ packages:
   camel-case@4.1.2:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
 
-  camera-controls@2.7.3:
-    resolution: {integrity: sha512-L4mxjBd3u8qiOLozdWrH2P8ZybSsDXBF7iyNyqNEFJhPUkovmuARWR8JTc1B/qlclOIg6FvZZA/0uAZMMim0mw==}
+  camera-controls@2.8.5:
+    resolution: {integrity: sha512-7VTwRk7Nu1nRKsY7bEt9HVBfKt8DETvzyYhLN4OW26OByBayMDB5fUaNcPI+z++vG23RH5yqn6ZRhZcgLQy2rA==}
     peerDependencies:
       three: '>=0.126.1'
 
@@ -1828,6 +1834,9 @@ packages:
 
   fflate@0.6.10:
     resolution: {integrity: sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==}
+
+  fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
 
   file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -2460,8 +2469,8 @@ packages:
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
-  stats-gl@2.0.1:
-    resolution: {integrity: sha512-EhFm1AxoSBK3MflkFawZ4jmOX1dWu0nBAtCpvGxGsondEvCpsohbpRpM8pi8UAcxG5eRsDsCiRcxdH20j3Rp9A==}
+  stats-gl@2.2.8:
+    resolution: {integrity: sha512-94G5nZvduDmzxBS7K0lYnynYwreZpkknD8g5dZmU6mpwIhy3caCrjAm11Qm1cbyx7mqix7Fp00RkbsonzKWnoQ==}
 
   stats.js@0.17.0:
     resolution: {integrity: sha512-hNKz8phvYLPEcRkeG1rsGmV5ChMjKDAWU7/OJJdDErPBNChQXxCo3WZurGpnWc6gZhAzEPFad1aVgyOANH1sMw==}
@@ -2522,8 +2531,8 @@ packages:
       react:
         optional: true
 
-  three-stdlib@2.28.12:
-    resolution: {integrity: sha512-6ZAomFjrtDVNxI56F3QNgV7uVn8JlEZVgzZP+UE9h/zpKmeD3pIZvmWymw9sYPoteof0hLDFom3cETRhErQh3g==}
+  three-stdlib@2.30.3:
+    resolution: {integrity: sha512-rYr8PqMljMza+Ct8kQk90Y7y+YcWoPu1thfYv5YGCp0hytNRbxSQWXY4GpdTGymCj3bDggEBpxso53C3pPwhIw==}
     peerDependencies:
       three: '>=0.128.0'
 
@@ -3940,16 +3949,16 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@tresjs/cientos@3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))':
+  '@tresjs/cientos@3.9.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))':
     dependencies:
       '@tresjs/core': 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core': 10.11.0(vue@3.4.9(typescript@5.4.5))
-      camera-controls: 2.7.3(three@0.158.0)
-      stats-gl: 2.0.1
+      camera-controls: 2.8.5(three@0.158.0)
+      stats-gl: 2.2.8
       stats.js: 0.17.0
       three: 0.158.0
       three-custom-shader-material: 5.4.0(react@18.2.0)(three@0.158.0)
-      three-stdlib: 2.28.12(three@0.158.0)
+      three-stdlib: 2.30.3(three@0.158.0)
       tweakpane: 4.0.3
       vue: 3.4.9(typescript@5.4.5)
     transitivePeerDependencies:
@@ -3969,6 +3978,8 @@ snapshots:
   '@tsconfig/strictest@2.0.5': {}
 
   '@tsconfig/vite-react@3.0.0': {}
+
+  '@tweenjs/tween.js@23.1.2': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -4032,6 +4043,14 @@ snapshots:
       '@types/stats.js': 0.17.3
       '@types/webxr': 0.5.10
       fflate: 0.6.10
+      meshoptimizer: 0.18.1
+
+  '@types/three@0.163.0':
+    dependencies:
+      '@tweenjs/tween.js': 23.1.2
+      '@types/stats.js': 0.17.3
+      '@types/webxr': 0.5.10
+      fflate: 0.8.2
       meshoptimizer: 0.18.1
 
   '@types/web-bluetooth@0.0.20': {}
@@ -4270,7 +4289,7 @@ snapshots:
       pascal-case: 3.1.2
       tslib: 2.5.2
 
-  camera-controls@2.7.3(three@0.158.0):
+  camera-controls@2.8.5(three@0.158.0):
     dependencies:
       three: 0.158.0
 
@@ -4583,6 +4602,8 @@ snapshots:
       reusify: 1.0.4
 
   fflate@0.6.10: {}
+
+  fflate@0.8.2: {}
 
   file-entry-cache@6.0.1:
     dependencies:
@@ -5177,7 +5198,9 @@ snapshots:
 
   stackback@0.0.2: {}
 
-  stats-gl@2.0.1: {}
+  stats-gl@2.2.8:
+    dependencies:
+      '@types/three': 0.163.0
 
   stats.js@0.17.0: {}
 
@@ -5228,7 +5251,7 @@ snapshots:
     optionalDependencies:
       react: 18.2.0
 
-  three-stdlib@2.28.12(three@0.158.0):
+  three-stdlib@2.30.3(three@0.158.0):
     dependencies:
       '@types/draco3d': 1.4.9
       '@types/offscreencanvas': 2019.7.3
