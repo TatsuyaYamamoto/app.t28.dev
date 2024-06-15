@@ -1,22 +1,23 @@
 <template>
   <CanvasRenderer :base-width="6868" :base-height="4226">
-    <LoadingPage
-      v-if="currentPage === 'loading'"
-      @loadCompleted="onLoadCompleted"
-    />
-    <TitlePage v-if="currentPage === 'title'" @start="onGameStart" />
-    <GamePage v-if="currentPage === 'game'" @finish="onGameFinish" />
+    <template #canvas>
+      <LoadingPage
+        v-if="currentPage === 'loading'"
+        @loadCompleted="onLoadCompleted"
+      />
+      <TitlePage v-if="currentPage === 'title'" @start="onGameStart" />
+      <GamePage v-if="currentPage === 'game'" @finish="onGameFinish" />
+    </template>
+    <template #html>
+      <StartAnnounce v-if="currentPage === 'title'" @click="onGameStart" />
+      <GameResultModal
+        v-if="gameResultModalType !== null"
+        :image-type="gameResultModalType"
+        @click-button="onClickButtonGameResultModal"
+      />
+      <Credits v-if="currentPage === 'title'" />
+    </template>
   </CanvasRenderer>
-
-  <StartAnnounce v-if="currentPage === 'title'" @click="onGameStart" />
-
-  <GameResultModal
-    v-if="gameResultModalType !== null"
-    :image-type="gameResultModalType"
-    @click-button="onClickButtonGameResultModal"
-  />
-
-  <Credits v-if="currentPage === 'title'" />
 </template>
 
 <script setup lang="ts">

@@ -1,13 +1,19 @@
 <template>
   <CanvasRenderer :base-width="6868" :base-height="4226">
-    <LoadingPage
-      v-if="currentPage === 'loading'"
-      @loadCompleted="onLoadCompleted"
-    />
-    <GamePage v-if="currentPage === 'game'" v-model:game-result="gameResult" />
+    <template #canvas>
+      <LoadingPage
+        v-if="currentPage === 'loading'"
+        @loadCompleted="onLoadCompleted"
+      />
+      <GamePage
+        v-if="currentPage === 'game'"
+        v-model:game-result="gameResult"
+      />
+    </template>
+    <template #html>
+      <ResultModal v-model="gameResult" @click-button="onClickContinue" />
+    </template>
   </CanvasRenderer>
-
-  <ResultModal v-model="gameResult" @click-button="onClickContinue" />
 </template>
 
 <script setup lang="ts">

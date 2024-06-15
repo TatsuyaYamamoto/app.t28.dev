@@ -23,8 +23,10 @@
         :rotate-x="-(Math.PI / 2)"
       />
 
-      <slot></slot>
+      <slot name="canvas"></slot>
     </TresCanvas>
+
+    <slot name="html"></slot>
   </div>
 </template>
 
