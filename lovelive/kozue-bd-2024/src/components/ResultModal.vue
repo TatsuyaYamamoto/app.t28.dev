@@ -71,9 +71,9 @@ const onClickForShare = () => {
   const appUrl = `https://app.t28.dev/lovelive/kozue-bd-2024`;
 
   const texts = {
-    1: `いいかおりね、すばらしいわ！`,
-    2: `花帆、よくがんばったわね、はなまるよ！`,
-    3: `次、またがんばりましょう`,
+    1: `梢センパイが淹れるお茶はぜーんぶおいしいです！`,
+    2: `うーん！おいしいっ！！`,
+    3: `さすが梢センパイ！いいかおり〜♡`,
   };
 
   const url = new URL("https://twitter.com/intent/tweet");
