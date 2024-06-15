@@ -58,8 +58,8 @@ import {
   wait,
   promiseWithResolvers,
 } from "shared/helpers/utils.ts";
+import CanvasPortal from "shared/components/CanvasPortal.vue";
 
-import CanvasPortal from "../components/CanvasPortal.vue";
 import GameTimer from "../components/GameTimer.vue";
 import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";

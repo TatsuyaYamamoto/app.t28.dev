@@ -7,8 +7,9 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 
+import CanvasPortal from "shared/components/CanvasPortal.vue";
+
 import { useAssetLoader } from "../components/useAssetLoader.ts";
-import CanvasPortal from "../components/CanvasPortal.vue";
 
 const emit = defineEmits<{
   (e: "loadCompleted"): void;

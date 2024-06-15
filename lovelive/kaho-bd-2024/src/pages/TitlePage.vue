@@ -31,8 +31,8 @@ import {
 } from "@esotericsoftware/spine-threejs";
 
 import { promiseWithResolvers } from "shared/helpers/utils";
+import CanvasPortal from "shared/components/CanvasPortal.vue";
 
-import CanvasPortal from "../components/CanvasPortal.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim } from "../utils.ts";
 

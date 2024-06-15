@@ -70,7 +70,8 @@ import {
 } from "@esotericsoftware/spine-threejs";
 import type { Group, Texture } from "three";
 
-import CanvasPortal from "../components/CanvasPortal.vue";
+import CanvasPortal from "shared/components/CanvasPortal.vue";
+
 import { useAssetLoader } from "../components/useAssetLoader.ts";
 import Keyboard from "../components/Keyboard.vue";
 import FieldBorderNotification from "../components/FieldBorderNotification.vue";
