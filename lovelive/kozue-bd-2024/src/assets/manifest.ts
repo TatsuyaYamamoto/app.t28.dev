@@ -1,12 +1,14 @@
-import title_kaho_atlas from "../../spines/exports/title-kaho.atlas?raw";
-import title_kaho_skeleton from "../../spines/exports/title-kaho.json";
-import title_kaho_sprite from "../../spines/exports/title-kaho.png";
+import title_kozue_atlas from "../../spines/exports/kozue-title.atlas?raw";
+import title_kozue_skeleton from "../../spines/exports/kozue-title.json";
+import title_kozue_sprite from "../../spines/exports/kozue-title.png";
+
 import title_logo_atlas from "../../spines/exports/title-logo.atlas?raw";
 import title_logo_skeleton from "../../spines/exports/title-logo.json";
 import title_logo_sprite from "../../spines/exports/title-logo.png";
-import game_kaho_atlas from "../../spines/exports/kaho-game.atlas?raw";
-import game_kaho_skeleton from "../../spines/exports/kaho-game.json";
-import game_kaho_sprite from "../../spines/exports/kaho-game.png";
+
+import game_kozue_atlas from "../../spines/exports/kozue-game.atlas?raw";
+import game_kozue_skeleton from "../../spines/exports/kozue-game.json";
+import game_kozue_sprite from "../../spines/exports/kozue-game.png";
 
 import back from "./back.jpg";
 import desk from "./desk.png";
@@ -51,10 +53,10 @@ export type ImageKey = (typeof IMAGE_MANIFEST)[number]["id"];
 
 export const SPINE_MANIFEST = [
   {
-    id: "title_kaho",
-    atlas: title_kaho_atlas,
-    skeleton: title_kaho_skeleton,
-    sprite: title_kaho_sprite,
+    id: "title_kozue",
+    atlas: title_kozue_atlas,
+    skeleton: title_kozue_skeleton,
+    sprite: title_kozue_sprite,
   },
   {
     id: "title_logo",
@@ -63,10 +65,10 @@ export const SPINE_MANIFEST = [
     sprite: title_logo_sprite,
   },
   {
-    id: "game_kaho",
-    atlas: game_kaho_atlas,
-    skeleton: game_kaho_skeleton,
-    sprite: game_kaho_sprite,
+    id: "game_kozue",
+    atlas: game_kozue_atlas,
+    skeleton: game_kozue_skeleton,
+    sprite: game_kozue_sprite,
   },
 ] as const;
 

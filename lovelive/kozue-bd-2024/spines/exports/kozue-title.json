@@ -1,0 +1,158 @@
+{
+"skeleton": { "hash": "lZpVYAx9Zh8", "spine": "4.2.29", "x": 185, "y": -2113, "width": 3108, "height": 4079 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "body", "parent": "root", "x": 1916.02, "y": -1137.64 },
+	{ "name": "body_upper", "parent": "body", "length": 467.54, "rotation": 84.99, "x": -99.17, "y": -11.26 },
+	{ "name": "body_lower", "parent": "body", "length": 194.16, "rotation": -91.81, "x": -103.25, "y": -56.2 },
+	{ "name": "head", "parent": "body_upper", "length": 599.26, "rotation": 7.17, "x": 533.29, "y": -8.91 },
+	{ "name": "hair", "parent": "head", "x": 2422.24, "y": -53.45 },
+	{ "name": "arm_L_1", "parent": "body_upper", "length": 388.39, "rotation": 170.25, "x": 372.8, "y": -282.48 },
+	{ "name": "arm_L_2", "parent": "arm_L_1", "length": 282.09, "rotation": -80.99, "x": 424.47, "y": -25.99 },
+	{ "name": "arm_R_1", "parent": "body_upper", "length": 378.42, "rotation": 159.41, "x": 364.9, "y": 223.57 },
+	{ "name": "arm_R_2", "parent": "arm_R_1", "x": 465.63, "y": -294.08 }
+],
+"slots": [
+	{ "name": "左足", "bone": "body_lower", "attachment": "左足" },
+	{ "name": "右足", "bone": "body_lower", "attachment": "右足" },
+	{ "name": "右腕２", "bone": "arm_R_1", "attachment": "右腕２" },
+	{ "name": "体", "bone": "body", "attachment": "体" },
+	{ "name": "リボン２", "bone": "body", "attachment": "リボン２" },
+	{ "name": "リボン１", "bone": "body", "attachment": "リボン１" },
+	{ "name": "右腕１", "bone": "arm_R_1", "attachment": "右腕１" },
+	{ "name": "左腕２", "bone": "arm_L_1", "attachment": "左腕２" },
+	{ "name": "布", "bone": "arm_L_1", "attachment": "布" },
+	{ "name": "左腕１", "bone": "arm_L_1", "attachment": "左腕１" },
+	{ "name": "首～襟", "bone": "body", "attachment": "首～襟" },
+	{ "name": "ポニテ", "bone": "hair", "attachment": "ポニテ" },
+	{ "name": "頭", "bone": "head", "attachment": "頭" },
+	{ "name": "白目", "bone": "head", "attachment": "白目" },
+	{ "name": "顔", "bone": "head", "attachment": "顔" },
+	{ "name": "口", "bone": "head", "attachment": "口" },
+	{ "name": "左ひとみ", "bone": "head", "attachment": "左ひとみ" },
+	{ "name": "右ひとみ", "bone": "head", "attachment": "右ひとみ" },
+	{ "name": "右まつ毛", "bone": "head", "attachment": "右まつ毛" },
+	{ "name": "左まつ毛", "bone": "head", "attachment": "左まつ毛" },
+	{ "name": "左目閉じ", "bone": "head" },
+	{ "name": "右目閉じ", "bone": "head" },
+	{ "name": "右眉毛", "bone": "head", "attachment": "右眉毛" },
+	{ "name": "左眉毛", "bone": "head", "attachment": "左眉毛" },
+	{ "name": "ふさふさ", "bone": "hair", "attachment": "ふさふさ" },
+	{ "name": "お団子", "bone": "hair", "attachment": "お団子" },
+	{ "name": "ツバキ２", "bone": "hair", "attachment": "ツバキ２" },
+	{ "name": "ツバキ１", "bone": "hair", "attachment": "ツバキ１" },
+	{ "name": "左もみあげ", "bone": "hair", "attachment": "左もみあげ" },
+	{ "name": "右もみあげ", "bone": "hair", "attachment": "右もみあげ" },
+	{ "name": "前髪", "bone": "hair", "attachment": "前髪" },
+	{ "name": "ほほの線", "bone": "head", "attachment": "ほほの線" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"お団子": {
+				"お団子": { "x": -493.47, "y": 1154.96, "rotation": -92.16, "width": 652, "height": 791 }
+			},
+			"ふさふさ": {
+				"ふさふさ": { "x": -520.96, "y": 1195.52, "rotation": -92.16, "width": 939, "height": 1255 }
+			},
+			"ほほの線": {
+				"ほほの線": { "x": 418.6, "y": 89.64, "rotation": -92.16, "width": 1566, "height": 225 }
+			},
+			"ツバキ１": {
+				"ツバキ１": { "x": -395.14, "y": 1015.66, "rotation": -92.16, "width": 539, "height": 664 }
+			},
+			"ツバキ２": {
+				"ツバキ２": { "x": -1149.92, "y": 1288.26, "rotation": -92.16, "width": 347, "height": 979 }
+			},
+			"ポニテ": {
+				"ポニテ": { "x": -1827.21, "y": 1319.78, "rotation": -92.16, "width": 799, "height": 2333 }
+			},
+			"リボン１": {
+				"リボン１": { "x": -146.02, "y": 197.14, "width": 368, "height": 239 }
+			},
+			"リボン２": {
+				"リボン２": { "x": -97.52, "y": 307.14, "width": 363, "height": 147 }
+			},
+			"体": {
+				"体": { "x": -31.52, "y": -229.36, "width": 1459, "height": 1476 }
+			},
+			"前髪": {
+				"前髪": { "x": -769.04, "y": 109.09, "rotation": -92.16, "width": 2433, "height": 1843 }
+			},
+			"口": {
+				"口": { "x": 305.37, "y": 58.88, "rotation": -92.16, "width": 258, "height": 65 }
+			},
+			"右ひとみ": {
+				"右ひとみ": { "x": 751.28, "y": 486.39, "rotation": -92.16, "width": 386, "height": 552 }
+			},
+			"右まつ毛": {
+				"右まつ毛": { "x": 939.85, "y": 577.86, "rotation": -92.16, "width": 655, "height": 336 }
+			},
+			"右もみあげ": {
+				"右もみあげ": { "x": -1694.24, "y": 811.92, "rotation": -92.16, "width": 692, "height": 1675 }
+			},
+			"右目閉じ": {
+				"右目閉じ": { "x": 658.66, "y": 551.43, "rotation": -92.16, "width": 579, "height": 250 }
+			},
+			"右眉毛": {
+				"右眉毛": { "x": 1375.28, "y": 647.52, "rotation": -92.16, "width": 773, "height": 231 }
+			},
+			"右腕１": {
+				"右腕１": { "x": 345.2, "y": -67.45, "rotation": 115.61, "width": 726, "height": 508 }
+			},
+			"右腕２": {
+				"右腕２": { "x": 221.04, "y": 23.86, "rotation": 115.61, "width": 374, "height": 599 }
+			},
+			"右足": {
+				"右足": { "x": 695, "y": -142.4, "rotation": 91.81, "width": 361, "height": 458 }
+			},
+			"左ひとみ": {
+				"左ひとみ": { "x": 783.54, "y": -516.53, "rotation": -92.16, "width": 430, "height": 548 }
+			},
+			"左まつ毛": {
+				"左まつ毛": { "x": 972.48, "y": -495.13, "rotation": -92.16, "width": 741, "height": 322 }
+			},
+			"左もみあげ": {
+				"左もみあげ": { "x": -1591.92, "y": -735.53, "rotation": -92.16, "width": 687, "height": 1788 }
+			},
+			"左目閉じ": {
+				"左目閉じ": { "x": 672.79, "y": -481.34, "rotation": -92.16, "width": 618, "height": 234 }
+			},
+			"左眉毛": {
+				"左眉毛": { "x": 1352.41, "y": -610.51, "rotation": -92.16, "width": 831, "height": 266 }
+			},
+			"左腕１": {
+				"左腕１": { "x": 427.78, "y": -185.99, "rotation": 104.76, "width": 580, "height": 343 }
+			},
+			"左腕２": {
+				"左腕２": { "x": 177.13, "y": 13.75, "rotation": 104.76, "width": 398, "height": 680 }
+			},
+			"左足": {
+				"左足": { "x": 665.99, "y": 221.86, "rotation": 91.81, "width": 383, "height": 493 }
+			},
+			"布": {
+				"布": { "x": 504.69, "y": -350.32, "rotation": 104.76, "width": 355, "height": 348 }
+			},
+			"白目": {
+				"白目": { "x": 841.32, "y": 7.66, "rotation": -92.16, "width": 1950, "height": 914 }
+			},
+			"頭": {
+				"頭": { "x": 1448.59, "y": -129.29, "rotation": -92.16, "width": 2692, "height": 2264 }
+			},
+			"顔": {
+				"顔": { "x": 1147.38, "y": -36.39, "rotation": -92.16, "width": 2345, "height": 2295 }
+			},
+			"首～襟": {
+				"首～襟": { "x": -11.52, "y": 465.14, "width": 663, "height": 349 }
+			}
+		}
+	}
+],
+"animations": {
+	"blink": {},
+	"idle": {},
+	"start": {},
+	"start_ready": {}
+}
+}

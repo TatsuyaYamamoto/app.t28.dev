@@ -44,11 +44,11 @@ const { onLoop } = useRenderLoop();
 const { getSpine, getTexture } = useAssetLoader();
 
 const groupRef = ref<Group>();
-let kahoSkeletonMesh: SkeletonMesh | null = null;
+let kozueSkeletonMesh: SkeletonMesh | null = null;
 let logoSkeletonMesh: SkeletonMesh | null = null;
 const backTexture = getTexture("back");
 
-const kaho = getSpine("title_kaho");
+const kozue = getSpine("title_kozue");
 const logo = getSpine("title_logo");
 
 const shouldShowStartAnnounce = ref(false);
@@ -60,10 +60,10 @@ const SKELETON_CONST = {
     idle: "idle",
     start: "start",
     start_ready: "start_ready",
-    titleToGame: "titleToGame",
+    titleToGame: "title_to_game",
   },
   EVENT: {
-    readyToShowGame: "readyToShowGame",
+    readyToShowGame: "ready_to_show_game",
   },
 };
 
@@ -82,52 +82,52 @@ const init = async () => {
   logoSkeletonMesh.position.set(-10, 0, 2);
   logoSkeletonMesh.scale.setScalar(0.125);
 
-  kahoSkeletonMesh = createSkeletonMesh(kaho);
-  kahoSkeletonMesh.position.set(20, -20, 0);
-  kahoSkeletonMesh.scale.setScalar(0.125);
-  kahoSkeletonMesh.visible = false;
+  kozueSkeletonMesh = createSkeletonMesh(kozue);
+  kozueSkeletonMesh.position.set(20, -20, 0);
+  kozueSkeletonMesh.scale.setScalar(0.125);
+  kozueSkeletonMesh.visible = false;
 
-  groupRef.value?.add(logoSkeletonMesh, kahoSkeletonMesh);
+  groupRef.value?.add(logoSkeletonMesh, kozueSkeletonMesh);
 
-  kahoSkeletonMesh.state.data.setMix(
+  kozueSkeletonMesh.state.data.setMix(
     SKELETON_CONST.ANIMATION.start,
     SKELETON_CONST.ANIMATION.idle,
     0.5,
   );
-  kahoSkeletonMesh.state.addListener({
+  kozueSkeletonMesh.state.addListener({
     start: (entry) => {
-      if (!kahoSkeletonMesh) {
+      if (!kozueSkeletonMesh) {
         return;
       }
 
       if (entry.animation?.name === SKELETON_CONST.ANIMATION.start_ready) {
-        kahoSkeletonMesh.visible = true;
+        kozueSkeletonMesh.visible = true;
       }
     },
     complete(entry) {
-      if (!kahoSkeletonMesh) {
+      if (!kozueSkeletonMesh) {
         return;
       }
 
       if (entry.animation?.name === SKELETON_CONST.ANIMATION.start) {
-        loopBlinkAnim(kahoSkeletonMesh.state, 1);
+        loopBlinkAnim(kozueSkeletonMesh.state, 1);
         canStart = true;
         shouldShowStartAnnounce.value = true;
       }
     },
   });
-  kahoSkeletonMesh.state.setAnimation(
+  kozueSkeletonMesh.state.setAnimation(
     0,
     SKELETON_CONST.ANIMATION.start_ready,
     false,
   );
-  kahoSkeletonMesh.state.addAnimation(
+  kozueSkeletonMesh.state.addAnimation(
     0,
     SKELETON_CONST.ANIMATION.start,
     false,
     0.5,
   );
-  kahoSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
+  kozueSkeletonMesh.state.addAnimation(0, SKELETON_CONST.ANIMATION.idle, true);
 };
 
 const onClick = () => {
@@ -154,8 +154,8 @@ const onClick = () => {
   logoAnim.listener = {
     event(_, event) {
       if (event.data.name === SKELETON_CONST.EVENT.readyToShowGame) {
-        if (kahoSkeletonMesh) {
-          kahoSkeletonMesh.visible = false;
+        if (kozueSkeletonMesh) {
+          kozueSkeletonMesh.visible = false;
         }
         emit("start", promise);
       }
@@ -167,7 +167,7 @@ const onClick = () => {
 };
 
 onLoop(({ delta }) => {
-  kahoSkeletonMesh?.update(delta);
+  kozueSkeletonMesh?.update(delta);
   logoSkeletonMesh?.update(delta);
 });
 

@@ -80,8 +80,8 @@ const textures = {
   potAndCup: getTexture("pot_and_cup"),
 };
 
-let kahoSkeletonMesh: SkeletonMesh | null = null;
-const kaho = getSpine("game_kaho");
+let kozueSkeletonMesh: SkeletonMesh | null = null;
+const kozue = getSpine("game_kozue");
 
 const groupRef = ref<Group>();
 const shouldShow = reactive({
@@ -154,14 +154,14 @@ const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
 };
 
 const init = async () => {
-  kahoSkeletonMesh = createSkeletonMesh(kaho);
-  kahoSkeletonMesh.position.set(0, -200, 0);
-  kahoSkeletonMesh.scale.setScalar(0.138);
+  kozueSkeletonMesh = createSkeletonMesh(kozue);
+  kozueSkeletonMesh.position.set(0, 0, 0);
+  kozueSkeletonMesh.scale.setScalar(0.138);
 
-  groupRef.value?.add(kahoSkeletonMesh);
+  groupRef.value?.add(kozueSkeletonMesh);
   const animationName = getRandomInt(0, 1) === 0 ? "think" : "idle";
-  kahoSkeletonMesh.state.setAnimation(0, animationName, true);
-  loopBlinkAnim(kahoSkeletonMesh.state, 1);
+  kozueSkeletonMesh.state.setAnimation(0, animationName, true);
+  loopBlinkAnim(kozueSkeletonMesh.state, 1);
 
   await wait(300);
 
@@ -179,13 +179,13 @@ const init = async () => {
 };
 
 const onClick = async () => {
-  if (!canClick || !kahoSkeletonMesh) {
+  if (!canClick || !kozueSkeletonMesh) {
     return;
   }
 
   isFinished = true;
-  kahoSkeletonMesh.state.clearTrack(1); // stop blink
-  const entry = kahoSkeletonMesh.state.setAnimation(0, "success", false);
+  kozueSkeletonMesh.state.clearTrack(1); // stop blink
+  const entry = kozueSkeletonMesh.state.setAnimation(0, "success", false);
   entry.mixDuration = 0.3;
 
   await wait(500);
@@ -193,7 +193,7 @@ const onClick = async () => {
 };
 
 onLoop(({ delta }) => {
-  kahoSkeletonMesh?.update(delta);
+  kozueSkeletonMesh?.update(delta);
 
   if (!isFinished) {
     clockHands.long += delta * 120;
