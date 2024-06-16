@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@esotericsoftware/spine-threejs": "4.2.41",
-    "@tresjs/cientos": "3.7.0",
+    "@tresjs/cientos": "3.9.0",
     "@tresjs/core": "3.6.0",
     "@vueuse/core": "10.11.0",
     "gsap": "3.12.5",
