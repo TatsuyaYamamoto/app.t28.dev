@@ -73,10 +73,8 @@ const kozue = getSpine("game_kozue");
 const groupRef = ref<Group>();
 const shouldShow = reactive({
   readyStepAnimation: false,
-  timer: false,
   tapAnnounce: false,
 });
-const clockHands = reactive({ short: 0, long: 0 });
 
 const classes = {
   teaStep1: "tea-step-1",
@@ -84,7 +82,6 @@ const classes = {
 };
 
 let canClick = false;
-let isFinished = false;
 
 const playReadyTimeline = () => {
   const { promise, resolve } = promiseWithResolvers();
@@ -155,7 +152,6 @@ const init = async () => {
   await nextTick();
   await playReadyTimeline();
   shouldShow.readyStepAnimation = false;
-  shouldShow.timer = true;
   shouldShow.tapAnnounce = true;
   canClick = true;
 
@@ -169,7 +165,6 @@ const onClick = async () => {
     return;
   }
 
-  isFinished = true;
   kozueSkeletonMesh.state.clearTrack(1); // stop blink
   const entry = kozueSkeletonMesh.state.setAnimation(0, "success", false);
   entry.mixDuration = 0.3;
@@ -180,11 +175,6 @@ const onClick = async () => {
 
 onLoop(({ delta }) => {
   kozueSkeletonMesh?.update(delta);
-
-  if (!isFinished) {
-    clockHands.long += delta * 120;
-    clockHands.short += delta * 10;
-  }
 });
 
 onMounted(() => {
