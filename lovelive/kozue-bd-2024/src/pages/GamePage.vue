@@ -82,6 +82,7 @@ const classes = {
 };
 
 let canClick = false;
+let stopLoopBlinkAnim: (() => void) | null = null;
 
 const playReadyTimeline = () => {
   const { promise, resolve } = promiseWithResolvers();
@@ -144,7 +145,7 @@ const init = async () => {
 
   groupRef.value?.add(kozueSkeletonMesh);
   kozueSkeletonMesh.state.setAnimation(0, "idle", true);
-  loopBlinkAnim(kozueSkeletonMesh.state, 1);
+  stopLoopBlinkAnim = loopBlinkAnim(kozueSkeletonMesh.state, 5);
 
   await wait(300);
 
@@ -165,9 +166,10 @@ const onClick = async () => {
     return;
   }
 
-  kozueSkeletonMesh.state.clearTrack(1); // stop blink
+  stopLoopBlinkAnim?.();
+
   const entry = kozueSkeletonMesh.state.setAnimation(0, "success", false);
-  entry.mixDuration = 0.3;
+  entry.mixDuration = 0.5;
 
   await wait(1500);
   emit("finish");
