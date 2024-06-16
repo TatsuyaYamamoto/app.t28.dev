@@ -1,0 +1,26 @@
+{
+"skeleton": { "hash": "XiCkSOHnOR4", "spine": "4.2.29", "x": -3434, "y": -2112, "width": 6868, "height": 1391 },
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "レイヤー 1", "bone": "root", "attachment": "レイヤー 1" },
+	{ "name": "ポット・カップ", "bone": "root", "attachment": "ポット・カップ" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"ポット・カップ": {
+				"ポット・カップ": { "x": 590, "y": -1060, "width": 2156, "height": 678 }
+			},
+			"レイヤー 1": {
+				"レイヤー 1": { "y": -1558.5, "width": 6868, "height": 1107 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {}
+}
+}

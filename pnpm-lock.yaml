@@ -234,6 +234,52 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
 
+  lovelive/kozue-bd-2024:
+    dependencies:
+      '@esotericsoftware/spine-threejs':
+        specifier: 4.2.41
+        version: 4.2.41
+      '@tresjs/cientos':
+        specifier: 3.7.0
+        version: 3.7.0(@tresjs/core@3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(tweakpane@4.0.3)(vue@3.4.9(typescript@5.4.5))
+      '@tresjs/core':
+        specifier: 3.6.0
+        version: 3.6.0(patch_hash=xrqffyncoyiws5ybdwddefvrcm)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+      '@vueuse/core':
+        specifier: 10.11.0
+        version: 10.11.0(vue@3.4.9(typescript@5.4.5))
+      gsap:
+        specifier: 3.12.5
+        version: 3.12.5
+      shared:
+        specifier: workspace:*
+        version: link:../../shared
+      three:
+        specifier: 0.158.0
+        version: 0.158.0
+      vue:
+        specifier: 3.4.9
+        version: 3.4.9(typescript@5.4.5)
+      vuetify:
+        specifier: 3.4.10
+        version: 3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5))
+    devDependencies:
+      '@types/three':
+        specifier: 0.158.3
+        version: 0.158.3
+      '@vitejs/plugin-vue':
+        specifier: 4.5.2
+        version: 4.5.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
+      vite:
+        specifier: 5.3.1
+        version: 5.3.1(@types/node@20.2.1)(terser@5.26.0)
+      vite-plugin-html:
+        specifier: 3.2.2
+        version: 3.2.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))
+      vite-plugin-vuetify:
+        specifier: 2.0.1
+        version: 2.0.1(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
+
   lovelive/megumi-bd-2023:
     dependencies:
       '@esotericsoftware/spine-threejs':

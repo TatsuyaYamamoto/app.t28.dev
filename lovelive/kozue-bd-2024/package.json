@@ -1,0 +1,28 @@
+{
+  "name": "kozue-bd-2024",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@esotericsoftware/spine-threejs": "4.2.41",
+    "@tresjs/cientos": "3.7.0",
+    "@tresjs/core": "3.6.0",
+    "@vueuse/core": "10.11.0",
+    "gsap": "3.12.5",
+    "shared": "workspace:*",
+    "three": "0.158.0",
+    "vue": "3.4.9",
+    "vuetify": "3.4.10"
+  },
+  "devDependencies": {
+    "@types/three": "0.158.3",
+    "@vitejs/plugin-vue": "4.5.2",
+    "vite": "5.3.1",
+    "vite-plugin-html": "3.2.2",
+    "vite-plugin-vuetify": "2.0.1"
+  }
+}

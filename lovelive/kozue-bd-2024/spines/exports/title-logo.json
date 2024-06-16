@@ -1,0 +1,150 @@
+{
+"skeleton": { "hash": "GRGtov1VV2A", "spine": "4.2.29", "x": -3262, "y": -1894, "width": 3446, "height": 3853 },
+"bones": [
+	{ "name": "root" },
+	{ "name": "cookie1", "parent": "root", "x": -1675.96, "y": -0.85 },
+	{ "name": "cookie2", "parent": "root", "x": -338.36, "y": 1615.71 },
+	{ "name": "cookie3", "parent": "root", "x": -2734.59, "y": -1545.88 },
+	{ "name": "cookie4", "parent": "root", "x": -3070.78, "y": 1014.87 },
+	{ "name": "cookie6", "parent": "root", "x": -52.24, "y": 800.28 },
+	{ "name": "cookie7", "parent": "root", "x": -2484.24, "y": 1680.09 },
+	{ "name": "cookie8", "parent": "root", "x": -1146.64, "y": -1538.73 }
+],
+"slots": [
+	{ "name": "クッキー1", "bone": "cookie1", "attachment": "クッキー1" },
+	{ "name": "クッキー２", "bone": "cookie2", "attachment": "クッキー２" },
+	{ "name": "クッキー３", "bone": "cookie3", "attachment": "クッキー３" },
+	{ "name": "クッキー４", "bone": "cookie4", "attachment": "クッキー４" },
+	{ "name": "クッキー６", "bone": "cookie6", "attachment": "クッキー６" },
+	{ "name": "クッキー７", "bone": "cookie7", "attachment": "クッキー７" },
+	{ "name": "クッキー８", "bone": "cookie8", "attachment": "クッキー８" },
+	{ "name": "タイトル", "bone": "root", "attachment": "タイトル" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"クッキー1": {
+				"クッキー1": { "x": 91.46, "y": 61.35, "width": 3197, "height": 3173 }
+			},
+			"クッキー２": {
+				"クッキー２": { "x": 33.86, "y": 4.29, "width": 741, "height": 678 }
+			},
+			"クッキー３": {
+				"クッキー３": { "x": 7.09, "y": -9.12, "width": 715, "height": 678 }
+			},
+			"クッキー４": {
+				"クッキー４": { "x": 51.78, "y": -33.37, "width": 486, "height": 485 }
+			},
+			"クッキー６": {
+				"クッキー６": { "x": -3.26, "y": 8.72, "width": 479, "height": 432 }
+			},
+			"クッキー７": {
+				"クッキー７": { "x": 14.74, "y": -13.09, "width": 479, "height": 432 }
+			},
+			"クッキー８": {
+				"クッキー８": { "x": 20.14, "y": -15.27, "width": 479, "height": 432 }
+			},
+			"タイトル": {
+				"タイトル": { "x": -1585.5, "y": 20, "width": 2703, "height": 1882 }
+			}
+		}
+	}
+],
+"events": {
+	"ready_to_show_game": {}
+},
+"animations": {
+	"title_to_game": {
+		"slots": {
+			"タイトル": {
+				"rgba": [
+					{ "color": "ffffffff" },
+					{ "time": 0.2333, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"cookie1": {
+				"rotate": [
+					{ "time": 0.1333 },
+					{ "time": 1.2, "value": -147.89 }
+				],
+				"translate": [
+					{ "time": 0.1333 },
+					{ "time": 0.4667, "x": 1752 },
+					{ "time": 1.2, "x": 15576.08, "y": 27.15 }
+				],
+				"scale": [
+					{ "time": 0.1333 },
+					{ "time": 0.4667, "x": 3, "y": 3 },
+					{ "time": 1.2, "x": 6, "y": 6 }
+				]
+			},
+			"cookie2": {
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": 1299.52, "y": 2352.6 }
+				]
+			},
+			"cookie3": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "value": 107.18 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": -766.08, "y": -1886.72 }
+				]
+			},
+			"cookie4": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "value": -141.76 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": -2049.12, "y": 868.2 }
+				]
+			},
+			"cookie6": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "value": -173.47 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": 4933.79, "y": -86.55 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.3333, "x": 1.5, "y": 1.5 }
+				]
+			},
+			"cookie7": {
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": -585.17, "y": 1986.33 }
+				]
+			},
+			"cookie8": {
+				"rotate": [
+					{},
+					{ "time": 0.3333, "value": 103.68 }
+				],
+				"translate": [
+					{},
+					{ "time": 0.3333, "x": 3920.17, "y": -1913.77 }
+				],
+				"scale": [
+					{},
+					{ "time": 0.3333, "x": 1.5, "y": 1.5 }
+				]
+			}
+		},
+		"events": [
+			{ "time": 0.4667, "name": "ready_to_show_game" }
+		]
+	}
+}
+}
