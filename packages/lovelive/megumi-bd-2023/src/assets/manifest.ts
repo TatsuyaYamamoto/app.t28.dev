@@ -7,9 +7,9 @@ import game_megumi1 from "../assets/megumi1.png";
 import game_megumi2 from "../assets/megumi2.png";
 import table from "../assets/table.png";
 
-import title_megumi_atlas from "../../spines/title-megumi/out/megumi-title.atlas?raw";
-import title_megumi_skeleton from "../../spines/title-megumi/out/megumi-title.json";
-import title_megumi_sprite from "../../spines/title-megumi/out/megumi-title.png";
+import title_megumi_atlas from "../../spines/title-megumi/exports/megumi-title.atlas?raw";
+import title_megumi_skeleton from "../../spines/title-megumi/exports/megumi-title.json";
+import title_megumi_sprite from "../../spines/title-megumi/exports/megumi-title.png";
 
 export const IMAGE_MANIFEST = [
   {

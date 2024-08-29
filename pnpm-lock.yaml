@@ -41,7 +41,7 @@ importers:
         specifier: 2.0.19
         version: 2.0.19(typescript@5.4.5)
 
-  apps/oshamoji:
+  packages/oshamoji:
     dependencies:
       '@chakra-ui/react':
         specifier: 2.4.9
@@ -72,7 +72,7 @@ importers:
         version: 8.4.1(@types/react@18.2.6)(react@18.2.0)
       shared:
         specifier: workspace:*
-        version: link:../../shared
+        version: link:../shared
     devDependencies:
       '@tsconfig/vite-react':
         specifier: 3.0.0
@@ -93,7 +93,7 @@ importers:
         specifier: 3.2.2
         version: 3.2.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))
 
-  apps/oshibana:
+  packages/oshibana:
     dependencies:
       '@chakra-ui/react':
         specifier: 2.4.9
@@ -112,7 +112,7 @@ importers:
         version: 18.2.8(konva@9.0.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       shared:
         specifier: workspace:*
-        version: link:../../shared
+        version: link:../shared
     devDependencies:
       '@tsconfig/vite-react':
         specifier: 3.0.0
@@ -133,7 +133,7 @@ importers:
         specifier: 3.2.2
         version: 3.2.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))
 
-  apps/root:
+  packages/root:
     devDependencies:
       vite:
         specifier: 5.3.1
@@ -142,7 +142,7 @@ importers:
         specifier: 3.2.2
         version: 3.2.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))
 
-  lovelive/aprilfool-2024:
+  packages/lovelive/aprilfool-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
         specifier: 4.2.41
@@ -188,7 +188,7 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
 
-  lovelive/kaho-bd-2024:
+  packages/lovelive/kaho-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
         specifier: 4.2.41
@@ -234,7 +234,7 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
 
-  lovelive/kozue-bd-2024:
+  packages/lovelive/kozue-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
         specifier: 4.2.41
@@ -280,7 +280,7 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
 
-  lovelive/megumi-bd-2023:
+  packages/lovelive/megumi-bd-2023:
     dependencies:
       '@esotericsoftware/spine-threejs':
         specifier: 4.2.41
@@ -320,7 +320,7 @@ importers:
         specifier: 3.2.2
         version: 3.2.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))
 
-  lovelive/sayaka-bd-2024:
+  packages/lovelive/sayaka-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
         specifier: 4.2.41
@@ -366,7 +366,7 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))(vuetify@3.4.10)
 
-  shared:
+  packages/shared:
     dependencies:
       '@chakra-ui/react':
         specifier: 2.4.9

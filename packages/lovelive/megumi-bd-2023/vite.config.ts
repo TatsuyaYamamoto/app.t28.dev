@@ -22,6 +22,6 @@ export default defineConfig({
     }),
   ],
   build: {
-    outDir: `../../dist${basePath}`,
+    outDir: `../../../dist${basePath}`,
   },
 });
