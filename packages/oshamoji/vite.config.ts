@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [
     react(),
     createHtmlPlugin({
-      inject: { ejsOptions: { views: ["../../shared/ejs"] } },
+      inject: { ejsOptions: { views: ["../shared/ejs"] } },
     }),
   ],
   build: {
