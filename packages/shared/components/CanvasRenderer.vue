@@ -6,6 +6,10 @@
         /* https://discourse.threejs.org/t/why-the-color-palette-change-from-v0-150-1-to-v0-152-2/51417/2 */
         LinearSRGBColorSpace
       "
+      :toneMapping="
+        /* https://github.com/Tresjs/tres/issues/492 */
+        NoToneMapping
+      "
     >
       <TresPerspectiveCamera
         :args="[/* fov */ 32, /* aspect */ 2.3]"
@@ -31,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { LinearSRGBColorSpace } from "three";
+import { LinearSRGBColorSpace, NoToneMapping } from "three";
 import { CameraControls } from "@tresjs/cientos";
 
 import { useRendererSize } from "../hooks/useRendererSize";
