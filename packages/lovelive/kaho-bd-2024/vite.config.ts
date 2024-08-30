@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { createHtmlPlugin } from "vite-plugin-html";
 import vuetify from "vite-plugin-vuetify";
+import { templateCompilerOptions } from "@tresjs/core";
 
 const basePath = "/lovelive/kaho-bd-2024";
 
@@ -10,13 +11,8 @@ export default defineConfig({
   base: basePath,
   plugins: [
     vue({
-      template: {
-        compilerOptions: {
-          // https://docs.tresjs.org/guide/getting-started.html#vite
-          isCustomElement: (tag) =>
-            tag.startsWith("Tres") && tag !== "TresCanvas",
-        },
-      },
+      // https://docs.tresjs.org/guide/getting-started.html#vite
+      ...templateCompilerOptions,
     }),
     vuetify(),
     createHtmlPlugin({

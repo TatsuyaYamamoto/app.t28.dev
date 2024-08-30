@@ -4,7 +4,7 @@
     "@chakra-ui/react": "2.4.9",
     "@chakra-ui/theme-tools": "2.0.17",
     "@emotion/react": "11.11.0",
-    "@tresjs/cientos": "3.7.0",
+    "@tresjs/cientos": "4.0.0",
     "@vueuse/core": "10.11.0",
     "three": "0.158.0",
     "vue": "3.4.9"
