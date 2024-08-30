@@ -6,7 +6,7 @@
     "@emotion/react": "11.11.0",
     "@tresjs/cientos": "4.0.0",
     "@vueuse/core": "10.11.0",
-    "three": "0.167.1",
+    "three": "0.168.0",
     "vue": "3.4.9"
   },
   "devDependencies": {

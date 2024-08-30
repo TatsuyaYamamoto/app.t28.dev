@@ -15,7 +15,7 @@
     "@vueuse/core": "10.11.0",
     "gsap": "3.12.5",
     "shared": "workspace:*",
-    "three": "0.167.1",
+    "three": "0.168.0",
     "vue": "3.4.9"
   },
   "devDependencies": {
