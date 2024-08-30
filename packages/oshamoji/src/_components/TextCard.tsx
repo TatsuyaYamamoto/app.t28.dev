@@ -1,12 +1,12 @@
 import { FC, useRef, useState, MouseEvent } from "react";
 import { Tooltip } from "@chakra-ui/react";
 
-import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
 import { copyToClipboard } from "../_helper/utils";
 import { sendEvent } from "../_helper/ga";
 
-const Root = styled.a`
+const rootStyle = css`
   display: block;
   height: 100%;
   width: 100%;
@@ -25,7 +25,7 @@ const Root = styled.a`
   word-break: break-word;
 `;
 
-const ConvertedText = styled.div`
+const convertedTextStyle = css`
   white-space: pre-wrap;
 `;
 
@@ -64,12 +64,12 @@ const TextCard: FC<TextCardProps> = (props) => {
   };
 
   const card = (
-    <Root href="#" onClick={onClick}>
+    <a href="#" css={rootStyle} onClick={onClick}>
       <Box textAlign={"right"} fontSize={"18px"} color={"#1f1f1f"}>
         {label}
       </Box>
-      <ConvertedText>{value}</ConvertedText>
-    </Root>
+      <div css={convertedTextStyle}>{value}</div>
+    </a>
   );
 
   /**
