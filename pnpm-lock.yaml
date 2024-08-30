@@ -43,10 +43,10 @@ importers:
         version: 4.2.41
       '@tresjs/cientos':
         specifier: 4.0.0
-        version: 4.0.0(@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 4.2.7
-        version: 4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
         specifier: 10.11.0
         version: 10.11.0(vue@3.4.9(typescript@5.4.5))
@@ -57,8 +57,8 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       three:
-        specifier: 0.158.0
-        version: 0.158.0
+        specifier: 0.167.1
+        version: 0.167.1
       vue:
         specifier: 3.4.9
         version: 3.4.9(typescript@5.4.5)
@@ -67,8 +67,8 @@ importers:
         version: 3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5))
     devDependencies:
       '@types/three':
-        specifier: 0.158.3
-        version: 0.158.3
+        specifier: 0.167.2
+        version: 0.167.2
       '@vitejs/plugin-vue':
         specifier: 4.5.2
         version: 4.5.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
@@ -89,10 +89,10 @@ importers:
         version: 4.2.41
       '@tresjs/cientos':
         specifier: 4.0.0
-        version: 4.0.0(@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 4.2.7
-        version: 4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
         specifier: 10.11.0
         version: 10.11.0(vue@3.4.9(typescript@5.4.5))
@@ -103,8 +103,8 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       three:
-        specifier: 0.158.0
-        version: 0.158.0
+        specifier: 0.167.1
+        version: 0.167.1
       vue:
         specifier: 3.4.9
         version: 3.4.9(typescript@5.4.5)
@@ -113,8 +113,8 @@ importers:
         version: 3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5))
     devDependencies:
       '@types/three':
-        specifier: 0.158.3
-        version: 0.158.3
+        specifier: 0.167.2
+        version: 0.167.2
       '@vitejs/plugin-vue':
         specifier: 4.5.2
         version: 4.5.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
@@ -135,10 +135,10 @@ importers:
         version: 4.2.41
       '@tresjs/cientos':
         specifier: 4.0.0
-        version: 4.0.0(@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 4.2.7
-        version: 4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
         specifier: 10.11.0
         version: 10.11.0(vue@3.4.9(typescript@5.4.5))
@@ -149,8 +149,8 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       three:
-        specifier: 0.158.0
-        version: 0.158.0
+        specifier: 0.167.1
+        version: 0.167.1
       vue:
         specifier: 3.4.9
         version: 3.4.9(typescript@5.4.5)
@@ -159,8 +159,8 @@ importers:
         version: 3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5))
     devDependencies:
       '@types/three':
-        specifier: 0.158.3
-        version: 0.158.3
+        specifier: 0.167.2
+        version: 0.167.2
       '@vitejs/plugin-vue':
         specifier: 4.5.2
         version: 4.5.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
@@ -181,10 +181,10 @@ importers:
         version: 4.2.41
       '@tresjs/cientos':
         specifier: 4.0.0
-        version: 4.0.0(@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 4.2.7
-        version: 4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
         specifier: 10.11.0
         version: 10.11.0(vue@3.4.9(typescript@5.4.5))
@@ -195,15 +195,15 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       three:
-        specifier: 0.158.0
-        version: 0.158.0
+        specifier: 0.167.1
+        version: 0.167.1
       vue:
         specifier: 3.4.9
         version: 3.4.9(typescript@5.4.5)
     devDependencies:
       '@types/three':
-        specifier: 0.158.3
-        version: 0.158.3
+        specifier: 0.167.2
+        version: 0.167.2
       '@vitejs/plugin-vue':
         specifier: 4.5.2
         version: 4.5.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
@@ -221,10 +221,10 @@ importers:
         version: 4.2.41
       '@tresjs/cientos':
         specifier: 4.0.0
-        version: 4.0.0(@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@tresjs/core':
         specifier: 4.2.7
-        version: 4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
         specifier: 10.11.0
         version: 10.11.0(vue@3.4.9(typescript@5.4.5))
@@ -235,8 +235,8 @@ importers:
         specifier: workspace:*
         version: link:../../shared
       three:
-        specifier: 0.158.0
-        version: 0.158.0
+        specifier: 0.167.1
+        version: 0.167.1
       vue:
         specifier: 3.4.9
         version: 3.4.9(typescript@5.4.5)
@@ -245,8 +245,8 @@ importers:
         version: 3.4.10(typescript@5.4.5)(vite-plugin-vuetify@2.0.1)(vue@3.4.9(typescript@5.4.5))
     devDependencies:
       '@types/three':
-        specifier: 0.158.3
-        version: 0.158.3
+        specifier: 0.167.2
+        version: 0.167.2
       '@vitejs/plugin-vue':
         specifier: 4.5.2
         version: 4.5.2(vite@5.3.1(@types/node@20.2.1)(terser@5.26.0))(vue@3.4.9(typescript@5.4.5))
@@ -374,20 +374,20 @@ importers:
         version: 11.11.0(@types/react@18.2.6)(react@18.2.0)
       '@tresjs/cientos':
         specifier: 4.0.0
-        version: 4.0.0(@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+        version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core':
         specifier: 10.11.0
         version: 10.11.0(vue@3.4.9(typescript@5.4.5))
       three:
-        specifier: 0.158.0
-        version: 0.158.0
+        specifier: 0.167.1
+        version: 0.167.1
       vue:
         specifier: 3.4.9
         version: 3.4.9(typescript@5.4.5)
     devDependencies:
       '@types/three':
-        specifier: 0.158.3
-        version: 0.158.3
+        specifier: 0.167.2
+        version: 0.167.2
       type-fest:
         specifier: 4.9.0
         version: 4.9.0
@@ -1352,6 +1352,9 @@ packages:
   '@tsconfig/vite-react@3.0.0':
     resolution: {integrity: sha512-haOFbphpavQ1+eyQjeqvlz7sRkQue/bS0GvFmraHml31Ufhv+7juUSc8PVe0In7sly+n+5zTLmzc287KciiGXg==}
 
+  '@tweenjs/tween.js@23.1.3':
+    resolution: {integrity: sha512-vJmvvwFxYuGnF2axRtPYocag6Clbb5YS7kLL+SO/TeVFzHqDIWrNKYtcsPMibjDx9O+bu+psAy9NKfWklassUA==}
+
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
 
@@ -1403,8 +1406,8 @@ packages:
   '@types/stats.js@0.17.3':
     resolution: {integrity: sha512-pXNfAD3KHOdif9EQXZ9deK82HVNaXP5ZIF5RP2QG6OQFNTaY2YIetfrE9t528vEreGQvEPRDDc8muaoYeK0SxQ==}
 
-  '@types/three@0.158.3':
-    resolution: {integrity: sha512-6Qs1rUvLSbkJ4hlIe6/rdwIf61j1x2UKvGJg7s8KjswYsz1C1qDTs6voVXXB8kYaI0hgklgZgbZUupfL1l9xdA==}
+  '@types/three@0.167.2':
+    resolution: {integrity: sha512-onxnIUNYpXcZJ5DTiIsxfnr4F9kAWkkxAUWx5yqzz/u0a4IygCLCjMuOl2DEeCxyJdJ2nOJZvKpu48sBMqfmkQ==}
 
   '@types/web-bluetooth@0.0.20':
     resolution: {integrity: sha512-g9gZnnXVq7gM7v3tJCWV/qw7w+KeOlSHAhgF9RytFyifW6AF61hdT2ucrYhPq9hLs5JIryeupHV3qGk95dH9ow==}
@@ -1880,6 +1883,9 @@ packages:
 
   fflate@0.6.10:
     resolution: {integrity: sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==}
+
+  fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
 
   file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -2579,8 +2585,8 @@ packages:
     peerDependencies:
       three: '>=0.128.0'
 
-  three@0.158.0:
-    resolution: {integrity: sha512-TALj4EOpdDPF1henk2Q+s17K61uEAAWQ7TJB68nr7FKxqwyDr3msOt5IWdbGm4TaWKjrtWS8DJJWe9JnvsWOhQ==}
+  three@0.167.1:
+    resolution: {integrity: sha512-gYTLJA/UQip6J/tJvl91YYqlZF47+D/kxiWrbTon35ZHlXEN0VOo+Qke2walF1/x92v55H6enomymg4Dak52kw==}
 
   through2@0.6.5:
     resolution: {integrity: sha512-RkK/CCESdTKQZHdmKICijdKKsCRVHs5KsLZ6pACAmF/1GPUQhonHSXWNERctxEp7RmvjdNbZTL5z9V7nSCXKcg==}
@@ -4000,28 +4006,28 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@tresjs/cientos@4.0.0(@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.158.0)(vue@3.4.9(typescript@5.4.5))':
+  '@tresjs/cientos@4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))':
     dependencies:
-      '@tresjs/core': 4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5))
+      '@tresjs/core': 4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
       '@vueuse/core': 11.0.3(vue@3.4.9(typescript@5.4.5))
-      camera-controls: 2.9.0(three@0.158.0)
+      camera-controls: 2.9.0(three@0.167.1)
       stats-gl: 2.0.1
       stats.js: 0.17.0
-      three: 0.158.0
-      three-custom-shader-material: 5.4.0(react@18.2.0)(three@0.158.0)
-      three-stdlib: 2.32.2(three@0.158.0)
+      three: 0.167.1
+      three-custom-shader-material: 5.4.0(react@18.2.0)(three@0.167.1)
+      three-stdlib: 2.32.2(three@0.167.1)
       vue: 3.4.9(typescript@5.4.5)
     transitivePeerDependencies:
       - '@react-three/fiber'
       - '@vue/composition-api'
       - react
 
-  '@tresjs/core@4.2.7(three@0.158.0)(vue@3.4.9(typescript@5.4.5))':
+  '@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5))':
     dependencies:
       '@alvarosabu/utils': 3.2.0
       '@vue/devtools-api': 6.6.3
       '@vueuse/core': 10.11.0(vue@3.4.9(typescript@5.4.5))
-      three: 0.158.0
+      three: 0.167.1
       vue: 3.4.9(typescript@5.4.5)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -4029,6 +4035,8 @@ snapshots:
   '@tsconfig/strictest@2.0.5': {}
 
   '@tsconfig/vite-react@3.0.0': {}
+
+  '@tweenjs/tween.js@23.1.3': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
@@ -4087,11 +4095,12 @@ snapshots:
 
   '@types/stats.js@0.17.3': {}
 
-  '@types/three@0.158.3':
+  '@types/three@0.167.2':
     dependencies:
+      '@tweenjs/tween.js': 23.1.3
       '@types/stats.js': 0.17.3
       '@types/webxr': 0.5.10
-      fflate: 0.6.10
+      fflate: 0.8.2
       meshoptimizer: 0.18.1
 
   '@types/web-bluetooth@0.0.20': {}
@@ -4351,9 +4360,9 @@ snapshots:
       pascal-case: 3.1.2
       tslib: 2.5.2
 
-  camera-controls@2.9.0(three@0.158.0):
+  camera-controls@2.9.0(three@0.167.1):
     dependencies:
-      three: 0.158.0
+      three: 0.167.1
 
   caniuse-lite@1.0.30001574: {}
 
@@ -4664,6 +4673,8 @@ snapshots:
       reusify: 1.0.4
 
   fflate@0.6.10: {}
+
+  fflate@0.8.2: {}
 
   file-entry-cache@6.0.1:
     dependencies:
@@ -5299,17 +5310,17 @@ snapshots:
 
   text-table@0.2.0: {}
 
-  three-custom-shader-material@5.4.0(react@18.2.0)(three@0.158.0):
+  three-custom-shader-material@5.4.0(react@18.2.0)(three@0.167.1):
     dependencies:
       glsl-token-functions: 1.0.1
       glsl-token-string: 1.0.1
       glsl-tokenizer: 2.1.5
       object-hash: 3.0.0
-      three: 0.158.0
+      three: 0.167.1
     optionalDependencies:
       react: 18.2.0
 
-  three-stdlib@2.32.2(three@0.158.0):
+  three-stdlib@2.32.2(three@0.167.1):
     dependencies:
       '@types/draco3d': 1.4.9
       '@types/offscreencanvas': 2019.7.3
@@ -5317,9 +5328,9 @@ snapshots:
       draco3d: 1.5.6
       fflate: 0.6.10
       potpack: 1.0.2
-      three: 0.158.0
+      three: 0.167.1
 
-  three@0.158.0: {}
+  three@0.167.1: {}
 
   through2@0.6.5:
     dependencies:
