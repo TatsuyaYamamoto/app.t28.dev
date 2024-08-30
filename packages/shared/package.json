@@ -2,7 +2,7 @@
   "name": "shared",
   "dependencies": {
     "@chakra-ui/react": "2.4.9",
-    "@chakra-ui/theme-tools": "2.0.17",
+    "@chakra-ui/theme-tools": "2.1.2",
     "@emotion/react": "11.11.0",
     "@tresjs/cientos": "4.0.0",
     "@vueuse/core": "10.11.0",
