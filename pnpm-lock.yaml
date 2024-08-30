@@ -39,8 +39,8 @@ importers:
   packages/lovelive/aprilfool-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.41
-        version: 4.2.41
+        specifier: 4.2.58
+        version: 4.2.58
       '@tresjs/cientos':
         specifier: 4.0.0
         version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
@@ -85,8 +85,8 @@ importers:
   packages/lovelive/kaho-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.41
-        version: 4.2.41
+        specifier: 4.2.58
+        version: 4.2.58
       '@tresjs/cientos':
         specifier: 4.0.0
         version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
@@ -131,8 +131,8 @@ importers:
   packages/lovelive/kozue-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.41
-        version: 4.2.41
+        specifier: 4.2.58
+        version: 4.2.58
       '@tresjs/cientos':
         specifier: 4.0.0
         version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
@@ -177,8 +177,8 @@ importers:
   packages/lovelive/megumi-bd-2023:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.41
-        version: 4.2.41
+        specifier: 4.2.58
+        version: 4.2.58
       '@tresjs/cientos':
         specifier: 4.0.0
         version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
@@ -217,8 +217,8 @@ importers:
   packages/lovelive/sayaka-bd-2024:
     dependencies:
       '@esotericsoftware/spine-threejs':
-        specifier: 4.2.41
-        version: 4.2.41
+        specifier: 4.2.58
+        version: 4.2.58
       '@tresjs/cientos':
         specifier: 4.0.0
         version: 4.0.0(@tresjs/core@4.2.7(three@0.167.1)(vue@3.4.9(typescript@5.4.5)))(react@18.2.0)(three@0.167.1)(vue@3.4.9(typescript@5.4.5))
@@ -1196,11 +1196,11 @@ packages:
     resolution: {integrity: sha512-C1DfL7XX4nPqGd6jcP01W9pVM1HYCuUkFk1432D7F0v3JSlUIeOYn9oCoi3eoLZ+iwBSb29BMFxxny0YrrEZqg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@esotericsoftware/spine-core@4.2.41':
-    resolution: {integrity: sha512-6+QVZ8gb+0lzXaEaeS2dYfrZg1MFEyytP+DJrOpCSzEhby9FJ5UhAy3PczZN8mKoBp+lrF4uNox0toetuw3F4A==}
+  '@esotericsoftware/spine-core@4.2.58':
+    resolution: {integrity: sha512-xaENXgzwcmB6ug0Lx9jeIKEpZdyqHuCv//FlWTcmemQnLePgUYj2fbKoOaPwC7m1JrdR/08MFMXCF1AhJ0dcFA==}
 
-  '@esotericsoftware/spine-threejs@4.2.41':
-    resolution: {integrity: sha512-puG8cKvyGYRIb7IKkvnT/ulhJ7Q2MZu3I2tYJTZHL71W6SwKkq4rigoFMA/sEjZYyW9OH1y7+1cfhrLpLOxDOw==}
+  '@esotericsoftware/spine-threejs@4.2.58':
+    resolution: {integrity: sha512-XB4KChAFT6i5qlJw1C5OKfVlE7T97AkjeiQJaoi2lxKlQzUhY4EcvMJCwULNxNjokpjWpw80D2Y/oHt0KgV/9g==}
 
   '@humanwhocodes/config-array@0.9.3':
     resolution: {integrity: sha512-3xSMlXHh03hCcCmFc0rbKp3Ivt2PFEJnQUJDDMTJQ2wkECZWdq4GePs2ctc5H8zV+cHPaq8k2vU8mrQjA6iHdQ==}
@@ -4039,11 +4039,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@esotericsoftware/spine-core@4.2.41': {}
+  '@esotericsoftware/spine-core@4.2.58': {}
 
-  '@esotericsoftware/spine-threejs@4.2.41':
+  '@esotericsoftware/spine-threejs@4.2.58':
     dependencies:
-      '@esotericsoftware/spine-core': 4.2.41
+      '@esotericsoftware/spine-core': 4.2.58
 
   '@humanwhocodes/config-array@0.9.3':
     dependencies:

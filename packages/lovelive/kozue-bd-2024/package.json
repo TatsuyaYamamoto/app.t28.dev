@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@esotericsoftware/spine-threejs": "4.2.41",
+    "@esotericsoftware/spine-threejs": "4.2.58",
     "@tresjs/cientos": "4.0.0",
     "@tresjs/core": "4.2.7",
     "@vueuse/core": "10.11.0",
