@@ -50,6 +50,7 @@ const initSpine = async () => {
   groupRef.value?.add(rurinoSkeletonMesh);
 
   rurinoSkeletonMesh.state.setAnimation(0, "idle", true);
+  rurinoSkeletonMesh.state.setAnimation(1, "background", true);
   stopLoopBlinkAnimation = startRandomLoopAnimation(
     rurinoSkeletonMesh.state,
     "blink",
@@ -62,7 +63,7 @@ const initTitle = async () => {
   gameState.type = "title";
   gameState.canClick = false;
 
-  rurinoSkeletonMesh.state.setAnimation(1, "show_title");
+  rurinoSkeletonMesh.state.setAnimation(2, "show_title");
 
   await wait(300);
   gameState.canClick = true;
@@ -100,7 +101,7 @@ const onClickInTitle = async () => {
 
   gameState.canClick = false;
   // hide title
-  rurinoSkeletonMesh.state.setAnimation(1, "hide_title");
+  rurinoSkeletonMesh.state.setAnimation(2, "hide_title");
 
   // start game
   await initGame();
