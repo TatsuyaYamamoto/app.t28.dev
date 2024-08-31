@@ -2,6 +2,8 @@ rurino.png
 size:924,1294
 filter:Linear,Linear
 scale:0.1
+uki
+bounds:902,408,13,57
 ほほ
 bounds:263,75,115,17
 ほほの線
@@ -38,7 +40,7 @@ bounds:691,403,195,200
 bounds:378,15,35,26
 rotate:90
 口２
-bounds:902,452,13,13
+bounds:622,10,13,13
 口３
 bounds:871,218,7,3
 手_右
@@ -55,7 +57,7 @@ bounds:201,34,60,58
 bounds:871,295,53,48
 rotate:90
 眉毛_右
-bounds:902,411,39,11
+bounds:910,944,39,11
 rotate:90
 眉毛_左
 bounds:875,635,46,12

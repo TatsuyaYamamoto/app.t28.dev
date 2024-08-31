@@ -28,18 +28,17 @@
 import { nextTick, onMounted, reactive, ref } from "vue";
 import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
-import {
-  AtlasAttachmentLoader,
-  SkeletonMesh,
-  SkeletonJson,
-} from "@esotericsoftware/spine-threejs";
 
 import { wait } from "shared/helpers/utils.ts";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
 
 import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
-import { loopBlinkAnim } from "../utils.ts";
+import {
+  createSkeletonMesh,
+  startRandomLoopAnimation,
+  StopRandomLoopAnimation,
+} from "../utils.ts";
 
 const emit = defineEmits<{
   (e: "finish"): void;
@@ -56,8 +55,7 @@ const textures = {
   potAndCup: getTexture("pot_and_cup"),
 };
 
-let rurinoSkeletonMesh: SkeletonMesh | null = null;
-const rurino = getSpine("rurino");
+const rurinoSkeletonMesh = createSkeletonMesh(getSpine("rurino"));
 
 const groupRef = ref<Group>();
 const shouldShow = reactive({
@@ -71,26 +69,27 @@ const classes = {
 };
 
 let canClick = false;
-let stopLoopBlinkAnim: (() => void) | null = null;
-
-const createSkeletonMesh = (spine: ReturnType<typeof getSpine>) => {
-  const atlasLoader = new AtlasAttachmentLoader(spine.textureAtlas);
-  const skeletonJson = new SkeletonJson(atlasLoader);
-  const skeletonData = skeletonJson.readSkeletonData(spine.skeleton);
-
-  return new SkeletonMesh(skeletonData, (parameters) => {
-    parameters.depthWrite = false;
-  });
-};
+let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
+let stopLoopReactionAnimation: StopRandomLoopAnimation | undefined;
 
 const init = async () => {
-  rurinoSkeletonMesh = createSkeletonMesh(rurino);
   rurinoSkeletonMesh.position.set(0, 0, 0);
   rurinoSkeletonMesh.scale.setScalar(0.138);
-
   groupRef.value?.add(rurinoSkeletonMesh);
+
   rurinoSkeletonMesh.state.setAnimation(0, "idle", true);
-  stopLoopBlinkAnim = loopBlinkAnim(rurinoSkeletonMesh.state, 5);
+  stopLoopBlinkAnimation = startRandomLoopAnimation(
+    rurinoSkeletonMesh.state,
+    "blink",
+    5,
+    () => Math.random() * 4 + 0.5,
+  );
+  stopLoopReactionAnimation = startRandomLoopAnimation(
+    rurinoSkeletonMesh.state,
+    "fish_reaction",
+    6,
+    () => Math.random() * 4 + 1.5,
+  );
 
   await wait(300);
 
@@ -110,7 +109,8 @@ const onClick = async () => {
     return;
   }
 
-  stopLoopBlinkAnim?.();
+  stopLoopBlinkAnimation?.();
+  stopLoopReactionAnimation?.();
 
   const entry = rurinoSkeletonMesh.state.setAnimation(0, "success", false);
   entry.mixDuration = 0.5;
