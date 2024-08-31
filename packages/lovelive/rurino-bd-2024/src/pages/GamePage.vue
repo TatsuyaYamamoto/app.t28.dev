@@ -31,7 +31,7 @@ import {
 } from "../utils.ts";
 
 const emit = defineEmits<{
-  (e: "finish", resultNumber: number): void;
+  (e: "finish", resultNumber: 1 | 2 | 3): void;
 }>();
 
 const { onLoop } = useRenderLoop();
