@@ -1,10 +1,5 @@
 <template>
   <TresGroup ref="groupRef">
-    <TresMesh :position="[0, 0, -1]" @click="onClick">
-      <TresPlaneGeometry :args="[1717 * 0.6, 1057 * 0.6]" />
-      <TresMeshBasicMaterial transparent />
-    </TresMesh>
-
     <CanvasPortal>
       <Transition name="fade">
         <TapAnnounce v-if="shouldShow.tapAnnounce" />
@@ -14,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from "vue";
+import { nextTick, onMounted, onUnmounted, reactive, ref } from "vue";
 import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
 
@@ -82,6 +77,7 @@ const onClick = async () => {
   if (!canClick || !rurinoSkeletonMesh) {
     return;
   }
+  canClick = false;
 
   const resultNumber = getRandomInt(1, 3);
   stopLoopReactionAnimation?.();
@@ -111,6 +107,11 @@ onLoop(({ delta }) => {
 
 onMounted(() => {
   init();
+  window.addEventListener("click", onClick);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("click", onClick);
 });
 
 defineExpose({
