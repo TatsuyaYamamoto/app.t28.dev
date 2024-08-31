@@ -1,5 +1,6 @@
 import type {
   AnimationState,
+  Skeleton,
   TextureAtlas,
   TrackEntry,
 } from "@esotericsoftware/spine-threejs";
@@ -100,4 +101,20 @@ export const createSkeletonMesh = (spine: {
   return new SkeletonMesh(skeletonData, (parameters) => {
     parameters.depthWrite = false;
   });
+};
+
+export const changeAttachment = (
+  skeleton: Skeleton,
+  slotName: string,
+  attachmentName: string,
+) => {
+  const slot = skeleton.findSlot(slotName);
+  if (!slot) {
+    throw new Error(`could not find ${slotName} in skeleton`);
+  }
+  const nextAttachment = skeleton.getAttachmentByName(slotName, attachmentName);
+  if (!nextAttachment) {
+    throw new Error(`could not find ${attachmentName} in skeleton`);
+  }
+  slot.setAttachment(nextAttachment);
 };

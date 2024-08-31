@@ -29,19 +29,20 @@ import { nextTick, onMounted, reactive, ref } from "vue";
 import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
 
-import { wait } from "shared/helpers/utils.ts";
+import { getRandomInt, wait } from "shared/helpers/utils.ts";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
 
 import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import {
+  changeAttachment,
   createSkeletonMesh,
   startRandomLoopAnimation,
   StopRandomLoopAnimation,
 } from "../utils.ts";
 
 const emit = defineEmits<{
-  (e: "finish"): void;
+  (e: "finish", resultNumber: number): void;
 }>();
 
 const { onLoop } = useRenderLoop();
@@ -109,7 +110,15 @@ const onClick = async () => {
     return;
   }
 
+  const resultNumber = getRandomInt(1, 3);
   stopLoopReactionAnimation?.();
+  stopLoopBlinkAnimation?.();
+
+  changeAttachment(
+    rurinoSkeletonMesh.skeleton,
+    "fishing_result",
+    `fishing_result_${resultNumber}`,
+  );
 
   const entry = rurinoSkeletonMesh.state.setAnimation(
     0,
@@ -120,8 +129,7 @@ const onClick = async () => {
 
   await wait(1500);
 
-  stopLoopBlinkAnimation?.();
-  emit("finish");
+  emit("finish", resultNumber);
 };
 
 onLoop(({ delta }) => {
