@@ -112,6 +112,10 @@ onLoop(({ delta }) => {
 onMounted(() => {
   init();
 });
+
+defineExpose({
+  init,
+});
 </script>
 
 <style scoped>

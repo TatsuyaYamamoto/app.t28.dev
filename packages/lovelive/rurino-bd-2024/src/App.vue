@@ -2,7 +2,11 @@
   <CanvasRenderer :base-width="6868" :base-height="4226">
     <template #canvas>
       <LoadingPage v-if="shouldShowLoading" @loadCompleted="onLoadCompleted" />
-      <GamePage v-if="shouldShowGame" @finish="onGameFinished" />
+      <GamePage
+        ref="gamePageInstance"
+        v-if="shouldShowGame"
+        @finish="onGameFinished"
+      />
     </template>
     <template #html>
       <ResultModal
@@ -25,6 +29,7 @@ import ResultModal from "./components/ResultModal.vue";
 const gameResultModalTypeModel = ref<1 | 2 | 3 | undefined>();
 const shouldShowLoading = ref(true);
 const shouldShowGame = ref(false);
+const gamePageInstance = ref();
 
 const onLoadCompleted = () => {
   shouldShowGame.value = true;
@@ -35,7 +40,10 @@ const onGameFinished = (resultNumber: 1 | 2 | 3) => {
   gameResultModalTypeModel.value = resultNumber;
 };
 
-const onClickResultButton = () => {};
+const onClickResultButton = () => {
+  gameResultModalTypeModel.value = undefined;
+  gamePageInstance.value.init();
+};
 </script>
 
 <style>
