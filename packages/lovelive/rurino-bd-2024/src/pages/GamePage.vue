@@ -2,21 +2,10 @@
   <TresGroup ref="groupRef">
     <TresMesh :position="[0, 0, -1]" @click="onClick">
       <TresPlaneGeometry :args="[1717 * 0.6, 1057 * 0.6]" />
-      <TresMeshBasicMaterial :map="textures.back" transparent />
+      <TresMeshBasicMaterial transparent />
     </TresMesh>
 
     <CanvasPortal>
-      <div v-if="shouldShow.readyStepAnimation">
-        <img
-          :class="['tea-step', classes.teaStep1]"
-          :src="textures.teaStep1.image.src"
-        />
-        <img
-          :class="['tea-step', classes.teaStep2]"
-          :src="textures.teaStep2.image.src"
-        />
-      </div>
-
       <Transition name="fade">
         <TapAnnounce v-if="shouldShow.tapAnnounce" />
       </Transition>
@@ -46,28 +35,14 @@ const emit = defineEmits<{
 }>();
 
 const { onLoop } = useRenderLoop();
-const { getSpine, getTexture } = useAssetLoader();
-
-const textures = {
-  back: getTexture("back"),
-  desk: getTexture("desk"),
-  teaStep1: getTexture("tea_step_1"),
-  teaStep2: getTexture("tea_step_2"),
-  potAndCup: getTexture("pot_and_cup"),
-};
+const { getSpine } = useAssetLoader();
 
 const rurinoSkeletonMesh = createSkeletonMesh(getSpine("rurino"));
 
 const groupRef = ref<Group>();
 const shouldShow = reactive({
-  readyStepAnimation: false,
   tapAnnounce: false,
 });
-
-const classes = {
-  teaStep1: "tea-step-1",
-  teaStep2: "tea-step-2",
-};
 
 let canClick = false;
 let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
@@ -94,9 +69,7 @@ const init = async () => {
 
   await wait(300);
 
-  shouldShow.readyStepAnimation = true;
   await nextTick();
-  shouldShow.readyStepAnimation = false;
   shouldShow.tapAnnounce = true;
   canClick = true;
 

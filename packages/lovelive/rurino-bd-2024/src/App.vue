@@ -4,18 +4,23 @@
       <LoadingPage v-if="shouldShowLoading" @loadCompleted="onLoadCompleted" />
       <GamePage v-if="shouldShowGame" @finish="onGameFinished" />
     </template>
-    <template #html> </template>
+    <template #html>
+      <ResultModal
+        v-model="gameResultModalTypeModel"
+        @click-button="onClickResultButton"
+      />
+    </template>
   </CanvasRenderer>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { getRandomInt } from "shared/helpers/utils.ts";
 import CanvasRenderer from "shared/components/CanvasRenderer.vue";
 
 import LoadingPage from "./pages/LoadingPage.vue";
 import GamePage from "./pages/GamePage.vue";
+import ResultModal from "./components/ResultModal.vue";
 
 const gameResultModalTypeModel = ref<1 | 2 | 3 | undefined>();
 const shouldShowLoading = ref(true);
@@ -26,9 +31,11 @@ const onLoadCompleted = () => {
   shouldShowLoading.value = false;
 };
 
-const onGameFinished = () => {
-  gameResultModalTypeModel.value = getRandomInt(1, 3);
+const onGameFinished = (resultNumber: 1 | 2 | 3) => {
+  gameResultModalTypeModel.value = resultNumber;
 };
+
+const onClickResultButton = () => {};
 </script>
 
 <style>

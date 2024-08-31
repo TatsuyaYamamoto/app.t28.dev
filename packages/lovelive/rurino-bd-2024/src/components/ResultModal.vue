@@ -8,7 +8,7 @@
     <div
       class="content"
       :style="{
-        backgroundImage: `url(${back})`,
+        backgroundImage: `url(${kekka_back})`,
         backgroundPosition: 'center',
         backgroundSize: '140%',
       }"
@@ -33,7 +33,7 @@
 
 <script lang="ts" setup>
 import { computed } from "vue";
-import back from "../assets/back.jpg";
+import kekka_back from "../assets/kekka_back.png";
 import result_1 from "../assets/result_1.png";
 import result_2 from "../assets/result_2.png";
 import result_3 from "../assets/result_3.png";
