@@ -42,7 +42,7 @@ const onGameFinished = (resultNumber: 1 | 2 | 3) => {
 
 const onClickResultButton = () => {
   gameResultModalTypeModel.value = undefined;
-  gamePageInstance.value.init();
+  gamePageInstance.value.goToTitle();
 };
 </script>
 

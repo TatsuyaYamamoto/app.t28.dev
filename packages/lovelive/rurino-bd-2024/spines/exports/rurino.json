@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "D9f7K2oEvKQ", "spine": "4.2.36", "x": -3434, "y": -2262.1, "width": 6868, "height": 4375.1 },
+"skeleton": { "hash": "VoglOOJobAE", "spine": "4.2.36", "x": -3434, "y": -2262.1, "width": 6868, "height": 4375.1 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "body", "parent": "root", "x": 1791.08, "y": -587.11 },
@@ -49,11 +49,10 @@
 	{ "name": "IK_target_leg_L", "parent": "root", "x": 1763.79, "y": -1193.44 },
 	{ "name": "IK_target_leg_R", "parent": "root", "x": 1475.92, "y": -1181.18 },
 	{ "name": "fishing_float", "parent": "root", "x": -1392.72, "y": -1274.43 },
-	{ "name": "fishing_result", "parent": "line_4", "rotation": 96.51, "x": 498.56, "y": -17.69 }
+	{ "name": "fishing_result", "parent": "line_4", "rotation": 96.51, "x": 498.56, "y": -17.69 },
+	{ "name": "title", "parent": "root", "x": -1685.27, "y": 176.68 }
 ],
 "slots": [
-	{ "name": "レイヤー 65", "bone": "root", "attachment": "レイヤー 65" },
-	{ "name": "レイヤー 66", "bone": "root" },
 	{ "name": "背景", "bone": "root", "attachment": "背景" },
 	{ "name": "足_右", "bone": "leg_R_1", "attachment": "足_右" },
 	{ "name": "足_左", "bone": "leg_L_1", "attachment": "足_左" },
@@ -68,7 +67,6 @@
 	{ "name": "瞳_左", "bone": "eyes", "attachment": "瞳_左" },
 	{ "name": "瞳_右", "bone": "eyes", "attachment": "瞳_右" },
 	{ "name": "顔", "bone": "head", "attachment": "顔" },
-	{ "name": "ほほ", "bone": "head", "attachment": "ほほ" },
 	{ "name": "口１", "bone": "mouse", "attachment": "口１" },
 	{ "name": "眉毛_左", "bone": "head", "attachment": "眉毛_左" },
 	{ "name": "眉毛_右", "bone": "head", "attachment": "眉毛_右" },
@@ -76,6 +74,7 @@
 	{ "name": "まつ毛_右", "bone": "eyelashes", "attachment": "まつ毛_右" },
 	{ "name": "閉じ目1_左", "bone": "eyes" },
 	{ "name": "閉じ目1_右", "bone": "eyes" },
+	{ "name": "ほほ", "bone": "head", "attachment": "ほほ" },
 	{ "name": "ツインテ_短_右", "bone": "hair", "attachment": "ツインテ_短_右" },
 	{ "name": "ツインテ_短_左", "bone": "hair", "attachment": "ツインテ_短_左" },
 	{ "name": "花_左", "bone": "head", "attachment": "花_左" },
@@ -89,7 +88,21 @@
 	{ "name": "手_右", "bone": "hand_R", "attachment": "手_右" },
 	{ "name": "ほほの線", "bone": "head", "attachment": "ほほの線" },
 	{ "name": "fishing_float", "bone": "fishing_float" },
-	{ "name": "水面", "bone": "root", "attachment": "水面" }
+	{ "name": "水面", "bone": "root", "attachment": "水面" },
+	{ "name": "川", "bone": "title" },
+	{ "name": "文字", "bone": "title" },
+	{ "name": "魚４", "bone": "title" },
+	{ "name": "魚３", "bone": "title" },
+	{ "name": "魚２", "bone": "title" },
+	{ "name": "魚１", "bone": "title" },
+	{ "name": "しぶき８", "bone": "title" },
+	{ "name": "しぶき７", "bone": "title" },
+	{ "name": "しぶき６", "bone": "title" },
+	{ "name": "しぶき５", "bone": "title" },
+	{ "name": "しぶき４", "bone": "title" },
+	{ "name": "しぶき３", "bone": "title" },
+	{ "name": "しぶき２", "bone": "title" },
+	{ "name": "しぶき１", "bone": "title" }
 ],
 "ik": [
 	{
@@ -208,6 +221,30 @@
 				"fishing_result_2": { "path": "釣果２", "x": -144.6, "y": -148.53, "width": 353, "height": 344 },
 				"fishing_result_3": { "path": "釣果3", "x": -259.21, "y": -553.74, "rotation": 43.07, "width": 1216, "height": 595 }
 			},
+			"しぶき１": {
+				"しぶき１": { "x": -1335.73, "y": -433.18, "width": 146, "height": 155 }
+			},
+			"しぶき２": {
+				"しぶき２": { "x": -1342.73, "y": -677.68, "width": 194, "height": 188 }
+			},
+			"しぶき３": {
+				"しぶき３": { "x": -537.23, "y": -1170.18, "width": 151, "height": 145 }
+			},
+			"しぶき４": {
+				"しぶき４": { "x": -158.73, "y": -1254.18, "width": 160, "height": 161 }
+			},
+			"しぶき５": {
+				"しぶき５": { "x": -1387.23, "y": 680.32, "width": 161, "height": 158 }
+			},
+			"しぶき６": {
+				"しぶき６": { "x": 491.77, "y": 945.32, "width": 161, "height": 154 }
+			},
+			"しぶき７": {
+				"しぶき７": { "x": 1388.27, "y": 258.82, "width": 186, "height": 181 }
+			},
+			"しぶき８": {
+				"しぶき８": { "x": 1341.77, "y": 78.82, "width": 125, "height": 125 }
+			},
 			"ほほ": {
 				"ほほ": { "x": 295.88, "y": 85.65, "rotation": -93.56, "width": 1148, "height": 169 }
 			},
@@ -247,12 +284,6 @@
 					"hull": 20
 				}
 			},
-			"レイヤー 65": {
-				"レイヤー 65": { "width": 6868, "height": 4226 }
-			},
-			"レイヤー 66": {
-				"レイヤー 66": { "y": 151, "width": 6868, "height": 3924 }
-			},
 			"体": {
 				"体": { "x": 192.92, "y": -0.83, "rotation": -81.95, "width": 543, "height": 583 }
 			},
@@ -270,11 +301,17 @@
 				"口２": { "x": 1.15, "y": -1.64, "rotation": -93.56, "width": 132, "height": 128 },
 				"口３": { "x": 1.15, "y": -1.64, "rotation": -93.56, "width": 65, "height": 30 }
 			},
+			"川": {
+				"川": { "x": 7.27, "y": 32.32, "width": 2686, "height": 2366 }
+			},
 			"手_右": {
 				"手_右": { "x": -11.28, "y": -6.5, "rotation": 126.53, "width": 215, "height": 238 }
 			},
 			"手_左": {
 				"手_左": { "x": -17.57, "y": 21.06, "rotation": 126.74, "width": 258, "height": 223 }
+			},
+			"文字": {
+				"文字": { "x": 115.27, "y": 37.32, "width": 2796, "height": 2126 }
 			},
 			"水面": {
 				"水面": { "x": -1764.5, "y": -1676, "width": 3339, "height": 874 }
@@ -362,11 +399,11 @@
 			},
 			"閉じ目1_右": {
 				"閉じ目1_右": { "x": -136.39, "y": 373.06, "rotation": -93.56, "width": 439, "height": 159 },
-				"閉じ目2_右": { "x": -86.86, "y": 355.95, "rotation": -93.56, "width": 399, "height": 336 }
+				"閉じ目2_右": { "x": 29.55, "y": 378.39, "rotation": -93.56, "width": 608, "height": 614 }
 			},
 			"閉じ目1_左": {
 				"閉じ目1_左": { "x": -174.78, "y": -437.12, "rotation": -93.56, "width": 493, "height": 159 },
-				"閉じ目2_左": { "x": -88.87, "y": -376.84, "rotation": -93.56, "width": 404, "height": 311 }
+				"閉じ目2_左": { "x": -3.49, "y": -441.59, "rotation": -93.56, "width": 720, "height": 608 }
 			},
 			"頭": {
 				"頭": { "x": 1056.69, "y": -61.88, "rotation": -93.56, "width": 1972, "height": 1668 }
@@ -379,6 +416,18 @@
 					"vertices": [ -59.09, -909.23, 54.81, 921.23, 1835.37, 810.44, 1721.47, -1020.02, 727.26, 697.14, 777.85, 651.87, 808.44, 552.77, 802.89, 415.24, 747.32, 274.41, 596.29, 229.16, 453.73, 253.76, 398.97, 291.95, 381.07, 523.26, 496.21, 630.37, 630.08, 692.43, 694.19, -130.31, 744.91, -209.75, 769.91, -338.27, 752.9, -436.75, 652.6, -568.76, 583.04, -577.43, 427.27, -500.07, 341.98, -412.88, 374.09, -167.06, 473.2, -122.93, 570.32, -107.85, 701.3, 741.1, 803.8, 652.18, 838.77, 475.01, 801.63, 309.7, 691, 211.74, 671.64, -69.97, 776.57, -165.23, 784.88, -419.3, 695.4, -562.74, 612.28, -613.5, 356.3, 563.66, 335.11, 500.31, 355.84, 279.14, 456.52, 211.08, 464.27, -10.71, 347.68, -156.77, 324.55, -433.7, 385.18, -530.6 ],
 					"hull": 4
 				}
+			},
+			"魚１": {
+				"魚１": { "x": -1315.23, "y": 192.32, "width": 451, "height": 350 }
+			},
+			"魚２": {
+				"魚２": { "x": -865.73, "y": -107.68, "width": 428, "height": 324 }
+			},
+			"魚３": {
+				"魚３": { "x": 735.77, "y": 95.32, "width": 415, "height": 286 }
+			},
+			"魚４": {
+				"魚４": { "x": 1330.47, "y": -132.98, "width": 436, "height": 317 }
 			}
 		}
 	}
@@ -450,6 +499,18 @@
 		}
 	},
 	"fish_catching": {
+		"slots": {
+			"閉じ目1_右": {
+				"attachment": [
+					{ "time": 0.2, "name": "閉じ目2_右" }
+				]
+			},
+			"閉じ目1_左": {
+				"attachment": [
+					{ "time": 0.2, "name": "閉じ目2_左" }
+				]
+			}
+		},
 		"bones": {
 			"rod_1": {
 				"rotate": [
@@ -581,6 +642,136 @@
 						"curve": [ 0.178, 0, 0.222, 0, 0.178, -76.78, 0.222, 0 ]
 					},
 					{ "time": 0.2667 }
+				]
+			}
+		}
+	},
+	"hide_title": {
+		"slots": {
+			"しぶき１": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき１" }
+				]
+			},
+			"しぶき２": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき２" }
+				]
+			},
+			"しぶき３": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき３" }
+				]
+			},
+			"しぶき４": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき４" }
+				]
+			},
+			"しぶき５": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき５" }
+				]
+			},
+			"しぶき６": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき６" }
+				]
+			},
+			"しぶき７": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき７" }
+				]
+			},
+			"しぶき８": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "しぶき８" }
+				]
+			},
+			"川": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "川" }
+				]
+			},
+			"文字": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "文字" }
+				]
+			},
+			"魚１": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "魚１" }
+				]
+			},
+			"魚２": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "魚２" }
+				]
+			},
+			"魚３": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "魚３" }
+				]
+			},
+			"魚４": {
+				"rgba": [
+					{ "time": 0.3333, "color": "ffffffff" },
+					{ "time": 0.4, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "魚４" }
 				]
 			}
 		}
@@ -881,6 +1072,80 @@
 						"curve": [ 1.333, 0, 1.667, 0, 1.333, -34.76, 1.667, 0 ]
 					},
 					{ "time": 2 }
+				]
+			}
+		}
+	},
+	"show_title": {
+		"slots": {
+			"しぶき１": {
+				"attachment": [
+					{ "name": "しぶき１" }
+				]
+			},
+			"しぶき２": {
+				"attachment": [
+					{ "name": "しぶき２" }
+				]
+			},
+			"しぶき３": {
+				"attachment": [
+					{ "name": "しぶき３" }
+				]
+			},
+			"しぶき４": {
+				"attachment": [
+					{ "name": "しぶき４" }
+				]
+			},
+			"しぶき５": {
+				"attachment": [
+					{ "name": "しぶき５" }
+				]
+			},
+			"しぶき６": {
+				"attachment": [
+					{ "name": "しぶき６" }
+				]
+			},
+			"しぶき７": {
+				"attachment": [
+					{ "name": "しぶき７" }
+				]
+			},
+			"しぶき８": {
+				"attachment": [
+					{ "name": "しぶき８" }
+				]
+			},
+			"川": {
+				"attachment": [
+					{ "name": "川" }
+				]
+			},
+			"文字": {
+				"attachment": [
+					{ "name": "文字" }
+				]
+			},
+			"魚１": {
+				"attachment": [
+					{ "name": "魚１" }
+				]
+			},
+			"魚２": {
+				"attachment": [
+					{ "name": "魚２" }
+				]
+			},
+			"魚３": {
+				"attachment": [
+					{ "name": "魚３" }
+				]
+			},
+			"魚４": {
+				"attachment": [
+					{ "name": "魚４" }
 				]
 			}
 		}

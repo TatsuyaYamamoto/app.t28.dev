@@ -2,7 +2,7 @@
   <TresGroup ref="groupRef">
     <CanvasPortal>
       <Transition name="fade">
-        <TapAnnounce v-if="shouldShow.tapAnnounce" />
+        <TapAnnounce v-if="gameState.shouldShowTapAnnounce" />
       </Transition>
     </CanvasPortal>
   </TresGroup>
@@ -35,15 +35,16 @@ const { getSpine } = useAssetLoader();
 const rurinoSkeletonMesh = createSkeletonMesh(getSpine("rurino"));
 
 const groupRef = ref<Group>();
-const shouldShow = reactive({
-  tapAnnounce: false,
-});
 
-let canClick = false;
+const gameState = reactive<{
+  type: "title" | "game";
+  canClick: boolean;
+  shouldShowTapAnnounce: boolean;
+}>({ type: "title", canClick: false, shouldShowTapAnnounce: false });
 let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
 let stopLoopReactionAnimation: StopRandomLoopAnimation | undefined;
 
-const init = async () => {
+const initSpine = async () => {
   rurinoSkeletonMesh.position.set(0, 0, 0);
   rurinoSkeletonMesh.scale.setScalar(0.138);
   groupRef.value?.add(rurinoSkeletonMesh);
@@ -55,6 +56,22 @@ const init = async () => {
     5,
     () => Math.random() * 4 + 0.5,
   );
+};
+
+const initTitle = async () => {
+  gameState.type = "title";
+  gameState.canClick = false;
+
+  rurinoSkeletonMesh.state.setAnimation(1, "show_title");
+
+  await wait(300);
+  gameState.canClick = true;
+};
+
+const initGame = async () => {
+  gameState.type = "game";
+  gameState.canClick = false;
+
   stopLoopReactionAnimation = startRandomLoopAnimation(
     rurinoSkeletonMesh.state,
     "fish_reaction",
@@ -65,19 +82,39 @@ const init = async () => {
   await wait(300);
 
   await nextTick();
-  shouldShow.tapAnnounce = true;
-  canClick = true;
+  gameState.shouldShowTapAnnounce = true;
+  gameState.canClick = true;
 
   wait(3000).then(() => {
-    shouldShow.tapAnnounce = false;
+    gameState.shouldShowTapAnnounce = false;
   });
 };
 
-const onClick = async () => {
-  if (!canClick || !rurinoSkeletonMesh) {
+const onClickInTitle = async () => {
+  if (gameState.type !== "title") {
     return;
   }
-  canClick = false;
+  if (!gameState.canClick) {
+    return;
+  }
+
+  gameState.canClick = false;
+  // hide title
+  rurinoSkeletonMesh.state.setAnimation(1, "hide_title");
+
+  // start game
+  await initGame();
+};
+
+const onClickInGame = async () => {
+  if (gameState.type !== "game") {
+    return;
+  }
+  if (!gameState.canClick) {
+    return;
+  }
+  gameState.canClick = false;
+  gameState.shouldShowTapAnnounce = false;
 
   const resultNumber = getRandomInt(1, 3);
   stopLoopReactionAnimation?.();
@@ -101,12 +138,30 @@ const onClick = async () => {
   emit("finish", resultNumber);
 };
 
+const onClick = async () => {
+  if (gameState.type === "title") {
+    await onClickInTitle();
+    return;
+  }
+  if (gameState.type === "game") {
+    await onClickInGame();
+    return;
+  }
+};
+
+const goToTitle = async () => {
+  await initSpine();
+  await initTitle();
+};
+
 onLoop(({ delta }) => {
   rurinoSkeletonMesh?.update(delta);
 });
 
 onMounted(() => {
-  init();
+  initSpine();
+  initTitle();
+
   window.addEventListener("click", onClick);
 });
 
@@ -115,7 +170,7 @@ onUnmounted(() => {
 });
 
 defineExpose({
-  init,
+  goToTitle,
 });
 </script>
 
