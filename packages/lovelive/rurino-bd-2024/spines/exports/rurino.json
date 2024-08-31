@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "VoglOOJobAE", "spine": "4.2.36", "x": -3434, "y": -2262.1, "width": 6868, "height": 4375.1 },
+"skeleton": { "hash": "qzm6KYtC+cE", "spine": "4.2.36", "x": -3434, "y": -2262.1, "width": 6868, "height": 4375.1 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "body", "parent": "root", "x": 1791.08, "y": -587.11 },
@@ -53,7 +53,13 @@
 	{ "name": "title", "parent": "root", "x": -1685.27, "y": 176.68 }
 ],
 "slots": [
-	{ "name": "背景", "bone": "root", "attachment": "背景" },
+	{ "name": "レイヤー 47", "bone": "root", "attachment": "レイヤー 47" },
+	{ "name": "背景_川", "bone": "root", "attachment": "背景_川" },
+	{ "name": "せせらぎ", "bone": "root", "attachment": "せせらぎ" },
+	{ "name": "しげみ", "bone": "root", "attachment": "しげみ" },
+	{ "name": "木（奥）", "bone": "root", "attachment": "木（奥）" },
+	{ "name": "木（手前）", "bone": "root", "attachment": "木（手前）" },
+	{ "name": "石", "bone": "root", "attachment": "石" },
 	{ "name": "足_右", "bone": "leg_R_1", "attachment": "足_右" },
 	{ "name": "足_左", "bone": "leg_L_1", "attachment": "足_左" },
 	{ "name": "ズボン", "bone": "body_lower", "attachment": "ズボン" },
@@ -221,6 +227,9 @@
 				"fishing_result_2": { "path": "釣果２", "x": -144.6, "y": -148.53, "width": 353, "height": 344 },
 				"fishing_result_3": { "path": "釣果3", "x": -259.21, "y": -553.74, "rotation": 43.07, "width": 1216, "height": 595 }
 			},
+			"しげみ": {
+				"しげみ": { "x": -1822, "y": 766, "width": 3224, "height": 1274 }
+			},
 			"しぶき１": {
 				"しぶき１": { "x": -1335.73, "y": -433.18, "width": 146, "height": 155 }
 			},
@@ -244,6 +253,9 @@
 			},
 			"しぶき８": {
 				"しぶき８": { "x": 1341.77, "y": 78.82, "width": 125, "height": 125 }
+			},
+			"せせらぎ": {
+				"せせらぎ": { "x": -2601, "y": -605, "width": 1666, "height": 600 }
 			},
 			"ほほ": {
 				"ほほ": { "x": 295.88, "y": 85.65, "rotation": -93.56, "width": 1148, "height": 169 }
@@ -284,6 +296,9 @@
 					"hull": 20
 				}
 			},
+			"レイヤー 47": {
+				"レイヤー 47": { "width": 6868, "height": 4226 }
+			},
 			"体": {
 				"体": { "x": 192.92, "y": -0.83, "rotation": -81.95, "width": 543, "height": 583 }
 			},
@@ -313,6 +328,12 @@
 			"文字": {
 				"文字": { "x": 115.27, "y": 37.32, "width": 2796, "height": 2126 }
 			},
+			"木（奥）": {
+				"木（奥）": { "x": -1128, "y": 1404.5, "width": 2206, "height": 1417 }
+			},
+			"木（手前）": {
+				"木（手前）": { "x": -1938.5, "y": 1254.5, "width": 2991, "height": 1717 }
+			},
 			"水面": {
 				"水面": { "x": -1764.5, "y": -1676, "width": 3339, "height": 874 }
 			},
@@ -334,8 +355,11 @@
 			"瞳_左": {
 				"瞳_左": { "x": -71.52, "y": -420, "rotation": -93.56, "width": 312, "height": 409 }
 			},
-			"背景": {
-				"背景": { "width": 6868, "height": 4226 }
+			"石": {
+				"石": { "y": -173.5, "width": 6868, "height": 3261 }
+			},
+			"背景_川": {
+				"背景_川": { "y": -881.5, "width": 6868, "height": 2463 }
 			},
 			"腕_右": {
 				"腕_右": {
