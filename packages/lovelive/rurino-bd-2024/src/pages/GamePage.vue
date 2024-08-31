@@ -109,13 +109,18 @@ const onClick = async () => {
     return;
   }
 
-  stopLoopBlinkAnimation?.();
   stopLoopReactionAnimation?.();
 
-  const entry = rurinoSkeletonMesh.state.setAnimation(0, "success", false);
+  const entry = rurinoSkeletonMesh.state.setAnimation(
+    0,
+    "fish_catching",
+    false,
+  );
   entry.mixDuration = 0.5;
 
   await wait(1500);
+
+  stopLoopBlinkAnimation?.();
   emit("finish");
 };
 
