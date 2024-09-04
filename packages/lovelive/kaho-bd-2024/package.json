@@ -15,7 +15,7 @@
     "gsap": "3.12.5",
     "shared": "workspace:*",
     "three": "0.167.1",
-    "vue": "3.4.9",
+    "vue": "3.5.1",
     "vuetify": "3.4.10"
   },
   "devDependencies": {
