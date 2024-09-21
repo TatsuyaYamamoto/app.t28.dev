@@ -12,6 +12,6 @@
   bottom: 1rem;
 
   color: #ffffff;
-  text-shadow: #FC0 1px 0 10px;
+  text-shadow: #fc0 1px 0 10px;
 }
 </style>

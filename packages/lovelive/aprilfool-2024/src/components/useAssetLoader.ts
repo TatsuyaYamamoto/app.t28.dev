@@ -5,7 +5,8 @@ import { TextureAtlas, ThreeJsTexture } from "@esotericsoftware/spine-threejs";
 import {
   IMAGE_MANIFEST,
   type ImageKey,
-  SPINE_MANIFEST, SpineKey,
+  SPINE_MANIFEST,
+  SpineKey,
 } from "../assets/manifest.ts";
 
 const loadImage = (src: string) => {
