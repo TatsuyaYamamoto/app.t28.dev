@@ -67,7 +67,7 @@ const onClickForShare = () => {
     return;
   }
 
-  const hashtags = `#ひめちゃんのはやぐい #蓮ノ空 ##安養寺姫芽生誕祭2024`;
+  const hashtags = `#ひめちゃんのはやぐい #蓮ノ空 #安養寺姫芽生誕祭2024`;
   const appUrl = `https://app.t28.dev/lovelive/hime-bd-2024`;
 
   const texts = {
