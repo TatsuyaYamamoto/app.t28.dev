@@ -47,7 +47,7 @@ let swallowedCount = 0;
 
 const initSpine = async () => {
   himeSkeletonMesh.position.set(0, 0, 0);
-  himeSkeletonMesh.scale.setScalar(0.138);
+  himeSkeletonMesh.scale.setScalar(0.136);
   groupRef.value?.add(himeSkeletonMesh);
 
   himeSkeletonMesh.state.setAnimation(0, "idle", true);
