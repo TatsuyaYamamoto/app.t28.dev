@@ -13,13 +13,12 @@ import { nextTick, onMounted, onUnmounted, reactive, ref } from "vue";
 import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
 
-import { getRandomInt, wait } from "shared/helpers/utils.ts";
+import { wait } from "shared/helpers/utils.ts";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
 
 import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import {
-  changeAttachment,
   createSkeletonMesh,
   startRandomLoopAnimation,
   StopRandomLoopAnimation,
@@ -41,8 +40,8 @@ const gameState = reactive<{
   canClick: boolean;
   shouldShowTapAnnounce: boolean;
 }>({ type: "title", canClick: false, shouldShowTapAnnounce: false });
+// @ts-expect-error
 let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
-let stopLoopReactionAnimation: StopRandomLoopAnimation | undefined;
 
 const initSpine = async () => {
   himeSkeletonMesh.position.set(0, 0, 0);
@@ -51,7 +50,7 @@ const initSpine = async () => {
 
   himeSkeletonMesh.state.setAnimation(0, "idle", true);
   stopLoopBlinkAnimation = startRandomLoopAnimation(
-      himeSkeletonMesh.state,
+    himeSkeletonMesh.state,
     "blink",
     5,
     () => Math.random() * 4 + 0.5,
@@ -71,13 +70,6 @@ const initTitle = async () => {
 const initGame = async () => {
   gameState.type = "game";
   gameState.canClick = false;
-
-  stopLoopReactionAnimation = startRandomLoopAnimation(
-      himeSkeletonMesh.state,
-    "fish_reaction",
-    6,
-    () => Math.random() * 4 + 1.5,
-  );
 
   await wait(300);
 
@@ -107,35 +99,18 @@ const onClickInTitle = async () => {
 };
 
 const onClickInGame = async () => {
+  console.log("onClickInGame");
   if (gameState.type !== "game") {
     return;
   }
   if (!gameState.canClick) {
     return;
   }
-  gameState.canClick = false;
-  gameState.shouldShowTapAnnounce = false;
+  // gameState.canClick = false;
+  // gameState.shouldShowTapAnnounce = false;
 
-  const resultNumber = getRandomInt(1, 3);
-  stopLoopReactionAnimation?.();
-  stopLoopBlinkAnimation?.();
-
-  changeAttachment(
-      himeSkeletonMesh.skeleton,
-    "fishing_result",
-    `fishing_result_${resultNumber}`,
-  );
-
-  const entry = himeSkeletonMesh.state.setAnimation(
-    0,
-    "fish_catching",
-    false,
-  );
-  entry.mixDuration = 0.5;
-
-  await wait(1500);
-
-  emit("finish", resultNumber);
+  const entry = himeSkeletonMesh.state.setAnimation(1, "eat", false);
+  entry.mixDuration = 0.2;
 };
 
 const onClick = async () => {
