@@ -1,7 +1,7 @@
 <template>
   <div class="root">
-    <div>魚を釣り上げましょう</div>
-    <div>(タップで釣り上げる）</div>
+    <div>おまんじゅうを食べましょう</div>
+    <div>(タップで食べる）</div>
   </div>
 </template>
 
