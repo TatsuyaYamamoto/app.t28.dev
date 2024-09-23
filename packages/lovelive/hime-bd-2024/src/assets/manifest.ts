@@ -1,6 +1,6 @@
-import rurino_atlas from "../../spines/exports/rurino.atlas?raw";
-import rurino_skeleton from "../../spines/exports/rurino.json";
-import rurino_sprite from "../../spines/exports/rurino.png";
+import hime_atlas from "../../spines/exports/hime.atlas?raw";
+import hime_skeleton from "../../spines/exports/hime.json";
+import hime_sprite from "../../spines/exports/hime.png";
 
 import kekka_back from "./kekka_back.png";
 import kekka_share from "./kekka_share.png";
@@ -25,10 +25,10 @@ export type ImageKey = (typeof IMAGE_MANIFEST)[number]["id"];
 
 export const SPINE_MANIFEST = [
   {
-    id: "rurino",
-    atlas: rurino_atlas,
-    skeleton: rurino_skeleton,
-    sprite: rurino_sprite,
+    id: "hime",
+    atlas: hime_atlas,
+    skeleton: hime_skeleton,
+    sprite: hime_sprite,
   },
 ] as const;
 

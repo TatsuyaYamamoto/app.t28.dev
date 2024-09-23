@@ -32,7 +32,7 @@ const emit = defineEmits<{
 const { onLoop } = useRenderLoop();
 const { getSpine } = useAssetLoader();
 
-const rurinoSkeletonMesh = createSkeletonMesh(getSpine("rurino"));
+const himeSkeletonMesh = createSkeletonMesh(getSpine("hime"));
 
 const groupRef = ref<Group>();
 
@@ -45,14 +45,13 @@ let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
 let stopLoopReactionAnimation: StopRandomLoopAnimation | undefined;
 
 const initSpine = async () => {
-  rurinoSkeletonMesh.position.set(0, 0, 0);
-  rurinoSkeletonMesh.scale.setScalar(0.138);
-  groupRef.value?.add(rurinoSkeletonMesh);
+  himeSkeletonMesh.position.set(0, 0, 0);
+  himeSkeletonMesh.scale.setScalar(0.138);
+  groupRef.value?.add(himeSkeletonMesh);
 
-  rurinoSkeletonMesh.state.setAnimation(0, "idle", true);
-  rurinoSkeletonMesh.state.setAnimation(1, "background", true);
+  himeSkeletonMesh.state.setAnimation(0, "idle", true);
   stopLoopBlinkAnimation = startRandomLoopAnimation(
-    rurinoSkeletonMesh.state,
+      himeSkeletonMesh.state,
     "blink",
     5,
     () => Math.random() * 4 + 0.5,
@@ -63,7 +62,7 @@ const initTitle = async () => {
   gameState.type = "title";
   gameState.canClick = false;
 
-  rurinoSkeletonMesh.state.setAnimation(2, "show_title");
+  himeSkeletonMesh.state.setAnimation(2, "show_title");
 
   await wait(300);
   gameState.canClick = true;
@@ -74,7 +73,7 @@ const initGame = async () => {
   gameState.canClick = false;
 
   stopLoopReactionAnimation = startRandomLoopAnimation(
-    rurinoSkeletonMesh.state,
+      himeSkeletonMesh.state,
     "fish_reaction",
     6,
     () => Math.random() * 4 + 1.5,
@@ -101,7 +100,7 @@ const onClickInTitle = async () => {
 
   gameState.canClick = false;
   // hide title
-  rurinoSkeletonMesh.state.setAnimation(2, "hide_title");
+  himeSkeletonMesh.state.setAnimation(2, "hide_title");
 
   // start game
   await initGame();
@@ -122,12 +121,12 @@ const onClickInGame = async () => {
   stopLoopBlinkAnimation?.();
 
   changeAttachment(
-    rurinoSkeletonMesh.skeleton,
+      himeSkeletonMesh.skeleton,
     "fishing_result",
     `fishing_result_${resultNumber}`,
   );
 
-  const entry = rurinoSkeletonMesh.state.setAnimation(
+  const entry = himeSkeletonMesh.state.setAnimation(
     0,
     "fish_catching",
     false,
@@ -156,7 +155,7 @@ const goToTitle = async () => {
 };
 
 onLoop(({ delta }) => {
-  rurinoSkeletonMesh?.update(delta);
+  himeSkeletonMesh?.update(delta);
 });
 
 onMounted(() => {
