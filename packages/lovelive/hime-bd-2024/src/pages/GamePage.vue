@@ -13,7 +13,7 @@ import { nextTick, onMounted, onUnmounted, reactive, ref } from "vue";
 import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
 
-import { wait } from "shared/helpers/utils.ts";
+import { getRandomInt, wait } from "shared/helpers/utils.ts";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
 
 import TapAnnounce from "../components/TapAnnounce.vue";
@@ -25,7 +25,7 @@ import {
 } from "../utils.ts";
 
 const emit = defineEmits<{
-  (e: "finish", resultNumber: 1 | 2 | 3): void;
+  finish: [resultNumber: 1 | 2 | 3];
 }>();
 
 const { onLoop } = useRenderLoop();
@@ -43,6 +43,7 @@ const gameState = reactive<{
 // @ts-expect-error
 let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
 let isChewing = false;
+let swallowedCount = 0;
 
 const initSpine = async () => {
   himeSkeletonMesh.position.set(0, 0, 0);
@@ -62,15 +63,17 @@ const initTitle = async () => {
   gameState.type = "title";
   gameState.canClick = false;
 
-  himeSkeletonMesh.state.setAnimation(2, "show_title");
+  himeSkeletonMesh.state.setAnimation(2, "title_entry");
 
   await wait(300);
+  himeSkeletonMesh.state.setAnimation(2, "title_idle", true);
   gameState.canClick = true;
 };
 
 const initGame = async () => {
   gameState.type = "game";
   gameState.canClick = false;
+  swallowedCount = 0;
 
   await wait(300);
 
@@ -93,7 +96,7 @@ const onClickInTitle = async () => {
 
   gameState.canClick = false;
   // hide title
-  himeSkeletonMesh.state.setAnimation(2, "hide_title");
+  himeSkeletonMesh.state.setAnimation(2, "title_leave");
 
   // start game
   await initGame();
@@ -124,6 +127,11 @@ const onClickInGame = async () => {
       }
       if (event.data.name === "chewing_end") {
         isChewing = false;
+        swallowedCount++;
+
+        if (swallowedCount === 3) {
+          emit("finish", getRandomInt(1, 3));
+        }
         return;
       }
     },

@@ -67,13 +67,13 @@ const onClickForShare = () => {
     return;
   }
 
-  const hashtags = `#るりのちゃんのかわづり #蓮ノ空 ##安養寺姫芽生誕祭2024`;
+  const hashtags = `#ひめちゃんのはやぐい #蓮ノ空 ##安養寺姫芽生誕祭2024`;
   const appUrl = `https://app.t28.dev/lovelive/hime-bd-2024`;
 
   const texts = {
-    1: `さすがるりちゃんせんぱいですね〜`,
-    2: `るりちゃんせんぱいさすがです〜♡`,
-    3: `るりちゃんせんぱいさすがです〜!!`,
+    1: `ゆっくりたべた方がおいしいと思う...お茶飲む？`,
+    2: `おまんじゅうおいしかったね　こすずもよろこんでた`,
+    3: `さすが姫芽だね！`,
   };
 
   const url = new URL("https://twitter.com/intent/tweet");
