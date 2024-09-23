@@ -19,9 +19,12 @@ import CanvasPortal from "shared/components/CanvasPortal.vue";
 import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import {
+  changeAttachment,
   createSkeletonMesh,
+  addAnimationEventListener,
   startRandomLoopAnimation,
   StopRandomLoopAnimation,
+  waitAnimationEnd,
 } from "../utils.ts";
 
 const emit = defineEmits<{
@@ -40,7 +43,6 @@ const gameState = reactive<{
   canClick: boolean;
   shouldShowTapAnnounce: boolean;
 }>({ type: "title", canClick: false, shouldShowTapAnnounce: false });
-// @ts-expect-error
 let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
 let isChewing = false;
 let swallowedCount = 0;
@@ -74,13 +76,19 @@ const initGame = async () => {
   gameState.type = "game";
   gameState.canClick = false;
   swallowedCount = 0;
+  changeAttachment(
+    himeSkeletonMesh.skeleton,
+    "manju_table",
+    "manju_table_many",
+  );
 
   await wait(300);
 
   await nextTick();
-  gameState.shouldShowTapAnnounce = true;
+
   gameState.canClick = true;
 
+  gameState.shouldShowTapAnnounce = true;
   wait(3000).then(() => {
     gameState.shouldShowTapAnnounce = false;
   });
@@ -96,10 +104,14 @@ const onClickInTitle = async () => {
 
   gameState.canClick = false;
   // hide title
-  himeSkeletonMesh.state.setAnimation(2, "title_leave");
-
-  // start game
-  await initGame();
+  const titleLeaveAnimation = himeSkeletonMesh.state.setAnimation(
+    2,
+    "title_leave",
+  );
+  waitAnimationEnd(titleLeaveAnimation).then(() => {
+    // start game
+    initGame();
+  });
 };
 
 const onClickInGame = async () => {
@@ -113,29 +125,38 @@ const onClickInGame = async () => {
   if (isChewing) {
     return;
   }
-  // gameState.canClick = false;
-  // gameState.shouldShowTapAnnounce = false;
 
   const eatAnimation = himeSkeletonMesh.state.setAnimation(1, "eat", false);
   eatAnimation.mixDuration = 0.2;
 
-  eatAnimation.listener = {
-    event: (_, event) => {
-      if (event.data.name === "chewing_start") {
-        isChewing = true;
-        return;
-      }
-      if (event.data.name === "chewing_end") {
-        isChewing = false;
-        swallowedCount++;
+  addAnimationEventListener(eatAnimation, "pickup", () => {
+    console.log("pickup");
 
-        if (swallowedCount === 3) {
-          emit("finish", getRandomInt(1, 3));
-        }
-        return;
-      }
-    },
-  };
+    if (swallowedCount === 2) {
+      changeAttachment(
+        himeSkeletonMesh.skeleton,
+        "manju_table",
+        "manju_table_few",
+      );
+      return;
+    }
+  });
+  addAnimationEventListener(eatAnimation, "chewing_start", () => {
+    console.log("chewing_start");
+    isChewing = true;
+  });
+  addAnimationEventListener(eatAnimation, "chewing_end", async () => {
+    console.log("chewing_end");
+    isChewing = false;
+    swallowedCount++;
+
+    if (swallowedCount === 3) {
+      changeAttachment(himeSkeletonMesh.skeleton, "manju_table", null);
+      await wait(500);
+      emit("finish", getRandomInt(1, 3));
+      return;
+    }
+  });
 };
 
 const onClick = async () => {
@@ -166,6 +187,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  stopLoopBlinkAnimation?.();
   window.removeEventListener("click", onClick);
 });
 
@@ -175,12 +197,6 @@ defineExpose({
 </script>
 
 <style scoped>
-.tea-step {
-  position: absolute;
-  width: 7rem;
-  border-radius: 1rem;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
