@@ -64,6 +64,11 @@ const initSpine = async () => {
 const initTitle = async () => {
   gameState.type = "title";
   gameState.canClick = false;
+  changeAttachment(
+    himeSkeletonMesh.skeleton,
+    "manju_table",
+    "manju_table_many",
+  );
 
   himeSkeletonMesh.state.setAnimation(2, "title_entry");
 
@@ -76,11 +81,6 @@ const initGame = async () => {
   gameState.type = "game";
   gameState.canClick = false;
   swallowedCount = 0;
-  changeAttachment(
-    himeSkeletonMesh.skeleton,
-    "manju_table",
-    "manju_table_many",
-  );
 
   await wait(300);
 
@@ -126,18 +126,27 @@ const onClickInGame = async () => {
     return;
   }
 
+  if (swallowedCount === 2) {
+    gameState.canClick = false;
+  }
+
   const eatAnimation = himeSkeletonMesh.state.setAnimation(1, "eat", false);
   eatAnimation.mixDuration = 0.2;
 
   addAnimationEventListener(eatAnimation, "pickup", () => {
     console.log("pickup");
 
-    if (swallowedCount === 2) {
+    if (swallowedCount === 1) {
       changeAttachment(
         himeSkeletonMesh.skeleton,
         "manju_table",
         "manju_table_few",
       );
+      return;
+    }
+
+    if (swallowedCount === 2) {
+      changeAttachment(himeSkeletonMesh.skeleton, "manju_table", null);
       return;
     }
   });
@@ -151,7 +160,6 @@ const onClickInGame = async () => {
     swallowedCount++;
 
     if (swallowedCount === 3) {
-      changeAttachment(himeSkeletonMesh.skeleton, "manju_table", null);
       await wait(500);
       emit("finish", getRandomInt(1, 3));
       return;
