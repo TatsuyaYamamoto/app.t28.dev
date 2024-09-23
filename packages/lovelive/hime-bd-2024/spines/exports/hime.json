@@ -1,5 +1,5 @@
 {
-"skeleton": { "hash": "F9Bkx/b7U8Y", "spine": "4.2.36", "x": -3434, "y": -2113, "width": 6868, "height": 4226 },
+"skeleton": { "hash": "oFKlIW7FRm8", "spine": "4.2.36", "x": -3434, "y": -2113, "width": 6868, "height": 4226 },
 "bones": [
 	{ "name": "root" },
 	{ "name": "body", "parent": "root", "x": 15.4, "y": -1169.24 },
@@ -76,15 +76,15 @@
 	{ "name": "前髪", "bone": "hair", "attachment": "前髪" },
 	{ "name": "饅頭（多い）", "bone": "root", "attachment": "饅頭（多い）" },
 	{ "name": "饅頭（少ない）", "bone": "root", "attachment": "饅頭（少ない）" },
-	{ "name": "きらきら２", "bone": "title_1_kira_2", "attachment": "きらきら２" },
-	{ "name": "きらきら１", "bone": "title_1_kira_1", "attachment": "きらきら１" },
-	{ "name": "きらきら", "bone": "title_2_kira_2", "attachment": "きらきら" },
-	{ "name": "きらきら３", "bone": "title_2_kira_1", "attachment": "きらきら３" },
-	{ "name": "ハート１", "bone": "title_1_heart", "attachment": "ハート１" },
-	{ "name": "ひめちゃんの", "bone": "title_1_text", "attachment": "ひめちゃんの" },
-	{ "name": "はやぐい", "bone": "title_2_text", "attachment": "はやぐい" },
-	{ "name": "かんむり", "bone": "title_2_crown", "attachment": "かんむり" },
-	{ "name": "ハート２", "bone": "title_2_heart", "attachment": "ハート２" }
+	{ "name": "きらきら２", "bone": "title_1_kira_2" },
+	{ "name": "きらきら１", "bone": "title_1_kira_1" },
+	{ "name": "きらきら", "bone": "title_2_kira_2" },
+	{ "name": "きらきら３", "bone": "title_2_kira_1" },
+	{ "name": "ハート１", "bone": "title_1_heart" },
+	{ "name": "ひめちゃんの", "bone": "title_1_text" },
+	{ "name": "はやぐい", "bone": "title_2_text" },
+	{ "name": "かんむり", "bone": "title_2_crown" },
+	{ "name": "ハート２", "bone": "title_2_heart" }
 ],
 "skins": [
 	{
@@ -402,27 +402,37 @@
 			"tail_1": {
 				"rotate": [
 					{
-						"value": -8.54,
-						"curve": [ 0.333, -8.54, 0.667, -4.57 ]
+						"value": -7.83,
+						"curve": [ 0.091, -8.24, 0.179, -8.54 ]
 					},
 					{
-						"time": 1,
-						"value": -4.57,
-						"curve": [ 1.333, -4.57, 1.667, -8.54 ]
+						"time": 0.2667,
+						"value": -8.54,
+						"curve": [ 0.6, -8.54, 0.933, -4.57 ]
 					},
-					{ "time": 2, "value": -8.54 }
+					{
+						"time": 1.2667,
+						"value": -4.57,
+						"curve": [ 1.512, -4.57, 1.758, -6.7 ]
+					},
+					{ "time": 2, "value": -7.83 }
 				]
 			},
 			"tail_2": {
 				"rotate": [
 					{
 						"value": -1.91,
-						"curve": [ 0.333, -1.91, 0.667, -1.99 ]
+						"curve": [ 0.047, -1.91, 0.09, -1.91 ]
 					},
 					{
-						"time": 1,
+						"time": 0.1333,
+						"value": -1.91,
+						"curve": [ 0.467, -1.91, 0.8, -1.99 ]
+					},
+					{
+						"time": 1.1333,
 						"value": -1.99,
-						"curve": [ 1.333, -1.99, 1.667, -1.91 ]
+						"curve": [ 1.423, -1.99, 1.713, -1.93 ]
 					},
 					{ "time": 2, "value": -1.91 }
 				]
@@ -430,40 +440,55 @@
 			"tail_4": {
 				"rotate": [
 					{
-						"value": -5.54,
-						"curve": [ 0.333, -5.54, 0.667, 0 ]
+						"value": -3.59,
+						"curve": [ 0.136, -4.64, 0.268, -5.54 ]
 					},
 					{
-						"time": 1,
-						"curve": [ 1.333, 0, 1.667, -5.54 ]
+						"time": 0.4,
+						"value": -5.54,
+						"curve": [ 0.733, -5.54, 1.067, 0 ]
 					},
-					{ "time": 2, "value": -5.54 }
+					{
+						"time": 1.4,
+						"curve": [ 1.601, 0, 1.802, -1.99 ]
+					},
+					{ "time": 2, "value": -3.59 }
 				]
 			},
 			"tail_5": {
 				"rotate": [
 					{
-						"curve": [ 0.333, 0, 0.667, 1.14 ]
+						"value": 0.63,
+						"curve": [ 0.18, 0.33, 0.357, 0 ]
 					},
 					{
-						"time": 1,
-						"value": 1.14,
-						"curve": [ 1.333, 1.14, 1.667, 0 ]
+						"time": 0.5333,
+						"curve": [ 0.867, 0, 1.2, 1.14 ]
 					},
-					{ "time": 2 }
+					{
+						"time": 1.5333,
+						"value": 1.14,
+						"curve": [ 1.69, 1.14, 1.847, 0.89 ]
+					},
+					{ "time": 2, "value": 0.63 }
 				]
 			},
 			"tail_6": {
 				"rotate": [
 					{
-						"curve": [ 0.333, 0, 0.667, 6.3 ]
+						"value": 4.66,
+						"curve": [ 0.224, 2.79, 0.446, 0 ]
 					},
 					{
-						"time": 1,
-						"value": 6.3,
-						"curve": [ 1.333, 6.3, 1.667, 0 ]
+						"time": 0.6667,
+						"curve": [ 1, 0, 1.333, 6.3 ]
 					},
-					{ "time": 2 }
+					{
+						"time": 1.6667,
+						"value": 6.3,
+						"curve": [ 1.779, 6.3, 1.891, 5.61 ]
+					},
+					{ "time": 2, "value": 4.66 }
 				]
 			},
 			"arm_R_2": {
@@ -475,11 +500,286 @@
 				"rotate": [
 					{ "value": -127.77 }
 				]
+			},
+			"front_5_1": {
+				"rotate": [
+					{
+						"value": 0.1,
+						"curve": [ 0.024, 0.06, 0.046, 0 ]
+					},
+					{
+						"time": 0.0667,
+						"curve": [ 0.4, 0, 0.733, 5.34 ]
+					},
+					{
+						"time": 1.0667,
+						"value": 5.34,
+						"curve": [ 1.379, 5.34, 1.691, 0.69 ]
+					},
+					{ "time": 2, "value": 0.1 }
+				]
+			},
+			"front_5_2": {
+				"rotate": [
+					{
+						"value": 0.22,
+						"curve": [ 0.047, 0.1, 0.09, 0 ]
+					},
+					{
+						"time": 0.1333,
+						"curve": [ 0.467, 0, 0.8, 4.2 ]
+					},
+					{
+						"time": 1.1333,
+						"value": 4.2,
+						"curve": [ 1.423, 4.2, 1.713, 1.05 ]
+					},
+					{ "time": 2, "value": 0.22 }
+				]
+			},
+			"front_4_2": {
+				"rotate": [
+					{
+						"value": 0.09,
+						"curve": [ 0.047, 0.04, 0.09, 0 ]
+					},
+					{
+						"time": 0.1333,
+						"curve": [ 0.467, 0, 0.8, 1.72 ]
+					},
+					{
+						"time": 1.1333,
+						"value": 1.72,
+						"curve": [ 1.423, 1.72, 1.713, 0.43 ]
+					},
+					{ "time": 2, "value": 0.09 }
+				]
+			},
+			"front_4_1": {
+				"rotate": [
+					{
+						"value": 0.07,
+						"curve": [ 0.024, 0.04, 0.046, 0 ]
+					},
+					{
+						"time": 0.0667,
+						"curve": [ 0.4, 0, 0.733, 3.88 ]
+					},
+					{
+						"time": 1.0667,
+						"value": 3.88,
+						"curve": [ 1.379, 3.88, 1.691, 0.5 ]
+					},
+					{ "time": 2, "value": 0.07 }
+				]
+			},
+			"front_3_1": {
+				"rotate": [
+					{
+						"value": 0.06,
+						"curve": [ 0.024, 0.04, 0.046, 0 ]
+					},
+					{
+						"time": 0.0667,
+						"curve": [ 0.4, 0, 0.733, 3.19 ]
+					},
+					{
+						"time": 1.0667,
+						"value": 3.19,
+						"curve": [ 1.379, 3.19, 1.691, 0.41 ]
+					},
+					{ "time": 2, "value": 0.06 }
+				]
+			},
+			"front_3_2": {
+				"rotate": [
+					{
+						"value": 0.29,
+						"curve": [ 0.047, 0.13, 0.09, 0 ]
+					},
+					{
+						"time": 0.1333,
+						"curve": [ 0.467, 0, 0.8, 5.36 ]
+					},
+					{
+						"time": 1.1333,
+						"value": 5.36,
+						"curve": [ 1.423, 5.36, 1.713, 1.34 ]
+					},
+					{ "time": 2, "value": 0.29 }
+				]
+			},
+			"front_2_1": {
+				"rotate": [
+					{
+						"value": 0.1,
+						"curve": [ 0.024, 0.06, 0.046, 0 ]
+					},
+					{
+						"time": 0.0667,
+						"curve": [ 0.4, 0, 0.733, 5.41 ]
+					},
+					{
+						"time": 1.0667,
+						"value": 5.41,
+						"curve": [ 1.379, 5.41, 1.691, 0.7 ]
+					},
+					{ "time": 2, "value": 0.1 }
+				]
+			},
+			"front_2_2": {
+				"rotate": [
+					{
+						"value": 0.07,
+						"curve": [ 0.047, 0.03, 0.09, 0 ]
+					},
+					{
+						"time": 0.1333,
+						"curve": [ 0.467, 0, 0.8, 1.35 ]
+					},
+					{
+						"time": 1.1333,
+						"value": 1.35,
+						"curve": [ 1.423, 1.35, 1.713, 0.34 ]
+					},
+					{ "time": 2, "value": 0.07 }
+				]
+			},
+			"front_1_1": {
+				"rotate": [
+					{
+						"value": 0.06,
+						"curve": [ 0.024, 0.03, 0.046, 0 ]
+					},
+					{
+						"time": 0.0667,
+						"curve": [ 0.4, 0, 0.733, 3.06 ]
+					},
+					{
+						"time": 1.0667,
+						"value": 3.06,
+						"curve": [ 1.379, 3.06, 1.691, 0.4 ]
+					},
+					{ "time": 2, "value": 0.06 }
+				]
+			},
+			"front_1_2": {
+				"rotate": [
+					{
+						"value": 0.11,
+						"curve": [ 0.047, 0.05, 0.09, 0 ]
+					},
+					{
+						"time": 0.1333,
+						"curve": [ 0.467, 0, 0.8, 2.01 ]
+					},
+					{
+						"time": 1.1333,
+						"value": 2.01,
+						"curve": [ 1.423, 2.01, 1.713, 0.5 ]
+					},
+					{ "time": 2, "value": 0.11 }
+				]
 			}
 		}
 	},
-	"title_entry": {},
+	"title_entry": {
+		"slots": {
+			"かんむり": {
+				"attachment": [
+					{ "name": "かんむり" }
+				]
+			},
+			"きらきら": {
+				"attachment": [
+					{ "name": "きらきら" }
+				]
+			},
+			"きらきら１": {
+				"attachment": [
+					{ "name": "きらきら１" }
+				]
+			},
+			"きらきら２": {
+				"attachment": [
+					{ "name": "きらきら２" }
+				]
+			},
+			"きらきら３": {
+				"attachment": [
+					{ "name": "きらきら３" }
+				]
+			},
+			"はやぐい": {
+				"attachment": [
+					{ "name": "はやぐい" }
+				]
+			},
+			"ひめちゃんの": {
+				"attachment": [
+					{ "name": "ひめちゃんの" }
+				]
+			},
+			"ハート１": {
+				"attachment": [
+					{ "name": "ハート１" }
+				]
+			},
+			"ハート２": {
+				"attachment": [
+					{ "name": "ハート２" }
+				]
+			}
+		}
+	},
 	"title_idle": {
+		"slots": {
+			"かんむり": {
+				"attachment": [
+					{ "name": "かんむり" }
+				]
+			},
+			"きらきら": {
+				"attachment": [
+					{ "name": "きらきら" }
+				]
+			},
+			"きらきら１": {
+				"attachment": [
+					{ "name": "きらきら１" }
+				]
+			},
+			"きらきら２": {
+				"attachment": [
+					{ "name": "きらきら２" }
+				]
+			},
+			"きらきら３": {
+				"attachment": [
+					{ "name": "きらきら３" }
+				]
+			},
+			"はやぐい": {
+				"attachment": [
+					{ "name": "はやぐい" }
+				]
+			},
+			"ひめちゃんの": {
+				"attachment": [
+					{ "name": "ひめちゃんの" }
+				]
+			},
+			"ハート１": {
+				"attachment": [
+					{ "name": "ハート１" }
+				]
+			},
+			"ハート２": {
+				"attachment": [
+					{ "name": "ハート２" }
+				]
+			}
+		},
 		"bones": {
 			"title_1_heart": {
 				"translate": [
@@ -552,54 +852,81 @@
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "かんむり" }
 				]
 			},
 			"きらきら": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "きらきら" }
 				]
 			},
 			"きらきら１": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "きらきら１" }
 				]
 			},
 			"きらきら２": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "きらきら２" }
 				]
 			},
 			"きらきら３": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "きらきら３" }
 				]
 			},
 			"はやぐい": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "はやぐい" }
 				]
 			},
 			"ひめちゃんの": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "ひめちゃんの" }
 				]
 			},
 			"ハート１": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "ハート１" }
 				]
 			},
 			"ハート２": {
 				"rgba": [
 					{ "color": "ffffffff" },
 					{ "time": 0.6667, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "name": "ハート２" }
 				]
 			}
 		}
