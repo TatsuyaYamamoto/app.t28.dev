@@ -67,8 +67,8 @@ const onClickForShare = () => {
     return;
   }
 
-  const hashtags = `#るりのちゃんのかわづり #蓮ノ空 #大沢瑠璃乃生誕祭2024`;
-  const appUrl = `https://app.t28.dev/lovelive/rurino-bd-2024`;
+  const hashtags = `#るりのちゃんのかわづり #蓮ノ空 ##安養寺姫芽生誕祭2024`;
+  const appUrl = `https://app.t28.dev/lovelive/hime-bd-2024`;
 
   const texts = {
     1: `さすがるりちゃんせんぱいですね〜`,
