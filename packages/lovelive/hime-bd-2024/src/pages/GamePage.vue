@@ -42,6 +42,7 @@ const gameState = reactive<{
 }>({ type: "title", canClick: false, shouldShowTapAnnounce: false });
 // @ts-expect-error
 let stopLoopBlinkAnimation: StopRandomLoopAnimation | undefined;
+let isChewing = false;
 
 const initSpine = async () => {
   himeSkeletonMesh.position.set(0, 0, 0);
@@ -106,11 +107,27 @@ const onClickInGame = async () => {
   if (!gameState.canClick) {
     return;
   }
+  if (isChewing) {
+    return;
+  }
   // gameState.canClick = false;
   // gameState.shouldShowTapAnnounce = false;
 
-  const entry = himeSkeletonMesh.state.setAnimation(1, "eat", false);
-  entry.mixDuration = 0.2;
+  const eatAnimation = himeSkeletonMesh.state.setAnimation(1, "eat", false);
+  eatAnimation.mixDuration = 0.2;
+
+  eatAnimation.listener = {
+    event: (_, event) => {
+      if (event.data.name === "chewing_start") {
+        isChewing = true;
+        return;
+      }
+      if (event.data.name === "chewing_end") {
+        isChewing = false;
+        return;
+      }
+    },
+  };
 };
 
 const onClick = async () => {
