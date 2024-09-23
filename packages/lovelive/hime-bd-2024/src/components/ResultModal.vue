@@ -105,6 +105,7 @@ ${appUrl}`,
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .image {
@@ -117,6 +118,7 @@ ${appUrl}`,
 }
 
 .button {
+  display: inline-flex;
   width: 3rem;
   border: 0;
   background: transparent;
