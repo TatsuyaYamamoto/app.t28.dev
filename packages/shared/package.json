@@ -7,7 +7,7 @@
     "@tresjs/cientos": "4.0.0",
     "@vueuse/core": "10.11.0",
     "three": "0.167.1",
-    "vue": "3.4.9"
+    "vue": "3.5.11"
   },
   "devDependencies": {
     "@types/three": "0.167.2",
