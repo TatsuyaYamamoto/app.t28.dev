@@ -376,8 +376,8 @@ importers:
         specifier: 8.33.1
         version: 8.33.1(react@18.2.0)
       react-textarea-autosize:
-        specifier: 8.4.1
-        version: 8.4.1(@types/react@18.2.6)(react@18.2.0)
+        specifier: 8.5.4
+        version: 8.5.4(@types/react@18.2.6)(react@18.2.0)
       shared:
         specifier: workspace:*
         version: link:../shared
@@ -2026,6 +2026,7 @@ packages:
   eslint@8.9.0:
     resolution: {integrity: sha512-PB09IGwv4F4b0/atrbcMFboF/giawbBLVC7fyDamk5Wtey4Jh2K+rYaBhCAbUyEI4QzB1ly09Uglc9iCtFaG2Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.3.1:
@@ -2624,8 +2625,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-textarea-autosize@8.4.1:
-    resolution: {integrity: sha512-aD2C+qK6QypknC+lCMzteOdIjoMbNlgSFmJjCV+DrfTPwp59i/it9mMNf2HDzvRjQgKAyBDPyLJhcrzElf2U4Q==}
+  react-textarea-autosize@8.5.4:
+    resolution: {integrity: sha512-eSSjVtRLcLfFwFcariT77t9hcbVJHQV76b51QjQGarQIHml2+gM2lms0n3XrhnDmgK5B+/Z7TmQk5OHNzqYm/A==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5489,7 +5490,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.2.6
 
-  react-textarea-autosize@8.4.1(@types/react@18.2.6)(react@18.2.0):
+  react-textarea-autosize@8.5.4(@types/react@18.2.6)(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.21.5
       react: 18.2.0
