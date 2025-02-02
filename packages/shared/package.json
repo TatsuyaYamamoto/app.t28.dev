@@ -1,5 +1,6 @@
 {
   "name": "shared",
+  "type": "module",
   "dependencies": {
     "@chakra-ui/react": "2.4.9",
     "@chakra-ui/theme-tools": "2.1.2",
