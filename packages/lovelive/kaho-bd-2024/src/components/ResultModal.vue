@@ -34,11 +34,11 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import back from "../assets/back.jpg";
+import buttonTitleShare from "../assets/kekka_share.png";
+import buttonTitleImage from "../assets/kekka_title.png";
 import result_1 from "../assets/result_1.png";
 import result_2 from "../assets/result_2.png";
 import result_3 from "../assets/result_3.png";
-import buttonTitleImage from "../assets/kekka_title.png";
-import buttonTitleShare from "../assets/kekka_share.png";
 
 const model = defineModel<1 | 2 | 3 | undefined>({ required: true });
 const emit = defineEmits<{

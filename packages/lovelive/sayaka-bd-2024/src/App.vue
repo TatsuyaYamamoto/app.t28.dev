@@ -20,10 +20,10 @@ import { ref } from "vue";
 import CanvasRenderer from "shared/components/CanvasRenderer.vue";
 import { getRandomInt } from "shared/helpers/utils.ts";
 
+import ResultModal from "./components/ResultModal.vue";
+import GamePage from "./pages/GamePage.vue";
 import LoadingPage from "./pages/LoadingPage.vue";
 import TitlePage from "./pages/TitlePage.vue";
-import GamePage from "./pages/GamePage.vue";
-import ResultModal from "./components/ResultModal.vue";
 
 const gameResultModalTypeModel = ref<1 | 2 | 3 | undefined>();
 const shouldShowLoading = ref(true);

@@ -3,9 +3,9 @@ import { FC, useMemo } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import TextCard from "./TextCard";
 
+import { PLACEHOLDER } from "../_helper/config";
 import OshalizableChar from "../_helper/oshamoji/OshalizableChar";
 import { Typeface, Variant } from "../_helper/oshamoji/UnicodeSymbols";
-import { PLACEHOLDER } from "../_helper/config";
 
 const convertTargetTypes: {
   label: string;

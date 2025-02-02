@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import { LinearSRGBColorSpace, NoToneMapping } from "three";
 import { CameraControls } from "@tresjs/cientos";
+import { LinearSRGBColorSpace, NoToneMapping } from "three";
 
 import { useRendererSize } from "../hooks/useRendererSize";
 

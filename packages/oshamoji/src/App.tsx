@@ -1,17 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { css, Global } from "@emotion/react";
 import { Box, ChakraProvider } from "@chakra-ui/react";
+import { Global, css } from "@emotion/react";
 import hotkeys from "hotkeys-js";
 import { useInView } from "react-intersection-observer";
 
 import { theme } from "shared/helpers/chakraTheme";
 
-import TextCardList from "./_components/TextCardList";
 import AppBar from "./_components/AppBar";
-import Footer from "./_components/Footer";
 import Fabs from "./_components/Fabs";
+import Footer from "./_components/Footer";
 import ModalEditor from "./_components/ModalEditor";
+import TextCardList from "./_components/TextCardList";
 import { sendEvent } from "./_helper/ga";
 
 export default function Home() {

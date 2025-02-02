@@ -58,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, shallowRef, triggerRef, watch } from "vue";
 import { useRenderLoop, useTresContext } from "@tresjs/core";
+import { computed, onMounted, ref, shallowRef, triggerRef, watch } from "vue";
 
 import {
   AtlasAttachmentLoader,
@@ -70,9 +70,9 @@ import type { Group, Texture } from "three";
 
 import CanvasPortal from "shared/components/CanvasPortal.vue";
 
-import { useAssetLoader } from "../components/useAssetLoader.ts";
-import Keyboard from "../components/Keyboard.vue";
 import FieldBorderNotification from "../components/FieldBorderNotification.vue";
+import Keyboard from "../components/Keyboard.vue";
+import { useAssetLoader } from "../components/useAssetLoader.ts";
 import { useController } from "../components/useController.ts";
 
 const gameResultModel = defineModel<

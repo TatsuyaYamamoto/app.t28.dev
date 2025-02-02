@@ -1,4 +1,3 @@
-import title from "../assets/title.png";
 import background_title_base from "../assets/background_title_base.png";
 import background_title_line from "../assets/background_title_line.png";
 import bowl1 from "../assets/bowl1.png";
@@ -6,6 +5,7 @@ import bowl2 from "../assets/bowl2.png";
 import game_megumi1 from "../assets/megumi1.png";
 import game_megumi2 from "../assets/megumi2.png";
 import table from "../assets/table.png";
+import title from "../assets/title.png";
 
 import title_megumi_atlas from "../../spines/title-megumi/exports/megumi-title.atlas?raw";
 import title_megumi_skeleton from "../../spines/title-megumi/exports/megumi-title.json";

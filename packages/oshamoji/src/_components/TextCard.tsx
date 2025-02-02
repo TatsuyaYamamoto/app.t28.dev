@@ -1,10 +1,10 @@
-import { FC, useRef, useState, MouseEvent } from "react";
 import { Tooltip } from "@chakra-ui/react";
+import { FC, MouseEvent, useRef, useState } from "react";
 
-import { css } from "@emotion/react";
 import { Box } from "@chakra-ui/react";
-import { copyToClipboard } from "../_helper/utils";
+import { css } from "@emotion/react";
 import { sendEvent } from "../_helper/ga";
+import { copyToClipboard } from "../_helper/utils";
 
 const rootStyle = css`
   display: block;

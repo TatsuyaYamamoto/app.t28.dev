@@ -1,6 +1,6 @@
 import { VFC } from "react";
 
-import { Box, Button, Tooltip, Icon, ScaleFade } from "@chakra-ui/react";
+import { Box, Button, Icon, ScaleFade, Tooltip } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import { AiFillEdit } from "react-icons/ai";
 import { FaTwitter } from "react-icons/fa";

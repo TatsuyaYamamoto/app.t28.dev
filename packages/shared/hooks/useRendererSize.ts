@@ -1,5 +1,5 @@
-import { computed, watch, type Ref } from "vue";
 import { useWindowSize } from "@vueuse/core";
+import { computed, watch, type Ref } from "vue";
 
 type DeepReadonlyRef<Map> = {
   [Key in keyof Map]: Readonly<Ref<Map[Key]>>;

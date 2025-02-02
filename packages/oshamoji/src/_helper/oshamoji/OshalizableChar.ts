@@ -1,15 +1,15 @@
+import { BasicLatinSymbols } from "./BasicLatin";
 import {
   MathematicalAlphanumericStyleMap,
   MathematicalAlphanumericStyles,
 } from "./MathematicalAlphanumeric";
-import { BasicLatinSymbols } from "./BasicLatin";
 import {
-  convert,
-  include,
-  toBasicLatinChar,
   Typeface,
   UnicodeSymbols,
   Variant,
+  convert,
+  include,
+  toBasicLatinChar,
 } from "./UnicodeSymbols";
 
 /**

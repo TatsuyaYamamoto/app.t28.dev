@@ -20,17 +20,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import back from "../assets/back.jpg";
-import tkg1 from "../assets/tkg_1.png";
-import tkg2 from "../assets/tkg_2.png";
-import tkg3 from "../assets/tkg_3.png";
+import button1 from "../assets/button_1.png";
+import button2 from "../assets/button_2.png";
 import result_1 from "../assets/result_1.png";
 import result_2 from "../assets/result_2.png";
 import result_3 from "../assets/result_3.png";
-import button1 from "../assets/button_1.png";
-import button2 from "../assets/button_2.png";
+import tkg1 from "../assets/tkg_1.png";
+import tkg2 from "../assets/tkg_2.png";
+import tkg3 from "../assets/tkg_3.png";
 
 const props = defineProps<{ imageType: 1 | 2 | 3 }>();
 const emit = defineEmits<{ (e: "clickButton"): void }>();

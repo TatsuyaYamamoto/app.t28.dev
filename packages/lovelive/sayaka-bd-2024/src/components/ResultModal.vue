@@ -37,8 +37,8 @@ import back from "../assets/back.jpg";
 import bento1 from "../assets/bento_1.png";
 import bento2 from "../assets/bento_2.png";
 import bento3 from "../assets/bento_3.png";
-import buttonTitleImage from "../assets/kekka_title.png";
 import buttonTitleShare from "../assets/kekka_share.png";
+import buttonTitleImage from "../assets/kekka_title.png";
 
 const model = defineModel<1 | 2 | 3 | undefined>({ required: true });
 const emit = defineEmits<{

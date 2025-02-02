@@ -21,15 +21,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { Group } from "three";
-import { useRenderLoop } from "@tresjs/core";
 import {
   AtlasAttachmentLoader,
-  SkeletonMesh,
   SkeletonJson,
+  SkeletonMesh,
 } from "@esotericsoftware/spine-threejs";
+import { useRenderLoop } from "@tresjs/core";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
+import { Group } from "three";
+import { onMounted, ref } from "vue";
 
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim, promiseWithResolvers } from "../utils.ts";

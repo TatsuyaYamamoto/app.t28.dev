@@ -40,8 +40,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
 import { differenceInDays } from "shared/helpers/utils.ts";
+import { computed } from "vue";
 
 import kekka_continue from "../assets/kekka_continue.png";
 import kekka_share from "../assets/kekka_share.png";
@@ -49,9 +49,9 @@ import tsuzuri_icon from "../assets/tsuzuri_icon.png";
 
 import kaho from "../assets/target_kaho.png";
 import kozue from "../assets/target_kozue.png";
-import sayaka from "../assets/target_sayaka.png";
 import megumi from "../assets/target_megumi.png";
 import rurino from "../assets/target_rurino.png";
+import sayaka from "../assets/target_sayaka.png";
 
 const model = defineModel<
   "kaho" | "kozue" | "sayaka" | "megumi" | "rurino" | null

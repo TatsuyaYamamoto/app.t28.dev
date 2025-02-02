@@ -13,20 +13,20 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
-import type { Group } from "three";
-import { useRenderLoop } from "@tresjs/core";
 import {
   AtlasAttachmentLoader,
-  SkeletonMesh,
   SkeletonJson,
+  SkeletonMesh,
 } from "@esotericsoftware/spine-threejs";
+import { useRenderLoop } from "@tresjs/core";
+import type { Group } from "three";
+import { onMounted, reactive, ref } from "vue";
 
 import { getRandomInt, wait } from "shared/helpers/utils.ts";
 
+import gsap from "gsap";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";
 import { loopBlinkAnim } from "../utils.ts";
-import gsap from "gsap";
 
 const emit = defineEmits<{
   (e: "finish"): void;

@@ -1,18 +1,18 @@
+import game_kaho_atlas from "../../spines/exports/kaho-game.atlas?raw";
+import game_kaho_skeleton from "../../spines/exports/kaho-game.json";
+import game_kaho_sprite from "../../spines/exports/kaho-game.png";
 import title_kaho_atlas from "../../spines/exports/title-kaho.atlas?raw";
 import title_kaho_skeleton from "../../spines/exports/title-kaho.json";
 import title_kaho_sprite from "../../spines/exports/title-kaho.png";
 import title_logo_atlas from "../../spines/exports/title-logo.atlas?raw";
 import title_logo_skeleton from "../../spines/exports/title-logo.json";
 import title_logo_sprite from "../../spines/exports/title-logo.png";
-import game_kaho_atlas from "../../spines/exports/kaho-game.atlas?raw";
-import game_kaho_skeleton from "../../spines/exports/kaho-game.json";
-import game_kaho_sprite from "../../spines/exports/kaho-game.png";
 
 import back from "./back.jpg";
 import desk from "./desk.png";
-import pot_and_cup from "./pot-and-cup.png";
 import kekka_share from "./kekka_share.png";
 import kekka_title from "./kekka_title.png";
+import pot_and_cup from "./pot-and-cup.png";
 import tea_step_1 from "./tea-step-1.jpg";
 import tea_step_2 from "./tea-step-2.jpg";
 

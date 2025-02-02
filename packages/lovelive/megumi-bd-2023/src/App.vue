@@ -23,15 +23,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { getRandomInt } from "shared/helpers/utils";
 import CanvasRenderer from "shared/components/CanvasRenderer.vue";
+import { getRandomInt } from "shared/helpers/utils";
 
-import LoadingPage from "./pages/LoadingPage.vue";
-import TitlePage from "./pages/TitlePage.vue";
-import GamePage from "./pages/GamePage.vue";
+import Credits from "./components/Credits.vue";
 import GameResultModal from "./components/GameResultModal.vue";
 import StartAnnounce from "./components/StartAnnounce.vue";
-import Credits from "./components/Credits.vue";
+import GamePage from "./pages/GamePage.vue";
+import LoadingPage from "./pages/LoadingPage.vue";
+import TitlePage from "./pages/TitlePage.vue";
 
 const pageMap = {
   loading: "loading",

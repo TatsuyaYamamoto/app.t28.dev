@@ -43,22 +43,22 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from "vue";
-import type { Group } from "three";
-import { useRenderLoop } from "@tresjs/core";
 import {
   AtlasAttachmentLoader,
-  SkeletonMesh,
   SkeletonJson,
+  SkeletonMesh,
 } from "@esotericsoftware/spine-threejs";
+import { useRenderLoop } from "@tresjs/core";
 import gsap from "gsap";
+import type { Group } from "three";
+import { nextTick, onMounted, reactive, ref } from "vue";
 
+import CanvasPortal from "shared/components/CanvasPortal.vue";
 import {
   getRandomInt,
-  wait,
   promiseWithResolvers,
+  wait,
 } from "shared/helpers/utils.ts";
-import CanvasPortal from "shared/components/CanvasPortal.vue";
 
 import GameTimer from "../components/GameTimer.vue";
 import TapAnnounce from "../components/TapAnnounce.vue";

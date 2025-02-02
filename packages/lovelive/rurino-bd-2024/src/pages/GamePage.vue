@@ -9,12 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, reactive, ref } from "vue";
-import type { Group } from "three";
 import { useRenderLoop } from "@tresjs/core";
+import type { Group } from "three";
+import { nextTick, onMounted, onUnmounted, reactive, ref } from "vue";
 
-import { getRandomInt, wait } from "shared/helpers/utils.ts";
 import CanvasPortal from "shared/components/CanvasPortal.vue";
+import { getRandomInt, wait } from "shared/helpers/utils.ts";
 
 import TapAnnounce from "../components/TapAnnounce.vue";
 import { useAssetLoader } from "../hooks/useAssetLoader.ts";

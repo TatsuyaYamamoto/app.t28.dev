@@ -1,6 +1,5 @@
 import { FC, FormEvent, useRef } from "react";
 
-import { css } from "@emotion/react";
 import {
   Modal,
   ModalBody,
@@ -10,6 +9,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
+import { css } from "@emotion/react";
 import TextareaAutosize from "react-textarea-autosize";
 import { PLACEHOLDER } from "../_helper/config";
 

@@ -1,7 +1,7 @@
-import type { Ref, FC } from "react";
-import { useMemo } from "react";
 import type Konva from "konva";
-import { Stage, Layer, Image } from "react-konva";
+import type { FC, Ref } from "react";
+import { useMemo } from "react";
+import { Image, Layer, Stage } from "react-konva";
 
 import { useCanvasImageSource } from "shared/hooks/useCanvasImageSource";
 

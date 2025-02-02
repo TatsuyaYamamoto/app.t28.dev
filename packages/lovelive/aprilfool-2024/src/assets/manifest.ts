@@ -4,12 +4,12 @@ import target_kaho from "../assets/target_kaho.png";
 import target_kaho_item from "../assets/target_kaho_item.png";
 import target_kozue from "../assets/target_kozue.png";
 import target_kozue_item from "../assets/target_kozue_item.png";
-import target_sayaka from "../assets/target_sayaka.png";
-import target_sayaka_item from "../assets/target_sayaka_item.png";
 import target_megumi from "../assets/target_megumi.png";
 import target_megumi_item from "../assets/target_megumi_item.png";
 import target_rurino from "../assets/target_rurino.png";
 import target_rurino_item from "../assets/target_rurino_item.png";
+import target_sayaka from "../assets/target_sayaka.png";
+import target_sayaka_item from "../assets/target_sayaka_item.png";
 
 import tsuzuri_atlas from "../../spines/aprilfool-2024-tsuzuri/exports/aprilfool-2024-tsuzuri.atlas?raw";
 import tsuzuri_skeleton from "../../spines/aprilfool-2024-tsuzuri/exports/aprilfool-2024-tsuzuri.json";

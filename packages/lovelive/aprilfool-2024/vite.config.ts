@@ -1,8 +1,8 @@
-import { defineConfig } from "vite";
+import { templateCompilerOptions } from "@tresjs/core";
 import vue from "@vitejs/plugin-vue";
+import { defineConfig } from "vite";
 import { createHtmlPlugin } from "vite-plugin-html";
 import vuetify from "vite-plugin-vuetify";
-import { templateCompilerOptions } from "@tresjs/core";
 
 const basePath = "/lovelive/aprilfool-2024";
 

@@ -1,5 +1,5 @@
-import { createApp } from "vue";
 import Tres from "@tresjs/core";
+import { createApp } from "vue";
 
 import App from "./App.vue";
 

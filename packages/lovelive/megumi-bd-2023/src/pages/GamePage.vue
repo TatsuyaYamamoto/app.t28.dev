@@ -27,9 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, reactive } from "vue";
 import { useRenderLoop } from "@tresjs/core";
 import gsap from "gsap";
+import { computed, onMounted, reactive, ref } from "vue";
 
 import { useAssetLoader } from "../components/useAssetLoader.ts";
 

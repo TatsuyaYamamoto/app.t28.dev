@@ -12,9 +12,9 @@ import game_kozue_sprite from "../../spines/exports/kozue-game.png";
 
 import back from "./back.jpg";
 import desk from "./desk.png";
-import pot_and_cup from "./pot-and-cup.png";
 import kekka_share from "./kekka_share.png";
 import kekka_title from "./kekka_title.png";
+import pot_and_cup from "./pot-and-cup.png";
 import tea_step_1 from "./tea-step-1.png";
 import tea_step_2 from "./tea-step-2.png";
 

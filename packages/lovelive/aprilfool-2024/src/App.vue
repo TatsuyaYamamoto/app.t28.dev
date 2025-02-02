@@ -21,9 +21,9 @@ import { ref } from "vue";
 
 import CanvasRenderer from "shared/components/CanvasRenderer.vue";
 
-import LoadingPage from "./pages/LoadingPage.vue";
-import GamePage from "./pages/GamePage.vue";
 import ResultModal from "./components/ResultModal.vue";
+import GamePage from "./pages/GamePage.vue";
+import LoadingPage from "./pages/LoadingPage.vue";
 
 const pageMap = {
   loading: "loading",

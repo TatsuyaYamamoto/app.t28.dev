@@ -1,12 +1,12 @@
-import { ref } from "vue";
-import { TextureLoader, Texture } from "three";
 import { TextureAtlas, ThreeJsTexture } from "@esotericsoftware/spine-threejs";
+import { Texture, TextureLoader } from "three";
+import { ref } from "vue";
 
 import {
   IMAGE_MANIFEST,
-  type ImageKey,
   SPINE_MANIFEST,
   SpineKey,
+  type ImageKey,
 } from "../assets/manifest.ts";
 
 const loadImage = (src: string) => {

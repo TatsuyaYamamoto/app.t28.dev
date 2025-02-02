@@ -1,10 +1,10 @@
 import type {
   AnimationState,
+  AnimationStateListener,
+  Event,
   Skeleton,
   TextureAtlas,
   TrackEntry,
-  Event,
-  AnimationStateListener,
 } from "@esotericsoftware/spine-threejs";
 import {
   AtlasAttachmentLoader,
