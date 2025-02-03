@@ -1,4 +1,3 @@
-packages/lovelive/*/spines/exports/*.json
-packages/lovelive/*/spines/*/exports/*.json
+apps/*/spines/**/exports/*.json
 *.psd
 pnpm-lock.yaml
