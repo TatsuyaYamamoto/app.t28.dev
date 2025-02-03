@@ -47,6 +47,7 @@ const Fabs: VFC<Props> = (props) => {
           </Button>
         </Tooltip>
       </ScaleFade>
+      {/* @ts-expect-error */}
       <Tooltip label={`Edit`} placement="left">
         <Button aria-label="Edit text" css={fabCss} onClick={onClickEdit}>
           {editIcon}
