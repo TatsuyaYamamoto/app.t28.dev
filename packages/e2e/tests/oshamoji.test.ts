@@ -147,12 +147,14 @@ test("should open twitter with a converted text", async ({ page }) => {
   );
 });
 
-test("should support keyboard operation for the modal", async ({ page }) => {
+test("should support keyboard operation for the modal", async ({ page }, {
+  project,
+}) => {
   await goto(page);
 
   // When `Tab` key is pressed 16 times and `Enter` is pressed
   for (const _ of [].constructor(16)) {
-    await page.keyboard.press("Tab");
+    await page.keyboard.press(project.name === "webkit" ? "Alt+Tab" : "Tab");
   }
   await page.keyboard.press("Enter");
 
