@@ -54,7 +54,7 @@ test("should list cards with default value", async ({ page }) => {
   }
 });
 
-test("should copy to a clipboard", async ({ page, context }) => {
+test.only("should copy to a clipboard", async ({ page, context }) => {
   const input = "I am a LoveLiver.";
   const outputs = [
     `I am a LoveLiver.`, //   Serif
@@ -74,7 +74,6 @@ test("should copy to a clipboard", async ({ page, context }) => {
   ];
 
   await goto(page);
-  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 
   // When the button is clicked
   await page.getByRole("button", { name: "Edit text" }).click();
