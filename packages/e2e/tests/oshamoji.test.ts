@@ -54,7 +54,7 @@ test("should list cards with default value", async ({ page }) => {
   }
 });
 
-test.only("should copy to a clipboard", async ({ page, context }) => {
+test("should copy to a clipboard", async ({ page, context }) => {
   const input = "I am a LoveLiver.";
   const outputs = [
     `I am a LoveLiver.`, //   Serif
@@ -113,7 +113,39 @@ test.only("should copy to a clipboard", async ({ page, context }) => {
   }
 });
 
-test.skip("should open twitter with a converted text", () => {});
+test("should open twitter with a converted text", async ({ page }) => {
+  const input = `I'll keep calling X "Twitter".`;
+  const output = `𝕀'𝕝𝕝 𝕜𝕖𝕖𝕡 𝕔𝕒𝕝𝕝𝕚𝕟𝕘 𝕏 "𝕋𝕨𝕚𝕥𝕥𝕖𝕣".`;
+
+  await goto(page);
+
+  // When the edit button is clicked
+  await page.getByRole("button", { name: "Edit text" }).click();
+  // Then, the modal should be opened.
+  const modal = page.getByRole("dialog");
+  await expect(modal).toBeVisible();
+
+  // When the textbox is filled and the close button is clicked
+  const textbox = page.getByPlaceholder(placeholder, { exact: true });
+  await textbox.fill(input);
+  await page.getByRole("button", { name: "Close" }).click();
+
+  // Then, the modal should be closed and the card having converted text should be shown.
+  await expect(modal).not.toBeVisible();
+  const card = page.getByRole("link", { name: output });
+  await expect(card).toBeVisible();
+
+  // When, the card is clicked and the tweet button is clicked
+  await card.click();
+  const tweetButton = page.getByRole("button", { name: "Tweet" });
+  await expect(tweetButton).toBeVisible();
+  await tweetButton.click();
+
+  // Then, the twitter should be opened with the converted text
+  await page.waitForURL(
+    `https://x.com/intent/post?text=${encodeURIComponent(output)}*`,
+  );
+});
 
 test("should support keyboard operation for the modal", async ({ page }) => {
   await goto(page);
