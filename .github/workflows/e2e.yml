@@ -1,8 +1,6 @@
 name: e2e
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -36,4 +34,4 @@ jobs:
       - uses: daun/playwright-report-summary@v3
         if: ${{ !cancelled() }}
         with:
-          report-file: packages/e2e/results.json
+          report-file: packages/e2e/playwright-report/results.json
