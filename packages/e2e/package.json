@@ -6,7 +6,6 @@
     "codegen": "playwright codegen"
   },
   "devDependencies": {
-    "@playwright/test": "^1.50.1",
-    "@types/node": "20.2.1"
+    "@playwright/test": "^1.50.1"
   }
 }
