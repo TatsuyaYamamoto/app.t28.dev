@@ -8,7 +8,7 @@ export default defineConfig({
   base: basePath,
   plugins: [
     createHtmlPlugin({
-      inject: { ejsOptions: { views: ["../shared/ejs"] } },
+      inject: { ejsOptions: { views: ["../../packages/shared/ejs"] } },
     }),
   ],
   build: {
