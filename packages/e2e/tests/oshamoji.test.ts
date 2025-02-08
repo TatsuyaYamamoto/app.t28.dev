@@ -54,7 +54,7 @@ test("should list cards with default value", async ({ page }) => {
   }
 });
 
-test("should copy to a clipboard", async ({ page, context }) => {
+test("should copy to a clipboard", async ({ page, browserName }) => {
   const input = "I am a LoveLiver.";
   const outputs = [
     `I am a LoveLiver.`, //   Serif
@@ -105,12 +105,22 @@ test("should copy to a clipboard", async ({ page, context }) => {
     const tooltip = page.locator(`#${cardAriaDescribedBy}`);
     await expect(tooltip).toContainText("Copy!");
 
+    if (process.env.CI && browserName === "webkit") {
+      continue;
+    }
+
     // And, copy to clipboard
     const clipboardContent = await page
       .evaluateHandle(() => navigator.clipboard.readText())
       .then((handle) => handle.jsonValue());
     expect(clipboardContent).toBe(output);
   }
+
+  // TODO: run webkit test on Github Actions
+  // Resolve the following error:
+  // Error: page.evaluateHandle: NotAllowedError: The request is not allowed by the user agent or the platform in the current context, possibly because the user denied permission.
+  // > 110 |       .evaluateHandle(() => navigator.clipboard.readText())
+  test.fixme(process.env.CI && browserName === "webkit");
 });
 
 test("should open twitter with a converted text", async ({ page }) => {
