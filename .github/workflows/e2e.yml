@@ -32,3 +32,8 @@ jobs:
           name: playwright-report
           path: packages/e2e/playwright-report/
           retention-days: 30
+
+      - uses: daun/playwright-report-summary@v3
+        if: ${{ !cancelled() }}
+        with:
+          report-file: packages/e2e/results.json
