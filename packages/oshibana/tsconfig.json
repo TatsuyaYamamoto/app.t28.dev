@@ -1,5 +1,8 @@
 {
-  "extends": ["@tsconfig/vite-react/tsconfig.json", "../../tsconfig.base.json"],
+  "extends": [
+    "@tsconfig/vite-react/tsconfig.json",
+    "shared/tsconfig.base.json"
+  ],
   "compilerOptions": {},
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -10,6 +10,7 @@
     "vue": "3.4.9"
   },
   "devDependencies": {
+    "@tsconfig/strictest": "2.0.5",
     "@types/three": "0.167.2",
     "type-fest": "4.9.0"
   }
