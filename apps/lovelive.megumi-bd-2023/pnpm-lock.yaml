@@ -25,7 +25,7 @@ importers:
         version: 3.12.5
       shared:
         specifier: workspace:*
-        version: link:../../shared
+        version: link:../../packages/shared
       three:
         specifier: 0.167.1
         version: 0.167.1

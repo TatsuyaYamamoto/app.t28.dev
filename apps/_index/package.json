@@ -5,7 +5,9 @@
     "dev": "vite",
     "build": "vite build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "shared": "workspace:*"
+  },
   "devDependencies": {
     "vite": "5.4.2",
     "vite-plugin-html": "3.2.2"
