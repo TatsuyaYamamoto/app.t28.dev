@@ -9,23 +9,23 @@ importers:
   .:
     dependencies:
       react:
-        specifier: ^19.0.0
+        specifier: 19.0.0
         version: 19.0.0
       react-dom:
-        specifier: ^19.0.0
+        specifier: 19.0.0
         version: 19.0.0(react@19.0.0)
     devDependencies:
       '@types/react':
-        specifier: ^19.0.8
+        specifier: 19.0.8
         version: 19.0.8
       '@types/react-dom':
-        specifier: ^19.0.3
+        specifier: 19.0.3
         version: 19.0.3(@types/react@19.0.8)
       '@vitejs/plugin-react':
-        specifier: ^4.3.4
+        specifier: 4.3.4
         version: 4.3.4(vite@6.1.0)
       vite:
-        specifier: ^6.1.0
+        specifier: 6.1.0
         version: 6.1.0
 
 packages:
