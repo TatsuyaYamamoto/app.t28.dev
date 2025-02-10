@@ -14,10 +14,10 @@ export default defineConfig({
       ...templateCompilerOptions,
     }),
     createHtmlPlugin({
-      inject: { ejsOptions: { views: ["../../shared/ejs"] } },
+      inject: { ejsOptions: { views: ["../../packages/shared/ejs"] } },
     }),
   ],
   build: {
-    outDir: `../../../dist${basePath}`,
+    outDir: `../../dist${basePath}`,
   },
 });
