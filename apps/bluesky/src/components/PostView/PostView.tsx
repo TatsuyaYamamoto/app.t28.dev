@@ -1,5 +1,6 @@
+import { RichText } from "@atproto/api";
 import { Box, Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { IoImageOutline } from "react-icons/io5";
 
 import CharProgress from "@/components/PostView/CharProgress.tsx";
@@ -10,7 +11,17 @@ import { Avatar } from "@/components/ui/avatar.tsx";
 const borderColor = "rgb(212, 219, 226)";
 
 const PostView: FC = () => {
+  const [text, setText] = useState("");
   const [images, setImages] = useState<{ src: string }[]>([]);
+
+  const onChangeText = (value: string) => {
+    setText(value);
+  };
+
+  const graphemeLength = useMemo(
+    () => new RichText({ text }).graphemeLength,
+    [text],
+  );
 
   const onAddImage = () => {
     const input = document.createElement("input");
@@ -53,7 +64,7 @@ const PostView: FC = () => {
         <Flex marginTop={1} marginBottom={3}>
           <Avatar size="xl" />
           <Box marginLeft={2} width="100%">
-            <TextEditor />
+            <TextEditor value={text} onChange={onChangeText} />
           </Box>
         </Flex>
         <Flex data-testid="hogehoge">
@@ -70,7 +81,7 @@ const PostView: FC = () => {
           <IoImageOutline />
         </IconButton>
         <Spacer />
-        <CharProgress count={25} max={100} />
+        <CharProgress count={graphemeLength} />
       </Flex>
     </Flex>
   );

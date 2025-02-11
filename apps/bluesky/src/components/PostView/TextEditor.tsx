@@ -1,9 +1,20 @@
 import { Textarea } from "@chakra-ui/react";
-import { FC } from "react";
+import { ChangeEventHandler, FC } from "react";
 
-const TextEditor: FC = () => {
+interface Props {
+  value: string;
+  onChange: (newValue: string) => void;
+}
+
+const TextEditor: FC<Props> = ({ value, onChange }) => {
+  const onChangeTextarea: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    onChange(e.target.value);
+  };
+
   return (
     <Textarea
+      value={value}
+      onChange={onChangeTextarea}
       placeholder="最近どう？"
       autoresize={true}
       size="lg"
