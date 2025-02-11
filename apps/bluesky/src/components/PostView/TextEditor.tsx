@@ -5,6 +5,7 @@ const TextEditor: FC = () => {
   return (
     <Textarea
       placeholder="最近どう？"
+      autoresize={true}
       size="lg"
       resize="none"
       width="100%"
