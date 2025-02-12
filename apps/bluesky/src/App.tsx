@@ -3,10 +3,18 @@ import { FC } from "react";
 
 import PostView from "@/components/PostView/PostView.tsx";
 import SignInForm, { type SignInInputs } from "@/components/SignInForm.tsx";
+import { BlueskyEmbedImage } from "@/helpers/bluesky.ts";
 import { useAgent } from "@/hooks/useAgent.ts";
 
 const App: FC = () => {
-  const { login, logout, isSessionAvailable } = useAgent();
+  const { login, logout, post, isSessionAvailable } = useAgent();
+
+  const onPost = async (
+    text: string,
+    images?: BlueskyEmbedImage[] | undefined,
+  ) => {
+    await post(text, images);
+  };
 
   const onRequestSingIn = async (inputs: SignInInputs) => {
     return login(inputs.identifier, inputs.password)
@@ -22,7 +30,7 @@ const App: FC = () => {
     <>
       <Box as="main" display="flex" justifyContent="center" height="100%">
         {isSessionAvailable ? (
-          <PostView onRequestSingOut={onRequestSingOut} />
+          <PostView onPost={onPost} onRequestSingOut={onRequestSingOut} />
         ) : (
           <SignInForm onRequestSingIn={onRequestSingIn} />
         )}

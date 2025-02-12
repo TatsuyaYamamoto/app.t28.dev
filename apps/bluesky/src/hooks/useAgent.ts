@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useLocalStorage } from "react-use";
 
 import { BLUESKY_SERVICE } from "@/constants.ts";
+import { BlueskyEmbedImage, postToBluesky } from "@/helpers/bluesky.ts";
 import { isTokenExpired } from "@/utils.ts";
 
 export const useAgent = () => {
@@ -50,22 +51,27 @@ export const useAgent = () => {
     await blueSkyAgent.logout();
   }, [removeSessionData, blueSkyAgent]);
 
-  const post = useCallback(async () => {}, []);
+  const post = useCallback(
+    async (text: string, images?: BlueskyEmbedImage[] | undefined) => {
+      await postToBluesky(blueSkyAgent, text, images);
+    },
+    [blueSkyAgent],
+  );
 
   const isSessionAvailable = useMemo(() => {
     if (!savedSessionData) {
       return false;
     }
 
-    if (isTokenExpired(savedSessionData.accessJwt)) {
-      return false;
+    if (!isTokenExpired(savedSessionData.accessJwt)) {
+      return true;
     }
 
-    if (isTokenExpired(savedSessionData.accessJwt)) {
-      return false;
+    if (!isTokenExpired(savedSessionData.refreshJwt)) {
+      return true;
     }
 
-    return true;
+    return false;
   }, [savedSessionData]);
 
   return {
@@ -74,8 +80,5 @@ export const useAgent = () => {
     tryResumeSession,
     post,
     isSessionAvailable,
-    // profile,
-    // profileUrl,
-    // checkIsSessionAvailable,
   };
 };
