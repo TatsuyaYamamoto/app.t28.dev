@@ -6,7 +6,7 @@ const IMAGE_GAP = 8;
 
 interface GalleryProps {
   images: {
-    src: string;
+    base64: string;
   }[];
   onRemoveImage: (index: number) => void;
 }
@@ -27,7 +27,6 @@ export const Gallery: FC<GalleryProps> = ({ images, onRemoveImage }) => {
 
     const handler = () => {
       const width = rootEl.getBoundingClientRect().width;
-      console.log(width);
       setRootWidth(width);
     };
 
@@ -39,10 +38,10 @@ export const Gallery: FC<GalleryProps> = ({ images, onRemoveImage }) => {
 
   return (
     <Flex ref={rootElRef} width="100%" gap={`${IMAGE_GAP}px`}>
-      {images.map(({ src }, i) => (
+      {images.map(({ base64 }, i) => (
         <GalleryItem
           key={i}
-          src={src}
+          src={base64}
           size={size}
           onRemoveImage={() => onRemoveImage(i)}
         />
