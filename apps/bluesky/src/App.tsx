@@ -1,24 +1,30 @@
 import { Box } from "@chakra-ui/react";
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import PostView from "@/components/PostView/PostView.tsx";
 import SignInForm, { type SignInInputs } from "@/components/SignInForm.tsx";
+import { useAgent } from "@/hooks/useAgent.ts";
 
 const App: FC = () => {
-  const [shouldShowSignIn] = useState(true);
+  const { login, logout, isSessionAvailable } = useAgent();
 
   const onRequestSingIn = async (inputs: SignInInputs) => {
-    console.log(inputs);
-    return { isSuccess: true };
+    return login(inputs.identifier, inputs.password)
+      .then(() => ({ isSuccess: true }))
+      .catch(() => ({ isSuccess: false }));
+  };
+
+  const onRequestSingOut = async () => {
+    await logout();
   };
 
   return (
     <>
       <Box as="main" display="flex" justifyContent="center" height="100%">
-        {shouldShowSignIn ? (
-          <SignInForm onRequestSingIn={onRequestSingIn} />
+        {isSessionAvailable ? (
+          <PostView onRequestSingOut={onRequestSingOut} />
         ) : (
-          <PostView />
+          <SignInForm onRequestSingIn={onRequestSingIn} />
         )}
       </Box>
     </>

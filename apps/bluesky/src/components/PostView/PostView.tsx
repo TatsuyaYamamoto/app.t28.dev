@@ -10,7 +10,10 @@ import { Avatar } from "@/components/ui/avatar.tsx";
 
 const borderColor = "rgb(212, 219, 226)";
 
-const PostView: FC = () => {
+interface Props {
+  onRequestSingOut: () => void;
+}
+const PostView: FC<Props> = ({ onRequestSingOut }) => {
   const [text, setText] = useState("");
   const [images, setImages] = useState<{ src: string }[]>([]);
 
@@ -56,7 +59,7 @@ const PostView: FC = () => {
       borderRightWidth={1}
     >
       <Flex height={54} alignItems="center" paddingX={2}>
-        <Button>キャンセル</Button>
+        <Button onClick={onRequestSingOut}>キャンセル</Button>
         <Spacer />
         <Button rounded="full">投稿</Button>
       </Flex>
