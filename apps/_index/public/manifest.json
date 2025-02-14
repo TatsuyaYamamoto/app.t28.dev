@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "share_target": {
+    "action": "."
+  }
+}
