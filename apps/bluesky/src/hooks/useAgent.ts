@@ -1,4 +1,4 @@
-import { AtpAgent, AtpSessionData } from "@atproto/api";
+import { AtpAgent, AtpSessionData, AtUri } from "@atproto/api";
 import { useCallback, useMemo, useState } from "react";
 import { useLocalStorage } from "react-use";
 
@@ -56,7 +56,13 @@ export const useAgent = () => {
 
   const post = useCallback(
     async (text: string, images?: BlueskyEmbedImage[] | undefined) => {
-      await postToBluesky(blueSkyAgent, text, images);
+      const res = await postToBluesky(blueSkyAgent, text, images);
+      const atUri = new AtUri(res.uri);
+
+      return {
+        ...res,
+        htmlUrl: `https://bsky.app/profile/${blueSkyAgent.session?.handle}/post/${atUri.rkey}`,
+      };
     },
     [blueSkyAgent],
   );

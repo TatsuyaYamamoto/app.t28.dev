@@ -27,6 +27,7 @@ const PostView: FC<Props> = ({ tweetId, onRequestSingOut, onPost }) => {
     [],
   );
   const { data: tweet } = useTweet(tweetId);
+  const [isPosting, handleIsPosting] = useState(false);
 
   const onChangeText = (value: string) => {
     setText(value);
@@ -59,10 +60,14 @@ const PostView: FC<Props> = ({ tweetId, onRequestSingOut, onPost }) => {
   };
 
   const onClickPost = async () => {
+    handleIsPosting(true);
     await onPost(
       text,
       images.map(({ base64, mediaType }) => ({ alt: "", base64, mediaType })),
     );
+    setText("");
+    setImages([]);
+    handleIsPosting(false);
   };
 
   useEffect(() => {
@@ -97,7 +102,7 @@ const PostView: FC<Props> = ({ tweetId, onRequestSingOut, onPost }) => {
       <Flex height={54} alignItems="center" paddingX={2}>
         <Button onClick={onRequestSingOut}>キャンセル</Button>
         <Spacer />
-        <Button rounded="full" onClick={onClickPost}>
+        <Button rounded="full" onClick={onClickPost} loading={isPosting}>
           投稿
         </Button>
       </Flex>
@@ -118,7 +123,12 @@ const PostView: FC<Props> = ({ tweetId, onRequestSingOut, onPost }) => {
         borderColor={borderColor}
         borderTopWidth={1}
       >
-        <IconButton rounded="full" variant="ghost" onClick={onAddImage}>
+        <IconButton
+          rounded="full"
+          variant="ghost"
+          onClick={onAddImage}
+          loading={isPosting}
+        >
           <IoImageOutline />
         </IconButton>
         <Spacer />

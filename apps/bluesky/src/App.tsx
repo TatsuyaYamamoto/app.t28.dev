@@ -46,7 +46,11 @@ const App: FC = () => {
     text: string,
     images?: BlueskyEmbedImage[] | undefined,
   ) => {
-    await post(text, images);
+    const { htmlUrl } = await post(text, images);
+
+    if (confirm("Go to Bluesky?")) {
+      location.href = htmlUrl;
+    }
   };
 
   const onRequestSingIn = async (inputs: SignInInputs) => {
