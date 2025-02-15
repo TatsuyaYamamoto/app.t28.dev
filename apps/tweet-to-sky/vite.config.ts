@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import { createHtmlPlugin } from "vite-plugin-html";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-const basePath = "/bluesky";
+const basePath = "/tweet-to-sky";
 
 // https://vite.dev/config/
 export default defineConfig({

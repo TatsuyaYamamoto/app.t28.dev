@@ -12,7 +12,7 @@ const webShareParams = {
 const main = () => {
   if (webShareParams.text) {
     if (webShareParams.text.startsWith("https://x.com")) {
-      location.href = `/bluesky?tweet=${webShareParams.text}`;
+      location.href = `/tweet-to-sky?tweet=${webShareParams.text}`;
       return;
     }
 
