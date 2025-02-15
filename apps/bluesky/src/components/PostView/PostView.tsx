@@ -8,7 +8,7 @@ import { Gallery } from "@/components/PostView/Gallery.tsx";
 import TextEditor from "@/components/PostView/TextEditor.tsx";
 import { Avatar } from "@/components/ui/avatar.tsx";
 import { BlueskyEmbedImage } from "@/helpers/bluesky.ts";
-import { arrayBufferToBase64, selectLocalImages } from "@/utils.ts";
+import { arrayBufferToBase64, selectLocalImages } from "@/helpers/utils.ts";
 import { useTweet } from "react-tweet";
 
 const borderColor = "rgb(212, 219, 226)";

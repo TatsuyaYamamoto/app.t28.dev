@@ -1,6 +1,6 @@
 import { AtpAgent, RichText } from "@atproto/api";
 
-import { base64ToBinary, compressImage } from "@/utils.ts";
+import { base64ToBinary, compressImage } from "@/helpers/utils.ts";
 
 type PostRecord = Parameters<InstanceType<typeof AtpAgent>["post"]>[0];
 
