@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 import PostView from "@/components/PostView/PostView.tsx";
 import SignInForm, { type SignInInputs } from "@/components/SignInForm.tsx";
@@ -9,6 +9,38 @@ import { useAgent } from "@/hooks/useAgent.ts";
 const App: FC = () => {
   const { login, logout, post, tryResumeSession, isSessionAvailable } =
     useAgent();
+  const [tweetId] = useState<string | undefined>(() => {
+    const url = new URL(window.location.href);
+    const maybyTweetIdOrUrl = url.searchParams.get("tweet");
+
+    if (!maybyTweetIdOrUrl) {
+      return undefined;
+    }
+
+    if (/^[1-9][0-9]*$/.test(maybyTweetIdOrUrl)) {
+      // This text is tweet id format.
+      return maybyTweetIdOrUrl;
+    }
+
+    try {
+      const maybyTweetUrl = new URL(maybyTweetIdOrUrl);
+      if (
+        maybyTweetUrl.hostname !== "twitter.com" &&
+        maybyTweetUrl.hostname !== "x.com"
+      ) {
+        return undefined;
+      }
+
+      const pathParts = maybyTweetUrl.pathname.split("/");
+      if (pathParts[2] === "status" && /^[1-9][0-9]*$/.test(pathParts[3])) {
+        return pathParts[3];
+      }
+    } catch {
+      // do nothing
+    }
+
+    return undefined;
+  });
 
   const onPost = async (
     text: string,
@@ -40,7 +72,11 @@ const App: FC = () => {
     <>
       <Box as="main" display="flex" justifyContent="center" height="100%">
         {isSessionAvailable ? (
-          <PostView onPost={onPost} onRequestSingOut={onRequestSingOut} />
+          <PostView
+            tweetId={tweetId}
+            onPost={onPost}
+            onRequestSingOut={onRequestSingOut}
+          />
         ) : (
           <SignInForm onRequestSingIn={onRequestSingIn} />
         )}
