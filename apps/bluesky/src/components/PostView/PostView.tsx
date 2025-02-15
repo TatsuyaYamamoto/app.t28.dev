@@ -8,7 +8,7 @@ import { Gallery } from "@/components/PostView/Gallery.tsx";
 import TextEditor from "@/components/PostView/TextEditor.tsx";
 import { Avatar } from "@/components/ui/avatar.tsx";
 import { BlueskyEmbedImage } from "@/helpers/bluesky.ts";
-import { selectLocalImages } from "@/utils.ts";
+import { arrayBufferToBase64, selectLocalImages } from "@/utils.ts";
 import { useTweet } from "react-tweet";
 
 const borderColor = "rgb(212, 219, 226)";
@@ -43,12 +43,13 @@ const PostView: FC<Props> = ({ tweetId, onRequestSingOut, onPost }) => {
       return;
     }
 
-    const imageList = imageFiles.map((file) => {
+    const imageListPromise = imageFiles.map(async (file) => {
       return {
-        base64: URL.createObjectURL(file),
+        base64: arrayBufferToBase64(await file.arrayBuffer()),
         mediaType: file.type,
       };
     });
+    const imageList = await Promise.all(imageListPromise);
 
     setImages((prev) => [...prev, ...imageList].slice(0, 4));
   };
@@ -74,7 +75,7 @@ const PostView: FC<Props> = ({ tweetId, onRequestSingOut, onPost }) => {
     const photosPromise = tweet.photos?.map(async (photo) => {
       const blob = await fetch(photo.url).then((res) => res.blob());
       return {
-        base64: URL.createObjectURL(blob),
+        base64: arrayBufferToBase64(await blob.arrayBuffer()),
         mediaType: blob.type,
       };
     });
