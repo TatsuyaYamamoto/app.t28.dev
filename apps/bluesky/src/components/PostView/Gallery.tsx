@@ -7,6 +7,7 @@ const IMAGE_GAP = 8;
 interface GalleryProps {
   images: {
     base64: string;
+    mediaType: string;
   }[];
   onRemoveImage: (index: number) => void;
 }
@@ -38,10 +39,10 @@ export const Gallery: FC<GalleryProps> = ({ images, onRemoveImage }) => {
 
   return (
     <Flex ref={rootElRef} width="100%" gap={`${IMAGE_GAP}px`}>
-      {images.map(({ base64 }, i) => (
+      {images.map(({ base64, mediaType }, i) => (
         <GalleryItem
           key={i}
-          src={base64}
+          src={`data:${mediaType};base64,${base64}`}
           size={size}
           onRemoveImage={() => onRemoveImage(i)}
         />
