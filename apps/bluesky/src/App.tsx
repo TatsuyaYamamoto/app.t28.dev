@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 import PostView from "@/components/PostView/PostView.tsx";
 import SignInForm, { type SignInInputs } from "@/components/SignInForm.tsx";
@@ -7,7 +7,8 @@ import { BlueskyEmbedImage } from "@/helpers/bluesky.ts";
 import { useAgent } from "@/hooks/useAgent.ts";
 
 const App: FC = () => {
-  const { login, logout, post, isSessionAvailable } = useAgent();
+  const { login, logout, post, tryResumeSession, isSessionAvailable } =
+    useAgent();
 
   const onPost = async (
     text: string,
@@ -25,6 +26,10 @@ const App: FC = () => {
   const onRequestSingOut = async () => {
     await logout();
   };
+
+  useEffect(() => {
+    void tryResumeSession();
+  }, [tryResumeSession]);
 
   return (
     <>
