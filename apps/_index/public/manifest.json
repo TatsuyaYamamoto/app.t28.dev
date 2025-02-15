@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/web-manifest-combined.json",
   "name": "app.t28.dev",
   "description": "T28 のアプリ",
-  "display": "minimal-ui",
+  "display": "standalone",
   "start_url": "/?pwa=true",
   "scope": "/",
   "icons": [
