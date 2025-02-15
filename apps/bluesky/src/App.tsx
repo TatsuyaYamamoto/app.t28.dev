@@ -27,9 +27,14 @@ const App: FC = () => {
     await logout();
   };
 
-  useEffect(() => {
-    void tryResumeSession();
-  }, [tryResumeSession]);
+  useEffect(
+    () => {
+      void tryResumeSession();
+    },
+    [
+      /* onMount only */
+    ],
+  );
 
   return (
     <>

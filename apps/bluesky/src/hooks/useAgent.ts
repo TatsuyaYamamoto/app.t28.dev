@@ -8,48 +8,51 @@ import { isTokenExpired } from "@/utils.ts";
 
 export const useAgent = () => {
   const [savedSessionData, saveSessionData, removeSessionData] =
-    useLocalStorage<AtpSessionData | null>("bluesky:session", null);
+    useLocalStorage<AtpSessionData>("bluesky:session");
 
   const [blueSkyAgent] = useState(
     () =>
       new AtpAgent({
         service: BLUESKY_SERVICE,
-        persistSession: () => {},
+        persistSession: (evt, session) => {
+          console.log("[AtpAgent:persistSession]", evt);
+
+          // No need to save or delete a session data due to `network-error`.
+          if (evt === "network-error") {
+            return;
+          }
+
+          // replace with new access/refresh token.
+          // refresh token stored in bluesky's backend is rotated after using once.
+          // bluesky's `token rotation` is to update refresh token's validity period (expiresAt) to grace period (2 hours) and delete expired refresh token.
+          // https://github.com/bluesky-social/atproto/blob/%40atproto/pds%400.4.3/packages/pds/src/account-manager/index.ts#L177
+          if (session) {
+            saveSessionData(session);
+          } else {
+            removeSessionData();
+          }
+        },
       }),
   );
 
-  const login = useCallback(async (identifier: string, password: string) => {
-    await blueSkyAgent.login({ identifier, password });
-
-    const newSession = blueSkyAgent.session;
-    if (!newSession) {
-      throw new Error(
-        "unexpected behavior. signed-in agent has no session data",
-      );
-    }
-    saveSessionData(newSession);
-  }, []);
+  const login = useCallback(
+    async (identifier: string, password: string) => {
+      return blueSkyAgent.login({ identifier, password });
+    },
+    [blueSkyAgent],
+  );
 
   const tryResumeSession = useCallback(async () => {
     if (!savedSessionData) {
       return;
     }
 
-    await blueSkyAgent.resumeSession(savedSessionData);
-
-    const newSession = blueSkyAgent.session;
-    if (!newSession) {
-      throw new Error(
-        "unexpected behavior. signed-in agent has no session data",
-      );
-    }
-    saveSessionData(newSession);
-  }, []);
+    return blueSkyAgent.resumeSession(savedSessionData);
+  }, [savedSessionData, blueSkyAgent]);
 
   const logout = useCallback(async () => {
-    removeSessionData();
     await blueSkyAgent.logout();
-  }, [removeSessionData, blueSkyAgent]);
+  }, [blueSkyAgent]);
 
   const post = useCallback(
     async (text: string, images?: BlueskyEmbedImage[] | undefined) => {
