@@ -1,6 +1,6 @@
 import { RichText } from "@atproto/api";
 import { Box, Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
-import { FC, useMemo, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { IoImageOutline } from "react-icons/io5";
 
 import CharProgress from "@/components/PostView/CharProgress.tsx";
@@ -9,21 +9,24 @@ import TextEditor from "@/components/PostView/TextEditor.tsx";
 import { Avatar } from "@/components/ui/avatar.tsx";
 import { BlueskyEmbedImage } from "@/helpers/bluesky.ts";
 import { selectLocalImages } from "@/utils.ts";
+import { useTweet } from "react-tweet";
 
 const borderColor = "rgb(212, 219, 226)";
 
 interface Props {
+  tweetId?: string | undefined;
   onRequestSingOut: () => void;
   onPost: (
     text: string,
     images?: BlueskyEmbedImage[] | undefined,
   ) => Promise<void>;
 }
-const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
+const PostView: FC<Props> = ({ tweetId, onRequestSingOut, onPost }) => {
   const [text, setText] = useState("");
   const [images, setImages] = useState<{ base64: string; mediaType: string }[]>(
     [],
   );
+  const { data: tweet } = useTweet(tweetId);
 
   const onChangeText = (value: string) => {
     setText(value);
@@ -60,6 +63,25 @@ const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
       images.map(({ base64, mediaType }) => ({ alt: "", base64, mediaType })),
     );
   };
+
+  useEffect(() => {
+    if (!tweet) {
+      return;
+    }
+
+    setText(tweet.text);
+
+    const photosPromise = tweet.photos?.map(async (photo) => {
+      const blob = await fetch(photo.url).then((res) => res.blob());
+      return {
+        base64: URL.createObjectURL(blob),
+        mediaType: blob.type,
+      };
+    });
+    Promise.all(photosPromise ?? []).then((photos) => {
+      setImages(photos);
+    });
+  }, [tweet]);
 
   return (
     <Flex
