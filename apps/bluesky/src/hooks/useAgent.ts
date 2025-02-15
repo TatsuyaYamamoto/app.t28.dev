@@ -4,7 +4,7 @@ import { useLocalStorage } from "react-use";
 
 import { BLUESKY_SERVICE } from "@/constants.ts";
 import { BlueskyEmbedImage, postToBluesky } from "@/helpers/bluesky.ts";
-import { isTokenExpired } from "@/utils.ts";
+import { isTokenExpired } from "@/helpers/utils.ts";
 
 export const useAgent = () => {
   const [savedSessionData, saveSessionData, removeSessionData] =
