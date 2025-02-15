@@ -16,7 +16,10 @@ import { sendEvent } from "./_helper/ga";
 
 export default function Home() {
   const [isOpenModalEditor, setOpenModalEditor] = useState(false);
-  const [vanillaText, setVanillaText] = useState("");
+  const [vanillaText, setVanillaText] = useState<string>(() => {
+    const params = new URL(location.href).searchParams;
+    return params.get("text") ?? "";
+  });
   const [tweetText, setTweetText] = useState("");
   const showTwitterFab = !!tweetText;
   const [footerAreaDummyElRef, isFooterViewed] = useInView();
