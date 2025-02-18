@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import { useAgent } from "@/components/AgentProvider.tsx";
 import PostView from "@/components/PostView/PostView.tsx";
-import SignInForm, { type SignInInputs } from "@/components/SignInForm.tsx";
+import SignInForm from "@/components/SignInForm.tsx";
 import { BlueskyEmbedImage, postToBluesky } from "@/helpers/bluesky.ts";
 import { useTweetInUrl } from "@/hooks/useTweetInUrl.ts";
 import { AtUri } from "@atproto/api";
@@ -25,16 +25,6 @@ const App: FC = () => {
     }
   };
 
-  const onRequestSingIn = async (inputs: SignInInputs) => {
-    return agent
-      .login({
-        identifier: inputs.identifier,
-        password: inputs.password,
-      })
-      .then(() => ({ isSuccess: true }))
-      .catch(() => ({ isSuccess: false }));
-  };
-
   const onRequestSingOut = async () => {
     await agent.logout();
   };
@@ -49,7 +39,7 @@ const App: FC = () => {
             onRequestSingOut={onRequestSingOut}
           />
         ) : (
-          <SignInForm onRequestSingIn={onRequestSingIn} />
+          <SignInForm />
         )}
       </Box>
     </>
