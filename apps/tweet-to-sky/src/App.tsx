@@ -43,13 +43,20 @@ const App: FC = () => {
 
     postFormMethods.setValue("text", tweet.text);
 
-    const photosPromise = tweet.photos?.map(async (photo) => {
-      const blob = await fetch(photo.url).then((res) => res.blob());
-      return {
-        alt: "",
-        base64: arrayBufferToBase64(await blob.arrayBuffer()),
-        mediaType: blob.type,
-      };
+    const photosPromise = tweet.mediaDetails?.flatMap((media) => {
+      if (media.type !== "photo") {
+        return [];
+      }
+
+      return fetch(media.media_url_https)
+        .then((res) => res.blob())
+        .then(async (blob) => {
+          return {
+            alt: media.ext_alt_text ?? "",
+            base64: arrayBufferToBase64(await blob.arrayBuffer()),
+            mediaType: blob.type,
+          };
+        });
     });
     Promise.all(photosPromise ?? []).then((photos) => {
       postFormMethods.setValue("images", photos);
