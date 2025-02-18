@@ -33,8 +33,7 @@ const SignInForm: FC = () => {
   const onSubmit = handleSubmit(async (data) => {
     await agent.login(data).catch(() => {
       setError("root", {
-        message:
-          "ユーザー名またはメールアドレス、またはパスワードが間違っています",
+        message: "無効なユーザー名またはパスワード",
       });
     });
   });
