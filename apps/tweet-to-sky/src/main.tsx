@@ -1,4 +1,9 @@
-import { Provider } from "@/components/ui/provider";
+import {
+  ChakraProvider,
+  createSystem,
+  defaultConfig,
+  defineConfig,
+} from "@chakra-ui/react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
@@ -7,12 +12,23 @@ import { AgentProvider } from "./components/AgentProvider.tsx";
 
 import "./index.css";
 
+const customConfig = defineConfig({
+  globalCss: {
+    html: {
+      // https://www.chakra-ui.com/guides/theming-change-default-color-palette
+      colorPalette: "blue",
+    },
+  },
+});
+
+const system = createSystem(defaultConfig, customConfig);
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider>
+    <ChakraProvider value={system}>
       <AgentProvider>
         <App />
       </AgentProvider>
-    </Provider>
+    </ChakraProvider>
   </StrictMode>,
 );
