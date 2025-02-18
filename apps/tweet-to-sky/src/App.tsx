@@ -1,22 +1,29 @@
+import { AtUri } from "@atproto/api";
 import { Box } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useTweet } from "react-tweet";
 
 import { useAgent } from "@/components/AgentProvider.tsx";
-import PostView from "@/components/PostView/PostView.tsx";
+import PostView, { PostForm } from "@/components/PostView/PostView.tsx";
 import SignInForm from "@/components/SignInForm.tsx";
-import { BlueskyEmbedImage, postToBluesky } from "@/helpers/bluesky.ts";
+import { postToBluesky } from "@/helpers/bluesky.ts";
+import { arrayBufferToBase64 } from "@/helpers/utils.ts";
 import { useTweetInUrl } from "@/hooks/useTweetInUrl.ts";
-import { AtUri } from "@atproto/api";
 
 const App: FC = () => {
   const { agent, isSessionAvailable } = useAgent();
   const tweetId = useTweetInUrl();
+  const { data: tweet } = useTweet(tweetId);
+  const postFormMethods = useForm<PostForm>({
+    defaultValues: {
+      text: "",
+      images: [],
+    },
+  });
 
-  const onPost = async (
-    text: string,
-    images?: BlueskyEmbedImage[] | undefined,
-  ) => {
-    const res = await postToBluesky(agent, text, images);
+  const onPost = async (formValue: PostForm) => {
+    const res = await postToBluesky(agent, formValue.text, formValue.images);
     const atUri = new AtUri(res.uri);
     const htmlUrl = `https://bsky.app/profile/${agent.session?.handle}/post/${atUri.rkey}`;
 
@@ -29,15 +36,33 @@ const App: FC = () => {
     await agent.logout();
   };
 
+  useEffect(() => {
+    if (!tweet) {
+      return;
+    }
+
+    postFormMethods.setValue("text", tweet.text);
+
+    const photosPromise = tweet.photos?.map(async (photo) => {
+      const blob = await fetch(photo.url).then((res) => res.blob());
+      return {
+        alt: "",
+        base64: arrayBufferToBase64(await blob.arrayBuffer()),
+        mediaType: blob.type,
+      };
+    });
+    Promise.all(photosPromise ?? []).then((photos) => {
+      postFormMethods.setValue("images", photos);
+    });
+  }, [tweet]);
+
   return (
     <>
       <Box as="main" display="flex" justifyContent="center" height="100%">
         {isSessionAvailable ? (
-          <PostView
-            tweetId={tweetId}
-            onPost={onPost}
-            onRequestSingOut={onRequestSingOut}
-          />
+          <FormProvider {...postFormMethods}>
+            <PostView onPost={onPost} onRequestSingOut={onRequestSingOut} />
+          </FormProvider>
         ) : (
           <SignInForm />
         )}
