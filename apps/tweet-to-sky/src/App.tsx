@@ -1,22 +1,24 @@
 import { Box } from "@chakra-ui/react";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
+import { useAgent } from "@/components/AgentProvider.tsx";
 import PostView from "@/components/PostView/PostView.tsx";
 import SignInForm, { type SignInInputs } from "@/components/SignInForm.tsx";
-import { BlueskyEmbedImage } from "@/helpers/bluesky.ts";
-import { useAgent } from "@/hooks/useAgent.ts";
+import { BlueskyEmbedImage, postToBluesky } from "@/helpers/bluesky.ts";
 import { useTweetInUrl } from "@/hooks/useTweetInUrl.ts";
+import { AtUri } from "@atproto/api";
 
 const App: FC = () => {
-  const { login, logout, post, tryResumeSession, isSessionAvailable } =
-    useAgent();
+  const { agent, isSessionAvailable } = useAgent();
   const tweetId = useTweetInUrl();
 
   const onPost = async (
     text: string,
     images?: BlueskyEmbedImage[] | undefined,
   ) => {
-    const { htmlUrl } = await post(text, images);
+    const res = await postToBluesky(agent, text, images);
+    const atUri = new AtUri(res.uri);
+    const htmlUrl = `https://bsky.app/profile/${agent.session?.handle}/post/${atUri.rkey}`;
 
     if (confirm("Go to Bluesky?")) {
       location.href = htmlUrl;
@@ -24,23 +26,18 @@ const App: FC = () => {
   };
 
   const onRequestSingIn = async (inputs: SignInInputs) => {
-    return login(inputs.identifier, inputs.password)
+    return agent
+      .login({
+        identifier: inputs.identifier,
+        password: inputs.password,
+      })
       .then(() => ({ isSuccess: true }))
       .catch(() => ({ isSuccess: false }));
   };
 
   const onRequestSingOut = async () => {
-    await logout();
+    await agent.logout();
   };
-
-  useEffect(
-    () => {
-      void tryResumeSession();
-    },
-    [
-      /* onMount only */
-    ],
-  );
 
   return (
     <>
