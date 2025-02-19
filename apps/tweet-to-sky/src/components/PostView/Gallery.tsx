@@ -2,13 +2,12 @@ import { Box, Flex, IconButton, Image } from "@chakra-ui/react";
 import { FC, useEffect, useRef, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
+import type { PostForm } from "./PostView.tsx";
+
 const IMAGE_GAP = 8;
 
 interface GalleryProps {
-  images: {
-    base64: string;
-    mediaType: string;
-  }[];
+  images: PostForm["images"];
   onRemoveImage: (index: number) => void;
 }
 
@@ -39,10 +38,10 @@ export const Gallery: FC<GalleryProps> = ({ images, onRemoveImage }) => {
 
   return (
     <Flex ref={rootElRef} width="100%" gap={`${IMAGE_GAP}px`}>
-      {images.map(({ base64, mediaType }, i) => (
+      {images.map(({ objectUrl }, i) => (
         <GalleryItem
           key={i}
-          src={`data:${mediaType};base64,${base64}`}
+          src={objectUrl}
           size={size}
           onRemoveImage={() => onRemoveImage(i)}
         />

@@ -8,8 +8,7 @@ import CharProgress from "@/components/PostView/CharProgress.tsx";
 import { Gallery } from "@/components/PostView/Gallery.tsx";
 import TextEditor from "@/components/PostView/TextEditor.tsx";
 import { Avatar } from "@/components/ui/avatar.tsx";
-import { BlueskyEmbedImage } from "@/helpers/bluesky.ts";
-import { arrayBufferToBase64, selectLocalImages } from "@/helpers/utils.ts";
+import { getImageFileAspectRatio, selectLocalImages } from "@/helpers/utils.ts";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 const borderColor = "rgb(212, 219, 226)";
@@ -17,13 +16,19 @@ const MAX_IMAGE_LENGTH = 4;
 
 export interface PostForm {
   text: string;
-  images: BlueskyEmbedImage[];
+  images: {
+    alt: string;
+    file: File;
+    aspectRatio: { width: number; height: number };
+    objectUrl: string;
+  }[];
 }
 
 interface Props {
   onRequestSingOut: () => void;
   onPost: (formValue: PostForm) => Promise<void>;
 }
+
 const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
   const { profile } = useAgent();
   const {
@@ -59,8 +64,9 @@ const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
     const addedImagesPromise = addedImageFiles.map(async (file) => {
       return {
         alt: "", // TODO
-        base64: arrayBufferToBase64(await file.arrayBuffer()),
-        mediaType: file.type,
+        file,
+        aspectRatio: await getImageFileAspectRatio(file),
+        objectUrl: URL.createObjectURL(file),
       };
     });
     const addedImages = await Promise.all(addedImagesPromise);
@@ -70,6 +76,8 @@ const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
   };
 
   const onRemoveImage = (index: number) => {
+    const target = getValues("images")[index];
+    URL.revokeObjectURL(target.objectUrl);
     removeImage(index);
   };
 
