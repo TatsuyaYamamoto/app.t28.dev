@@ -1,6 +1,7 @@
 import { RichText } from "@atproto/api";
-import { Box, Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Spacer } from "@chakra-ui/react";
 import { FC, useMemo } from "react";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import { IoImageOutline } from "react-icons/io5";
 
 import { useAgent } from "@/components/AgentProvider.tsx";
@@ -9,9 +10,9 @@ import { Gallery } from "@/components/PostView/Gallery.tsx";
 import TextEditor from "@/components/PostView/TextEditor.tsx";
 import { Avatar } from "@/components/ui/avatar.tsx";
 import { getImageFileAspectRatio, selectLocalImages } from "@/helpers/utils.ts";
-import { useFieldArray, useFormContext } from "react-hook-form";
 
-const borderColor = "rgb(212, 219, 226)";
+import { BORDER_COLOR } from "@/constants.ts";
+
 const MAX_IMAGE_LENGTH = 4;
 
 export interface PostForm {
@@ -24,17 +25,13 @@ export interface PostForm {
   }[];
 }
 
-interface Props {
-  onRequestSingOut: () => void;
-  onPost: (formValue: PostForm) => Promise<void>;
-}
+interface Props {}
 
-const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
+const PostView: FC<Props> = ({}) => {
   const { profile } = useAgent();
   const {
     register,
     watch,
-    handleSubmit,
     getValues,
     control,
     formState: { isSubmitting },
@@ -81,33 +78,14 @@ const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
     removeImage(index);
   };
 
-  const onClickPost = handleSubmit(async (formValue) => {
-    await onPost(formValue);
-  });
-
   return (
-    <Flex
-      direction="column"
-      maxWidth={600}
-      width="100%"
-      height="100%"
-      borderColor={borderColor}
-      borderLeftWidth={1}
-      borderRightWidth={1}
-    >
-      <Flex height={54} alignItems="center" paddingX={2}>
-        <Button onClick={onRequestSingOut}>キャンセル</Button>
-        <Spacer />
-        <Button rounded="full" onClick={onClickPost} loading={isSubmitting}>
-          投稿
-        </Button>
-      </Flex>
+    <>
       <Flex flex={1} direction="column" paddingX={3} paddingBottom={3}>
         <Flex marginTop={1} marginBottom={3}>
           <Avatar
             size="xl"
             src={profile?.avatar}
-            borderColor={borderColor}
+            borderColor={BORDER_COLOR}
             borderWidth={1}
           />
           <Box marginLeft={2} width="100%">
@@ -121,7 +99,7 @@ const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
       <Flex
         padding="4px 16px 4px 7px"
         alignItems="center"
-        borderColor={borderColor}
+        borderColor={BORDER_COLOR}
         borderTopWidth={1}
       >
         <IconButton
@@ -136,7 +114,7 @@ const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
         <Spacer />
         <CharProgress count={graphemeLength} />
       </Flex>
-    </Flex>
+    </>
   );
 };
 
