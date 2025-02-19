@@ -1,12 +1,14 @@
 import { AtUri } from "@atproto/api";
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { FC, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTweet } from "react-tweet";
 
 import { useAgent } from "@/components/AgentProvider.tsx";
+import Header from "@/components/Header.tsx";
 import PostView, { PostForm } from "@/components/PostView/PostView.tsx";
 import SignInForm from "@/components/SignInForm.tsx";
+import { BORDER_COLOR } from "@/constants.ts";
 import { postToBluesky } from "@/helpers/bluesky.ts";
 import { useTweetInUrl } from "@/hooks/useTweetInUrl.ts";
 
@@ -31,10 +33,6 @@ const App: FC = () => {
     if (confirm("Go to Bluesky?")) {
       location.href = htmlUrl;
     }
-  };
-
-  const onRequestSingOut = async () => {
-    await agent.logout();
   };
 
   useEffect(() => {
@@ -72,9 +70,20 @@ const App: FC = () => {
     <>
       <Box as="main" display="flex" justifyContent="center" height="100%">
         {isSessionAvailable ? (
-          <FormProvider {...postFormMethods}>
-            <PostView onPost={onPost} onRequestSingOut={onRequestSingOut} />
-          </FormProvider>
+          <Flex
+            direction="column"
+            maxWidth={600}
+            width="100%"
+            height="100%"
+            borderColor={BORDER_COLOR}
+            borderLeftWidth={1}
+            borderRightWidth={1}
+          >
+            <FormProvider {...postFormMethods}>
+              <Header onPost={onPost} />
+              <PostView />
+            </FormProvider>
+          </Flex>
         ) : (
           <SignInForm />
         )}
