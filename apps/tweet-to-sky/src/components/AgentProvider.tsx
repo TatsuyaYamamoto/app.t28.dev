@@ -1,6 +1,6 @@
 import { BLUESKY_SERVICE } from "@/constants.ts";
 import { isTokenExpired } from "@/helpers/utils.ts";
-import { AtpAgent, AtpSessionData } from "@atproto/api";
+import { AppBskyActorDefs, AtpAgent, AtpSessionData } from "@atproto/api";
 import {
   createContext,
   FC,
@@ -14,16 +14,19 @@ import { useLocalStorage } from "react-use";
 
 const AgentContext = createContext<{
   agent: AtpAgent | null;
+  profile: AppBskyActorDefs.ProfileViewDetailed | null;
   isSessionAvailable: boolean;
 }>({
   agent: null,
+  profile: null,
   isSessionAvailable: false,
 });
 
 export const AgentProvider: FC<PropsWithChildren> = ({ children }) => {
   const [savedSessionData, saveSessionData, removeSessionData] =
     useLocalStorage<AtpSessionData>("bluesky:session");
-
+  const [profile, setProfile] =
+    useState<AppBskyActorDefs.ProfileViewDetailed | null>(null);
   const [agent] = useState(
     () =>
       new AtpAgent({
@@ -42,6 +45,10 @@ export const AgentProvider: FC<PropsWithChildren> = ({ children }) => {
           // https://github.com/bluesky-social/atproto/blob/%40atproto/pds%400.4.3/packages/pds/src/account-manager/index.ts#L177
           if (session) {
             saveSessionData(session);
+
+            agent.getProfile({ actor: session.handle }).then(({ data }) => {
+              setProfile(data);
+            });
           } else {
             removeSessionData();
           }
@@ -79,8 +86,8 @@ export const AgentProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   const value = useMemo(
-    () => ({ agent, isSessionAvailable }),
-    [agent, isSessionAvailable],
+    () => ({ agent, profile, isSessionAvailable }),
+    [agent, profile, isSessionAvailable],
   );
 
   return (
