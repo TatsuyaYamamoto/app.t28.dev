@@ -3,6 +3,7 @@ import { Box, Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
 import { FC, useMemo } from "react";
 import { IoImageOutline } from "react-icons/io5";
 
+import { useAgent } from "@/components/AgentProvider.tsx";
 import CharProgress from "@/components/PostView/CharProgress.tsx";
 import { Gallery } from "@/components/PostView/Gallery.tsx";
 import TextEditor from "@/components/PostView/TextEditor.tsx";
@@ -24,6 +25,7 @@ interface Props {
   onPost: (formValue: PostForm) => Promise<void>;
 }
 const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
+  const { profile } = useAgent();
   const {
     register,
     watch,
@@ -94,7 +96,12 @@ const PostView: FC<Props> = ({ onRequestSingOut, onPost }) => {
       </Flex>
       <Flex flex={1} direction="column" paddingX={3} paddingBottom={3}>
         <Flex marginTop={1} marginBottom={3}>
-          <Avatar size="xl" />
+          <Avatar
+            size="xl"
+            src={profile?.avatar}
+            borderColor={borderColor}
+            borderWidth={1}
+          />
           <Box marginLeft={2} width="100%">
             <TextEditor {...register("text")} />
           </Box>
