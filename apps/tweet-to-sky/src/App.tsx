@@ -8,7 +8,6 @@ import { useAgent } from "@/components/AgentProvider.tsx";
 import PostView, { PostForm } from "@/components/PostView/PostView.tsx";
 import SignInForm from "@/components/SignInForm.tsx";
 import { postToBluesky } from "@/helpers/bluesky.ts";
-import { arrayBufferToBase64 } from "@/helpers/utils.ts";
 import { useTweetInUrl } from "@/hooks/useTweetInUrl.ts";
 
 const App: FC = () => {
@@ -23,7 +22,9 @@ const App: FC = () => {
   });
 
   const onPost = async (formValue: PostForm) => {
-    const res = await postToBluesky(agent, formValue.text, formValue.images);
+    const res = await postToBluesky(agent, formValue.text, {
+      images: formValue.images,
+    });
     const atUri = new AtUri(res.uri);
     const htmlUrl = `https://bsky.app/profile/${agent.session?.handle}/post/${atUri.rkey}`;
 
@@ -43,7 +44,7 @@ const App: FC = () => {
 
     postFormMethods.setValue("text", tweet.text);
 
-    const photosPromise = tweet.mediaDetails?.flatMap((media) => {
+    const imagesPromise = tweet.mediaDetails?.flatMap((media) => {
       if (media.type !== "photo") {
         return [];
       }
@@ -53,13 +54,17 @@ const App: FC = () => {
         .then(async (blob) => {
           return {
             alt: media.ext_alt_text ?? "",
-            base64: arrayBufferToBase64(await blob.arrayBuffer()),
-            mediaType: blob.type,
+            file: new File([blob], media.display_url, { type: blob.type }),
+            aspectRatio: {
+              width: media.sizes.large.w,
+              height: media.sizes.large.h,
+            },
+            objectUrl: URL.createObjectURL(blob),
           };
         });
     });
-    Promise.all(photosPromise ?? []).then((photos) => {
-      postFormMethods.setValue("images", photos);
+    Promise.all(imagesPromise ?? []).then((images) => {
+      postFormMethods.setValue("images", images);
     });
   }, [tweet]);
 

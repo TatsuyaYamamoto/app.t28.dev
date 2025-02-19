@@ -1,19 +1,21 @@
-import { AtpAgent, RichText } from "@atproto/api";
-
-import { base64ToBinary, compressImage } from "@/helpers/utils.ts";
+import { MAX_BLUESKY_IMAGE_FILE_SIZE_MIB } from "@/constants.ts";
+import { AtpAgent, RichText, type AppBskyEmbedDefs } from "@atproto/api";
+import imageCompression from "browser-image-compression";
 
 type PostRecord = Parameters<InstanceType<typeof AtpAgent>["post"]>[0];
 
 export interface BlueskyEmbedImage {
   alt: string;
-  base64: string;
-  mediaType: string;
+  file: File;
+  aspectRatio: AppBskyEmbedDefs.AspectRatio;
 }
 
 export const postToBluesky = async (
   agent: AtpAgent,
   text: string,
-  images?: BlueskyEmbedImage[] | undefined,
+  embeds?: {
+    images?: BlueskyEmbedImage[];
+  },
 ) => {
   const richText = new RichText({ text });
   await richText.detectFacets(agent);
@@ -23,23 +25,26 @@ export const postToBluesky = async (
     facets: richText.facets,
   };
 
-  if (images && 1 <= images.length) {
+  if (embeds?.images && 1 <= embeds.images.length) {
     // priority #1
     // If a tweet has images, embed images as a blob
     // https://docs.bsky.app/docs/advanced-guides/posts#images-embeds
 
-    const uploadedImagesPromise = images
+    const uploadedImagesPromise = embeds.images
       // bluesky allows to embed max 4 images
       .slice(0, 4)
-      .map(async ({ alt, mediaType, base64 }) => {
-        const compressed = await compressImage(
-          base64ToBinary(base64),
-          mediaType,
-        );
-        const result = await agent.uploadBlob(compressed, {
-          encoding: mediaType,
+      .map(async ({ alt, file, aspectRatio }) => {
+        console.log(alt, file);
+        const compressed = await imageCompression(file, {
+          // https://github.com/Donaldcwl/browser-image-compression/blob/master/lib/image-compression.js#L51
+          maxSizeMB: MAX_BLUESKY_IMAGE_FILE_SIZE_MIB,
         });
-        return { alt, image: result.data.blob };
+        const result = await agent.uploadBlob(compressed);
+        return {
+          alt,
+          image: result.data.blob,
+          aspectRatio,
+        };
       });
 
     postRecord.embed = {

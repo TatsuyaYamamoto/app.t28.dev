@@ -56,7 +56,7 @@ export const useAgent = () => {
 
   const post = useCallback(
     async (text: string, images?: BlueskyEmbedImage[] | undefined) => {
-      const res = await postToBluesky(blueSkyAgent, text, images);
+      const res = await postToBluesky(blueSkyAgent, text, { images });
       const atUri = new AtUri(res.uri);
 
       return {

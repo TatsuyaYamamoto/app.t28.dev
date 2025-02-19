@@ -1,5 +1,3 @@
-import { MAX_BLUESKY_IMAGE_FILE_SIZE_MIB } from "@/constants.ts";
-import imageCompression from "browser-image-compression";
 import { jwtDecode } from "jwt-decode";
 
 export const selectLocalImages = (): Promise<File[] | null> => {
@@ -49,16 +47,21 @@ export const arrayBufferToBase64 = (arrayBuffer: ArrayBuffer) => {
   return btoa(binary);
 };
 
-export const compressImage = async (
-  input: Uint8Array,
-  mediaType: string,
-  maxSizeMib: number = MAX_BLUESKY_IMAGE_FILE_SIZE_MIB, // https://github.com/Donaldcwl/browser-image-compression/blob/master/lib/image-compression.js#L51
-): Promise<Uint8Array> => {
-  const rawFile = new File([input.buffer], "image", {
-    type: mediaType,
+export const getImageFileAspectRatio = (
+  file: File,
+): Promise<{ width: number; height: number }> => {
+  const image = new Image();
+
+  return new Promise((resolve) => {
+    URL.revokeObjectURL(image.src);
+
+    image.addEventListener("load", () => {
+      resolve({
+        width: image.width,
+        height: image.height,
+      });
+    });
+
+    image.src = URL.createObjectURL(file);
   });
-  const compressedFile = await imageCompression(rawFile, {
-    maxSizeMB: maxSizeMib,
-  });
-  return new Uint8Array(await compressedFile.arrayBuffer());
 };
