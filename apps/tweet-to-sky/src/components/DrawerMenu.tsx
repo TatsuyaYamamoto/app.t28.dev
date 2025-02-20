@@ -1,5 +1,6 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Separator } from "@chakra-ui/react";
 import { FC, PropsWithChildren, useState } from "react";
+import { FaBluesky as BlueskyIcon } from "react-icons/fa6";
 
 import { useAgent } from "@/components/AgentProvider";
 import { Avatar } from "@/components/ui/avatar.tsx";
@@ -28,11 +29,11 @@ const DrawerMenu: FC<PropsWithChildren> = ({ children }) => {
       <DrawerBackdrop />
       <DrawerTrigger asChild>{children}</DrawerTrigger>
       <DrawerContent>
-        <DrawerBody>
-          <Flex flexDirection="column" gap={2}>
+        <DrawerBody paddingTop={5} paddingX={0}>
+          <Flex flexDirection="column" paddingX={5} gap={2}>
             <Box>
               <Avatar
-                size="2xl"
+                size="xl"
                 borderColor={BORDER_COLOR}
                 borderWidth={1}
                 src={profile?.avatar}
@@ -45,7 +46,7 @@ const DrawerMenu: FC<PropsWithChildren> = ({ children }) => {
               </Box>
               <Box fontSize={15}>{`@${profile?.handle}`}</Box>
             </Flex>
-            <Box>
+            <Box fontSize={15}>
               <Box as="span" fontWeight={600}>
                 {profile?.followersCount ?? 0}
               </Box>
@@ -53,8 +54,23 @@ const DrawerMenu: FC<PropsWithChildren> = ({ children }) => {
               <Box as="span" fontWeight={600}>
                 {profile?.followsCount ?? 0}
               </Box>
-              {`フォロー`}
+              {` フォロー`}
             </Box>
+          </Flex>
+          <Separator marginTop={5} marginBottom={2} />
+          <Flex>
+            <Button
+              variant="ghost"
+              size="2xl"
+              width="full"
+              justifyContent="flex-start"
+              asChild
+            >
+              <a href="https://bsky.app">
+                <BlueskyIcon />
+                Bluesky
+              </a>
+            </Button>
           </Flex>
         </DrawerBody>
         <DrawerFooter>
