@@ -2,7 +2,7 @@ import { AtUri } from "@atproto/api";
 import { Box, Flex } from "@chakra-ui/react";
 import { FC, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { useTweet } from "react-tweet";
+import { enrichTweet, useTweet } from "react-tweet";
 
 import { useAgent } from "@/components/AgentProvider.tsx";
 import Header from "@/components/Header.tsx";
@@ -40,7 +40,10 @@ const App: FC = () => {
       return;
     }
 
-    postFormMethods.setValue("text", tweet.text);
+    const enrichedTweet = enrichTweet(tweet);
+    const text = enrichedTweet.entities.map(({ text }) => text).join();
+
+    postFormMethods.setValue("text", text);
 
     const imagesPromise = tweet.mediaDetails?.flatMap((media) => {
       if (media.type !== "photo") {
