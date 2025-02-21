@@ -1,16 +1,17 @@
-import { BLUESKY_SERVICE } from "@/constants.ts";
-import { isTokenExpired } from "@/helpers/utils.ts";
 import { AppBskyActorDefs, AtpAgent, AtpSessionData } from "@atproto/api";
 import {
   createContext,
   FC,
   PropsWithChildren,
-  useContext,
+  use,
   useEffect,
   useMemo,
   useState,
 } from "react";
 import { useLocalStorage } from "react-use";
+
+import { BLUESKY_SERVICE } from "@/constants.ts";
+import { isTokenExpired } from "@/helpers/utils.ts";
 
 const AgentContext = createContext<{
   agent: AtpAgent | null;
@@ -96,7 +97,7 @@ export const AgentProvider: FC<PropsWithChildren> = ({ children }) => {
 };
 
 export const useAgent = () => {
-  const { agent, ...others } = useContext(AgentContext);
+  const { agent, ...others } = use(AgentContext);
 
   if (!agent) {
     throw new Error("useAgent() must be below <AgentProvider>");
