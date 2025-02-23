@@ -41,7 +41,7 @@ const App: FC = () => {
     }
 
     const enrichedTweet = enrichTweet(tweet);
-    const text = enrichedTweet.entities.map(({ text }) => text).join();
+    const text = enrichedTweet.entities.map(({ text }) => text).join("");
 
     postFormMethods.setValue("text", text);
 
