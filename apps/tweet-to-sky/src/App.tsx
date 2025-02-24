@@ -6,6 +6,7 @@ import { enrichTweet, useTweet } from "react-tweet";
 
 import { useAgent } from "@/components/AgentProvider.tsx";
 import Header from "@/components/Header.tsx";
+import { Toaster, toaster } from "@/components/PostSuccessToaster.tsx";
 import PostView, { PostForm } from "@/components/PostView/PostView.tsx";
 import SignInForm from "@/components/SignInForm.tsx";
 import { BORDER_COLOR } from "@/constants.ts";
@@ -28,11 +29,11 @@ const App: FC = () => {
       images: formValue.images,
     });
     const atUri = new AtUri(res.uri);
-    const htmlUrl = `https://bsky.app/profile/${agent.session?.handle}/post/${atUri.rkey}`;
-
-    if (confirm("Go to Bluesky?")) {
-      location.href = htmlUrl;
-    }
+    toaster.create({
+      meta: {
+        postHtmlUrl: `https://bsky.app/profile/${agent.session?.handle}/post/${atUri.rkey}`,
+      },
+    });
   };
 
   useEffect(() => {
@@ -91,6 +92,7 @@ const App: FC = () => {
           <SignInForm />
         )}
       </Box>
+      <Toaster />
     </>
   );
 };
