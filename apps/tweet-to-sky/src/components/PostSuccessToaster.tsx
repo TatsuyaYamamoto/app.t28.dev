@@ -13,7 +13,6 @@ import { FaCheck as CheckIcon } from "react-icons/fa6";
 
 export const toaster = createToaster({
   placement: "bottom",
-  duration: 100000,
   pauseOnPageIdle: true,
   offsets: `calc(49px + var(--gap))`,
 });

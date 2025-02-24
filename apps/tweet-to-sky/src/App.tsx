@@ -15,7 +15,7 @@ import { useTweetInUrl } from "@/hooks/useTweetInUrl.ts";
 
 const App: FC = () => {
   const { agent, isSessionAvailable } = useAgent();
-  const tweetId = useTweetInUrl();
+  const [tweetId, clearTweetId] = useTweetInUrl();
   const { data: tweet } = useTweet(tweetId);
   const postFormMethods = useForm<PostForm>({
     defaultValues: {
@@ -28,6 +28,10 @@ const App: FC = () => {
     const res = await postToBluesky(agent, formValue.text, {
       images: formValue.images,
     });
+
+    postFormMethods.reset();
+    clearTweetId();
+
     const atUri = new AtUri(res.uri);
     toaster.create({
       meta: {

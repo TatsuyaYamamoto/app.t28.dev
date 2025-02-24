@@ -1,9 +1,11 @@
 import { useState } from "react";
 
+const TWEET_QUERY_KEY = "tweet";
+
 export const useTweetInUrl = () => {
-  const [tweetId] = useState<string | undefined>(() => {
+  const [tweetId, setTweetId] = useState<string | undefined>(() => {
     const url = new URL(window.location.href);
-    const maybyTweetIdOrUrl = url.searchParams.get("tweet");
+    const maybyTweetIdOrUrl = url.searchParams.get(TWEET_QUERY_KEY);
 
     if (!maybyTweetIdOrUrl) {
       return undefined;
@@ -34,5 +36,12 @@ export const useTweetInUrl = () => {
     return undefined;
   });
 
-  return tweetId;
+  const clearTweetId = () => {
+    setTweetId(undefined);
+    const nextUrl = new URL(window.location.href);
+    nextUrl.searchParams.delete(TWEET_QUERY_KEY);
+    history.replaceState(null, "", nextUrl);
+  };
+
+  return [tweetId, clearTweetId] as const;
 };
