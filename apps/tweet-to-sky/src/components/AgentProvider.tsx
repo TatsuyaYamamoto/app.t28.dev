@@ -14,25 +14,26 @@ import { BLUESKY_SERVICE } from "@/constants.ts";
 import { isTokenExpired } from "@/helpers/utils.ts";
 
 const AgentContext = createContext<{
-  agent: AtpAgent | null;
-  profile: AppBskyActorDefs.ProfileViewDetailed | null;
+  agent: AtpAgent | undefined;
+  profile: AppBskyActorDefs.ProfileViewDetailed | undefined;
   isSessionAvailable: boolean;
 }>({
-  agent: null,
-  profile: null,
+  agent: undefined,
+  profile: undefined,
   isSessionAvailable: false,
 });
 
 export const AgentProvider: FC<PropsWithChildren> = ({ children }) => {
   const [savedSessionData, saveSessionData, removeSessionData] =
     useLocalStorage<AtpSessionData>("bluesky:session");
-  const [profile, setProfile] =
-    useState<AppBskyActorDefs.ProfileViewDetailed | null>(null);
+  const [savedProfile, saveProfile, removeProfile] =
+    useLocalStorage<AppBskyActorDefs.ProfileViewDetailed>("bluesky:profile");
+
   const [agent] = useState(
     () =>
       new AtpAgent({
         service: BLUESKY_SERVICE,
-        persistSession: (evt, session) => {
+        persistSession: async (evt, session) => {
           console.log("[AtpAgent:persistSession]", evt);
 
           // No need to save or delete a session data due to `network-error`.
@@ -47,11 +48,13 @@ export const AgentProvider: FC<PropsWithChildren> = ({ children }) => {
           if (session) {
             saveSessionData(session);
 
-            agent.getProfile({ actor: session.handle }).then(({ data }) => {
-              setProfile(data);
+            const { data: newProfile } = await agent.getProfile({
+              actor: session.handle,
             });
+            saveProfile(newProfile);
           } else {
             removeSessionData();
+            removeProfile();
           }
         },
       }),
@@ -87,8 +90,8 @@ export const AgentProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   const value = useMemo(
-    () => ({ agent, profile, isSessionAvailable }),
-    [agent, profile, isSessionAvailable],
+    () => ({ agent, profile: savedProfile, isSessionAvailable }),
+    [agent, savedProfile, isSessionAvailable],
   );
 
   return (
