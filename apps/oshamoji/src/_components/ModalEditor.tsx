@@ -42,9 +42,13 @@ const ModalEditor: FC<Props> = (props) => {
       isCentered={true}
     >
       <ModalOverlay />
+      {/* @ts-expect-error */}
       <ModalContent borderRadius={"10px"} marginX={2}>
+        {/* @ts-expect-error */}
         <ModalHeader />
+        {/* @ts-expect-error */}
         <ModalCloseButton />
+        {/* @ts-expect-error */}
         <ModalBody>
           <TextareaAutosize
             placeholder={PLACEHOLDER}
@@ -63,6 +67,7 @@ const ModalEditor: FC<Props> = (props) => {
             `}
           />
         </ModalBody>
+        {/* @ts-expect-error */}
         <ModalFooter></ModalFooter>
       </ModalContent>
     </Modal>

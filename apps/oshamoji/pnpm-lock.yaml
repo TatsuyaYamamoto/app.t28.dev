@@ -36,9 +36,6 @@ importers:
         specifier: workspace:*
         version: link:../../packages/shared
     devDependencies:
-      '@tsconfig/vite-react':
-        specifier: 3.0.0
-        version: 3.0.0
       '@types/react':
         specifier: 18.2.6
         version: 18.2.6
@@ -934,9 +931,6 @@ packages:
     resolution: {integrity: sha512-0PVwmgzZ8+TZ9oGBmdZoQVXflbvuwzN/HRclujpl4N/q3i+y0lqLw8n1bXA8ru3sApDjlmONaNAuYr38y1Kr9w==}
     cpu: [x64]
     os: [win32]
-
-  '@tsconfig/vite-react@3.0.0':
-    resolution: {integrity: sha512-haOFbphpavQ1+eyQjeqvlz7sRkQue/bS0GvFmraHml31Ufhv+7juUSc8PVe0In7sly+n+5zTLmzc287KciiGXg==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2731,8 +2725,6 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.34.6':
     optional: true
-
-  '@tsconfig/vite-react@3.0.0': {}
 
   '@types/babel__core@7.20.5':
     dependencies:

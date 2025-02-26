@@ -73,6 +73,7 @@ const TextCardList: FC<Props> = (props) => {
       }}
     >
       {convertedList.map((converted, i) => (
+        // @ts-expect-error
         <GridItem key={i}>
           <TextCard
             value={converted.value}

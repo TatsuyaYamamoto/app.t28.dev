@@ -1,5 +1,5 @@
 {
-  "extends": ["@tsconfig/vite-react/tsconfig.json"],
+  "extends": ["shared/tsconfig.react.json"],
   "compilerOptions": {
     "jsxImportSource": "@emotion/react"
   },
