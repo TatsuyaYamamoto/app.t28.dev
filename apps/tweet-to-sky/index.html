@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
   <head>
     <!-- prettier-ignore -->
-    <%- include( "seo", {
+    <%- include("seo", {
       title: "tweet-to-sky | app.t28.dev",
       description: "Bluesky クライアントです。 PWA インストールすると Tweet を Bluesky へ共有できます。"
     }) %>
+
+    <link rel="manifest" href="/manifest.json" />
   </head>
   <body>
     <div id="root"></div>
