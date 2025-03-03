@@ -9,6 +9,15 @@ const webShareParams = {
   url: params.get(share_target.params.url),
 };
 
-if (webShareParams.text) {
-  location.href = `/oshamoji?text=${webShareParams.text}`;
-}
+const main = () => {
+  if (webShareParams.text) {
+    if (webShareParams.text.startsWith("https://x.com")) {
+      location.href = `/tweet-to-sky?tweet=${webShareParams.text}`;
+      return;
+    }
+
+    location.href = `/oshamoji?text=${webShareParams.text}`;
+  }
+};
+
+main();
