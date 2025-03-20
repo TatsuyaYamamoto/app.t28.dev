@@ -6,7 +6,8 @@ import { useTweet } from "react-tweet";
 
 import { useAgent } from "@/components/AgentProvider.tsx";
 import Header from "@/components/Header.tsx";
-import { Toaster, toaster } from "@/components/PostSuccessToaster.tsx";
+import LoadingOverlay from "@/components/LoadingOverlay.tsx";
+import { toaster } from "@/components/PostSuccessToaster.tsx";
 import PostView, { PostForm } from "@/components/PostView/PostView.tsx";
 import SignInForm from "@/components/SignInForm.tsx";
 import { BORDER_COLOR } from "@/constants.ts";
@@ -17,7 +18,7 @@ import { useTweetInUrl } from "@/hooks/useTweetInUrl.ts";
 const App: FC = () => {
   const { agent, isSessionAvailable } = useAgent();
   const [tweetId, clearTweetId] = useTweetInUrl();
-  const { data: tweet } = useTweet(tweetId);
+  const { data: tweet, isLoading } = useTweet(tweetId);
   const postFormMethods = usePostForm(tweet ?? undefined);
 
   const onPost = async (formValue: PostForm) => {
@@ -36,29 +37,33 @@ const App: FC = () => {
     });
   };
 
+  if (!isSessionAvailable) {
+    return (
+      <Box as="main" display="flex" justifyContent="center" height="100%">
+        <SignInForm />
+      </Box>
+    );
+  }
+
   return (
     <>
+      <LoadingOverlay open={isLoading} />
       <Box as="main" display="flex" justifyContent="center" height="100%">
-        {isSessionAvailable ? (
-          <Flex
-            direction="column"
-            maxWidth={600}
-            width="100%"
-            height="100%"
-            borderColor={BORDER_COLOR}
-            borderLeftWidth={1}
-            borderRightWidth={1}
-          >
-            <FormProvider {...postFormMethods}>
-              <Header onPost={onPost} />
-              <PostView />
-            </FormProvider>
-          </Flex>
-        ) : (
-          <SignInForm />
-        )}
+        <Flex
+          direction="column"
+          maxWidth={600}
+          width="100%"
+          height="100%"
+          borderColor={BORDER_COLOR}
+          borderLeftWidth={1}
+          borderRightWidth={1}
+        >
+          <FormProvider {...postFormMethods}>
+            <Header onPost={onPost} />
+            <PostView />
+          </FormProvider>
+        </Flex>
       </Box>
-      <Toaster />
     </>
   );
 };
