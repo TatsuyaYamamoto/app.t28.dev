@@ -19,6 +19,9 @@ const App: FC = () => {
   const { agent, isSessionAvailable } = useAgent();
   const [tweetId, clearTweetId] = useTweetInUrl();
   const { data: tweet, isLoading } = useTweet(tweetId);
+
+  // https://github.com/vercel/react-tweet/pull/193
+  const isTweetLoading = !!tweetId && isLoading;
   const postFormMethods = usePostForm(tweet ?? undefined);
 
   const onPost = async (formValue: PostForm) => {
@@ -47,7 +50,7 @@ const App: FC = () => {
 
   return (
     <>
-      <LoadingOverlay open={isLoading} />
+      <LoadingOverlay open={isTweetLoading} />
       <Box as="main" display="flex" justifyContent="center" height="100%">
         <Flex
           direction="column"
