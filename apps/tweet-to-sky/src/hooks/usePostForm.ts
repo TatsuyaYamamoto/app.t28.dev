@@ -76,12 +76,17 @@ export const usePostFormContext = () => {
   });
 
   const textValue = formMethods.watch("text");
+  const imagesValue = formMethods.watch("images");
   const hasMaxImages = MAX_IMAGE_LENGTH <= imagesField.fields.length;
 
   const graphemeLength = useMemo(
     () => new RichText({ text: textValue }).graphemeLength,
     [textValue],
   );
+
+  const isFormValid = useMemo(() => {
+    return 0 < textValue.length || 0 < imagesValue.length;
+  }, [textValue, imagesValue]);
 
   const getImages = () => {
     return formMethods.getValues("images");
@@ -120,5 +125,6 @@ export const usePostFormContext = () => {
     onRemoveImage,
     form: formMethods,
     imagesField,
+    isFormValid,
   };
 };

@@ -1,8 +1,8 @@
 import DrawerMenu from "@/components/DrawerMenu.tsx";
 import { PostForm } from "@/components/PostView/PostView.tsx";
+import { usePostFormContext } from "@/hooks/usePostForm.ts";
 import { Button, Flex, IconButton, Spacer } from "@chakra-ui/react";
 import { FC } from "react";
-import { useFormContext } from "react-hook-form";
 import { SlMenu as HamburgerIcon } from "react-icons/sl";
 
 interface Props {
@@ -11,9 +11,12 @@ interface Props {
 
 const Header: FC<Props> = ({ onPost }) => {
   const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useFormContext<PostForm>();
+    form: {
+      handleSubmit,
+      formState: { isSubmitting },
+    },
+    isFormValid,
+  } = usePostFormContext();
 
   const onClickPost = handleSubmit(async (formValue) => {
     await onPost(formValue);
@@ -27,7 +30,12 @@ const Header: FC<Props> = ({ onPost }) => {
         </IconButton>
       </DrawerMenu>
       <Spacer />
-      <Button rounded="full" onClick={onClickPost} loading={isSubmitting}>
+      <Button
+        rounded="full"
+        onClick={onClickPost}
+        loading={isSubmitting}
+        disabled={!isFormValid}
+      >
         投稿
       </Button>
     </Flex>
