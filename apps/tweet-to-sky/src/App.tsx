@@ -7,7 +7,7 @@ import { useTweet } from "react-tweet";
 import { useAgent } from "@/components/AgentProvider.tsx";
 import Header from "@/components/Header.tsx";
 import LoadingOverlay from "@/components/LoadingOverlay.tsx";
-import { toaster } from "@/components/PostSuccessToaster.tsx";
+import { Toaster, toaster } from "@/components/PostSuccessToaster.tsx";
 import PostView, { PostForm } from "@/components/PostView/PostView.tsx";
 import SignInForm from "@/components/SignInForm.tsx";
 import { BORDER_COLOR } from "@/constants.ts";
@@ -64,6 +64,7 @@ const App: FC = () => {
           </FormProvider>
         </Flex>
       </Box>
+      <Toaster />
     </>
   );
 };
