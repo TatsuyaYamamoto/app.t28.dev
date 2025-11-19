@@ -21,6 +21,7 @@
     "@vitejs/plugin-react": "5.1.1",
     "babel-plugin-react-compiler": "1.0.0",
     "tailwindcss": "4.1.17",
-    "vite": "7.2.2"
+    "vite": "7.2.2",
+    "vite-plugin-html": "3.2.2"
   }
 }
