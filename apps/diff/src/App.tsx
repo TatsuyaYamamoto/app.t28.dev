@@ -34,10 +34,14 @@ function App() {
     const originalEncoded = compressToEncodedURIComponent(originalRaw);
     const modifiedEncoded = compressToEncodedURIComponent(modifiedRaw);
 
+    const shareUrl = new URL(location.href);
+    shareUrl.searchParams.forEach((_, key) =>
+      shareUrl.searchParams.delete(key),
+    );
     url.searchParams.set("original", originalEncoded);
     url.searchParams.set("modified", modifiedEncoded);
 
-    location.href = url.href;
+    void navigator.clipboard.writeText(url.toString());
   };
 
   return (
