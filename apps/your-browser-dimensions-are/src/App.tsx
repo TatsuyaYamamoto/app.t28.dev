@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { type ChangeEvent, type FC, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Size from "./components/Size";
+import {
+  type DimensionType,
+  dimensionNameMap,
+  dimensionTypes,
+} from "./constants.ts";
+import { useDimensions } from "./hooks/useDimensions.ts";
+
+const App: FC = () => {
+  const { viewport, windowInner, windowOuter, devicePixelRatio } =
+    useDimensions();
+  const [dimensionType, setDimensionType] =
+    useState<DimensionType>("visualViewport");
+
+  const onSelectDimensionTypes = (e: ChangeEvent<HTMLSelectElement>) => {
+    setDimensionType(e.target.value as DimensionType);
+  };
+
+  const width = {
+    visualViewport: viewport?.width ?? 0,
+    layoutViewport: windowInner?.width ?? 0,
+    browserWindow: windowOuter?.width ?? 0,
+  }[dimensionType];
+
+  const height = {
+    visualViewport: viewport?.height ?? 0,
+    layoutViewport: windowInner?.height ?? 0,
+    browserWindow: windowOuter?.height ?? 0,
+  }[dimensionType];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <div className="fixed flex h-full w-full items-center justify-center p-4">
+        <div className="text-center">
+          <h1 className="text-6xl font-black">
+            {"My "}
+            <select
+              className="text-center underline decoration-dotted"
+              value={dimensionType}
+              onChange={onSelectDimensionTypes}
+            >
+              {dimensionTypes.map((type) => (
+                <option key={type} value={type}>
+                  {dimensionNameMap[type]}
+                </option>
+              ))}
+            </select>
+            {" size is:"}
+          </h1>
+          <div className="text-4xl font-extralight">
+            <Size>{width}</Size>
+            <span>{` × `}</span>
+            <Size>{height}</Size>
+          </div>
+          <div className="text-lg">
+            {`Device pixel ratio: ${devicePixelRatio}`}
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
