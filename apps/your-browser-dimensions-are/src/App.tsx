@@ -9,7 +9,7 @@ import {
 import { useDimensions } from "./hooks/useDimensions.ts";
 
 const App: FC = () => {
-  const { viewport, windowInner, windowOuter, devicePixelRatio } =
+  const { visualViewport, layoutViewport, browserWindow, devicePixelRatio } =
     useDimensions();
   const [dimensionType, setDimensionType] =
     useState<DimensionType>("visualViewport");
@@ -18,17 +18,12 @@ const App: FC = () => {
     setDimensionType(e.target.value as DimensionType);
   };
 
-  const width = {
-    visualViewport: viewport?.width ?? 0,
-    layoutViewport: windowInner?.width ?? 0,
-    browserWindow: windowOuter?.width ?? 0,
-  }[dimensionType];
-
-  const height = {
-    visualViewport: viewport?.height ?? 0,
-    layoutViewport: windowInner?.height ?? 0,
-    browserWindow: windowOuter?.height ?? 0,
-  }[dimensionType];
+  const map = {
+    visualViewport,
+    layoutViewport,
+    browserWindow,
+  };
+  const { width, height } = map[dimensionType] ?? { width: 0, height: 0 };
 
   return (
     <div>
@@ -57,8 +52,40 @@ const App: FC = () => {
           <div className="text-lg">
             {`Device pixel ratio: ${devicePixelRatio}`}
           </div>
+          <div className="text-lg">
+            {`Visual viewport scale: ${visualViewport?.scale}`}
+          </div>
         </div>
       </div>
+      {dimensionType === "visualViewport" && (
+        <div
+          className="pointer-events-none absolute top-0 border-12 border-dashed border-amber-400"
+          style={{
+            width: visualViewport?.width ?? 0,
+            height: visualViewport?.height ?? 0,
+            top: visualViewport?.offsetTop ?? 0,
+            left: visualViewport?.offsetLeft ?? 0,
+          }}
+        ></div>
+      )}
+      {dimensionType === "layoutViewport" && (
+        <div
+          className="pointer-events-none absolute top-0 border-12 border-dotted border-cyan-500"
+          style={{
+            width: layoutViewport?.width ?? 0,
+            height: layoutViewport?.height ?? 0,
+          }}
+        ></div>
+      )}
+      {dimensionType === "browserWindow" && (
+        <div
+          className="pointer-events-none absolute top-0 border-12 border-dotted border-red-500"
+          style={{
+            width: browserWindow?.width ?? 0,
+            height: browserWindow?.height ?? 0,
+          }}
+        ></div>
+      )}
     </div>
   );
 };
