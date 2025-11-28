@@ -30,7 +30,7 @@ const App: FC = () => {
       <div className="fixed flex h-full w-full items-center justify-center p-4">
         <div className="text-center">
           <h1 className="text-6xl font-black">
-            {"My "}
+            <span>{"My "}</span>
             <select
               className="text-center underline decoration-dotted"
               value={dimensionType}
@@ -42,18 +42,20 @@ const App: FC = () => {
                 </option>
               ))}
             </select>
-            {" size is:"}
+            <span className="inline-block">{" size is:"}</span>
           </h1>
-          <div className="text-4xl font-extralight">
+          <div className="my-1 text-7xl font-extralight">
             <Size>{width}</Size>
             <span>{` × `}</span>
             <Size>{height}</Size>
           </div>
-          <div className="text-lg">
-            {`Device pixel ratio: ${devicePixelRatio}`}
-          </div>
-          <div className="text-lg">
-            {`Visual viewport scale: ${visualViewport?.scale}`}
+          <div className="mt-2">
+            <div className="text-lg">
+              {`Device pixel ratio: ${devicePixelRatio}`}
+            </div>
+            <div className="text-lg">
+              {`Visual viewport scale: ${visualViewport?.scale}`}
+            </div>
           </div>
         </div>
       </div>
