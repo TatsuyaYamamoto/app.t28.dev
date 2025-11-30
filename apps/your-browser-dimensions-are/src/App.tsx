@@ -89,13 +89,19 @@ const App: FC = () => {
 
           <div className="mt-2">
             <div className="text-lg">
-              <a href="https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio">
+              <a
+                target="_blank"
+                href="https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio"
+              >
                 Device pixel ratio
               </a>
               {`: ${devicePixelRatio}`}
             </div>
             <div className="text-lg">
-              <a href="https://developer.mozilla.org/ja/docs/Web/API/VisualViewport/scale">
+              <a
+                target="_blank"
+                href="https://developer.mozilla.org/ja/docs/Web/API/VisualViewport/scale"
+              >
                 Visual viewport scale
               </a>
               {`: ${visualViewport?.scale}`}
