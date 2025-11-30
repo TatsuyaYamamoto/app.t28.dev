@@ -1,6 +1,6 @@
-import { type ChangeEvent, type FC, useState } from "react";
+import { type ChangeEvent, type CSSProperties, type FC, useState } from "react";
 
-import Size from "./components/Size";
+import DimensionWidthHeight from "./components/DimensionWidthHeight.tsx";
 import {
   type DimensionType,
   dimensionNameMap,
@@ -19,20 +19,59 @@ const App: FC = () => {
   };
 
   const map = {
-    visualViewport,
-    layoutViewport,
-    browserWindow,
+    visualViewport: {
+      color: "--color-amber-500",
+      width: {
+        name: (
+          <a href="https://developer.mozilla.org/docs/Web/API/VisualViewport">
+            <code>visualViewport.width</code>
+          </a>
+        ),
+        value: visualViewport?.width ?? 0,
+      },
+      height: {
+        name: (
+          <a href="https://developer.mozilla.org/docs/Web/API/VisualViewport">
+            <code>visualViewport.height</code>
+          </a>
+        ),
+        value: visualViewport?.height ?? 0,
+      },
+    },
+    layoutViewport: {
+      color: "--color-cyan-500",
+      width: {
+        name: "innerWidth",
+        value: layoutViewport?.width ?? 0,
+      },
+      height: {
+        name: "innerHeight",
+        value: layoutViewport?.height ?? 0,
+      },
+    },
+    browserWindow: {
+      color: "--color-red-500",
+      width: {
+        name: "outerWidth",
+        value: browserWindow?.width ?? 0,
+      },
+      height: {
+        name: "outerHeight",
+        value: browserWindow?.height ?? 0,
+      },
+    },
   };
-  const { width, height } = map[dimensionType] ?? { width: 0, height: 0 };
+  const { width, height, color } = map[dimensionType];
 
   return (
-    <div>
+    <div style={{ "--color": `var(${color})` } as CSSProperties}>
       <div className="fixed flex h-full w-full items-center justify-center p-4">
         <div className="text-center">
           <h1 className="text-6xl font-black">
-            <span>{"My "}</span>
+            <span>{"Your "}</span>
             <select
-              className="text-center underline decoration-dotted"
+              className="text-center text-(--color)"
+              name="dimensionType"
               value={dimensionType}
               onChange={onSelectDimensionTypes}
             >
@@ -44,50 +83,38 @@ const App: FC = () => {
             </select>
             <span className="inline-block">{" size is:"}</span>
           </h1>
-          <div className="my-1 text-7xl font-extralight">
-            <Size>{width}</Size>
-            <span>{` × `}</span>
-            <Size>{height}</Size>
+          <div className="my-5">
+            <DimensionWidthHeight width={width} height={height} />
           </div>
+
           <div className="mt-2">
             <div className="text-lg">
-              {`Device pixel ratio: ${devicePixelRatio}`}
+              <a href="https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio">
+                Device pixel ratio
+              </a>
+              {`: ${devicePixelRatio}`}
             </div>
             <div className="text-lg">
-              {`Visual viewport scale: ${visualViewport?.scale}`}
+              <a href="https://developer.mozilla.org/ja/docs/Web/API/VisualViewport/scale">
+                Visual viewport scale
+              </a>
+              {`: ${visualViewport?.scale}`}
             </div>
           </div>
         </div>
       </div>
-      {dimensionType === "visualViewport" && (
-        <div
-          className="pointer-events-none absolute top-0 border-12 border-dashed border-amber-400"
-          style={{
-            width: visualViewport?.width ?? 0,
-            height: visualViewport?.height ?? 0,
+
+      <div
+        className="pointer-events-none absolute top-0 border-12 border-(--color)"
+        style={{
+          width: width.value,
+          height: height.value,
+          ...(dimensionType === "visualViewport" && {
             top: visualViewport?.offsetTop ?? 0,
             left: visualViewport?.offsetLeft ?? 0,
-          }}
-        ></div>
-      )}
-      {dimensionType === "layoutViewport" && (
-        <div
-          className="pointer-events-none absolute top-0 border-12 border-dotted border-cyan-500"
-          style={{
-            width: layoutViewport?.width ?? 0,
-            height: layoutViewport?.height ?? 0,
-          }}
-        ></div>
-      )}
-      {dimensionType === "browserWindow" && (
-        <div
-          className="pointer-events-none absolute top-0 border-12 border-dotted border-red-500"
-          style={{
-            width: browserWindow?.width ?? 0,
-            height: browserWindow?.height ?? 0,
-          }}
-        ></div>
-      )}
+          }),
+        }}
+      ></div>
     </div>
   );
 };
