@@ -2,18 +2,14 @@ import type { FC, PropsWithChildren, ReactNode } from "react";
 
 const Name: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <dt className="absolute top-0 left-1/2 transform-[translate(-50%,-50%)] rounded-full bg-(--color)/20 px-2 text-base">
-      {children}
-    </dt>
+    <dt className="rounded-full bg-(--color)/20 px-2 text-base">{children}</dt>
   );
 };
 
 const Value: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <dd className="inline">
-      <output className="after:text-5xl after:content-['px']">
-        {children}
-      </output>
+    <dd className="inline after:text-3xl after:content-['px'] sm:after:text-5xl">
+      {children}
     </dd>
   );
 };
@@ -25,15 +21,15 @@ interface Props {
 
 const DimensionWidthHeight: FC<Props> = ({ width, height }) => {
   return (
-    <dl className={`inline-block pt-5 text-7xl font-extralight`}>
-      <div className="relative inline">
+    <dl
+      className={`inline-flex flex-col text-5xl font-extralight sm:flex-row sm:items-end sm:gap-4 sm:text-7xl`}
+    >
+      <div className="inline-flex flex-col">
         <Name>{width.name}</Name>
         <Value>{width.value}</Value>
       </div>
-
-      <span>{` × `}</span>
-
-      <div className="relative inline">
+      <span>{`×`}</span>
+      <div className="inline-flex flex-col">
         <Name>{height.name}</Name>
         <Value>{height.value}</Value>
       </div>

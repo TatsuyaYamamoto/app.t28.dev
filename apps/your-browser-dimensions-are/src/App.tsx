@@ -67,7 +67,7 @@ const App: FC = () => {
     <div style={{ "--color": `var(${color})` } as CSSProperties}>
       <div className="fixed flex h-full w-full items-center justify-center p-4">
         <div className="text-center">
-          <h1 className="text-6xl font-black">
+          <h1 className="text-4xl font-black sm:text-6xl">
             <span>{"Your "}</span>
             <select
               className="text-center text-(--color)"
