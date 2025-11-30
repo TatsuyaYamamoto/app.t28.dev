@@ -107,6 +107,10 @@ const App: FC = () => {
               {`: ${visualViewport?.scale}`}
             </div>
           </div>
+          <input
+            placeholder="Focus to show a virtual keyboard"
+            className="mt-5 w-70 rounded-xl border-1 border-gray-500 p-2 text-center"
+          />
         </div>
       </div>
 
