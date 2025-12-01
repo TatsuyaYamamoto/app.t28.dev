@@ -36,7 +36,7 @@ export const useDimensions = () => {
       setDevicePixelRatio(parseFloat(window.devicePixelRatio.toFixed(2)));
     };
 
-    const onVisualLayoutResize = () => {
+    const onVisualLayoutUpdate = () => {
       setVisualViewport(
         window.visualViewport
           ? {
@@ -51,15 +51,20 @@ export const useDimensions = () => {
     };
 
     window.addEventListener("resize", onWindowResize);
-    window.visualViewport?.addEventListener("resize", onVisualLayoutResize);
+    window.visualViewport?.addEventListener("resize", onVisualLayoutUpdate);
+    window.visualViewport?.addEventListener("scroll", onVisualLayoutUpdate);
     onWindowResize();
-    onVisualLayoutResize();
+    onVisualLayoutUpdate();
 
     return () => {
       window.removeEventListener("resize", onWindowResize);
       window.visualViewport?.removeEventListener(
         "resize",
-        onVisualLayoutResize,
+        onVisualLayoutUpdate,
+      );
+      window.visualViewport?.removeEventListener(
+        "scroll",
+        onVisualLayoutUpdate,
       );
     };
   }, []);
