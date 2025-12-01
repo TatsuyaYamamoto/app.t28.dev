@@ -9,7 +9,7 @@ import {
 import { useDimensions } from "./hooks/useDimensions.ts";
 
 const App: FC = () => {
-  const { visualViewport, layoutViewport, browserWindow, devicePixelRatio } =
+  const { visualViewport, layoutViewport, clientWindow, devicePixelRatio } =
     useDimensions();
   const [dimensionType, setDimensionType] =
     useState<DimensionType>("visualViewport");
@@ -49,15 +49,15 @@ const App: FC = () => {
         value: layoutViewport?.height ?? 0,
       },
     },
-    browserWindow: {
+    clientWindow: {
       color: "--color-red-500",
       width: {
         name: "outerWidth",
-        value: browserWindow?.width ?? 0,
+        value: clientWindow?.width ?? 0,
       },
       height: {
         name: "outerHeight",
-        value: browserWindow?.height ?? 0,
+        value: clientWindow?.height ?? 0,
       },
     },
   };
@@ -125,6 +125,20 @@ const App: FC = () => {
           }),
         }}
       ></div>
+
+      {dimensionType === "visualViewport" && (
+        <div
+          className="pointer-events-none absolute top-0 border-4 border-dotted border-gray-700"
+          style={{ width: "100dvw", height: "100dvh" }}
+        />
+      )}
+
+      {dimensionType === "layoutViewport" && (
+        <div
+          className="pointer-events-none absolute top-0 border-4 border-dotted border-gray-700"
+          style={{ width: "100lvw", height: "100lvh" }}
+        />
+      )}
     </div>
   );
 };

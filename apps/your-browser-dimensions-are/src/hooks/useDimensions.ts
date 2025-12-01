@@ -1,53 +1,50 @@
 import { useEffect, useState } from "react";
 
+const getVisualViewport = () => {
+  return {
+    width: Math.round(window.visualViewport?.width ?? 0),
+    height: Math.round(window.visualViewport?.height ?? 0),
+    offsetTop: window.visualViewport?.offsetTop ?? 0,
+    offsetLeft: window.visualViewport?.offsetLeft ?? 0,
+    scale: parseFloat(window.visualViewport?.scale.toFixed(2) ?? "0"),
+  };
+};
+
+const getLayoutViewport = () => {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+};
+
+const getClientWindow = () => {
+  return {
+    width: window.outerWidth,
+    height: window.outerHeight,
+  };
+};
+
+const getDevicePixelRatio = () => {
+  return parseFloat(window.devicePixelRatio.toFixed(2));
+};
+
 export const useDimensions = () => {
-  const [visualViewport, setVisualViewport] = useState<{
-    width: number;
-    height: number;
-    offsetTop: number;
-    offsetLeft: number;
-    scale: number;
-  } | null>(null);
-
-  const [layoutViewport, setLayoutViewport] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
-
-  const [browserWindow, setBrowserWindow] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
-
+  const [visualViewport, setVisualViewport] = useState(getVisualViewport());
+  const [layoutViewport, setLayoutViewport] = useState(getLayoutViewport);
+  const [clientWindow, setClientWindow] = useState(getClientWindow());
   const [devicePixelRatio, setDevicePixelRatio] = useState(
-    window.devicePixelRatio,
+    getDevicePixelRatio(),
   );
 
   useEffect(() => {
     const onWindowResize = () => {
-      setLayoutViewport({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-      setBrowserWindow({
-        width: window.outerWidth,
-        height: window.outerHeight,
-      });
-      setDevicePixelRatio(parseFloat(window.devicePixelRatio.toFixed(2)));
+      setLayoutViewport(getLayoutViewport());
+      setClientWindow(getClientWindow());
+      setDevicePixelRatio(getDevicePixelRatio());
     };
 
     const onVisualLayoutUpdate = () => {
-      setVisualViewport(
-        window.visualViewport
-          ? {
-              width: Math.round(window.visualViewport.width),
-              height: Math.round(window.visualViewport.height),
-              offsetTop: window.visualViewport.offsetTop,
-              offsetLeft: window.visualViewport.offsetLeft,
-              scale: parseFloat(window.visualViewport.scale.toFixed(2)),
-            }
-          : null,
-      );
+      setVisualViewport(getVisualViewport());
     };
 
     window.addEventListener("resize", onWindowResize);
@@ -72,7 +69,7 @@ export const useDimensions = () => {
   return {
     visualViewport,
     layoutViewport,
-    browserWindow,
+    clientWindow,
     devicePixelRatio,
   };
 };
