@@ -1,5 +1,6 @@
 import { type ChangeEvent, type CSSProperties, type FC, useState } from "react";
 
+import CssViewportBorder from "./components/CssViewportBorder.tsx";
 import DimensionWidthHeight from "./components/DimensionWidthHeight.tsx";
 import {
   type DimensionType,
@@ -109,7 +110,7 @@ const App: FC = () => {
           </div>
           <input
             placeholder="Focus to show a virtual keyboard"
-            className="mt-5 w-70 rounded-xl border-1 border-gray-500 p-2 text-center"
+            className="input mt-5 w-70 text-center"
           />
         </div>
       </div>
@@ -126,19 +127,7 @@ const App: FC = () => {
         }}
       ></div>
 
-      {dimensionType === "visualViewport" && (
-        <div
-          className="pointer-events-none absolute top-0 border-4 border-dotted border-gray-700"
-          style={{ width: "100dvw", height: "100dvh" }}
-        />
-      )}
-
-      {dimensionType === "layoutViewport" && (
-        <div
-          className="pointer-events-none absolute top-0 border-4 border-dotted border-gray-700"
-          style={{ width: "100lvw", height: "100lvh" }}
-        />
-      )}
+      <CssViewportBorder />
     </div>
   );
 };
